@@ -28,7 +28,21 @@ class Solution:
                     result[i].append(result[i - 1][j - 1] + result[i - 1][j])
         return result;
 
+    def generate2(self, numRows):
+        if not numRows:
+            return []
+
+        res = [[1]]
+        for i in range(1, numRows):
+            # finally figure it out, let's say we got [[1],[1,1]] arleady
+            # res[-1]=[1,1] ,res[-1] + [0] = [1,1,0]
+            # [0] + res[-1] = [0,1,1]
+            # then x + y = [1,1,0]+[0,1,1] = [1,2,1]
+            # hence we got [[1],[1,1],[1,2,1]]..
+            res += [map(lambda x,y:x+y, res[-1]+[0],[0] + res[-1] )]
+        return res[:numRows]
 
 
 if __name__ == "__main__":
     print Solution().generate(5)
+    print Solution().generate2(6)
