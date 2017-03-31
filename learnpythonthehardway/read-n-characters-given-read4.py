@@ -15,6 +15,23 @@
 # @param buf, a list of characters
 # @return an integer
 
+# The read4 API is already defined for you.
+# @param buf, a list of characters
+# @return an integer
+def read4(buf):
+    global file_content
+    i = 0
+    while i < len(file_content) and i < 4:
+        buf[i] = file_content[i]
+        i += 1
+
+    if len(file_content) > 4:
+        file_content = file_content[4:]
+    else:
+        file_content = ""
+
+    return i
+
 class Solution(object):
     def read(self, buf, n):
         """
@@ -24,3 +41,22 @@ class Solution(object):
         """
         read_bytes = 0
         buffer = [''] * 4
+        for i in xrange(n/4+1):
+            size = read4(buffer)
+            if size:
+                buf[read_bytes:read_bytes+size] = buffer
+                read_bytes += size
+            else:
+                break
+
+        return min(read_bytes,n)
+
+
+if __name__ == "__main__":
+    global file_content
+    buf = ['' for _ in xrange(100)]
+    file_content = "a"
+    print buf[:Solution().read(buf, 9)]
+    # file_content = "YEiOwYgGGpazYrplFQwkDXCUXHNjTziyCfytblUsRTKuElgBbHbetJZkDAJqQbRHOxTTudiNtBjsyZAmxFkeFBWbFUxsHOcYMtGGIZzwfyeBMvvtAgluXAveQFwHbBzfHjcSaysZgepMqOIuInlKzKMBrWVzYfkZheSFCNakYaQgsWpWkptxLlDFFYjmWFIJgWXxKyISNlbaLKJOWqkHAKnVxAjviPBIStqxkaPZeLAjqBGQldOrmXPoYLjkXSwEZLKoyYIkpGwaDzHknWAwvnKLZZLSwrAmXpUZJvOuAMVcYYxoWWsiKWlpLBiByhqTCJpZwCpvxlBmqYSAiQdCMhABbdBFMEwaqeFsNuHnmNMlXHWyajnBfruZyyhLaYdmELZ"
+    file_content = "abcdefghijk"
+    print buf[:Solution().read(buf,9)]
