@@ -33,6 +33,22 @@ class Solution(object):
             total += ones * (len(nums) - ones)
         return total
 
+    def totalHammingDistance2(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        total = 0
+        for i in xrange(32):
+            ans = [0]*2
+            for n in nums:
+                ans[(n>>i) & 1] += 1
+            total += ans[0] * ans[1]
+
+        return total
+
+
+
 if __name__ == "__main__":
     nums = [4,2,14]
-    print Solution().totalHammingDistance(nums)
+    print Solution().totalHammingDistance2(nums)
