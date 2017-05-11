@@ -50,9 +50,13 @@ class Solution(object):
             i += 1
         res = 0
         while i < len(str) and str[i] >= '0' and str[i] <= '9':
-            if res > INT_MAX / 10:
+            if res > (INT_MAX - (ord(str[i]) - ord('0'))) / 10:
                 return INT_MAX if sign == 1 else INT_MIN
             res = res * 10 + ord(str[i]) - ord('0')
             i += 1
 
         return res * sign
+
+
+if __name__ == "__main__":
+    print Solution().myAtoi("2147483648")
