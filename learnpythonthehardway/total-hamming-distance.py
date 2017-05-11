@@ -26,7 +26,7 @@ class Solution(object):
         """
         total = 0
         for i in xrange(32):
-            k,ones = (1 << i),0
+            k, ones = (1 << i), 0
             for n in nums:
                 if k & n:
                     ones += 1
@@ -40,15 +40,14 @@ class Solution(object):
         """
         total = 0
         for i in xrange(32):
-            ans = [0]*2
+            ans = [0] * 2
             for n in nums:
-                ans[(n>>i) & 1] += 1
+                ans[(n >> i) & 1] += 1
             total += ans[0] * ans[1]
 
         return total
 
 
-
 if __name__ == "__main__":
-    nums = [4,2,14]
+    nums = [4, 2, 14]
     print Solution().totalHammingDistance2(nums)

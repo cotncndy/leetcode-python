@@ -29,7 +29,7 @@ class Solution(object):
                 str = sr
             if k > 0:
                 sr = expand(k-1,k)
-                if(res < len(sr)):
+                if (res < len(sr)):
                     res = len(sr)
                     str = sr
 

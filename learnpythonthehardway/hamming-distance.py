@@ -39,7 +39,6 @@
 # The above arrows point to positions where the corresponding bits are different.
 
 class Solution(object):
-
     def hammingDistance(self, x, y):
         """
         :type x: int
@@ -48,12 +47,12 @@ class Solution(object):
 
         """
         distance = 0
-        z = x^y
+        z = x ^ y
         while z:
             distance += 1
-            z &= z-1
+            z &= z - 1
 
         return distance
 
     def hammingDistance2(self, x, y):
-        return bin(x^y).count('1')
+        return bin(x ^ y).count('1')
