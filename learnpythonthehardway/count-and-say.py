@@ -15,7 +15,7 @@
 class Solution:
     # @return a string
     def countAndSay(self, n):
-        i, t_str, res = 0, "1", ""
+        i, t_str, res = 1, "1", ""
         while i < n:
             t_str += '#'
             count = 1
