@@ -22,9 +22,14 @@ class Solution(object):
                 res[i + j] += sum / 10
                 res[i + j + 1] = sum % 10
 
-        s = ''.join(map(str, res))
-        return s if s[0] != '0' else s[1::]
+        # s = ''.join(map(str, res))
+        s = ""
+        for i in xrange(l1 + l2):
+            if not (res[i] == 0 and len(s) == 0):
+                s += str(res[i])
+
+        return "0" if len(s) == 0 else s
 
 
 if __name__ == "__main__":
-    print Solution().multiply("123", "11")
+    print Solution().multiply("123", "0")
