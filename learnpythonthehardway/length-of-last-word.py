@@ -24,3 +24,10 @@ class Solution:
             else:
                 length += 1
         return length
+
+    def lengthOfLastWord2(self, s):
+        return len(s.strip().split(" ")[-1])
+
+
+if __name__ == "__main__":
+    print Solution().lengthOfLastWord2("hello world   ")
