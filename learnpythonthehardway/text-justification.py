@@ -63,7 +63,8 @@ class Solution(object):
                     line += ' ' * temp
                     space -= temp
 
-            s += line
+            # s += line
+            s.append(line)
             i = j
 
         return s
