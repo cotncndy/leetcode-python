@@ -84,7 +84,7 @@ class Solution(object):
         while i < len(v1):
             if int(v1[i]) > int(v2[i]):
                 return 1
-            elif int(v1[i] < v2[i]):
+            elif int(v1[i] < int(v2[i])):
                 return -1
             else:
                 i += 1
