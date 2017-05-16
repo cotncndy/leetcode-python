@@ -29,7 +29,7 @@ class Solution(object):
         """
         l1, l2 = len(version1), len(version2)
         i, j = 0, 0
-        while i < l1 and j < l2:
+        while i < l1 or j < l2:
             v1, v2 = 0, 0
             while i < l1 and version1[i] != '.':
                 v1 = v1 * 10 + int(version1[i])
