@@ -106,3 +106,7 @@ class Solution(object):
             else:
                 v1.append(0)
         return cmp(v1, v2)
+
+    def compareVersion5(self, version1, version2):
+        splits = (map(int, v.split('.')) for v in (version1, version2))
+        return cmp(*zip(*itertools.izip_longest(*splits, fillvalue=0)))
