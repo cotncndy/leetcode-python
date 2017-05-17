@@ -31,4 +31,7 @@ class Solution:
                 dict[c] -= 1
             else:
                 dict[c] = -1
-            return False if dict[c] < 0 else True
+            if dict[c] < 0:
+                return False
+
+        return True
