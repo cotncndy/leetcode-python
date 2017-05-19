@@ -41,9 +41,31 @@ class Codec:
 
         return strs
 
+    def encode2(self, strs):
+        """Encodes a list of strings to a single string.
+
+        :type strs: List[str]
+        :rtype: str
+        """
+        encode_str = ""
+        for s in strs:
+            encode_str += str(len(s)) + "/" + s
+
+        return encode_str
+
+    def decode2(self, str):
+        i, j, strs = 0, 0, []
+        j = str.find("/", i)
+        while j != -1:
+            l = int(s[i:j])
+            i = j + 1 + l
+            strs.append(s[j + 1: i])
+            j = str.find("/", i)
+
+        return strs
 
 if __name__ == "__main__":
     strs = ["a", "ab", "abc"]
-    s = Codec().encode(strs)
+    s = Codec().encode2(strs)
     print s
-    print Codec().decode(s)
+    print Codec().decode2(s)
