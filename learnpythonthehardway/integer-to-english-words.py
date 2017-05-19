@@ -25,9 +25,11 @@
 class Solution(object):
     def numberToWords(self, num):
         """
+        TODO: fix me
         :type num: int
         :rtype: str
         """
+
         if num == 0:
             return "Zero"
 
@@ -73,5 +75,5 @@ if __name__ == "__main__":
     print Solution().numberToWords(1234567)
     print Solution().numberToWords(1000010)
     print Solution().numberToWords(100003103)
-    print Solution().numberToWords(100)
+    print Solution().numberToWords(100000)
     print Solution().numberToWords(123)
