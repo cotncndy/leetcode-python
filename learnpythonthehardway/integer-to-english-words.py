@@ -66,7 +66,7 @@ class Solution(object):
             num /= 1000
             i += 1
 
-        return " ".join(res[::-1])
+        return " ".join(res[::-1]).strip()
 
 
 if __name__ == "__main__":
