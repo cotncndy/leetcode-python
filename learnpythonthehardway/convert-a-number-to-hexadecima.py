@@ -52,6 +52,7 @@ class Solution(object):
                 res.append(str(chr(ord('a') + h - 10)))
 
             num >>= 4
-            res.reverse()
+
+        res.reverse()
 
         return "".join(res)
