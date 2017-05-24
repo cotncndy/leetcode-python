@@ -20,3 +20,7 @@ class Solution(object):
         :rtype: int
         """
         return len([i for i in s.strip().split(' ') if i])
+
+
+if __name__ == "__main__":
+    print Solution().countSegments("Heelo, my name is   John")
