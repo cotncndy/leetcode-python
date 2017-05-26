@@ -32,21 +32,35 @@ class Solution(object):
         st1, st2 = [], []
         while l1:
             st1.append(l1.val)
+            l1 = l1.next
 
         while l2:
             st2.append(l2.val)
+            l2 = l2.next
 
         sum, head = 0, None
         while st1 or st2:
             if st1:
-                sum += st1
+                sum += st1.pop()
             if st2:
-                sum += st2
+                sum += st2.pop()
 
-            head.val = sum % 10
+            head = ListNode(sum % 10)
             res = ListNode(sum / 10)
             res.next = head
             head = res
-            sum /= 10
+            sum //= 10
 
         return head if head.val == 0 else head.next
+
+
+if __name__ == "__main__":
+    l1 = ListNode(7)
+    l1.next = ListNode(2)
+    l1.next.next = ListNode(4)
+    l1.next.next.next = ListNode(3)
+
+    l2 = ListNode(5)
+    l2.next = ListNode(6)
+    l2.next.next = ListNode(4)
+    print Solution().addTwoNumbers(l1, l2)
