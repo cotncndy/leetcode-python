@@ -34,21 +34,24 @@ class Solution(object):
         """
         if not head or (not head.next):
             return head
+        pre, cur = head, head.next
+        while cur and cur.next:
+            temp = pre.next
+            pre.next = cur.next
+            cur.next = cur.next.next
+            pre = pre.next
+            cur = cur.next
+            pre.next = temp
 
-        oh1, eh1 = head, head.next
-        oh2, eh2 = oh1, eh1
-        t1, t1 = None, None
+        return head
 
-        while oh1 and oh1.next:
-            oh1.next = oh1.next.next
-            if not oh1.next:
-                t1 = oh1
-            oh1 = oh1.next
-        while eh1 and eh1.next:
-            eh1.next = eh1.next.next
-            if not eh1.next:
-                t2 = eh1
-            eh1 = eh1.next
 
-        t1.next = eh2
-        return oh2
+if __name__ == '__main__':
+    li = [1, 2, 3, 4, 5, 6, 7, 8]
+    h1 = ListNode(-1)
+    h2 = h1
+    for idx in xrange(len(li)):
+        h1.next = ListNode(li[idx])
+        h1 = h1.next
+
+    print Solution().oddEvenList(h2.next)
