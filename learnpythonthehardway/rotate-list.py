@@ -29,8 +29,8 @@ class Solution(object):
         if not head or not head.next:
             return head
 
-        n, cur = 0, head
-        while cur:
+        n, cur = 1, head
+        while cur.next:
             cur = cur.next
             n += 1
         # link to be a loop
