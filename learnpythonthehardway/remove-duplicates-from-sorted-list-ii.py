@@ -35,6 +35,7 @@ class Solution(object):
                 val = cur.val
                 while cur and cur.val == val:
                     cur = cur.next
+                pre.next = cur
             else:
                 pre.next = cur
                 pre = cur
