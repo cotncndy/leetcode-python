@@ -54,12 +54,11 @@ class Solution:
 
     def reverse(self, begin, end):
         cur = begin.next
-        temp = cur.next
-        while cur != end:
+        while cur.next != end:
+            temp = cur.next
             cur.next = temp.next
             temp.next = begin.next
             begin.next = temp
-            cur = cur.next
 
 
 if __name__ == "__main__":
