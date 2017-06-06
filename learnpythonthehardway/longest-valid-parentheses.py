@@ -34,5 +34,5 @@ class Solution(object):
 
 if __name__ == "__main__":
     print Solution().longestValidParentheses("()")
-    print Solution().longestValidParentheses(")()())")
+    print Solution().longestValidParentheses(")())())")
     print Solution().longestValidParentheses("))(()())")
