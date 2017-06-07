@@ -43,7 +43,7 @@ class Solution:
             p, q = stack.pop(), stack.pop()
             if p is None and q is None:
                 continue
-            if p is None or q is None or q.val != q.val:
+            if p is None or q is None or p.val != q.val:
                 return False
             stack.append(p.left)
             stack.append(q.right)
