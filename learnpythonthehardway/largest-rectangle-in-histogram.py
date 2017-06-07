@@ -16,8 +16,8 @@ class Solution:
     def largestRectangleArea(self, height):
         stack, area, i = [], 0, 0
 
-        while i < len(height):
-            if not stack or height[i] > stack[-1]:
+        while i <= len(height):
+            if not stack or (i < len(height) and height[i] > height[stack[-1]]):
                 stack.append(i)
                 i += 1
             else:
@@ -30,6 +30,6 @@ class Solution:
 
 
 if __name__ == "__main__":
-    print Solution().largestRectangleArea([2, 0, 2])
+    # print Solution().largestRectangleArea([2, 0, 2])
     print Solution().largestRectangleArea([2, 1, 5, 6, 2, 3])
     print Solution().largestRectangleArea([2, 3, 4, 5, 6, 7])
