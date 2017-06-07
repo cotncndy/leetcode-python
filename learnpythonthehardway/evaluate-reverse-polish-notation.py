@@ -22,7 +22,7 @@ class Solution:
                 numerials.append(int(token))
             else:
                 y, x = numerials.pop(), numerials.pop()
-                numerials.append(operators[token](x * 1.0, y))
+                numerials.append(int(operators[token](x * 1.0, y)))
 
         return numerials.pop()
 
