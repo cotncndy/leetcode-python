@@ -35,6 +35,37 @@ class Solution:
 
         return total + pre * temp
 
+    def calculate2(self, s):
+        operands, operators = [], []
+        operand = ""
+
+        for i in reversed(xrange(len(s))):
+            if s[i].isdigit():
+                operand += s[i]
+                if i == 0 or not s[i - 1].isdigit():
+                    operands.append(int(operand[::-1]))
+                    operand = ""
+            elif s[i] == ')' or s[i] == '+' or s[i] == '-':
+                operators.append(s[i])
+            elif s[i] == '(':
+                while operators[-1] != ')':
+                    self.compute(operands, operators)
+                ## don't forget to pop the ')' on the stack
+                operators.pop()
+
+        while operators:
+            self.compute(operands, operators)
+
+        return operands[-1]
+
+    def compute(self, operands, operators):
+        a, b = operands.pop(), operands.pop()
+        op = operators.pop()
+        if op == '+':
+            operands.append(a + b)
+        elif op == '-':
+            operands.append(a - b)
+
 
 if __name__ == '__main__':
-    print Solution().calculate("1-(2-3)")
+    print Solution().calculate2("1-(2-(1-3))")
