@@ -20,11 +20,15 @@ class Solution:
     # @return {integer}
     def calculate(self, s):
         res, operand, operands, sign = 0, "", [], '+'
-        for c in s:
-            if c.isdigit():
-                operand += c
-            elif c != ' ':
-                temp = int(operand[::-1])
+        for i in xrange(len(s)):
+            if s[i].isdigit():
+                operand += s[i]
+            # don't forget this one 'i==len(s)-1' , otherwise , such as 1+2, when reach 2, you loop is over already
+            # also remember that you can not use elif here
+            if s[i] != ' ' or i == len(s) - 1:
+                temp = 0
+                if operand != "":
+                    temp = int(operand[::-1])
                 # don't forgee this
                 operand = ""
                 if sign == '+':
@@ -39,7 +43,7 @@ class Solution:
                     t = operands[-1]
                     operands.pop()
                     operands.append(t / temp)
-                sign = c
+                sign = s[i]
 
         while operands:
             res += operands[-1]
@@ -49,4 +53,5 @@ class Solution:
 
 
 if __name__ == '__main__':
-    print Solution().calculate("1 + 2 * 3")
+    print Solution().calculate("1 + 2 * 3 / 6")
+    print Solution().calculate("42")
