@@ -42,7 +42,7 @@ class Solution:
                 elif sign == '/':
                     t = operands[-1]
                     operands.pop()
-                    operands.append(t / temp)
+                    operands.append(int(t * 1.0 / temp))
                 sign = s[i]
 
         while operands:
@@ -55,3 +55,5 @@ class Solution:
 if __name__ == '__main__':
 # print Solution().calculate("1 + 2 * 3 / 6")
 # print Solution().calculate("42")
+
+print Solution().calculate("14 - 3 / 2")
