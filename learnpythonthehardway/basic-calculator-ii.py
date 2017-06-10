@@ -36,13 +36,9 @@ class Solution:
                 elif sign == '-':
                     operands.append(-temp)
                 elif sign == '*':
-                    t = operands[-1]
-                    operands.pop()
-                    operands.append(t * temp)
+                    operands.append(operands.pop() * temp)
                 elif sign == '/':
-                    t = operands[-1]
-                    operands.pop()
-                    operands.append(int(t * 1.0 / temp))
+                    operands.append(int(operands.pop() * 1.0 / temp))
                 sign = s[i]
 
         while operands:
