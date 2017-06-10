@@ -55,5 +55,4 @@ class Solution:
 if __name__ == '__main__':
 # print Solution().calculate("1 + 2 * 3 / 6")
 # print Solution().calculate("42")
-
 print Solution().calculate("14 - 3 / 2")
