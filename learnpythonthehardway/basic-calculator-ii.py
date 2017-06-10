@@ -25,11 +25,11 @@ class Solution:
                 operand += s[i]
             # don't forget this one 'i==len(s)-1' , otherwise , such as 1+2, when reach 2, you loop is over already
             # also remember that you can not use elif here
-            if s[i] != ' ' or i == len(s) - 1:
+            if (not s[i].isdigit() and s[i] != ' ') or i == len(s) - 1:
                 temp = 0
                 if operand != "":
-                    temp = int(operand[::-1])
-                # don't forgee this
+                    temp = int(operand[::1])
+                # don't forget this
                 operand = ""
                 if sign == '+':
                     operands.append(temp)
@@ -53,5 +53,5 @@ class Solution:
 
 
 if __name__ == '__main__':
-    print Solution().calculate("1 + 2 * 3 / 6")
-    print Solution().calculate("42")
+# print Solution().calculate("1 + 2 * 3 / 6")
+# print Solution().calculate("42")
