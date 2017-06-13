@@ -42,9 +42,10 @@ class NestedIterator(object):
         :rtype: bool
         """
         while self.stack:
-            res = self.stack.pop()
+            res = self.stack[-1]
             if res.isInteger():
                 return True
+            self.stack.pop()
             for i in reversed(xrange(len(res.getList()))):
                 self.stack.append(res.getList()[i])
         return False
@@ -54,4 +55,4 @@ class NestedIterator(object):
         :rtype: int
         """
         res = self.stack.pop()
-        return res
+        return res.getInteger()
