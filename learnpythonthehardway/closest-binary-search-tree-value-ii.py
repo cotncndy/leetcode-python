@@ -42,16 +42,23 @@ class Solution(object):
             if root:
                 stack.append(root)
                 root = root.left
-
-            root = stack.pop()
-            if len(res) < k:
-                res.append(root.val)
             else:
-                if abs(root.val - target) < abs(res[0] - target):
-                    res.pop(0)
+                root = stack.pop()
+                if len(res) < k:
                     res.append(root.val)
                 else:
-                    break
-            root = root.right
+                    if abs(root.val - target) < abs(res[0] - target):
+                        res.pop(0)
+                        res.append(root.val)
+                    else:
+                        break
+                root = root.right
 
-            return res
+        return res
+
+
+if __name__ == '__main__':
+    root, node = TreeNode(1), TreeNode(2)
+    root.right = node
+
+    print Solution().closestKvalues2(root, 3.428671, 1)
