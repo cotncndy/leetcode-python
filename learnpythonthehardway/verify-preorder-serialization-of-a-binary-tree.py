@@ -51,7 +51,7 @@ class Solution(object):
                 d -= 1
             else:
                 d += 1
-        return True if d == 0 and arr[i + 1] == '#' else False
+        return True if d == 0 and arr[-1] == '#' else False
 
 
 if __name__ == '__main__':
