@@ -38,17 +38,20 @@ class Solution(object):
 
     def closestKvalues2(self, root, target, k):
         stack, res = [], []
-        while root:
-            stack.append(root)
-            root = root.left
+        while stack or root:
+            if root:
+                stack.append(root)
+                root = root.left
 
-        root = stack.pop()
-        if len(res) < k:
-            res.append(root.val)
-        else:
-            if abs(root.val - target) < abs(res[0] - target):
-                res.pop(0)
+            root = stack.pop()
+            if len(res) < k:
                 res.append(root.val)
-        root = root.right
+            else:
+                if abs(root.val - target) < abs(res[0] - target):
+                    res.pop(0)
+                    res.append(root.val)
+                else:
+                    break
+            root = root.right
 
-        return res
+            return res
