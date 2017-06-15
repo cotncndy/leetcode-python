@@ -48,3 +48,4 @@ class Solution(object):
 
 if __name__ == '__main__':
     print Solution().decodeString("3[a]2[bc]")
+    print Solution().decodeString("3[a]2[2[abc]bc]]")
