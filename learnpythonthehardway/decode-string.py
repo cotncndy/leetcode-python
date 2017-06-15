@@ -35,6 +35,7 @@ class Solution(object):
                 stack_num.append(st)
                 st = 0
                 stack_str.append(sr)
+                sr = ""  # don't forget this which cause trouble
             elif s[i] == ']':
                 cur = stack_num.pop()
                 for i in xrange(cur):
