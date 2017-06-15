@@ -88,6 +88,7 @@ class Solution(object):
                 if s[i] == ']' and len(stack) > 1:
                     cur = stack.pop()
                     stack[-1].add(cur)
+                # don't forget this, for ex, "[123,456,[789]]"
                 start = i + 1
 
         return stack.pop()
