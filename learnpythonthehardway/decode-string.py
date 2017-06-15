@@ -39,7 +39,11 @@ class Solution(object):
                 cur = stack_num.pop()
                 for i in xrange(cur):
                     stack_str[-1] += sr
-                    sr = stack_str.pop()
+                sr = stack_str.pop()
             else:
                 sr += s[i]
-        return stack_str.pop() if stack_str else ""
+        return stack_str.pop() if stack_str else sr
+
+
+if __name__ == '__main__':
+    print Solution().decodeString("3[a]2[bc]")
