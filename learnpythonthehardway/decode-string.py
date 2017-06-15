@@ -43,7 +43,7 @@ class Solution(object):
                 sr = stack_str.pop()
             else:
                 sr += s[i]
-        return stack_str.pop() if stack_str else sr
+        return str
 
 
 if __name__ == '__main__':
