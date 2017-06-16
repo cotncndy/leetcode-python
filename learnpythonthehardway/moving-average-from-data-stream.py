@@ -20,7 +20,7 @@ class MovingAverage(object):
         :rtype: float
         """
         if len(self.__q) == self.__size:
-            self.__sum -= self.__q.pop()
+            self.__sum -= self.__q.popleft()
         self.__sum += val
         self.__q.append(val)
 
