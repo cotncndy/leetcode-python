@@ -36,17 +36,17 @@ class Solution(object):
         :rtype: List[int]
         """
         dq, max_nums, l = deque(), [], 0
-        for n in nums:
-            while dq and dq[-1] < n:
+        for i in xrange(len(nums)):
+            while dq and nums[dq[-1]] < nums[i]:
                 dq.pop()
-            dq.append(n)
-            while len(dq) > k:
+            dq.append(i)
+            while i >= k and dq and dq[0] <= i - k:
                 dq.popleft()
-            l += 1
-            if k <= l:
-                max_nums.append(dq[0])
+            if i >= k - 1:
+                max_nums.append(nums[dq[0]])
         return max_nums
 
 
 if __name__ == '__main__':
     print Solution().maxSlidingWindow([1, 3, -1, -3, 5, 3, 6, 7], 3)
+    print Solution().maxSlidingWindow([7, 2, 4], 2)
