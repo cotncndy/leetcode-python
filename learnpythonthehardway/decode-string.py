@@ -45,7 +45,35 @@ class Solution(object):
                 sr += s[i]
         return str
 
+    def decodeString2(self, s):
+        global x
+        x = 0
+        return self.decode(s)
+
+    def decode(self, s):
+        global x
+        res = ""
+        while x < len(s) and s[x] != ']':
+            if s[x].isalpha():
+                res += s[x]
+                x += 1
+            elif s[x].isdigit():
+                cnt = 0
+                while s[x].isdigit():
+                    cnt = cnt * 10 + int(s[x])
+                    x += 1
+                x += 1  # escape `[` charcater, because `[` for sure would follow the number
+
+                st = self.decode(s)
+                x += 1
+                while cnt:
+                    res += st
+                    cnt -= 1
+
+        return res
+
+
 
 if __name__ == '__main__':
-    print Solution().decodeString("3[a]2[bc]")
-    print Solution().decodeString("3[a]2[2[abc]bc]]")
+    print Solution().decodeString2("3[a]2[bc]")
+    print Solution().decodeString2("3[a]2[2[abc]bc]]")
