@@ -43,7 +43,7 @@ class Solution(object):
                 sr = stack_str.pop()
             else:
                 sr += s[i]
-        return str
+        return sr
 
     def decodeString2(self, s):
         global x
@@ -75,5 +75,5 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print Solution().decodeString2("3[a]2[bc]")
-    print Solution().decodeString2("3[a]2[2[abc]bc]]")
+    print Solution().decodeString("3[a]2[bc]")
+    # print Solution().decodeString2("3[a]2[2[abc]bc]]")
