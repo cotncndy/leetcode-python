@@ -43,7 +43,7 @@ class Solution(object):
             while len(dq) > k:
                 dq.popleft()
             l += 1
-            if k <= l <= len(nums) - k:
+            if k <= l:
                 max_nums.append(dq[0])
         return max_nums
 
