@@ -44,6 +44,20 @@ class Solution:
 
         return ugly[-1]
 
+    def nthUglyNumber3(self, n):
+        p, q, r = [2], [3], [5]
+        ugly = 1
+        for u in heapq.merge(p, q, r):
+            if n == 1:
+                return ugly
+            if u > ugly:
+                ugly = u
+                n -= 1
+                p.append(2 * u)
+                q.append(3 * u)
+                r.append(5 * u)
+        return ugly
+
 
 if __name__ == '__main__':
-    print Solution().nthUglyNumber2(7)
+    print Solution().nthUglyNumber3(7)
