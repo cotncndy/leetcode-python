@@ -36,10 +36,14 @@ class Solution:
             k = min(l, m, t)
             if k == l:
                 i2 += 1
-            elif k == m:
+            if k == m:
                 i3 += 1
-            else:
+            if k == t:
                 i5 += 1
             ugly.append(k)
 
         return ugly[-1]
+
+
+if __name__ == '__main__':
+    print Solution().nthUglyNumber2(7)
