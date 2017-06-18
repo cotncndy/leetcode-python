@@ -27,3 +27,19 @@ class Solution:
     # @return {integer}
     def nthUglyNumber(self, n):
         return self.ugly[n - 1]
+
+    def nthUglyNumber2(self, n):
+        ugly = [1]
+        i2, i3, i5 = 0, 0, 0
+        while len(ugly) < n:
+            l, m, t = ugly[i2] * 2, ugly[i3] * 3, ugly[i5] * 5
+            k = min(l, m, t)
+            if k == l:
+                i2 += 1
+            elif k == m:
+                i3 += 1
+            else:
+                i5 += 1
+            ugly.append(k)
+
+        return ugly[-1]
