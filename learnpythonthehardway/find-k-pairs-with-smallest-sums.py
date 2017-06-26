@@ -46,7 +46,7 @@ class Solution(object):
         if len(nums1) > len(nums2):
             temp = self.kSmallestPairs(nums2, nums1, k)
             for pair in temp:
-                pairs.append(pair)
+                pairs.append([pair[1], pair[0]])
             return pairs
 
         min_heap = []
