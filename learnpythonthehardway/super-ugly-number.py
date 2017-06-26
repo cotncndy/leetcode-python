@@ -41,6 +41,11 @@ class Solution(object):
 
         return uglies[-1]
 
+    def nthSuperUglyNumber(self, n primes
+
+    ):
+
+
 
 if __name__ == '__main__':
     print Solution().nthSuperUglyNumber(12, [2, 3, 5, 7])
