@@ -53,3 +53,35 @@ class Solution(object):
 
         return trap
 
+    def trapRainWater2(self, heightMap):
+        """
+        :type heightMap: List[List[int]]
+        :rtype: int
+        """
+        m = len(heightMap)
+        if not m:
+            return 0
+        n = len(heightMap[0])
+        if not n:
+            return 0
+
+        min_heap, mx = [], 0
+        is_vistied = [[False for i in xrange(n)] for j in xrange(m)]
+
+        for i in xrange(m):
+            for j in xrange(n):
+                if i == 0 or i == m - 1 or j == 0 or j == n - 1:
+                    heappush(min_heap, [heightMap[i][j], i, j])
+                    is_vistied[i][j] = True
+        trap = 0
+        while min_heap:
+            h, x, y = heappop(min_heap)
+            mx = max(h, mx)
+            for (dx, dy) in [[0, -1], [-1, 0], [0, 1], [1, 0]]:
+                new_x, new_y = x + dx, y + dy
+                if 0 <= new_x < m and 0 <= new_y < n and not is_vistied[new_x][new_y]:
+                    trap += max(0, mx - heightMap[new_x][new_y])
+                    heappush(min_heap, [heightMap[new_x][new_y], new_x, new_y])
+                    is_vistied[new_x][new_y] = True
+
+        return trap
