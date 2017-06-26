@@ -20,7 +20,6 @@
 
 from heapq import heappush, heappop
 
-
 class Solution(object):
     def trapRainWater(self, heightMap):
         """
@@ -49,7 +48,8 @@ class Solution(object):
                 new_x, new_y = x + dx, y + dy
                 if 0 <= new_x < m and 0 <= new_y < n and not is_vistied[new_x][new_y]:
                     trap += max(0, h - heightMap[new_x][new_y])
-                    heappush(min_heap, [heightMap[new_x][new_y], new_x, new_y])
+                    heappush(min_heap, [max(heightMap[new_x][new_y], h), new_x, new_y])
                     is_vistied[new_x][new_y] = True
 
         return trap
+
