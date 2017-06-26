@@ -51,6 +51,28 @@ class Solution(object):
             k -= 1
         return kth_smallest
 
+    def kthSmallest2(self, matrix, k):
+        first, last = matrix[0][0], matrix[-1][-1]
+        while first < last:
+            mid = first + (last - first) / 2
+            cnt = self.search_less_equal(matrix, mid)
+            if cnt < k:
+                first = mid + 1
+            else:
+                last = mid
+        return first
+
+    def search_less_equal(self, matrix, target):
+        res, i, j = 0, len(matrix) - 1, 0
+        while i >= 0 and j < len(matrix[0]):
+            if matrix[i][j] <= target:
+                res += (i + 1)
+                j += 1
+            else:
+                i -= 1
+        return res
+
+
 
 if __name__ == '__main__':
-    print Solution().kthSmallest([[1, 5, 9], [10, 11, 13], [12, 13, 15]], 8)
+    print Solution().kthSmallest2([[1, 5, 9], [10, 11, 13], [12, 13, 15]], 8)
