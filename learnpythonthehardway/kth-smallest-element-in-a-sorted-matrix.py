@@ -35,8 +35,12 @@ class Solution(object):
         min_heap = []
 
         def push(i, j):
-            if i < len(matrix) and j < len(matrix[0]):
-                heappush(min_heap, [matrix[i][j], i, j])
+            if len(matrix) > len(matrix[0]):
+                if i < len(matrix[0]) and j < len(matrix):
+                    heappush(min_heap, [matrix[j][i], i, j])
+            else:
+                if i < len(matrix) and j < len(matrix[0]):
+                    heappush(min_heap, [matrix[i][j], i, j])
 
         push(0, 0)
         while min_heap and k > 0:
@@ -46,3 +50,7 @@ class Solution(object):
                 push(i + 1, j)
             k -= 1
         return kth_smallest
+
+
+if __name__ == '__main__':
+    print Solution().kthSmallest([[1, 5, 9], [10, 11, 13], [12, 13, 15]], 8)
