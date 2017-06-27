@@ -59,14 +59,21 @@ class Solution:
                 if not first:
                     first = pre
                 second = root
+            pre = root
+            inorder(root.right)
 
         inorder(root)
         if first and second:
             first.val, second.val = second.val,first.val
 
 if __name__ == '__main__':
-    root = TreeNode(0)
-    root.left = TreeNode(1)
+    root = TreeNode(10)
+    root.left = TreeNode(15)
+    root.right = TreeNode(12)
+    root.left.left = TreeNode(7)
+    root.left.right = TreeNode(9)
+    root.right.left = TreeNode(11)
+    root.right.right = TreeNode(8)
     print root
-    print Solution().recoverTree(root)
-
+    Solution().recoverTree(root)
+    print root
