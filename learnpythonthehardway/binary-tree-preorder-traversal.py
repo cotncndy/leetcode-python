@@ -53,3 +53,24 @@ class TreeNode:
                 st.append(node.left)
 
         return res
+
+    # morris traversal
+    def preorderTraversal3(self, root):
+        cur, res = root, []
+
+        while cur:
+            if cur.left is None:
+                res.append(cur.val)
+                cur = cur.right
+            else:
+                node = cur.left
+                while node.right and node.right != cur:
+                    node = node.right
+                if node.right is None:
+                    res.append(cur.val)
+                    node.right = cur
+                    cur = cur.left
+                else:
+                    node.right = None
+                    cur = cur.right
+        return res
