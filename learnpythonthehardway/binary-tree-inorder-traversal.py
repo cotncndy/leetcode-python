@@ -22,6 +22,28 @@ class TreeNode:
         self.left = None
         self.right = None
 
+    def __repr__(self):
+        if self:
+            serial = []
+            queue = [self]
+
+            while queue:
+                cur = queue[0]
+
+                if cur:
+                    serial.append(cur.val)
+                    queue.append(cur.left)
+                    queue.append(cur.right)
+                else:
+                    serial.append("#")
+
+                queue = queue[1:]
+
+            while serial[-1] == "#":
+                serial.pop()
+
+            return repr(serial)
+
 
 # Morris Traversal Solution
 class Solution(object):
@@ -30,3 +52,21 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[int]
         """
+        st, res = [], []
+        while st or root:
+            if root:
+                st.append(root)
+                root = root.left
+            else:
+                root = st.pop()
+                res.append(root.val)
+                root = root.right
+        return res
+
+
+if __name__ == '__main__':
+    root = TreeNode(1)
+    root.right = TreeNode(2)
+    root.right.left = TreeNode(3)
+    result = Solution().inorderTraversal(root)
+    print result
