@@ -45,7 +45,6 @@ class TreeNode:
             return repr(serial)
 
 
-# Morris Traversal Solution
 class Solution(object):
     def inorderTraversal(self, root):
         """
@@ -62,6 +61,28 @@ class Solution(object):
                 res.append(root.val)
                 root = root.right
         return res
+
+    # Morris Traversal Solution
+    def inorderTraversal2(self, root):
+        result, cur = [], root
+
+        while cur:
+            if cur.left is None:
+                result.append(cur.val)
+                cur = cur.right
+            else:
+                node = cur.left
+                while node.right and node.right != cur:
+                    node = node.right
+
+                if node.right is None:
+                    node.right = cur
+                    cur = cur.left
+                else:
+                    result.append(cur.val)
+                    node.right = None
+                    cur = cur.right
+        return result
 
 
 if __name__ == '__main__':
