@@ -37,3 +37,19 @@ class TreeNode:
             else:
                 root = st.pop()
         return res
+
+    def preorderTraversal2(self, root):
+        st, res = [], []
+        if root is None:
+            return res
+
+        st.append(root)
+        while st:
+            node = st.pop()
+            res.append(node.val)
+            if node.right:
+                st.append(node.right)
+            if node.left:
+                st.append(node.left)
+
+        return res
