@@ -46,7 +46,7 @@ class Solution:
     # @return a tree node
     def recoverTree(self, root):
         global pre, first, second
-        pre , first, second = None, None, None
+        pre, first, second = None, None, None  # review why I have to use global here, why serialize-and-deserialize-tree could
 
         def inorder(root):
             global pre, first, second
