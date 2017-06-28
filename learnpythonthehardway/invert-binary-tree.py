@@ -21,6 +21,9 @@
 # BFS solution.
 
 # Definition for a  binary tree node
+from collections import deque
+
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -53,6 +56,30 @@ class TreeNode:
             return None
 
 
+class Queue:  # review how to get a deque
+    def __init__(self):
+        self.data = deque()
+
+    def push(self, x):
+        self.data.append(x)
+
+    def pop(self):
+        return self.data.popleft()
+
+    def peek(self):
+        return self.data[0]
+
+    def size(self):
+        return len(self.data)
+
+    def empty(self):
+        return len(self.data) == 0
+
+
+
+
+
+
 class Solution(object):
     def invertTree(self, root):
         """
@@ -61,7 +88,7 @@ class Solution(object):
         """
         if root is None or (root.left is None and root.right is None):
             return root
-        cur = root
+        cur = root  # review written by me
         self.invertTree(root.left)
         self.invertTree(root.right)
         temp = root.left
@@ -69,6 +96,22 @@ class Solution(object):
         root.right = temp
 
         return cur
+
+    def invertTree2(self, root):
+        if root is not None:
+            nodes = Queue()
+            nodes.push(root)
+
+            while not nodes.empty():
+                node = nodes.pop()
+                node.left, node.right = node.right, node.left
+                if node.left is not None:
+                    nodes.push(node.left)
+                if node.right is not None:
+                    nodes.push(node.right)
+
+        return root
+
 
 
 if __name__ == '__main__':
@@ -80,5 +123,5 @@ if __name__ == '__main__':
     root.right.left = TreeNode(6)
     root.right.right = TreeNode(9)
     print root
-    Solution().invertTree(root)
+    Solution().invertTree2(root)
     print root
