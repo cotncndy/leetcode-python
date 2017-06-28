@@ -112,6 +112,11 @@ class Solution(object):
 
         return root
 
+    def invertTree3(self, root):
+        if root is not None:
+            root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
+        return root
+
 
 
 if __name__ == '__main__':
