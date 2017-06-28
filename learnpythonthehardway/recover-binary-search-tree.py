@@ -66,6 +66,18 @@ class Solution:
         if first and second:
             first.val, second.val = second.val,first.val
 
+    # morris traversal
+    def recoverTree2(self, root):
+        # TODO implement the morris traversal
+        pass
+        # FIXME implement the morris traversal with 2 pointers
+
+
+
+
+
+
+
 if __name__ == '__main__':
     root = TreeNode(10)
     root.left = TreeNode(15)
