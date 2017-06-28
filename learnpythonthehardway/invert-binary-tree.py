@@ -91,9 +91,7 @@ class Solution(object):
         cur = root  # review written by me
         self.invertTree(root.left)
         self.invertTree(root.right)
-        temp = root.left
-        root.left = root.right
-        root.right = temp
+        root.left, root.right = root.right, root.left
 
         return cur
 
@@ -112,7 +110,7 @@ class Solution(object):
 
         return root
 
-    def invertTree3(self, root):
+    def invertTree3(self, root):  # review this is the most concise way to crack this question, elegant
         if root is not None:
             root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
         return root
