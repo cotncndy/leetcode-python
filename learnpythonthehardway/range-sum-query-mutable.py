@@ -28,8 +28,8 @@ class NumArray(object):
         """
         if not nums:
             return
-        self.__num = [0 * (len(nums) + 1)]
-        self.__bit = [0 * (len(nums) + 1)]  # review how to initialize 1-dimension array
+        self.__num = [0] * (len(nums) + 1)
+        self.__bit = [0] * (len(nums) + 1)  # review how to initialize 1-dimension array
         for i in xrange(len(nums)):
             self.update(i, nums[i])
 
@@ -61,3 +61,8 @@ class NumArray(object):
             res += self.__bit[i]
             i -= (i & -i)
         return res
+
+
+if __name__ == '__main__':
+    abc = NumArray([1, 3, 5])
+    print abc.sumRange(0, 2)
