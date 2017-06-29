@@ -53,7 +53,7 @@ class NumArray(object):
         :type j: int
         :rtype: int
         """
-        return self.getSum(j) - self.getSum(i)
+        return self.getSum(j + 1) - self.getSum(i)
 
     def getSum(self, i):
         res = 0
