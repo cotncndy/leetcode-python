@@ -106,7 +106,8 @@ class Codec:
             while True:
                 idx = source.find(sep, start)
                 if idx == -1:
-                    yield source[start:]  # review what yield means?
+                    yield source[
+                          start:]  # review what yield means? https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python
                     return
                 yield source[start:idx]
                 start = idx + sepsize
