@@ -25,7 +25,7 @@ class Solution:
         words = collections.defaultdict(int)
         for w in L:
             words[w] += 1
-        for i in xrange(0, len(S) - words_num * word_len):
+        for i in xrange(0, len(S) + 1 - words_num * word_len):
             contrasts = collections.defaultdict(int)
             for j in xrange(words_num + 1):
                 t = S[i + j * word_len: i + word_len * (j + 1)]
@@ -41,4 +41,5 @@ class Solution:
 
 
 if __name__ == "__main__":
-    print Solution().findSubstring("barfoothebarthefoobarman", ["foo", "bar", "the"])
+    print Solution().findSubstring("barfoofoobarthefoobarman", ["foo", "bar", "the"])
+    print Solution().findSubstring("wordgoodgoodgoodbestword", ["word", "good", "best", "good"])
