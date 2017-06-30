@@ -27,18 +27,18 @@ class Solution:
             words[w] += 1
         for i in xrange(0, len(S) - words_num * word_len):
             contrasts = collections.defaultdict(int)
-            for j in xrange(word_len):
+            for j in xrange(words_num + 1):
                 t = S[i + j * word_len: i + word_len * (j + 1)]
                 if words[t] == 0:
                     break;
                 contrasts[t] += 1
                 if contrasts[t] > words[t]:
                     break;
-            if j == word_len - 1:
+            if j == words_num:
                 res.append(i)
 
         return res
 
 
 if __name__ == "__main__":
-    print Solution().findSubstring("barfoothefoobarman", ["foo", "bar"])
+    print Solution().findSubstring("barfoothebarthefoobarman", ["foo", "bar", "the"])
