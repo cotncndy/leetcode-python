@@ -16,6 +16,6 @@ class Solution:
             else:
                 left = table[ord(ch)]
 
-            table[ord(ch)] = i
+            table[ord(ch)] = i + 1
 
         return longest
