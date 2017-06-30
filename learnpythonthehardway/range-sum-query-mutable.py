@@ -125,7 +125,7 @@ class NumArray2(object):
 
             # Update sum.
             root.sum = (root.left.sum if root.left else 0) + \
-                       (root.right.sum if root.right.sum else 0)
+                       (root.right.sum if root.right else 0)
 
         if self.__nums[i] != val:
             self.__nums[i] = val
@@ -143,7 +143,7 @@ class NumArray2(object):
             # out of range
             if not root or root.start > end or root.end < start:
                 return 0
-            if root.start >= start or root.end <= end:
+            if root.start >= start and root.end <= end:
                 return root.sum
             return sumRangeHelper(root.left, start, end) + \
                    sumRangeHelper(root.right, start, end)
@@ -160,4 +160,4 @@ class NumArray2(object):
 
 if __name__ == '__main__':
     abc = NumArray2([1, 3, 5])
-    print abc.sumRange(0, 2)
+    print abc.sumRange(0, 0)
