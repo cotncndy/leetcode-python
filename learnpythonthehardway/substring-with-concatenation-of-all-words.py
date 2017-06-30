@@ -27,13 +27,15 @@ class Solution:
             words[w] += 1
         for i in xrange(0, len(S) + 1 - words_num * word_len):
             contrasts = collections.defaultdict(int)
-            for j in xrange(words_num + 1):
+            j = 0
+            while j < words_num:
                 t = S[i + j * word_len: i + word_len * (j + 1)]
                 if words[t] == 0:
                     break;
                 contrasts[t] += 1
                 if contrasts[t] > words[t]:
                     break;
+                j += 1
             if j == words_num:
                 res.append(i)
 
