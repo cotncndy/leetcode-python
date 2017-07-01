@@ -30,7 +30,7 @@ class Solution(object):
                     slope = float('inf')
                     if start.x - end.x != 0:
                         slope = (start.y - end.y) * 1.0 / (start.x - end.x)
-                        slope_map[slope] += 1
+                    slope_map[slope] += 1
 
             cur_max = duplicates
             for slope in slope_map:
@@ -40,4 +40,5 @@ class Solution(object):
 
 
 if __name__ == "__main__":
-    print Solution().maxPoints([Point(), Point(), Point()])
+    # print Solution().maxPoints([Point(), Point(), Point()])
+    print Solution().maxPoints([Point(0, 0), Point(0, 1)])
