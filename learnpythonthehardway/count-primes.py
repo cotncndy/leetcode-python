@@ -29,6 +29,8 @@ class Solution:
         return num
 
     def countPrimes2(self, n):
+        if n < 3:
+            return 0
         primes = [True] * n
         primes[0] = primes[1] = False
         for i in xrange(2, int(n ** 0.5) + 1):
