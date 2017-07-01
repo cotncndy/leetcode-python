@@ -14,6 +14,7 @@ class Point:
 
 
 class Solution(object):
+    # todo use gcd instead
     def maxPoints(self, points):
         """
         :type points: List[Point]
