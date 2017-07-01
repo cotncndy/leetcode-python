@@ -41,7 +41,7 @@ class Solution:
             return []
         for i in range(len(s) - 9):
             l.extend([s[i:i + 10]])  # review the usage of extend
-
+        # review see my youtube for the explaination of extend and collections.counter
         return [k for k, v in collections.Counter(l).items() if v > 1]  # review the usage of Collections.counter
 
 
