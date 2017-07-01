@@ -48,7 +48,7 @@ class Solution(object):
             return False
 
         s2t, t2s = {}, {}
-        for p, w in izip(s, t):  # usage of izip izip('ABCD', 'xy') --> Ax By
+        for p, w in izip(s, t):  # review usage of izip izip('ABCD', 'xy') --> Ax By
             if w not in s2t and p not in t2s:
                 s2t[w] = p
                 t2s[p] = w
