@@ -42,3 +42,21 @@ class Solution(object):
                 return False
 
         return True
+
+    def isIsomorphic2(self, s, t):
+        if len(s) != len(t):
+            return False
+
+        s2t, t2s = {}, {}
+        for p, w in izip(s, t):  # usage of izip izip('ABCD', 'xy') --> Ax By
+            if w not in s2t and p not in t2s:
+                s2t[w] = p
+                t2s[p] = w
+            elif w not in s2t or s2t[w] != p:
+                # Contradict mapping.
+                return False
+        return True
+
+
+if __name__ == '__main__':
+    print Solution().isIsomorphic2("egg", "add")
