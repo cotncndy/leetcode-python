@@ -27,11 +27,12 @@ class Solution:
                 dict[rooling_hash] = True
             elif dict[rooling_hash]:
                 res.append(s[i - 9: i + 1])
-
+                # critical ,if we found, mark it as False, avoid duplication results
+                dict[rooling_hash] = False
         return res
 
 
 if __name__ == "__main__":
-    print Solution().findRepeatedDnaSequences("AAAAAAAAAA")
+    print Solution().findRepeatedDnaSequences("AAAAAAAAAAAA")
     print Solution().findRepeatedDnaSequences("")
     print Solution().findRepeatedDnaSequences("AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT")
