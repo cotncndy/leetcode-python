@@ -28,6 +28,15 @@ class Solution:
                 num -= 1
         return num
 
+    def countPrimes2(self, n):
+        primes = [True] * n
+        primes[0] = primes[1] = False
+        for i in xrange(2, int(n ** 0.5) + 1):
+            primes[i * i:n:i] = [False] * len(primes[i * i:n:i])  # review how to assign value to array quickly
+
+        return sum(primes)
+
+
 
 if __name__ == '__main__':
     print Solution().countPrimes(14)
