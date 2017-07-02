@@ -20,6 +20,13 @@ class Solution:
     def get_hash(self, s):
         hash_str, base = "", ord(s[0])
         for c in s:
-            hash_str += str((ord(c) + 26 - base) % 26)
+            hash_str += str((ord(c) + 26 - base) % 26) + ','
 
         return hash_str
+
+
+if __name__ == '__main__':
+    # this test case would cause trouble
+    # b-a = 1, c-a = 2, so hash_str is 012
+    # m-am = 12, so hash_str is also 012
+    print Solution().groupStrings(["abc", "am"])
