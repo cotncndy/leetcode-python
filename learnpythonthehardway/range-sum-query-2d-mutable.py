@@ -11,8 +11,8 @@ class NumMatrix(object):
         if len(matrix[0]) == 0:
             return
         self.__row, self.__col = len(matrix) + 1, len(matrix[0]) + 1
-        self.__bits = [[0] * self.__row for _ in xrange(self.__col)]  # review how to initialize a 2 dimension array
-        self.__mat = [[0] * self.__row for _ in xrange(self.__col)]
+        self.__bits = [[0] * self.__col for _ in xrange(self.__row)]  # review how to initialize a 2 dimension array
+        self.__mat = [[0] * self.__col for _ in xrange(self.__row)]
 
         for i in xrange(self.__row - 1):
             for j in xrange(self.__col - 1):
@@ -57,5 +57,8 @@ class NumMatrix(object):
 
 
 if __name__ == '__main__':
-    m = NumMatrix([[3, 0, 1, 4, 2], [5, 6, 3, 2, 1], [1, 2, 0, 1, 5], [4, 1, 0, 1, 7], [1, 0, 3, 0, 5]])
-    print m.sumRegion(2, 1, 4, 3)
+    # m = NumMatrix([[3, 0, 1, 4, 2], [5, 6, 3, 2, 1], [1, 2, 0, 1, 5], [4, 1, 0, 1, 7], [1, 0, 3, 0, 5]])
+    # print m.sumRegion(2, 1, 4, 3)
+
+    m = NumMatrix([[1, 2]])
+    print m.sumRegion(0, 1, 0, 1)
