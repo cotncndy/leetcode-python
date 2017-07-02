@@ -20,7 +20,7 @@ class Solution:
     def get_hash(self, s):
         hash_str, base = "", ord(s[0])
         for c in s:
-            hash_str += str((ord(c) + 26 - base) % 26) + ','
+            hash_str += unichr((ord('a') + (ord(c) + 26 - base) % 26))  # review unichr is to get the unicode
 
         return hash_str
 
