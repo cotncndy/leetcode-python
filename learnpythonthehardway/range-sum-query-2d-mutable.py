@@ -19,10 +19,11 @@ class NumMatrix(object):
                 self.update(i, j, matrix[i][j])
 
     def update(self, row, col, val):
-        diff = val - self.__mat[row][col]
         i, j = row + 1, col + 1
+        diff = val - self.__mat[i][j]
         self.__mat[i][j] = val
         while i < self.__row:
+            j = col + 1
             while j < self.__col:
                 self.__bits[i][j] += diff
                 j += self.low_bit(j)
@@ -43,6 +44,7 @@ class NumMatrix(object):
     def get_sum(self, row, col):
         i, j, res = row, col, 0
         while i > 0:
+            j = col
             while j > 0:
                 res += self.__bits[i][j]
                 j -= self.low_bit(j)
@@ -52,3 +54,8 @@ class NumMatrix(object):
 
     def low_bit(self, x):
         return x & -x
+
+
+if __name__ == '__main__':
+    m = NumMatrix([[3, 0, 1, 4, 2], [5, 6, 3, 2, 1], [1, 2, 0, 1, 5], [4, 1, 0, 1, 7], [1, 0, 3, 0, 5]])
+    print m.sumRegion(2, 1, 4, 3)
