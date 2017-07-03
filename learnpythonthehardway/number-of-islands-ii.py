@@ -38,8 +38,10 @@ class Solution(object):
                 neighbor = (position[0] + d[0], position[1] + d[1])
                 if 0 <= neighbor[0] < m and 0 <= neighbor[1] < n and \
                                 get_node_id(neighbor, n) in set:
-                    union(get_node_id(node, n), get_node_id(neighbor, n))
-                    num -= 1
+                    # first check, then merge the previously unconnected islands
+                    if find(get_node_id(node, n)) != find(get_node_id(neighbor, n)):
+                        union(get_node_id(node, n), get_node_id(neighbor, n))
+                        num -= 1
             res.append(num)
 
         return res
