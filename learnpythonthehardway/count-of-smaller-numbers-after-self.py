@@ -53,6 +53,10 @@ class Solution(object):
 
         return counts
 
+    # todo using BIT to do it
+    def countSmaller(self, nums):
+        pass
+
 
 if __name__ == '__main__':
     print Solution().countSmaller([5, 2, 6, 1])
