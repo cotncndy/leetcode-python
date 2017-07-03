@@ -16,6 +16,7 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[List[int]]
         """
+        # review compared with java, python code a lot more concise and more like nature lanaguage
         cols = defaultdict(list)
         queue = [(root,0)]  # review how to initialize a queue
         for node, i in queue:
