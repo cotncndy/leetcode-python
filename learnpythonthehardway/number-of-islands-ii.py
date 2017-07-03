@@ -26,7 +26,7 @@ class Solution(object):
 
         res = []
         num = 0
-        directions = [{0, 1}, {0, -1}, {1, 0}, {-1, 0}]
+        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
         set = {}
 
         for position in positions:
@@ -43,3 +43,7 @@ class Solution(object):
             res.append(num)
 
         return res
+
+
+if __name__ == '__main__':
+    print Solution().numIslands2(3, 3, [[0, 0], [0, 1], [1, 2], [2, 1]])
