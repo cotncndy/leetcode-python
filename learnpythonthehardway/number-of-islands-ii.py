@@ -38,7 +38,7 @@ class Solution(object):
                 neighbor = (position[0] + d[0], position[1] + d[1])
                 if 0 <= neighbor[0] < m and 0 <= neighbor[1] < n and \
                                 get_node_id(neighbor, n) in set:
-                    union(id, get_node_id(neighbor, n))
+                    union(get_node_id(node, n), get_node_id(neighbor, n))
                     num -= 1
             res.append(num)
 
