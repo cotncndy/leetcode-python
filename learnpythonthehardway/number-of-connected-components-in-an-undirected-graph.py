@@ -15,8 +15,9 @@ class UnionFind(object):
 
     def union(self, x, y):
         x_group, y_group = map(self.find, (x, y))  # review how to use map
-        self.__group[min(x_group, y_group)] = max(x_group, y_group)
-        self.count -= 1
+        if x_group != y_group:
+            self.__group[min(x_group, y_group)] = max(x_group, y_group)
+            self.count -= 1
 
 
 class Solution(object):
