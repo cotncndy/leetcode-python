@@ -38,6 +38,8 @@ class Solution(object):
 
         return res
 
+        # todo, manacher and trie ways to crack this issue.
+
 
 if __name__ == '__main__':
     print Solution().palindromePairs(["abcd", "dcba", "lls", "s", "ssll"])
