@@ -33,7 +33,7 @@ class Solution(object):
 
         for i, char in enumerate(s):
             if char in lookup:
-                candidates.discard(i)
+                candidates.discard(lookup[char])
             else:
                 lookup[char] = i
                 candidates.add(i)
