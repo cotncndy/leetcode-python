@@ -74,7 +74,7 @@ class LRUCache(object):
         :rtype: void
         """
         if key in self.dict:
-            self.delete(self.dict[key])
+            self.list.delete(self.dict[key])
         elif len(self.dict) == self.capacity:
             del self.dict[self.list.head.key]
             self.list.delete(self.list.head)
