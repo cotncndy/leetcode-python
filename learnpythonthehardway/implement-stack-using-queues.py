@@ -50,7 +50,7 @@ class Stack:
     # @return nothing
     def push(self, x):
         self.q_.push(x)
-        for _ in xrange(len(self.q_.size()) - 1):
+        for _ in xrange(self.q_.size() - 1):
             self.q_.push((self.q_.pop()))
 
     # @return nothing
