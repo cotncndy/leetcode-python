@@ -19,6 +19,7 @@ class Solution:
             while dividend >= (t << 1):
                 t <<= 1
                 m <<= 1
+            dividend -= t
             res += m
         if not sign:
             res = -res
