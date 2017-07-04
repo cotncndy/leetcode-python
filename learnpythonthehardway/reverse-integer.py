@@ -36,6 +36,19 @@ class Solution(object):
 
         return res
 
+    def reverse2(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        if x < 0:
+            # review for -123, str(x)[::-1]="321-", str(x)[::-1][-1] = '-', str(x)[::-1][:-1] = '321'
+            x = int(str(x)[::-1][-1] + str(x)[::-1][:-1])
+        else:
+            x = int(str(x)[::-1])
+        x = 0 if abs(x) > 0x7FFFFFFF else x
+        return x
+
 
 if __name__ == '__main__':
-    print Solution().reverse(-123)
+    print Solution().reverse2(-123)
