@@ -15,8 +15,8 @@ class Solution(object):
             visited[ord(char)] += 1
 
             while distint_count > k:
-                visited[start] -= 1
-                if visited[start] == 0:
+                visited[ord(s[start])] -= 1
+                if visited[ord(s[start])] == 0:
                     distint_count -= 1
                 start += 1
 
