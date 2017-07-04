@@ -24,7 +24,7 @@ class DoubleLinkedList:
 
     def append(self, node):
         if self.head is None:
-            self.head = None
+            self.head = node
         else:
             self.tail.next = node
             node.prev = self.tail
