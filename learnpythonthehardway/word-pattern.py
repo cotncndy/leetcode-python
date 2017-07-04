@@ -36,3 +36,35 @@ class Solution(object):
             elif w not in w2p or w2p[w] != p:
                 return False
         return True
+
+    def wordPattern(self, pattern, str):
+        if len(pattern) != self.wordCount(str):
+            return False
+        w2p, p2w = {}, {}
+        for p, w in izip(pattern, self.wordGenerator(str)):
+            if p not in p2w and w not in w2p:
+                p2w[p], w2p[w] = w, p
+            elif w not in w2p or w2p[w] != p:
+                return False
+        return True
+
+    def wordCount(self, str):
+        cnt = 1 if str else 0
+        for c in str:
+            if c == ' ':
+                cnt += 1
+        return cnt
+
+    def wordGenerator(self, str):  # review how to write a generator
+        w = ""
+        for c in str:
+            if c == ' ':
+                yield w
+                w = ""
+            else:
+                w += c
+        yield w
+
+
+if __name__ == '__main__':
+    print Solution().wordPattern("abba", "dog cat cat dog")
