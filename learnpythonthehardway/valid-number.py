@@ -21,6 +21,7 @@ class Solution(object):
         """
         if not s:
             return False
+        s = s.strip()
         seenSign, seenE, seenDot, seenNum = False, False, False, False
         for i in xrange(len(s)):
             if s[i] == '+' or s[i] == '-':
