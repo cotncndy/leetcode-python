@@ -33,3 +33,7 @@ class Solution(object):
                 res.append(1 << i | t)
 
         return res
+
+
+if __name__ == '__main__':
+    print Solution().grayCode(6)
