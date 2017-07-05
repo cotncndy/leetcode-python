@@ -20,6 +20,8 @@ class Solution(object):
         :rtype: str
         """
         res = ""
+        if numerator == 0:
+            return "0"
         sign = (numerator < 0) ^ (denominator < 0)
         if sign:
             res = "-"
