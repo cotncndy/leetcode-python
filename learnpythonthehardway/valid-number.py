@@ -25,7 +25,7 @@ class Solution(object):
         seenSign, seenE, seenDot, seenNum = False, False, False, False
         for i in xrange(len(s)):
             if s[i] == '+' or s[i] == '-':
-                if not (i == 0 or (i > 0 and s[i - 1] == 'e')) or seenSign:
+                if not (i == 0 or (i > 0 and s[i - 1] == 'e')):
                     return False
                 seenSign = True
             elif s[i] == 'e':
@@ -46,4 +46,4 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print Solution().isNumber(" 005047e+6")
+    print Solution().isNumber(" -.7e+0435")
