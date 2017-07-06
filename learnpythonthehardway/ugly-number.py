@@ -18,4 +18,4 @@ class Solution:
         for i in [2, 3, 5]:
             while num % i == 0:
                 num /= i
-            return num == 1
+        return num == 1
