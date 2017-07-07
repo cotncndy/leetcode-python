@@ -30,10 +30,14 @@ class Solution(object):
                 return a % 1337
             if b == 0:
                 return 1
-            return ((pow(a, b / 2) % 1337) * (pow(a, b - b / 2) % 1337)) % 1337
+            return ((pow(a % 1337, b / 2) % 1337) * (pow(a % 1337, b - b / 2) % 1337)) % 1337
 
         res = 1
         for i in xrange(len(b)):
-            res = ((pow(res, 10) % 1337) * (pow(res, b[i]) % 1337)) % 1337
+            res = ((pow(res, 10) % 1337) * (pow(a, b[i]) % 1337)) % 1337
 
         return res
+
+
+if __name__ == '__main__':
+    print Solution().superPow(2, [3])
