@@ -38,7 +38,7 @@ class Solution(object):
         :rtype: int
         """
         res = self.__head.val
-        curr, num = self.__head, 1
+        curr, num = self.__head.next, 1
         while curr:
             res = curr.val if randint(1, num + 1) == 1 else res
             curr, num = curr.next, num + 1
