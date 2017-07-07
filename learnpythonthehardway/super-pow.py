@@ -41,3 +41,4 @@ class Solution(object):
 
 if __name__ == '__main__':
     print Solution().superPow(2, [3])
+    # todo, take a look why it is so slow.
