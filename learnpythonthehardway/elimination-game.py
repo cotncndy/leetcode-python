@@ -42,6 +42,16 @@ class Solution(object):
 
         return res
 
+    def lastRemaining2(self, n):
+        start, dire, step = 1, 1, 2
+        while n > 1:
+            start += dire * (step * (n / 2) - step / 2)
+            n /= 2
+            step *= 2
+            dire *= -1
+
+        return start
+
 
 if __name__ == '__main__':
     print Solution().lastRemaining(9)
