@@ -43,7 +43,7 @@ class Solution(object):
             if self.__num[i] != target:
                 continue
 
+            res = i if n == 0 or randint(1, n + 1) == 0 else res
             n += 1
-            res = i if n == 1 or randint(0, n) == 0 else res
 
         return res
