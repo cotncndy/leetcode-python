@@ -21,6 +21,9 @@ class Solution:
     # @param head, a ListNode
     # @return a ListNode
     def insertionSortList(self, head):
+        if head is None or self.isSorted(head):
+            return head
+
         res = ListNode(-1)
         cur = res
         while head:
@@ -32,6 +35,13 @@ class Solution:
             cur.next = head
             head = next
         return res.next
+
+    def isSorted(self, head):
+        while head and head.next:
+            if head.val > head.next.val:
+                return False
+            head = head.next
+        return True
 
 
 if __name__ == "__main__":
