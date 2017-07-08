@@ -19,7 +19,7 @@ class Solution:
         while i >= 0 and j >= 0:
             if A[i] > B[j]:
                 A[last] = A[i]
-                last, j = last - 1, i - 1
+                last, i = last - 1, i - 1
             else:
                 A[last] = B[j]
                 last, j = last - 1, j - 1
