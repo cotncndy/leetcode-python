@@ -32,14 +32,14 @@ class Solution(object):
         """
         res, i = [], 0
         while i < len(intervals) and newInterval.start > intervals[i].end:
-            res.append(intervals[i])
+            res += intervals[i],  # todo figure why comma ',' would replace append here, weird syntax
             i += 1
         while i < len(intervals) and newInterval.end >= intervals[i].start:
             newInterval = Interval(min(newInterval.start, intervals[i].start),
                                    max(newInterval.end, intervals[i].end))
             i += 1
 
-        res.append(newInterval)
+        res += newInterval,
         res += intervals[i]
         return res
 
