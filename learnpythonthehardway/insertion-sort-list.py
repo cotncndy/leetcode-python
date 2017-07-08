@@ -25,9 +25,17 @@ class Solution:
         cur = res
         while head:
             next = head.next
+            cur = res
             while cur.next and cur.next.val < head.val:
                 cur = cur.next
             head.next = cur.next
             cur.next = head
             head = next
         return res.next
+
+
+if __name__ == "__main__":
+    head = ListNode(3)
+    head.next = ListNode(4)
+    head.next.next = ListNode(1)
+    print Solution().insertionSortList(head)
