@@ -44,6 +44,6 @@ class Solution(object):
                 continue
 
             n += 1
-            res = i if randint(0, n) == 1 else res
+            res = i if n == 1 or randint(0, n) == 0 else res
 
         return res
