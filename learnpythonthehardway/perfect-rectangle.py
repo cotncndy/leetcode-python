@@ -14,6 +14,7 @@ class Solution(object):
         right = max(rec[2] for rec in rectangles)
         top = max(rec[3] for rec in rectangles)
 
+        # review youtube link : https://youtu.be/USTMTRmsVVo
         points = defaultdict(int)
         for l, b, r, t in rectangles:
             for p, q in zip(((l,b),(r,b),(l,t),(r,t)),(1,2,4,8)):
