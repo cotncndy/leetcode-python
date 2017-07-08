@@ -40,7 +40,7 @@ class Solution(object):
             i += 1
 
         res.append(newInterval)
-        res.append(intervals[i:])
+        res += intervals[i]
         return res
 
 
