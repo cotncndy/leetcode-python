@@ -21,12 +21,12 @@ class Solution:
             lookup[i.end] -= 1
 
         res, curr = 0, 0
-        for key, value in lookup.items():
+        for key in sorted(lookup.keys()):
             curr += lookup[key]
             res = max(res, curr)
         return res
 
 
 if __name__ == '__main__':
-    intervals = [Interval(0, 30), Interval(5, 10), Interval(15, 20)]
+    intervals = [Interval(4, 9)]
     print Solution().minMeetingRooms(intervals)
