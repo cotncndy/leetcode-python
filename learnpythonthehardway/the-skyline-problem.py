@@ -40,7 +40,7 @@ class Solution:
     # @return {integer[][]}
 
     # the code is so concise, but it is hard to understand
-    # review this code
+    # review this code https://youtu.be/Exb6X9wL3ps
     def getSkyline(self, buildings):
         events = sorted([(L, -H, R) for L, R, H in buildings] + list({(R, 0, None) for _, R, _ in buildings}))
         res, hp = [[0, 0]], [(0, float("inf"))]
