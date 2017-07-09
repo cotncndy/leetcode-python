@@ -30,9 +30,6 @@ class Solution(object):
         bucket = [{'min': float('inf'), 'max': float('-inf')} for _ in xrange(bucket_size)]
 
         for n in nums:
-            # todo why?
-            if n in (max_val, min_val):
-                continue
             i = (n - min_val) / gap
             bucket[i]['min'] = min(bucket[i]['min'], n)
             bucket[i]['max'] = max(bucket[i]['max'], n)
@@ -45,10 +42,8 @@ class Solution(object):
             max_gap = max(max_gap, bucket[i]['min'] - pre_bucket_max)
             pre_bucket_max = bucket[i]['max']
 
-        max_gap = max(max_gap, max_val - pre_bucket_max)
-
         return max_gap
 
 
 if __name__ == "__main__":
-    print Solution().maximumGap([3, 1, 1, 1, 5, 5, 5, 5])
+    print Solution().maximumGap([1, 100])
