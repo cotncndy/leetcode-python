@@ -22,7 +22,8 @@ class Solution:
 
         res, curr = 0, 0
         for key, value in lookup.items():
-            res = max(res, curr + lookup[key])
+            curr += lookup[key]
+            res = max(res, curr)
         return res
 
 
