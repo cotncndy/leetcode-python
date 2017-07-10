@@ -52,11 +52,12 @@ class Solution(object):
             counts[freq[c]] += c
 
         res = ""
-        for count in reversed(xrange(len(counts) - 1)):
+        for count in reversed(xrange(len(counts))):
             for c in counts[count]:
                 res += c * count
         return res
 
 
 if __name__ == '__main__':
+    print Solution().frequencySort("eeeee")
     print Solution().frequencySort("tree")
