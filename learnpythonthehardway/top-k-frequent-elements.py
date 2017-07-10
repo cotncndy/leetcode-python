@@ -17,6 +17,7 @@ import collections
 
 
 class Solution(object):
+    # todo, bucket sort and heap method
     def topKFrequent(self, nums, k):
         """
         :type nums: List[int]
