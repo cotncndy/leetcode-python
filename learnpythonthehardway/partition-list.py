@@ -38,6 +38,7 @@ class Solution:
                 greater = greater.next
             head = head.next
 
+        greater.next = None  # review don't forge this, it would cause look, such like 2->1
         smaller.next = dg.next
 
         return ds.next
