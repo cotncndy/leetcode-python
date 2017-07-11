@@ -32,7 +32,10 @@ class Solution:
         while fast and fast.next:
             fast, slow, prev = fast.next.next, slow.next, slow
 
-        curr, prev.prev.next = prev, None, None
+        # curr, prev, prev.next = prev, None, None review AttributeError: 'NoneType' object has no attribute 'next'
+        # break the list from the middle
+        curr, prev.next, prev = slow, None, None
+
         while curr is not None:  # review how to reverse a linkedlist by using just one sentence
             curr.next, prev, curr = prev, curr, curr.next
 
@@ -41,7 +44,16 @@ class Solution:
         curr = dummy
 
         while l1 is not None and l2 is not None:
-            curr.next, cur, l1 = l1, l1, l1.next
-            curr.next, cur, l2 = l2, l2, l2.next
+            curr.next, curr, l1 = l1, curr.next, l1.next
+            curr.next, curr, l2 = l2, curr.next, l2.next
 
         return dummy.next
+
+
+if __name__ == "__main__":
+    head = ListNode(1)
+    head.next = ListNode(2)
+    head.next.next = ListNode(3)
+    head.next.next.next = ListNode(4)
+    head.next.next.next.next = ListNode(5)
+    print Solution().reorderList(head)
