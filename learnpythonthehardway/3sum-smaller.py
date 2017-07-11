@@ -20,3 +20,16 @@ class Solution:
                     j -= 1
             k += 1
         return count
+
+    def threeSumSmaller2(self, nums, target):
+        nums.sort()
+        count = 0
+        for i in xrange(0, len(nums) - 1):
+            j, k = i + 1, len(nums) - 1
+            while j < k:
+                if nums[i] + nums[j] + nums[k] < target:
+                    count += k - j
+                    j += 1
+                else:
+                    k -= 1
+            return count
