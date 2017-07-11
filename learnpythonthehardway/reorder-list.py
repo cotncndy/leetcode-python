@@ -44,8 +44,8 @@ class Solution:
         curr = dummy
 
         while l1 is not None and l2 is not None:
-            curr.next, curr, l1 = l1, curr.next, l1.next
-            curr.next, curr, l2 = l2, curr.next, l2.next
+            curr.next, curr, l1 = l1, l1, l1.next
+            curr.next, curr, l2 = l2, l2, l2.next
 
         return dummy.next
 
