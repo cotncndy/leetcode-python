@@ -34,7 +34,7 @@ class Solution:
             else:
                 curr = st.pop()
                 if prev:
-                    if prev.val > curr.val:
+                    if prev.val >= curr.val:  # bugfixed don't forget >=
                         return False
                 else:
                     prev = curr
