@@ -25,8 +25,11 @@ class Solution(object):
         # starts from the first element of the array.
         slow, fast = 0, 0
 
-        while slow != fast:
+        while True:
             slow, fast = nums[slow], nums[nums[fast]]
+            if slow == fast:
+                break
+
         fast = 0
         while slow != fast:
             slow = nums[slow]
