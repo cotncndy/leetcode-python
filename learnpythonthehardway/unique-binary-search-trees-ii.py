@@ -49,6 +49,8 @@ class TreeNode:
 class Solution:
     # @return a list of tree node
     def generateTrees(self, n):
+        if n == 0:
+            return []
         return self.generate(1, n)
 
     def generate(self, low, high):
@@ -67,4 +69,4 @@ class Solution:
 
 
 if __name__ == "__main__":
-    print Solution().generateTrees(3)
+    print Solution().generateTrees(0)
