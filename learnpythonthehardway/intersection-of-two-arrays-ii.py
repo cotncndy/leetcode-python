@@ -52,7 +52,7 @@ class Solution(object):
         res = []
         for i in nums2:
             if lookup[i] > 0:
-                res += i
+                res += i,  # review after put comma ',', then u could append with '+' to array, why?
                 lookup[i] -= 1  # review don't forget this
 
         return res
