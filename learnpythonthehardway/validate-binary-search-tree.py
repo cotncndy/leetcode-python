@@ -36,7 +36,6 @@ class Solution:
                 if prev:
                     if prev.val >= curr.val:  # bugfixed don't forget >=
                         return False
-                else:
-                    prev = curr
+                prev = curr  # bugfixed, no need else,otherwise there is no udpate for 'if' block
                 root = curr.right
         return True
