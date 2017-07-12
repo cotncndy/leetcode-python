@@ -52,7 +52,7 @@ class Solution(object):
         res = []
         for i in nums2:
             if lookup[i] > 0:
-                res += nums2[i]
+                res += i
                 lookup[i] -= 1  # review don't forget this
 
         return res
