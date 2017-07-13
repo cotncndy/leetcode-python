@@ -28,13 +28,16 @@ class Solution:
     def sortedListToBST(self, head):
         if not head:
             return None
+        if not head.next:
+            return head
         slow, fast = head, head
         last = slow
-        while fast and fast.next:
+        while fast.next and fast.next.next:  # bugfixed
             last, slow, fast = slow, slow.next, fast.next.next
         # split the origina list to halves
         last.next, fast = None, slow.next
         cur = TreeNode(slow.val)
+
         cur.left = self.sortedListToBST(head)
         cur.right = self.sortedListToBST(fast)
 
@@ -44,8 +47,8 @@ class Solution:
 if __name__ == "__main__":
     head = ListNode(1)
     head.next = ListNode(2)
-    head.next.next = ListNode(3)
+    # head.next.next = ListNode(3)
     result = Solution().sortedListToBST(head)
     print result.val
     print result.left.val
-    print result.right.val
+    # print result.right.val
