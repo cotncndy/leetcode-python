@@ -38,7 +38,8 @@ class Solution:
         last.next, fast = None, slow.next
         cur = TreeNode(slow.val)
 
-        cur.left = self.sortedListToBST(head)
+        if head != slow:
+            cur.left = self.sortedListToBST(head)
         cur.right = self.sortedListToBST(fast)
 
         return cur
@@ -47,8 +48,8 @@ class Solution:
 if __name__ == "__main__":
     head = ListNode(1)
     head.next = ListNode(2)
-    # head.next.next = ListNode(3)
+    head.next.next = ListNode(3)
     result = Solution().sortedListToBST(head)
     print result.val
     print result.left.val
-    # print result.right.val
+    print result.right.val
