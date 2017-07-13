@@ -30,6 +30,18 @@ class Solution:
             return 0
         return 1 + max(self.get_depth(root.left), self.get_depth(root.right))
 
+    def isBalanced2(self):
+        def check(root):
+            if not root:
+                return 0
+            left, right = check(root.left), check(root.right)
+            if left == -1 or right == -1 or abs(left - right) > 1:
+                return -1
+            return 1 + max(left, right)
+
+        return check(root) != -1
+
+
 
 if __name__ == "__main__":
     root = TreeNode(0)
