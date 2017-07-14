@@ -52,8 +52,8 @@ class Solution:
         if not root:
             return
         if root.left:
-            root.left = root.right
+            root.left.next = root.right  # bugfixed shold be root.left.next
         if root.right and root.next:
-            root.right = root.next.left
+            root.right.next = root.next.left  # bugfixed as above
         self.connect(root.left)
         self.connect(root.right)
