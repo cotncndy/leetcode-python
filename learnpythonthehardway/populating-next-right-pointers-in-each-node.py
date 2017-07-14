@@ -62,8 +62,9 @@ class Solution:
         head = root
         while head:
             curr = head
-            curr.left.next = curr.right
-            while curr.next:
-                curr.right.next = curr.next
+            while curr and curr.left:  # bugfixed
+                curr.left.next = curr.right
+                if curr.next:
+                    curr.right.next = curr.next
                 curr = curr.next
             head = head.left
