@@ -38,11 +38,14 @@ class Solution:
     def upsideDownBinaryTree(self, root):
         return self.upsideDownHelper(root, None)
 
-    def upsideDownHelper(self, root, parent):
-        if not root:
+    def upsideDownHelper(self, p,
+                         parent):  # bugfixed, be aware it return root, the most left leave, it would be the new root
+        if not p:
             return parent
-        root = self.upsideDownHelper(root.left, root)
+        root = self.upsideDownHelper(p.left, p.parent)
         if parent:
-            root.left = parent.righ
-        root.right = parent
+            p.left = parent.right
+        else:
+            p.left = None
+        p.right = parent
         return root
