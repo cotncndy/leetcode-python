@@ -34,7 +34,7 @@ class Solution:
     def maxPathFinder(self, root):
         if not root:
             return 0
-        left = self.maxPathFinder(root.left)
-        right = self.maxPathFinder(root.right)
+        left = max(0, self.maxPathFinder(root.left))
+        right = max(0, self.maxPathFinder(root.right))
         self.maxSum = max(self.maxSum, left + root.val + right)
         return root.val + max(left, right)
