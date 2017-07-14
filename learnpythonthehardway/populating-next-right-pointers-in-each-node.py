@@ -65,6 +65,6 @@ class Solution:
             while curr and curr.left:  # bugfixed
                 curr.left.next = curr.right
                 if curr.next:
-                    curr.right.next = curr.next
+                    curr.right.next = curr.next.left  # bugfixed
                 curr = curr.next
             head = head.left
