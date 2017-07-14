@@ -57,3 +57,13 @@ class Solution:
             root.right.next = root.next.left  # bugfixed as above
         self.connect(root.left)
         self.connect(root.right)
+
+    def connect2(self, root):
+        head = root
+        while head:
+            curr = head
+            curr.left.next = curr.right
+            while curr.next:
+                curr.right.next = curr.next
+                curr = curr.next
+            head = head.left
