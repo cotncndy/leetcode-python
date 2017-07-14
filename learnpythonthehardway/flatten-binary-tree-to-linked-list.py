@@ -54,6 +54,7 @@ class Solution:
             self.flattern2(root.right)
         temp = root.right
         root.right = root.left
+        root.left = None  # bugfixed root.left need to point to null
         while root.right:
             root = root.right
         root.right = temp
