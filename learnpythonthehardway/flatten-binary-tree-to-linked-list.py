@@ -45,6 +45,22 @@ class Solution:
             self.prev = root
             return root
 
+    def flattern2(self, root):
+        if not root:
+            return
+        if root.left:
+            self.flattern2(root.left)
+        if root.right:
+            self.flattern2(root.right)
+        temp = root.right
+        root.right = root.left
+        while root.right:
+            root = root.right
+        root.right = temp
+        return root
+
+
+
 if __name__ == "__main__":
     root = TreeNode(1)
     root.left = TreeNode(2)
