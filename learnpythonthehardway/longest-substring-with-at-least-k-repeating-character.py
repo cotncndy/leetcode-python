@@ -39,9 +39,10 @@ class Solution(object):
             lookup, mask, start = collections.defaultdict(int), 0, i
             for j in xrange(i, len(s)):
                 lookup[s[j]] += 1
-                mask |= (1 << lookup[s[j]])  # left shift, set the corresponding bit to be 1
+                mask |= (1 << (ord(s[j]) - ord('a')))  # left shift, set the corresponding bit to be 1
                 if lookup[s[j]] >= k:
-                    mask &= (~(1 << lookup[s[j]]))  # get the complement of corresponding bit, which would be reset to 0
+                    mask &= (~(
+                    1 << (ord(s[j]) - ord('a'))))  # get the complement of corresponding bit, which would be reset to 0
 
                 if mask == 0:
                     max_dis = max(max_dis, j - i + 1)
