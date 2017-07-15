@@ -25,10 +25,10 @@ class Solution(object):
             if root.left is None and root.right is None:
                 return 1, root.val, root.val  # knowledge python method could return multiple value, that's cool!
 
-            left_size, left_min, left_max = 0, root.val, root.val
+            left_size, left_min, left_max = 0, float('-inf'), float('-inf')
             if root.left:
                 left_size, left_min, left_max = helper(root.left)
-            right_size, right_min, right_max = 0, root.val, root.val
+            right_size, right_min, right_max = 0, float('inf'), float('inf')
             if root.right:
                 right_size, right_min, right_max = helper(root.right)
 
