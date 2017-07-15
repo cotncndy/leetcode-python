@@ -35,13 +35,13 @@ class Solution(object):
             size = 0
             if (not root.left or left_size > 0) and \
                     (not root.right or right_size > 0) and \
-                                    left_max <= root.val <= right_min:
+                                    left_max < root.val < right_min:
                 size = 1 + left_size + right_size
                 max_size[0] = max(max_size[0], size)
                 # max_size = max(max_size,size) # knowledge max_size would be view as unresolved reference, you have to
                 # define it as an array to fix this issue
 
-                return size, left_min, right_max  # bugfixed this return should not be included in the if block
+            return size, left_min, right_max  # bugfixed this return should not be included in the if block
 
         helper(root)
 
@@ -49,9 +49,11 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    root = TreeNode(10)
-    root.left, root.right = TreeNode(5), TreeNode(15)
-    root.left.left, root.left.right = TreeNode(1), TreeNode(8)
-    root.right.right = TreeNode(7)
+    root = TreeNode(4)
+    root.left, root.right = TreeNode(2), TreeNode(7)
+    root.left.left, root.left.right = TreeNode(2), TreeNode(3)
+    root.right.left = TreeNode(5)
+    root.left.left.left = TreeNode(2)
+    root.left.left.left.left = TreeNode(1)
 
     print Solution().largestBSTSubtree(root)
