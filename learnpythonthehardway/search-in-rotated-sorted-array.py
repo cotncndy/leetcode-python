@@ -18,7 +18,7 @@ class Solution(object):
         :rtype: int
         """
         left, right = 0, len(nums) - 1
-        while left <= right:
+        while left <= right:  # review, there need to be <= , think about case ([1],1)
             mid = left + (right - left) / 2
             if nums[mid] == target:
                 return mid
