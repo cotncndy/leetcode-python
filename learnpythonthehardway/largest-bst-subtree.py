@@ -41,7 +41,7 @@ class Solution(object):
                 # max_size = max(max_size,size) # knowledge max_size would be view as unresolved reference, you have to
                 # define it as an array to fix this issue
 
-                return size, left_min, right_max
+                return size, left_min, right_max  # bugfixed this return should not be included in the if block
 
         helper(root)
 
