@@ -35,7 +35,7 @@ class Solution(object):
         :rtype: int
         """
         i, max_dis = 0, 0
-        while i + k < len(s):
+        while i + k <= len(s):  # bugfixed for test case "a",1, i+k = 1 not < 1, so it should be <=
             lookup, mask, start = collections.defaultdict(int), 0, i
             for j in xrange(i, len(s)):
                 lookup[s[j]] += 1
