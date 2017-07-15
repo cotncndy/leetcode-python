@@ -36,4 +36,4 @@ class Solution(object):
                 return root.val if is_left else 0
             return helper(root.left, True) + helper(root.right, False)
 
-        return helper(root)
+        return helper(root, False)  # bugfixed, forget to pass in parameter
