@@ -43,9 +43,10 @@ class Solution(object):
 
         def robHelper(root):
             if not root:
-                return 0
+                return (0, 0)  # bugfixed
             left, right = robHelper(root.left), robHelper(root.right)
 
+            # return the (sum include root, sum without root)
             return (root.val + left[1] + right[1], max(left) + max(right))
 
         return robHelper(root)
