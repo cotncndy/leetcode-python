@@ -28,6 +28,7 @@ import collections
 
 
 class Solution(object):
+    # todo take a look at the recursion solution
     def longestSubstring(self, s, k):
         """
         :type s: str
