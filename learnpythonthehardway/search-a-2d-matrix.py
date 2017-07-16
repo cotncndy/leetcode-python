@@ -27,7 +27,7 @@ class Solution(object):
         if not matrix or not matrix[0]:  # bugfixed check row and col
             return False
         m, n = len(matrix), len(matrix[0])
-        left, right = 0, m * n
+        left, right = 0, m * n - 1  # bugfixed it should be m*n-1
         while left <= right:
             mid = (left + right) / 2
             if matrix[mid / n][mid % n] == target:
@@ -38,3 +38,7 @@ class Solution(object):
                 left = mid + 1
 
         return False
+
+
+if __name__ == '__main__':
+    print Solution().searchMatrix([[1]], 2)
