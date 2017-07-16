@@ -46,6 +46,23 @@ class Solution:
             self.n *= 2
             self.count(root.left, depth - 1)
 
+    def countNodes2(self, root):
+        left_h, right_h = self.left_heigt(root.left), self.right_height(root.right)
+        if left_h == right_h:
+            return 2 ** left_h - 1
+        return self.countNodes(root.left) + self.countNodes(root.right) + 1
+
+    def left_heigt(self, root):
+        if not root:
+            return 0
+        return 1 + self.left_heigt(root.left)
+
+    def right_height(self, root):
+        if not root:
+            return 0
+        return 1 + self.right_height(root.right)
+
+
 
 if __name__ == '__main__':
     root = TreeNode(1)
