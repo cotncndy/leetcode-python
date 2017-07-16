@@ -13,7 +13,8 @@ class Solution(object):
         """
         if x < 2:
             return x
-        left, right = 0, x // 2  # knowledge '//' floor division, 9.0//2 = 4.0
+        # bugfixed left should = 1 instead of 0
+        left, right = 1, x // 2  # knowledge '//' floor division, 9.0//2 = 4.0
         while left <= right:
             mid = left + (right - left) // 2
             if mid > x / mid:  # notice, can not use mid * mid > x, overflow
@@ -24,4 +25,4 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print Solution().mySqrt(9)
+    print Solution().mySqrt(2)
