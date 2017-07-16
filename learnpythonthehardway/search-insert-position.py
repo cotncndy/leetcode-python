@@ -15,6 +15,7 @@
 #
 
 class Solution(object):
+    # reivew this problem, and compare with my previous solutions
     def searchInsert(self, nums, target):
         """
         :type nums: List[int]
