@@ -43,6 +43,27 @@ class Solution(object):
 
         return len(LIS)
 
+    def lengthOfLIS2(self, nums):
+        LIS = []
+
+        def insert(target):
+            left, right = 0, len(LIS)
+            while left < right:
+                mid = (left + right) / 2
+                if LIS[mid] < target:
+                    left = mid + 1
+                else:
+                    right = mid
+            if right >= len(LIS):
+                LIS.append(target)
+            else:
+                LIS[right] = target
+
+        for n in nums:
+            insert(n)
+        return len(LIS)
+
+
 
 if __name__ == '__main__':
     print Solution().lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18])
