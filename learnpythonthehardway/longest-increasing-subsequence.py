@@ -33,7 +33,7 @@ class Solution(object):
                 else:
                     right = mid - 1
 
-            if left == len(LIS) - 1:
+            if left == len(LIS):  # bugfixed left == len(LIS)-1 is wrong
                 LIS.append(target)
             else:
                 LIS[left] = target
