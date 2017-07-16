@@ -28,7 +28,7 @@ class Solution(object):
             return min(nums[left], nums[right])
         return nums[0]
 
-    def findMin2(self, nums):
+    def findMin2(self, nums):  # review this method is easier to understand , even slower than than pevious one
         left, right = 0, len(nums) - 1
         target = nums[-1]
 
