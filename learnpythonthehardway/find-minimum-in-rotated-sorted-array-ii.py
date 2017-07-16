@@ -34,7 +34,8 @@ class Solution(object):
 
     def findMin2(self, nums):
         left, right = 0, len(nums) - 1
-        while left < right:
+        # bugfixed it take left, need to check nums[left]>= nums[right], note the differences from the previous mehtod
+        while left < right and nums[left] >= nums[right]:
             mid = left + (right - left) / 2
             if nums[mid] == nums[left]:
                 left += 1
@@ -43,3 +44,7 @@ class Solution(object):
             else:
                 left = mid + 1
         return nums[left]
+
+
+if __name__ == '__main__':
+    print Solution().findMin2([1, 3])
