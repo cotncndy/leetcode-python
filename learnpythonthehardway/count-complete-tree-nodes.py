@@ -47,7 +47,8 @@ class Solution:
             self.count(root.left, depth - 1)
 
     def countNodes2(self, root):
-        left_h, right_h = self.left_heigt(root.left), self.right_height(root.right)
+        left_h, right_h = self.left_heigt(root), self.right_height(
+            root)  # bugfixed use root instead of root.left an droot.right
         if left_h == right_h:
             return 2 ** left_h - 1
         return self.countNodes(root.left) + self.countNodes(root.right) + 1
