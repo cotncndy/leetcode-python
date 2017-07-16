@@ -24,7 +24,7 @@ class Solution(object):
         :type target: int
         :rtype: bool
         """
-        if not matrix:
+        if not matrix or not matrix[0]:  # bugfixed check row and col
             return False
         m, n = len(matrix), len(matrix[0])
         left, right = 0, m * n
