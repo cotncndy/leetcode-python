@@ -10,11 +10,11 @@
 #
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 class Solution:
     # @param {TreeNode} root
@@ -40,8 +40,14 @@ class Solution:
             return
 
         if self.get_depth(root.right) == depth - 1:
-            self.n = self.n * 2 + 1
+            self.n = self.n * 2 + 1  # notice how to reference the instance variales
             self.count(root.right, depth - 1)
-        if self.get_depth(root.left) == depth - 1:
-            n *=
+        elif self.get_depth(root.left) == depth - 1:  # bugfixed should be elif instead of if
+            self.n *= 2
             self.count(root.left, depth - 1)
+
+
+if __name__ == '__main__':
+    root = TreeNode(1)
+    root.left, root.right = TreeNode(2), TreeNode(3)
+    print Solution().countNodes(root)
