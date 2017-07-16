@@ -47,7 +47,7 @@ class Solution(object):
         LIS = []
 
         def insert(target):
-            left, right = 0, len(LIS)
+            left, right = 0, len(LIS)  # notice the differences of method 1 and 2
             while left < right:
                 mid = (left + right) / 2
                 if LIS[mid] < target:
