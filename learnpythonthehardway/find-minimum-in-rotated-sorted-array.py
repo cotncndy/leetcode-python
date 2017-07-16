@@ -28,6 +28,18 @@ class Solution(object):
             return min(nums[left], nums[right])
         return nums[0]
 
+    def findMin2(self, nums):
+        left, right = 0, len(nums) - 1
+        target = nums[-1]
+
+        while left < right:
+            mid = left + (right - left) / 2
+            if nums[mid] < target:
+                right = mid
+            else:
+                left = mid + 1
+        return nums[left]
+
 
 if __name__ == '__main__':
-    print Solution().findMin([4, 5, 6, 7, 0, 1, 2])
+    print Solution().findMin2([4, 5, 6, 7, 0, 1, 2])
