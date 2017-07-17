@@ -49,5 +49,5 @@ class Solution:
 
             lookup[bucket] = nums[i]
             if len(lookup) > k:
-                del lookup[nums[i - k]]
+                del lookup[nums[i - k] / w]  # bugfixed
         return False
