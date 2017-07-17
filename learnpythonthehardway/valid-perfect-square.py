@@ -32,6 +32,17 @@ class Solution(object):
                 left = mid + 1
         return left * left == num
 
+    def isPerfectSquare2(self, num):
+        # 4 =1+3
+        # 9 = 1+3+5
+        i = 1
+        while num > 0:
+            num -= i
+            i += 2
+
+        return num == 0
+
+
 
 if __name__ == '__main__':
     print Solution().isPerfectSquare(0)
