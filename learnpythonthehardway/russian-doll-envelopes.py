@@ -35,6 +35,7 @@ class Solution(object):
                 res[left] = target
 
         res = []
+        # notice why it is y[1]-x[1] not x[1]-y[1], see this testcase : [[4,5],[4,6],[6,7],[2,3],[1,1]]
         envelopes.sort(lambda x, y: y[1] - x[1] if x[0] == y[0] else \
             x[0] - y[0])
         for e in envelopes:
