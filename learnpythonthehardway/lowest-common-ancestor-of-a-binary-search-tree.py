@@ -38,3 +38,11 @@ class Solution:
             root = root.left if s <= root.val else root.right  # review so cool
 
         return root
+
+    def lowestCommon(self, root, p, q):
+        if root.val > q.val and root.val > p.val:
+            return self.lowestCommon(root.left, p, q)
+        if root.val < q.val and root.val < p.val:
+            return self.lowestCommon(root.right, p, q)
+        else:
+            return root
