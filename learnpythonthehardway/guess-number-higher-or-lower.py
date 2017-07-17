@@ -35,3 +35,16 @@ class Solution(object):
                 right = mid - 1
             else:
                 left = mid + 1
+
+    def guessNumber2(self, n):
+        if guess(n) == 0:
+            return n
+        left, right = 0, n
+        while left < right:
+            mid = left + (right - left) / 2
+            if guess(mid) == 0:
+                return mid
+            elif guess(mid) < 0:
+                right = mid
+            else:
+                left = mid
