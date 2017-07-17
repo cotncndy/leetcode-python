@@ -36,3 +36,18 @@ class Solution:
             window[bucket] = n
 
         return False
+
+    def containsNearbyAlmostDuplicate2(self, nums, k, t):  # review bucket sorting + map
+        if k < 0 or t < 0:
+            return False
+        lookup, w = {}, t + 1
+        for i in xrange(len(nums)):
+            bucket = nums[i] / w
+            for m in (lookup.get(bucket - 1), lookup.get(bucket), lookup.get(bucket + 1)):
+                if m is not None and abs(m - nums[i]) <= t:
+                    return True
+
+            lookup[bucket] = nums[i]
+            if len(lookup) > k:
+                del lookup[nums[i - k]]
+        return False
