@@ -32,7 +32,7 @@ class Solution:
     # @param {TreeNode} q
     # @return {TreeNode}
     def lowestCommonAncestor(self, root, p, q):  # review too NB , really need to remember this method
-        s, b = sorted(p.val, q.val)
+        s, b = sorted([p.val, q.val])  # bugfixed
 
         while not s <= root.val <= b:
             root = root.left if s <= root.val else root.right  # review so cool
