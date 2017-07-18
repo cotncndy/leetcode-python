@@ -31,7 +31,7 @@ class Solution:
     # @return a list of lists of integers
     def levelOrder(self, root):
         if root is None:
-            return root
+            return []  # bugfixed
         res, queue = [], [root]
         while queue:  # bugfixed
             s, temp = len(queue), []
