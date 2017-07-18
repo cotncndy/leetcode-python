@@ -33,7 +33,7 @@ class Solution:
         if root is None:
             return root
         res, queue = [], [root]
-        while queue > 0:
+        while queue:  # bugfixed
             s, temp = len(queue), []
             for i in xrange(s):
                 node = queue.pop(0)
