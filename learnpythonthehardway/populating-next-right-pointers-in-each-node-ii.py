@@ -64,6 +64,8 @@ class Solution:
 
     # using recursion
     def connect2(self, root):
+        if not root:  # bugfixed
+            return
         # link left child, right child , adjacent child of root
         # then recursivly call right , then left. notice the recursive order
         p = root.next
@@ -74,6 +76,7 @@ class Solution:
             if p.right:
                 p = p.right
                 break
+            p = p.next  # bugfixed, forget it
 
         if root.right:
             root.right.next = p
@@ -90,7 +93,7 @@ class Solution:
 if __name__ == "__main__":
     root, root.left, root.right = TreeNode(1), TreeNode(2), TreeNode(3)
     root.left.left, root.left.right, root.right.right = TreeNode(4), TreeNode(5), TreeNode(7)
-    Solution().connect(root)
+    Solution().connect2(root)
     print root
     print root.left
     print root.left.left
