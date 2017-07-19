@@ -49,7 +49,7 @@ class Solution(object):
 
         return res[::-1]
 
-    def leverorderBottomUp2(self, root):
+    def levelOrderBottom2(self, root):
         res = []
         self.dfs(root, 0, res)
 
@@ -71,5 +71,5 @@ if __name__ == "__main__":
     root.right = TreeNode(20)
     root.right.left = TreeNode(15)
     root.right.right = TreeNode(7)
-    result = Solution().levelOrderBottom(root)
+    result = Solution().levelOrderBottom2(root)
     print result
