@@ -62,6 +62,30 @@ class Solution:
                 curr = curr.next
             head = next_head
 
+    # using recursion
+    def connect2(self, root):
+        # link left child, right child , adjacent child of root
+        # then recursivly call right , then left. notice the recursive order
+        p = root.next
+        while p:  # try to find the directly neighbouring child of the root
+            if p.left:
+                p = p.left
+                break
+            if p.right:
+                p = p.right
+                break
+
+        if root.right:
+            root.right.next = p
+        if root.left:
+            root.left.next = root.right if root.right is not None else p
+
+        self.connect2(root.right)  # notice the sequence of recursion, firstly link the right, then left
+        self.connect2(root.left)
+
+
+
+
 
 if __name__ == "__main__":
     root, root.left, root.right = TreeNode(1), TreeNode(2), TreeNode(3)
