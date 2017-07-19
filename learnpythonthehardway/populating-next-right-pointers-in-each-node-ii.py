@@ -52,7 +52,7 @@ class Solution:
                     if prev:
                         prev.next = curr.left
                     prev = curr.left
-                elif curr.right:
+                if curr.right:  # bugfixed, should not be elif
                     if not next_head:
                         next_head = curr.right
                     if prev:
