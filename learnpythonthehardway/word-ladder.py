@@ -26,6 +26,7 @@ class Solution:
     # @param end, a string
     # @param dict, a set of string
     # @return an integer
+    # simple BFS won't work, you will get TLE , has 2 use 2-end BFS
     def ladderLength(self, start, end, word_list):
         distance, cur, visited = 0, [start], set([start])  # knowledge how to use set
 
@@ -43,3 +44,33 @@ class Solution:
             cur, distance = _next, distance + 1
 
         return 0
+
+    # review two-ended bfs
+    def ladderLength2(self, beginWord, endWord, wordList):
+        if endWord not in wordList:  # bugfixed
+            return 0
+        distance, start, end, visited = 1, [beginWord], [endWord], set([beginWord, endWord])
+
+        while start and end:
+            if len(start) > len(end):
+                start, end = end, start  # bugfixed should exchange
+
+            _next = []
+            for word in start:
+                for i in xrange(len(word)):
+                    for j in 'abcdefghijklmnopqrstuvwxyz':
+                        candidate = word[:i] + j + word[i + 1:]
+                        if candidate in end:
+                            return distance + 1
+                        if candidate not in visited and candidate in wordList:
+                            visited.add(candidate)
+                            _next.append(candidate)
+
+            start, distance = _next, distance + 1
+
+        return 0
+
+
+if __name__ == "__main__":
+    print Solution().ladderLength2("hit", "cog", set(["hot", "dot", "dog", "lot", "log"]))
+    print Solution().ladderLength2("hit", "cog", set(["hot", "dot", "dog", "lot", "log", "cog"]))
