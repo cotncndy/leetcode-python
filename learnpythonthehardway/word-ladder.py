@@ -41,6 +41,7 @@ class Solution:
                         if candidate not in visited and candidate in word_list:
                             _next.append(candidate)
                             visited.add(candidate)
+                            word_list.remove(candidate)
             cur, distance = _next, distance + 1
 
         return 0
@@ -73,4 +74,4 @@ class Solution:
 
 if __name__ == "__main__":
     print Solution().ladderLength2("hit", "cog", set(["hot", "dot", "dog", "lot", "log"]))
-    print Solution().ladderLength2("hit", "cog", set(["hot", "dot", "dog", "lot", "log", "cog"]))
+    print Solution().ladderLength("hit", "cog", set(["hot", "dot", "dog", "lot", "log", "cog"]))
