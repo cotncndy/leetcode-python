@@ -50,3 +50,19 @@ class Solution:
                 clones[curr].neighbors.append(clones[neighbor])
 
         return cloned_node
+
+    def cloneGraph2(self, node):
+        lookup = {}
+        return self.dfs(node, lookup)
+
+    def dfs(self, node, lookup):
+        if not node:
+            return node
+        if node in lookup:
+            return lookup[node]
+        clone = UndirectedGraphNode(node.label)
+        lookup[node] = clone
+        for n in node.neighbors:
+            clone.neighbors.append(self.dfs(n, lookup))
+
+        return clone
