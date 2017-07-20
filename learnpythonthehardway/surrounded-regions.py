@@ -31,7 +31,7 @@ class Solution:
         q = collections.deque([])
         for i in xrange(len(board)):
             q.append((i, 0))
-            q.append((i, len(board) - 1))
+            q.append((i, len(board[i]) - 1))  # bugfixed
 
         for j in xrange(len(board[0])):
             q.append((0, j))
@@ -41,10 +41,11 @@ class Solution:
             i, j = q.popleft()
             if board[i][j] in ['O', 'V']:
                 board[i][j] = 'V'
-            for x, y in [(i + 1, j), (i - 1, j), (i, j + 1), (i, j - 1)]:
-                if 0 <= x < len(board) and 0 <= j < len(board[i]) and board[i][j] == 'O':
-                    board[x][y] = 'V'
-                    q.append((x, y))
+                for x, y in [(i + 1, j), (i - 1, j), (i, j + 1),
+                             (i, j - 1)]:  # bugfixed, for loop should be inside if block
+                    if 0 <= x < len(board) and 0 <= y < len(board[i]) and board[x][y] == 'O':  # bugfixed, careless
+                        board[x][y] = 'V'
+                        q.append((x, y))
 
         for i in xrange(len(board)):
             for j in xrange(len(board[i])):
@@ -55,9 +56,12 @@ class Solution:
 
 
 if __name__ == "__main__":
-    board = [['X', 'X', 'X', 'X'],
-             ['X', 'O', 'O', 'X'],
-             ['X', 'X', 'O', 'X'],
-             ['X', 'O', 'X', 'X']]
+    board = [['X', 'O', 'X', 'X'],
+             ['O', 'X', 'O', 'X'],
+             ['X', 'O', 'X', 'O'],
+             ['O', 'X', 'O', 'X'],
+             ['X', 'O', 'X', 'O'],
+             ['O', 'X', 'O', 'X']]
+    # board = ["XOXX","OXOX","XOXO","OXOX","XOXO","OXOX"]
     Solution().solve(board)
     print board
