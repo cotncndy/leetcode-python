@@ -86,9 +86,22 @@ class Solution:
         self.connect2(root.right)  # notice the sequence of recursion, firstly link the right, then left
         self.connect2(root.left)
 
-
-
-
+    def connect3(self, root):
+        if not root:
+            return None
+        que = [root, None]  # using None as the splitter
+        while que:
+            curr = que.pop(0)
+            if curr:
+                curr.next = que.index(0)
+                if curr.left:
+                    que.append(curr.left)
+                if curr.right:
+                    que.append(curr.right)
+            else:
+                if len(que) == 0:
+                    return
+                que.append(None)
 
 if __name__ == "__main__":
     root, root.left, root.right = TreeNode(1), TreeNode(2), TreeNode(3)
