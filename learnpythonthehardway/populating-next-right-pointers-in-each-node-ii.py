@@ -93,7 +93,7 @@ class Solution:
         while que:
             curr = que.pop(0)
             if curr:
-                curr.next = que.index(0)
+                curr.next = que[0]
                 if curr.left:
                     que.append(curr.left)
                 if curr.right:
@@ -106,7 +106,7 @@ class Solution:
 if __name__ == "__main__":
     root, root.left, root.right = TreeNode(1), TreeNode(2), TreeNode(3)
     root.left.left, root.left.right, root.right.right = TreeNode(4), TreeNode(5), TreeNode(7)
-    Solution().connect2(root)
+    Solution().connect3(root)
     print root
     print root.left
     print root.left.left
