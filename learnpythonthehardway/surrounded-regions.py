@@ -54,6 +54,29 @@ class Solution:
                 else:
                     board[i][j] = 'X'
 
+    def solve2(self, board):
+        if not board:
+            return
+        for i in xrange(len(board)):
+            for j in xrange(len(board[0])):
+                if i == 0 or i == len(board) - 1 or j == 0 or j == len(board[i]) - 1:
+                    if board[i][j] == 'O':
+                        self.dfs(board, i, j)
+
+        for i in xrange(len(board)):
+            for j in xrange(len(board[i])):
+                if board[i][j] == 'V':
+                    board[i][j] = 'O'
+                else:
+                    board[i][j] = 'X'
+
+    def dfs(self, board, i, j):
+        board[i][j] = 'V'
+        for x, y in [(i + 1, j), (i - 1, j), (i, j - 1), (i, j + 1)]:
+            if 0 < x < len(board) and 0 < y < len(board[x]) and \
+                            board[x][y] == 'O':
+                self.dfs(board, x, y)
+
 
 if __name__ == "__main__":
     board = [['X', 'O', 'X', 'X'],
@@ -63,5 +86,5 @@ if __name__ == "__main__":
              ['X', 'O', 'X', 'O'],
              ['O', 'X', 'O', 'X']]
     # board = ["XOXX","OXOX","XOXO","OXOX","XOXO","OXOX"]
-    Solution().solve(board)
+    Solution().solve2(board)
     print board
