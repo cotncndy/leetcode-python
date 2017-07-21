@@ -35,7 +35,7 @@ class Solution(object):
             if p in out_degree:
                 for c in out_degree[p]:
                     in_degree[c].discard(p)
-                    if c not in in_degree:
+                    if not in_degree[c]:  # bugfixed
                         queue.append(c)
                 del out_degree[p]
 
@@ -52,8 +52,8 @@ class Solution(object):
                     in_degree[word2[i]] = set()
                 if word1[i] not in out_degree:
                     out_degree[word1[i]] = set()
-                in_degree[word2[i]] = word1[i]
-                out_degree[word1[i]] = word2[i]
+                in_degree[word2[i]].add(word1[i])  # bugfixed
+                out_degree[word1[i]].add(word2[i])
                 break  # break immediately, no need to compare any more
 
 
