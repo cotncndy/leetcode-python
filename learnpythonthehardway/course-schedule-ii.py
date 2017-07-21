@@ -66,7 +66,7 @@ class Solution(object):
                 for course in out_degree[p]:
                     in_degree[course].discard(p)
                     if not in_degree[course]:
-                        queue.append(p)
+                        queue.append(course)  # bugfixed
                 del out_degree[p]
 
         if out_degree:
