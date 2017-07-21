@@ -72,7 +72,7 @@ class Solution(object):
 
         pre_level, un_visited = [], set()
         for i in xrange(n):
-            if neighbors[i] == 1:
+            if len(neighbors[i]) == 1:  # bugfixed forget len
                 pre_level.append(i)
             un_visited.add(i)
 
