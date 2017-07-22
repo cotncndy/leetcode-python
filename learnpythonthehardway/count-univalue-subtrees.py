@@ -22,18 +22,37 @@ class Solution:
         self.isUni(root, -1)  # bugfixed
         return self.count
 
-    def isUni(self, root, val):
+    def isUni(self, root, val):  # review
         if not root:
             return True  # leaf is uni-tree
 
         if (not self.isUni(root.left, root.val)) | (
         not self.isUni(root.right, root.val)):  # bugfixed, notice can not use or
-            # instead need to use '|'
+            # instead need to use '|', 'or' would caue 'short-circuit', if left substree return false
+            # it won't go to right subtree any more, so we need '|' instead
             return False
 
         self.count += 1
         return root.val == val
 
+    def countUnivalSubtrees2(self, root):
+        [is_uni, cnt] = self.is_unitree(root, 0)
+        return cnt
+
+    def is_unitree(self, root, cnt):  # review how we return a list with different types in python
+        if not root:
+            return [True, cnt]
+
+        [left, cnt], [right, cnt] = self.is_unitree(root.left, cnt), self.is_unitree(root.right, cnt)
+
+        if self.is_same(root, root.left, left) and self.is_same(root, root.right, right):
+            cnt += 1
+            return [True, cnt]
+
+        return [False, cnt]
+
+    def is_same(self, root, child, is_uni):
+        return not root or [root.val == child.val and is_uni]
 
 if __name__ == '__main__':
     r = TreeNode(5)
