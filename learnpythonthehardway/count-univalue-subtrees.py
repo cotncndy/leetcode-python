@@ -36,23 +36,24 @@ class Solution:
         return root.val == val
 
     def countUnivalSubtrees2(self, root):
-        [is_uni, cnt] = self.is_unitree(root, 0)
-        return cnt
+        [is_uni, count] = self.isUnivalSubtrees(root, 0);
+        return count;
 
-    def is_unitree(self, root, cnt):  # review how we return a list with different types in python
+    def isUnivalSubtrees(self, root, count):
         if not root:
-            return [True, cnt]
+            return [True, count]
 
-        [left, cnt], [right, cnt] = self.is_unitree(root.left, cnt), self.is_unitree(root.right, cnt)
+        [left, count] = self.isUnivalSubtrees(root.left, count)
+        [right, count] = self.isUnivalSubtrees(root.right, count)
+        if self.isSame(root, root.left, left) and \
+                self.isSame(root, root.right, right):
+            count += 1
+            return [True, count]
 
-        if self.is_same(root, root.left, left) and self.is_same(root, root.right, right):
-            cnt += 1
-            return [True, cnt]
+        return [False, count]
 
-        return [False, cnt]
-
-    def is_same(self, root, child, is_uni):
-        return not child or [root.val == child.val and is_uni]  # bugfixed
+    def isSame(self, root, child, is_uni):
+        return not child or (is_uni and root.val == child.val)  # bugfixed
 
 if __name__ == '__main__':
     r = TreeNode(5)
@@ -61,4 +62,4 @@ if __name__ == '__main__':
     r1.left, r1.right = TreeNode(5), TreeNode(5)
     r2.left, r2.right = TreeNode(5), TreeNode(5)
 
-    print Solution().countUnivalSubtrees(r)
+    print Solution().countUnivalSubtrees2(r)
