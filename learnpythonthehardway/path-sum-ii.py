@@ -44,6 +44,7 @@ class Solution:
         current.append(root.val)
         self.pathFinder(result, current, root.left, sum - root.val)
         self.pathFinder(result, current, root.right, sum - root.val)
+        current.pop()  # bugfixed, don't forget backtracking
 
         return result
 
