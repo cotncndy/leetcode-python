@@ -17,7 +17,7 @@ class Solution:
 
         result = []
         for t in self.find(k - 2, n):
-            for key, val in enumerate(self.lookup):
+            for key, val in self.lookup.iteritems():  # bugfixed
                 if k != n or key != '0':
                     result.append(key + t + val)
 
