@@ -4,10 +4,10 @@
 # Given a binary tree, find the lowest common ancestor (LCA)
 # of two given nodes in the tree.
 #
-# According to the definition of LCA on Wikipedia: “The lowest
+# According to the definition of LCA on Wikipedia:The lowest
 # common ancestor is defined between two nodes v and w as the
 # lowest node in T that has both v and w as descendants (where we
-# allow a node to be a descendant of itself).”
+# allow a node to be a descendant of itself).
 #
 #         _______3______
 #       /              \
@@ -21,11 +21,15 @@
 # descendant of itself according to the LCA definition.
 #
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+    def __repr__(self):
+        if self:
+            return "{}->{},{}".format(self.val, repr(self.left), repr(self.right))
 
 class Solution:
     # @param {TreeNode} root
@@ -49,3 +53,13 @@ class Solution:
         #    return the node of that subtree.
 
         return root if left and right else left or right
+
+
+if __name__ == '__main__':
+    r = TreeNode(1)
+    r1, r2 = TreeNode(2), TreeNode(3)
+    r.left, r.right = r1, r2
+    r1.left, r1.right = TreeNode(4), TreeNode(5)
+    r2.right = TreeNode(8)
+
+    print Solution().lowestCommonAncestor(r, r2, r2.right)
