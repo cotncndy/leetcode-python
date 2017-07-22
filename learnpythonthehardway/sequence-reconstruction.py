@@ -10,7 +10,7 @@ class Solution(object):
         """
         if len(org) == 0 or len(seqs) == 0:
             return False
-        position, visited, count = [0] * (len(org) + 1), [False] * (len(org) + 1), len(org)
+        position, visited, count = [0] * (len(org) + 1), [False] * (len(org) + 1), len(org) - 1  # bugfixed
 
         for i, k in enumerate(org):
             position[k] = i
@@ -28,3 +28,7 @@ class Solution(object):
                     visited[cur], count = True, count - 1
 
         return count == 0
+
+
+if __name__ == '__main__':
+    print Solution().sequenceReconstruction([4, 1, 5, 2, 6, 3], [[5, 2, 6, 3], [4, 1, 5, 2]])
