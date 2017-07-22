@@ -52,7 +52,7 @@ class Solution:
         return [False, cnt]
 
     def is_same(self, root, child, is_uni):
-        return not root or [root.val == child.val and is_uni]
+        return not child or [root.val == child.val and is_uni]  # bugfixed
 
 if __name__ == '__main__':
     r = TreeNode(5)
