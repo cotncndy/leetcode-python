@@ -15,10 +15,12 @@ class Solution(object):
         for i, k in enumerate(org):
             position[k] = i
 
+        existed = False  # bugfixed
         for seq in seqs:
             for i, k in enumerate(seq):
                 if not 0 < k <= len(org):
                     return False  # [4,1,5,2,6,3], [1,7] is illegal
+                existed = True  # test case [1],[[],[]], you have to enter this loop
                 if not i:  # i==0 continue
                     continue
                 prev, cur = position[seq[i - 1]], position[k]
@@ -27,8 +29,9 @@ class Solution(object):
                 if not visited[cur] and prev + 1 == cur:  # if cur is already arranged, no need to do anything
                     visited[cur], count = True, count - 1
 
-        return count == 0
+        return count == 0 and existed
 
 
 if __name__ == '__main__':
     print Solution().sequenceReconstruction([4, 1, 5, 2, 6, 3], [[5, 2, 6, 3], [4, 1, 5, 2]])
+    print Solution().sequenceReconstruction([1], [[], []])
