@@ -45,7 +45,7 @@ class Solution(object):
                     visited.add(k)
                     tmp = checkup(k, down, lookup, visited)
                     if tmp[0]:
-                        return (True, v * tmp)
+                        return (True, v * tmp[1])  # bugfixed
             return (False, 0)
 
         lookup = collections.defaultdict(dict)
