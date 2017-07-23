@@ -63,7 +63,7 @@ class Solution(object):
                     un_weighted += i.getInteger()
                 else:
                     next_level.extend(i.getList())
-
+            nestedList = next_level
             weighted += un_weighted
 
         return weighted
