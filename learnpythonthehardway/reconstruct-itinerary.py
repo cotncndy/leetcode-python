@@ -46,6 +46,23 @@ class Solution(object):
         visit("JFK")
         return route[::-1]
 
+    # review itneray solution
+    def findItinerary2(self, tickets):
+        target = collections.defaultdict(list)
+        for a, b in sorted(tickets)[::-1]:
+            target[a] += b,
+
+        res, stack = [], ['JFK']
+        while stack:
+            while target[stack[-1]]:
+                stack += target[stack[-1]].pop(),
+
+            res += stack.pop(),
+        return res[::-1]
+
+        res, stack = [], ['JFK']
+
+
 
 if __name__ == '__main__':
-    print Solution().findItinerary([["JFK", "SFO"], ["JFK", "ATL"], ["SFO", "ATL"], ["ATL", "JFK"], ["ATL", "SFO"]])
+    print Solution().findItinerary2([["JFK", "SFO"], ["JFK", "ATL"], ["SFO", "ATL"], ["ATL", "JFK"], ["ATL", "SFO"]])
