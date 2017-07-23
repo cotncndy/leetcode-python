@@ -28,3 +28,21 @@ class Solution(object):
         res = []
         helper(root, res)
         return res
+
+    def findLeaves2(self, root):
+        def remove(root, leaves):
+            if not root:
+                return None
+            if not root.left and not root.right:
+                leaves += root.val,
+                return None
+            root.left, root.right = remove(root.left, leaves), remove(root.right, leaves)
+            return root
+
+        res = []
+        while root:
+            leaves = []
+            remove(root, leaves)
+            res.append(leaves)
+
+        return res
