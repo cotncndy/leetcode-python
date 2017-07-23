@@ -43,7 +43,7 @@ class Solution(object):
                     helper(i, depth + 1, res)
 
         res = []
-        for l in nestedList:
+        for l in nestedList:  # bugfixed, don't forget this
             helper(l, 0, res)
 
         # [1,2,3,4] 4 * 1 + 3 * 2+ 2 * 3 + 1 * 4
@@ -52,3 +52,18 @@ class Solution(object):
             sum += res[i] * (len(res) - i)
 
         return sum
+
+    def depthSumInverse2(self, nestedList):
+        weighted, un_weighted = 0, 0
+
+        while nestedList:
+            next_level = []
+            for i in nestedList:
+                if i.isInteger():
+                    un_weighted += i.getInteger()
+                else:
+                    next_level.extend(i.getList())
+
+            weighted += un_weighted
+
+        return weighted
