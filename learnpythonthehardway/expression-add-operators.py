@@ -25,19 +25,24 @@ class Solution(object):
             if len(num) == 0 and curSum == target:
                 res += out,
 
-            for i in xrange(len(num)):
+            for i in xrange(len(num) + 1):
                 cur, next = num[::i + 1], num[i + 1::]
                 if len(cur) > 1 and cur[0] == '0':  # 05 is invalid, don't forget
                     return
 
                 curDiff = long(cur)
                 if len(out) > 0:
-                    dfs(num, target, curSum + curDiff, curDiff, out + '+' + str(curDiff), res)
-                    dfs(num, target, curSum - curDiff, -curDiff, out + '-' + str(curDiff), res)
-                    dfs(num, target, curSum - diff + diff * curDiff, diff * curDiff, out + '*' + str(curDiff), res)
+                    dfs(next, target, curSum + curDiff, curDiff, out + '+' + str(curDiff),
+                        res)  # bugfixed, should be nxt
+                    dfs(next, target, curSum - curDiff, -curDiff, out + '-' + str(curDiff), res)
+                    dfs(next, target, curSum - diff + diff * curDiff, diff * curDiff, out + '*' + str(curDiff), res)
                 else:
-                    dfs(num, target, curDiff, curDiff, str(curDiff), res)
+                    dfs(next, target, curDiff, curDiff, str(curDiff), res)
 
         res = []
         dfs(num, target, 0, 0, "", res)
         return res
+
+
+if __name__ == '__main__':
+    print Solution().addOperators('123', 6)
