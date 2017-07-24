@@ -52,7 +52,7 @@ class Solution(object):
                 dfs(matrix, i, j - 1, matrix[i][j], ocean, visited, res)
 
         if not matrix:
-            return
+            return []
 
         m, n = len(matrix), len(matrix[0])
         visited, res = [[0 for _ in xrange(n)] for _ in xrange(m)], []
