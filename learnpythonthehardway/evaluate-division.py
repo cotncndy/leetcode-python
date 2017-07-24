@@ -36,8 +36,6 @@ class Solution(object):
         """
 
         def checkup(up, down, lookup, visited):
-            if up == down:
-                return (True, 1)
             if up in lookup and down in lookup[up]:
                 return (True, lookup[up][down])
             for k, v in lookup[up].iteritems():
@@ -52,12 +50,12 @@ class Solution(object):
         for i, j in enumerate(equations):
             lookup[j[0]][j[1]] = values[i]  # {a:{b:2}, b:{c:3}, b:{a:1/2}, c:{b:1/3}}
             if values[i]:
-                lookup[j[1]][j[0]] = 1 / values[i]
+                lookup[j[1]][j[0]] = 1 / values[i]  # bugfixed
 
         result = []
         for q in query:
             visited = set()
             tmp = checkup(q[0], q[1], lookup, visited)
-            result.append(tmp[1] if tmp[0] else -1)
+            result.append(tmp[1] if tmp[0] else -1.0)  # bugfixed
 
         return result
