@@ -32,9 +32,9 @@ class Solution(object):
 
                 curDiff = long(cur)
                 if len(out) > 0:
-                    dfs(num, target, curSum + curDiff, curDiff, out + '+' + curDiff, res)
-                    dfs(num, target, curSum - curDiff, -curDiff, out + '-' + curDiff, res)
-                    dfs(num, target, curSum - diff + diff * curDiff, diff * curDiff, out + '+' + curDiff, res)
+                    dfs(num, target, curSum + curDiff, curDiff, out + '+' + str(curDiff), res)
+                    dfs(num, target, curSum - curDiff, -curDiff, out + '-' + str(curDiff), res)
+                    dfs(num, target, curSum - diff + diff * curDiff, diff * curDiff, out + '*' + str(curDiff), res)
                 else:
                     dfs(num, target, curDiff, curDiff, str(curDiff), res)
 
