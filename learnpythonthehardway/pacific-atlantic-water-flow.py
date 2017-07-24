@@ -40,7 +40,7 @@ class Solution(object):
         def dfs(matrix, i, j, prev_height, ocean, visited, res):
             if 0 <= i < len(matrix) and 0 <= j < len(matrix[i]) and \
                             matrix[i][j] >= prev_height and \
-                            (visited[i][j] | ocean) != ocean:  # notice
+                            (visited[i][j] | ocean) != visited[i][j]:  # notice bugfixed
                 visited[i][
                     j] |= ocean  # review, by using bitwise, we don't need two visited set to record, whereby avoiding searching for intersect.
                 if visited[i][j] == (PACIFIC | ATLANTIC):
