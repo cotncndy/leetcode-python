@@ -57,12 +57,12 @@ class Solution(object):
         m, n = len(matrix), len(matrix[0])
         visited, res = [[0 for _ in xrange(n)] for _ in xrange(m)], []
         for i in xrange(m):
-            dfs(matrix, i, 0, float('-inf'), visited, PACIFIC, res)
-            dfs(matrix, i, n - 1, float('-inf'), visited, ATLANTIC, res)
+            dfs(matrix, i, 0, float('-inf'), PACIFIC, visited, res)
+            dfs(matrix, i, n - 1, float('-inf'), ATLANTIC, visited, res)
 
         for j in xrange(n):
-            dfs(matrix, 0, j, float('-inf'), visited, PACIFIC, res)
-            dfs(matrix, m - 1, j, float('-inf'), visited, ATLANTIC, res)
+            dfs(matrix, 0, j, float('-inf'), PACIFIC, visited, res)
+            dfs(matrix, m - 1, j, float('-inf'), ATLANTIC, visited, res)
 
         return res
 
