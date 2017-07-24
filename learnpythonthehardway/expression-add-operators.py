@@ -25,8 +25,8 @@ class Solution(object):
             if len(num) == 0 and curSum == target:
                 res += out,
 
-            for i in xrange(len(num) + 1):
-                cur, next = num[::i + 1], num[i + 1::]
+            for i in xrange(1, len(num) + 1):  # bugfixed notice the range
+                cur, next = num[:i:], num[i::]
                 if len(cur) > 1 and cur[0] == '0':  # 05 is invalid, don't forget
                     return
 
