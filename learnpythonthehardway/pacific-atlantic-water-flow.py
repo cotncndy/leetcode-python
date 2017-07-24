@@ -46,10 +46,10 @@ class Solution(object):
                 if visited[i][j] == (PACIFIC | ATLANTIC):
                     res.append((i, j))
 
-            dfs(matrix, i + 1, j, matrix[i][j], ocean, visited, res)
-            dfs(matrix, i - 1, j, matrix[i][j], ocean, visited, res)
-            dfs(matrix, i, j + 1, matrix[i][j], ocean, visited, res)
-            dfs(matrix, i, j - 1, matrix[i][j], ocean, visited, res)
+                dfs(matrix, i + 1, j, matrix[i][j], ocean, visited, res)
+                dfs(matrix, i - 1, j, matrix[i][j], ocean, visited, res)
+                dfs(matrix, i, j + 1, matrix[i][j], ocean, visited, res)
+                dfs(matrix, i, j - 1, matrix[i][j], ocean, visited, res)
 
         if not matrix:
             return
