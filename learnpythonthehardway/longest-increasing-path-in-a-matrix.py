@@ -46,11 +46,11 @@ class Solution(object):
                 new_i, new_j = i + x, j + y
                 if 0 <= new_i < len(matrix) and 0 <= new_j < len(matrix[0]) and \
                                 matrix[i][j] > matrix[new_i][new_j]:
-                    len = 1 + helper(matrix, dis, new_i, new_j)  # bugfixed
-                    max_dist = max(max_dist, len)
+                    leng = 1 + helper(matrix, dis, new_i, new_j)  # bugfixed
+                    max_dist = max(max_dist, leng)
 
-            matrix[i][j] = max_dist
-            return matrix[i][j]
+            dis[i][j] = max_dist  # bugfixed
+            return dis[i][j]
 
         m, n = len(matrix), len(matrix[0])
         dis = [[0 for _ in xrange(n)] for _ in xrange(m)]
@@ -61,3 +61,7 @@ class Solution(object):
                 res = max(res, helper(matrix, dis, i, j))
 
         return res
+
+
+if __name__ == '__main__':
+    print Solution().longestIncreasingPath([[9, 9, 4], [6, 6, 8], [2, 1, 1]])
