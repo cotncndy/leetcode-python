@@ -34,6 +34,8 @@ class Solution(object):
         :type matrix: List[List[int]]
         :rtype: int
         """
+        if not matrix:  # bugfixed
+            return 0
 
         def helper(matrix, dis, i, j):
             if dis[i][j]:
