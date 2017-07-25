@@ -44,7 +44,8 @@ class Solution(object):
                 new_i, new_j = i + x, j + y
                 if 0 <= new_i < len(matrix) and 0 <= new_j < len(matrix[0]) and \
                                 matrix[i][j] > matrix[new_i][new_j]:
-                    max_dist = max(max_dist, 1 + helper(matrix, dis, new_i, new_j))
+                    len = 1 + helper(matrix, dis, new_i, new_j)  # bugfixed
+                    max_dist = max(max_dist, len)
 
             matrix[i][j] = max_dist
             return matrix[i][j]
