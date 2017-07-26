@@ -29,6 +29,5 @@ class Solution:
                 cur.pop()
                 used[i] = False
 
-
 if __name__ == "__main__":
     print Solution().permute([1, 2, 3])
