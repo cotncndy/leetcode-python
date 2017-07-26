@@ -39,7 +39,7 @@ class Solution:
                             board[i][j] = chr(ord('1') + k)
                             if isvalid(board, i, j) and solver(board):  # notice , recursion
                                 return True
-                            board[i][j] = '.'
+                            board[i][j] = '.'  # notice backtrack
                         return False
             return True
 
