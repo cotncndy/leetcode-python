@@ -29,7 +29,7 @@ class Solution:
     def dfs(self, candidates, target, start, cur, res):
         if target == 0:
             res.append(list(cur))
-        while start < len(candidates) and candidates[start] < target:
+        while start < len(candidates) and candidates[start] <= target:  # bugfixed missing "="
             cur.append(candidates[start])
             self.dfs(candidates, target - candidates[start], start, cur, res)
             cur.pop()
