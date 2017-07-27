@@ -25,14 +25,35 @@ class Solution:
 
     def backtrack(self, n, k, start, cur, res):
         if k == 0:
-            res.append(list(cur))
+            # res.append(list(cur))
+            res.append(cur[:])  # knowledge what doesn this mean
             return
         for i in xrange(start, n):
             cur.append(i + 1)
             self.backtrack(n, k - 1, i + 1, cur, res)  # bugfixed
             cur.pop()
 
+    # review beatiful
+    def combine2(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: List[List[int]]
+        """
+        if k == 1:
+            return [[i] for i in range(1, n + 1)]
+        elif k == n:
+            return [[i for i in range(1, n + 1)]]
+        else:
+            res = []
+            res += self.combine(n - 1, k)
+            part = self.combine(n - 1, k - 1)
+            for item in part:
+                item.append(n)
+            res += part
+            return res
+
 
 if __name__ == "__main__":
-    result = Solution().combine(4, 2)
+    result = Solution().combine2(4, 2)
     print result
