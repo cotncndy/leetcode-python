@@ -17,8 +17,8 @@ class Solution:
             return 1
         result = 0
         for i in xrange(n):
-            if i not in solution and reduce(lambda acc, j: abs(row - j) == abs(i - solution[j]) and acc, \
-                                            xrange(len(solution)), True):
+            if i not in solution and reduce(lambda acc, j: abs(row - j) != abs(i - solution[j]) and acc, \
+                                            xrange(len(solution)), True):  # bugfixed should be !=
                 result += self.backtrack(n, solution + [i], row + 1)
         return result
 
