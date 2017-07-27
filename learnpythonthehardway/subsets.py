@@ -21,6 +21,7 @@
 # ]
 
 class Solution(object):
+    # review, good way
     def subsets(self, nums):
         """
         :type nums: List[int]
@@ -35,6 +36,22 @@ class Solution(object):
                 res[-1].append(nums[i])
         return res
 
+    def subsets2(self, nums):
+        res, i, count = [], 0, 1 << len(nums)
+        nums.sort()
+
+        while i < count:
+            cur = []
+            for j in xrange(len(nums)):
+                if i & (1 << j):
+                    cur += nums[j],
+            res.append(cur)  # notice, why here I can use 'cur' or list(cur), both works!
+            i += 1
+
+        return res
+
+
+
 
 if __name__ == "__main__":
-    print Solution().subsets([1, 2, 3])
+    print Solution().subsets2([1, 2, 3])
