@@ -25,6 +25,7 @@ class Solution(object):
         :rtype: List[List[int]]
         """
         res, prev_size = [[]], 0
+        nums.sort()  # bugfixed
         for i in xrange(len(nums)):
             size = len(res)
             for j in xrange(size):
