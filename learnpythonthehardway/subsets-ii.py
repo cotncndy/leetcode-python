@@ -52,7 +52,7 @@ class Solution(object):
 
     def subsetsWithDup3(self, nums):
         res = []
-        self.dfs(sorted(nums), '', res)
+        self.dfs(sorted(nums), [], res)
 
         return res
 
@@ -60,10 +60,11 @@ class Solution(object):
         if not nums:
             if cur not in res:
                 res.append(cur)
-
-        self.dfs(nums[1:], cur, res)
-        self.dfs(nums[1:], cur + [nums[0]], res)
+        else:  # bugfixed, without else, then if nums is None, if falls into infinity loop
+            self.dfs(nums[1:], cur, res)
+            self.dfs(nums[1:], cur + [nums[0]], res)
 
 
 if __name__ == "__main__":
-    print Solution().subsetsWithDup3([4, 4, 1, 4, 4])
+    # print Solution().subsetsWithDup3([4, 4, 1, 4, 4])
+    print Solution().subsetsWithDup3([2, 2, 1])
