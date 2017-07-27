@@ -36,6 +36,16 @@ class Solution(object):
                 res[-1].append(nums[i])
         return res
 
+    def subsets4(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        res = [[]]
+        for num in sorted(nums):
+            res += [item + [num] for item in res]
+        return res
+
     def subsets2(self, nums):
         res, i, count = [], 0, 1 << len(nums)
         nums.sort()
@@ -58,10 +68,6 @@ class Solution(object):
             return [cur]
 
         return self.dfs(nums[1:], cur) + self.dfs(nums[1:], cur + [nums[0]])
-
-
-
-
 
 
 if __name__ == "__main__":
