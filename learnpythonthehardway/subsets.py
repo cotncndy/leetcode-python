@@ -50,8 +50,19 @@ class Solution(object):
 
         return res
 
+    def subsets3(self, nums):
+        return self.dfs(sorted(nums), [])
+
+    def dfs(self, nums, cur):
+        if not nums:
+            return [cur]
+
+        return self.dfs(nums[1:], cur) + self.dfs(nums[1:], cur + [nums[0]])
+
+
+
 
 
 
 if __name__ == "__main__":
-    print Solution().subsets2([1, 2, 3])
+    print Solution().subsets3([1, 2, 3])
