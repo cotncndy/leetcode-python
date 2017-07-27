@@ -50,7 +50,7 @@ class Solution(object):
 
         return res
 
-    def subsets3(self, nums):
+    def subsets3(self, nums):  # review , need to review
         return self.dfs(sorted(nums), [])
 
     def dfs(self, nums, cur):
