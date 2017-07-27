@@ -38,7 +38,7 @@ class Solution(object):
 
     def subsetsWithDup2(self, nums):
         res, count, i = [], 1 << len(nums), 0
-
+        nums.sort()  # bugfixed
         while i < count:
             cur = []
             for j in xrange(len(nums)):
