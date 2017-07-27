@@ -36,6 +36,20 @@ class Solution(object):
 
         return res
 
+    def subsetsWithDup2(self, nums):
+        res, count, i = [], 1 << len(nums), 0
+
+        while i < count:
+            cur = []
+            for j in xrange(len(nums)):
+                if i & (1 << j):
+                    cur += nums[j],
+
+            if cur not in res:  # notice, this would be slow
+                res.append(cur)
+            i += 1
+        return res
+
 
 if __name__ == "__main__":
-    print Solution().subsetsWithDup([1, 2, 2])
+    print Solution().subsetsWithDup2([1, 2, 2])
