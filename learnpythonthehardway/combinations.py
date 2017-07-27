@@ -15,6 +15,8 @@
 #   [1,4],
 # ]
 #
+import itertools
+
 
 class Solution:
     # @return a list of lists of integers
@@ -52,6 +54,14 @@ class Solution:
                 item.append(n)
             res += part
             return res
+
+    def combine3(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: List[List[int]]
+        """
+        return list(itertools.combinations(range(1, n + 1), k))
 
 
 if __name__ == "__main__":
