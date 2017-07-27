@@ -29,7 +29,7 @@ class Solution:
             return
         for i in xrange(start, n):
             cur.append(i + 1)
-            self.backtrack(n, k - 1, start + 1, cur, res)
+            self.backtrack(n, k - 1, i + 1, cur, res)  # bugfixed
             cur.pop()
 
 
