@@ -50,6 +50,20 @@ class Solution(object):
             i += 1
         return res
 
+    def subsetsWithDup3(self, nums):
+        res = []
+        self.dfs(sorted(nums), '', res)
+
+        return res
+
+    def dfs(self, nums, cur, res):
+        if not nums:
+            if cur not in res:
+                res.append(cur)
+
+        self.dfs(nums[1:], cur, res)
+        self.dfs(nums[1:], cur + [nums[0]], res)
+
 
 if __name__ == "__main__":
-    print Solution().subsetsWithDup2([1, 2, 2])
+    print Solution().subsetsWithDup3([4, 4, 1, 4, 4])
