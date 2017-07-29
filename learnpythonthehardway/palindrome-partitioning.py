@@ -33,9 +33,9 @@ class Solution:
                 if is_palindrome[i][j]:  # if [i][j] is palindrome
                     if j + 1 < n:  # if we have another part starting from j+1
                         for k in dp[j + 1]:
-                            dp[i].append(s[i:j + 1] + k)
+                            dp[i].append([s[i:j + 1]] + k)  # bugfixed
                     else:
-                        dp[i].append(s[i:j + 1])
+                        dp[i].append([s[i:j + 1]])  # bugfixed
         return dp[0]
 
 
