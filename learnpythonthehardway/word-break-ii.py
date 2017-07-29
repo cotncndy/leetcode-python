@@ -29,7 +29,7 @@ class Solution(object):
             max_len = max(max_len, len(w))
 
         for i in xrange(1, n + 1):
-            for j in xrange(1, min(i, max_len)):  # word ends at i-1
+            for j in xrange(1, min(i, max_len) + 1):  # word ends at i-1 bugfixed
                 if can_break[i - j] and s[i - j:i] in wordDict:  # if [0:i-j] breakable and [i-j:i] is also in dict
                     can_break[i] = True
                     valid[i - j][i - 1] = True
@@ -45,7 +45,7 @@ class Solution(object):
             return
         for i in xrange(start, len(s)):
             if valid[start][i]:
-                path.append([s[start:i + 1]])
+                path.append(s[start:i + 1])
                 self.backtrack(s, wordDict, valid, i + 1, path, res)
                 path.pop()  # backtrack
 
