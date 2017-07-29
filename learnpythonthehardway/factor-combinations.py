@@ -17,7 +17,7 @@ class Solution:
                 factors.append(n / i)  # the i and n/i is a valid combination
                 res.append(list(factors))
                 factors.pop()  # pop out n / i, then prepare to go recursion
-                self.backtrack(n, factors, res)
+                self.backtrack(n / i, factors, res)  # bugfixed
                 factors.pop()  # pop again, eject i, prepare for the next loop
             i += 1
 
