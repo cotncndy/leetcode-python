@@ -44,7 +44,8 @@ class Solution(object):
         :rtype: List[str]
         """
         row, col = len(board), len(board[0])
-        visited = [[False * col] * row]
+        # visited = [[False for _ in xrange(col)] for _ in xrange(row)]
+        visited = [[False] * col for _ in xrange(row)]
         res, trie = {}, TrieNode()
         for w in words:
             trie.insert(w)
