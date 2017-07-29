@@ -13,6 +13,8 @@
 #
 # A solution is ["cats and dog", "cat sand dog"].
 #
+from collections import Counter, defaultdict
+
 
 class Solution(object):
     def wordBreak(self, s, wordDict):  # review DP + Backtrack
@@ -49,6 +51,71 @@ class Solution(object):
                 self.backtrack(s, wordDict, valid, i + 1, path, res)
                 path.pop()  # backtrack
 
+    def dfs(self, s, words, start, cache):  # review wonderful, top-down dp memo
+        if start in cache:
+            return cache[start]
+
+        result = []
+        for end in range(start, len(s)):
+            word = s[start: end + 1]
+            if word not in words:
+                continue
+            if end == len(s) - 1:
+                result.append(word)
+            else:
+                for sub_s in self.dfs(s, words, end + 1, cache):
+                    result.append(word + ' ' + sub_s)
+
+        cache[start] = result
+        return result
+
+    def wordBreak2(self, s, wordDict):
+        """
+        :type s: str
+        :type wordDict: List[str]
+        :rtype: List[str]
+        """
+        if not s:
+            return []
+
+        words = set(wordDict)
+        return self.dfs(s, words, 0, {})
+
+    def wordBreak3(self, s, wordDict):
+        """
+        :type s: str
+        :type wordDict: List[str]
+        :rtype: List[str]
+        """
+        wordset = set(wordDict)
+        cs1 = Counter(s)  # usage of counter
+        dcheck = {}
+        long_string = "".join(wordDict)
+        cs2 = Counter(long_string)
+        for key in cs1:
+            if key not in cs2:
+                return []
+
+        d = defaultdict(list)
+        res = []
+
+        def dp(end_index):  # top-down dp , memo, so cool
+            if end_index in d:
+                return d[end_index]
+            if s[:end_index] in wordset:
+                d[end_index].append([s[:end_index]])
+            for i in xrange(1, end_index):
+                if s[i:end_index] in wordset:
+                    temp = dp(i)
+                    for v in temp:
+                        d[end_index].append(v + [s[i:end_index]])
+
+            return d[end_index]
+
+        res = dp(len(s))
+        ans = [" ".join(sentence) for sentence in res]
+        return ans
+
 
 if __name__ == "__main__":
-    print Solution().wordBreak("catsanddog", ["cat", "cats", "and", "sand", "dog"])
+    print Solution().wordBreak3("catsanddog", ["cat", "cats", "and", "sand", "dog"])
