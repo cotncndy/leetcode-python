@@ -69,10 +69,11 @@ class Solution(object):
             res["".join(cur_word)] = True
 
         visited[i][j] = True
-        self.backtrack(board, trie, i + 1, j, visited, cur_word, res)
-        self.backtrack(board, trie, i - 1, j, visited, cur_word, res)
-        self.backtrack(board, trie, i, j - 1, visited, cur_word, res)
-        self.backtrack(board, trie, i, j + 1, visited, cur_word, res)
+        self.backtrack(board, next_node, i + 1, j, visited, cur_word,
+                       res)  # bugfix forget to replace trie with next_node
+        self.backtrack(board, next_node, i - 1, j, visited, cur_word, res)
+        self.backtrack(board, next_node, i, j - 1, visited, cur_word, res)
+        self.backtrack(board, next_node, i, j + 1, visited, cur_word, res)
         visited[i][j] = False  # backtrack
         cur_word.pop()  # backtrack
 
