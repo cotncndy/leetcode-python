@@ -27,13 +27,15 @@ class Solution:
     # @param end, a string
     # @param dict, a set of string
     # @return an integer
-    def findLadders(self, start, end, dict):
+    def findLadders(self, start, end, dict):  # TLE, you have to use 2-end BFS
         """
         :type beginWord: str
         :type endWord: str
         :type wordList: List[str]
         :rtype: List[List[str]]
         """
+        if end not in dict:
+            return []
         dict.add(start)
         dict.add(end)
 
