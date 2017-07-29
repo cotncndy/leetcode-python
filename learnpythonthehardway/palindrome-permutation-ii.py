@@ -22,7 +22,9 @@ class Solution(object):
 
     def permute(self, chars, start, mid, res):
         if start == len(chars):
-            res.append(chars + mid + chars[::-1])
+            w = chars + mid + chars[::-1]
+            if w not in res:  # bugfixed would decrease the performance
+                res.append(chars + mid + chars[::-1])
 
         for i in xrange(start, len(chars)):
             if i != start and chars[i] == chars[start]:
@@ -33,4 +35,4 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print Solution().generatePalindromes('abcdbac')
+    print Solution().generatePalindromes('aaaabbbb')
