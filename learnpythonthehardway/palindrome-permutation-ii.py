@@ -12,6 +12,8 @@ class Solution(object):
         """
         cnt = collections.Counter(s)
         mid = ''.join(k for k, v in cnt.iteritems() if v % 2)  # knowledge python syntaxx
+        if len(mid) > 1:
+            return []
         chars = ''.join(k * (v / 2) for k, v in cnt.iteritems())
 
         res = []
