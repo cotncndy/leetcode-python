@@ -11,7 +11,7 @@ class Solution:
 
     def backtrack(self, n, factors, res):
         i = 2 if not factors else factors[-1]
-        while i < n / i:
+        while i <= n / i:  # bugfixed
             if n % i == 0:
                 factors.append(i)
                 factors.append(n / i)  # the i and n/i is a valid combination
