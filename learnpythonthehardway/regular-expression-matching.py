@@ -40,8 +40,9 @@ class Solution:
                     res[i][j] = res[i][j - 2] or (
                     res[i - 1][j] and (s[i - 1] == p[j - 2] or p[j - 2] == '.'))  # bugfixed and should be 'or'
 
-        return res[len(s)][len(p)]
+        # return res[len(s)][len(p)]
+        return res
 
 
 if __name__ == '__main__':
-    print Solution().isMatch("aa", 'a*')
+    print Solution().isMatch("abcd", 'd*')
