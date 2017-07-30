@@ -32,7 +32,7 @@ class Solution(object):
         return res
 
     def backtrack(self, words, trie, cur, res):
-        if len(cur) == len(words):
+        if len(cur) == len(words[0]):  # bugfixed
             res.append(list(cur))
             return
         node = trie
