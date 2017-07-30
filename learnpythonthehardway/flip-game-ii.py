@@ -13,3 +13,24 @@ class Solution(object):
                     return True
 
         return False
+
+    def canWin2(self, s):
+        winset = set()
+
+        return self.helper(s, winset)
+
+    def helper(self, s, winset):  # review top-down dp, memo, so great
+        if not s or len(s) < 2:
+            return False
+
+        if s in winset:
+            return True
+
+        for i in range(len(s) - 1):
+            if s[i] == '+' and s[i + 1] == '+':
+                sub = s[:i] + '--' + s[i + 2:]
+
+                if not self.helper(sub, winset):
+                    winset.add(s)
+                    return True
+        return False
