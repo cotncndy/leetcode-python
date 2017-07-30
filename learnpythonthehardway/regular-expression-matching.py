@@ -37,6 +37,11 @@ class Solution:
                 if p[j - 1] != '*':
                     res[i][j] = res[i - 1][j - 1] and (s[i - 1] == p[j - 1] or p[j - 1] == '.')
                 else:
-                    res[i][j] = res[i][j - 2] and (res[i - 1][j] and (s[i - 1] == p[j - 2] or p[j - 2] == '.'))
+                    res[i][j] = res[i][j - 2] or (
+                    res[i - 1][j] and (s[i - 1] == p[j - 2] or p[j - 2] == '.'))  # bugfixed and should be 'or'
 
         return res[len(s)][len(p)]
+
+
+if __name__ == '__main__':
+    print Solution().isMatch("aa", 'a*')
