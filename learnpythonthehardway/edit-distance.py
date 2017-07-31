@@ -32,3 +32,20 @@ class Solution:
                 distance[j] = min(insert, delete, repace)
 
         return distance[-1]
+
+    # time O(n * m)
+    # space O(n * m)
+    def minDistance2(self, word1, word2):
+        distance = [[i] for i in xrange(len(word1) + 1)]
+        distance[0] = [j for j in xrange(len(word2) + 1)]
+
+        for i in xrange(1, len(word1) + 1):
+            for j in xrange(len(word2) + 1):
+                insert = distance[i][j - 1] + 1
+                delete = distance[i - 1][j] + 1
+                replace = distance[i - 1][j - 1]
+                if word2[j - 1] != word1[i - 1]:
+                    replace += 1
+                distance[i].append(min(insert, replace, delete))
+
+        return distance[-1][-1]
