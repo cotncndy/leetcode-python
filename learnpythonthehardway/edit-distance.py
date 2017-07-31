@@ -13,7 +13,7 @@
 
 class Solution:
     # @return an integer
-    def minDistance(self, word1, word2):
+    def minDistance(self, word1, word2):  # review how to convert 2-d dp to 1-d dp
         if len(word1) < len(word2):
             return self.minDistance(word2, word1)
 
@@ -40,7 +40,7 @@ class Solution:
         distance[0] = [j for j in xrange(len(word2) + 1)]
 
         for i in xrange(1, len(word1) + 1):
-            for j in xrange(len(word2) + 1):
+            for j in xrange(1, len(word2) + 1):  # bugfixed
                 insert = distance[i][j - 1] + 1
                 delete = distance[i - 1][j] + 1
                 replace = distance[i - 1][j - 1]
