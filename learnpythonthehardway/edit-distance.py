@@ -26,7 +26,7 @@ class Solution:
                 insert = distance[j - 1] + 1
                 delete = distance[j] + 1
                 repace = pre_dist_i_j
-                if word1[i] != word2[j]:
+                if word1[i] != word2[j]:  # bugfixed, should be i-1 and j-1
                     repace += 1
                 pre_dist_i_j = distance[j]
                 distance[j] = min(insert, delete, repace)
