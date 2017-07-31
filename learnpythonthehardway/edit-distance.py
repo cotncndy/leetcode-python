@@ -19,10 +19,10 @@ class Solution:
 
         distance = [i for i in xrange(len(word2) + 1)]
 
-        for i in xrange(len(word1) + 1):
+        for i in xrange(1, len(word1) + 1):  # bugfixed
             pre_dist_i_j = distance[0]
             distance[0] = i
-            for j in xrange(len(word2) + 1):
+            for j in xrange(1, len(word2) + 1):  # bugfixed
                 insert = distance[j - 1] + 1
                 delete = distance[j] + 1
                 repace = pre_dist_i_j
