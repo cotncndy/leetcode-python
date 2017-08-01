@@ -49,7 +49,7 @@ class Solution:
 
         for i in xrange(1, len(s1) + 1):
             for j in xrange(1, len(s2) + 1):
-                match[i][j] = (match[i - 1][j] and s1[i - 1][j] == s3[i + j - 1]) or \
+                match[i][j] = (match[i - 1][j] and s1[i - 1] == s3[i + j - 1]) or \
                               (match[i][j - 1] and s2[j - 1] == s3[i + j - 1])
 
         return match[-1][-1]
