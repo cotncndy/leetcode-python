@@ -32,7 +32,7 @@ class Solution:
 
         for i in xrange(len(S) + 1):
             dp[0][i] = 1
-        for i in xrange(len(T) + 1):
+        for i in xrange(1, len(T) + 1):  # bugfixed, should start from 1
             dp[i][0] = 0
 
         for i in xrange(1, len(T) + 1):
