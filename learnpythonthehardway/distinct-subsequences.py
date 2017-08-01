@@ -53,7 +53,7 @@ class Solution:
 
         for i in xrange(1, len(S) + 1):
             for j in xrange(1, len(T) + 1):
-                dp[i][j] = dp[i][j - 1]
+                dp[i][j] = dp[i - 1][j]  # bugfixed should be [i][j] = [i-1][j] instad of [i][j] == [i][j-1]
                 if S[i - 1] == T[j - 1]:
                     dp[i][j] += dp[i - 1][j - 1]
 
