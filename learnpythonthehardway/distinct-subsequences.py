@@ -42,3 +42,19 @@ class Solution:
                     dp[i][j] += dp[i - 1][j - 1]
 
         return dp[-1][-1]
+
+    def numDistinct3(self, S, T):
+        dp = [[0 for i in xrange(len(T) + 1)] for j in xrange(len(S) + 1)]
+
+        for i in xrange(len(S) + 1):
+            dp[i][0] = 1
+        for i in xrange(1, len(T) + 1):  # bugfixed, should start from 1
+            dp[0][i] = 0
+
+        for i in xrange(1, len(S) + 1):
+            for j in xrange(1, len(T) + 1):
+                dp[i][j] = dp[i][j - 1]
+                if S[i - 1] == T[j - 1]:
+                    dp[i][j] += dp[i - 1][j - 1]
+
+        return dp[-1][-1]
