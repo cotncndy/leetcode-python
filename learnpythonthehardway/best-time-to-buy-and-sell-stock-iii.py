@@ -23,7 +23,8 @@ class Solution:
         if not prices:
             return 0
         days = len(prices)
-        global_max, local_max = [[0, 0, 0] * days], [[0, 0, 0] * days]
+        global_max, local_max = [[0 for _ in xrange(3)] for _ in xrange(days)], \
+                                [[0 for _ in xrange(3)] for _ in xrange(days)]
         for i in xrange(1, days):
             diff = prices[i] - prices[i - 1]
             for j in xrange(1, 3):
@@ -31,3 +32,7 @@ class Solution:
                 global_max[i][j] = max(global_max[i - 1][j], local_max[i][j])
 
         return global_max[-1][2]
+
+
+if __name__ == '__main__':
+    print Solution().maxProfit([1, 3, 2, 9])
