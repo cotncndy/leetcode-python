@@ -15,7 +15,7 @@
 
 class Solution:
     # @return an integer
-    def numDistinct(self, S, T):
+    def numDistinct(self, S, T):  # review, I figured out by myself convert 2-d to 1-d dp
         ways = [0 for _ in xrange(len(S) + 1)]
         # prev, cur = 0, 0
         for i in xrange(len(S) + 1):
@@ -63,3 +63,12 @@ class Solution:
                     dp[i][j] += dp[i - 1][j - 1]
 
         return dp[-1][-1]
+
+    def numDistinct4(self, S, T):  # todo figure out how this 1-d dp works?
+        ways = [0 for _ in xrange(len(T) + 1)]
+        ways[0] = 1
+        for S_char in S:
+            for j, T_char in reversed(list(enumerate(T))):
+                if S_char == T_char:
+                    ways[j + 1] += ways[j]
+        return ways[len(T)]
