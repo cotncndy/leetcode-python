@@ -25,8 +25,8 @@ class Solution(object):
             max_len = max(max_len, len(word))
 
         for i in xrange(1, n + 1):
-            for j in xrange(0, min(i, max_len) + 1):
-                if can_break[j] and s[j:i] is in wordDict:
+            for j in xrange(1, min(i, max_len) + 1):  # bugfixed
+                if can_break[i - j] and s[i - j:i] is in wordDict:  # bugfixed
                     can_break[i] = True
                     break
 
