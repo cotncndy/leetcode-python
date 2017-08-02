@@ -10,7 +10,7 @@ class Solution:
     # @param A, a list of integers
     # @return an integer
     def maxProduct(self, A):
-        global_max, local_max, local_min = float('-inf'), 0, 0
+        global_max, local_max, local_min = float('-inf'), 1, 1  # bugfixed
         for x in A:
             local_max, local_min = max(x, local_max * x, local_min * x), \
                                    min(x, local_max * x, local_min * x)
