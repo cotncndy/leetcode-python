@@ -18,4 +18,16 @@ class Solution:
     # @param prices, a list of integer
     # @return an integer
     def maxProfit(self, prices):
-# todo
+        # global[i][j] = max(global[i-1][j] , local[i][j])
+        # local[i][j] = max(global[i-1][j-1] + max(diff,0), local[i-1][j] + diff)
+        if not prices:
+            return 0
+        days = len(prices)
+        global_max, local_max = [[0, 0, 0] * days], [[0, 0, 0] * days]
+        for i in xrange(1, days):
+            diff = prices[i] - prices[i - 1]
+            for j in xrange(1, 3):
+                local_max[i][j] = max(global_max[i - 1][j - 1] + max(diff, 0), local_max[i - 1][j] + diff)
+                global_max[i][j] = max(global_max[i - 1][j], local_max[i][j])
+
+        return global_max[-1][2]
