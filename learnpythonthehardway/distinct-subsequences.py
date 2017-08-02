@@ -17,13 +17,18 @@ class Solution:
     # @return an integer
     def numDistinct(self, S, T):
         ways = [0 for _ in xrange(len(S) + 1)]
-        ways[0], prev = 1, 0
+        # prev, cur = 0, 0
+        for i in xrange(len(S) + 1):
+            ways[i] = 1
+
         for i in xrange(1, len(T) + 1):
+            prev, ways[0] = ways[0], 0
             for j in xrange(1, len(S) + 1):
-                ways[j] += ways[j - 1]
+                cur = ways[j]
+                ways[j] = ways[j - 1]
                 if T[i - 1] == S[j - 1]:
                     ways[j] += prev
-                prev = ways[j - 1]
+                prev = cur
 
         return ways[-1]
 
