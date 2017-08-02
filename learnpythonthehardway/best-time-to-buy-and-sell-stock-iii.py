@@ -33,6 +33,20 @@ class Solution:
 
         return global_max[-1][2]
 
+    def maxProfit2(self, prices):
+        if not prices:
+            return 0
+        global_max, local_max = [0] * 3, [0] * 3
+        days = len(prices)
+        for i in xrange(1, days):
+            diff = prices[i] - prices[i - 1]
+            for j in reversed(xrange(1, 3)):
+                local_max[j] = max(global_max[j - 1] + max(diff, 0), local_max[j] + diff)
+                global_max[j] = max(global_max[j], local_max[j])
+
+        return global_max[-1]
+
+
 
 if __name__ == '__main__':
     print Solution().maxProfit([1, 3, 2, 9])
