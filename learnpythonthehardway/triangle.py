@@ -19,7 +19,7 @@
 class Solution:
     # @param triangle, a list of lists of integers
     # @return an integer
-    def minimumTotal(self, triangle):
+    def minimumTotal(self, triangle):  # notice, this is from bottom to top
         if not triangle:
             return 0
         size = len(triangle)
@@ -30,3 +30,24 @@ class Solution:
                 dp[j] = min(dp[j], dp[j + 1]) + triangle[i][j]
 
         return dp[0]
+
+    def minimumTotal2(self, triangle):  # notice, this is from top to bottom
+        """
+        :type triangle: List[List[int]]
+        :rtype: int
+        """
+        if not triangle:
+            return 0
+            # level=len(triangle)-1
+            #         for l in triangle[level:0:-1]:
+
+        prel = triangle[0]
+        level = 1
+        for l in triangle[1:]:  # knowledge how to loop a 2-dimension arra
+            l[0] += prel[0]
+            for i in range(1, level):
+                l[i] += min(prel[i - 1], prel[i])
+            l[-1] += prel[-1]
+            level += 1
+            prel = l
+        return min(prel)
