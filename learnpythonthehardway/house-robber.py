@@ -24,3 +24,10 @@ class Solution:
             num_cur = max(num_prev_1, num_prev_2 + num[i])
 
         return num_cur
+
+    def rob2(self, num):
+        last, now = 0, 0
+        for i in num:
+            last, now = now, max(last + i, now)
+
+        return now
