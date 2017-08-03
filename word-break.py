@@ -26,7 +26,7 @@ class Solution(object):
 
         for i in xrange(1, n + 1):
             for j in xrange(1, min(i, max_len) + 1):  # bugfixed
-                if can_break[i - j] and s[i - j:i] is in wordDict:  # bugfixed
+                if can_break[i - j] and s[i - j:i] in wordDict:  # bugfixed
                     can_break[i] = True
                     break
 

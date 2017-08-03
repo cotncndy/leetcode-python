@@ -33,7 +33,7 @@ class Solution:
 
         return global_max[-1][2]
 
-    def maxProfit2(self, prices):
+    def maxProfit2(self, prices):  # review
         if not prices:
             return 0
         global_max, local_max = [0] * 3, [0] * 3
