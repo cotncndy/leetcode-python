@@ -32,7 +32,7 @@ class Solution:
         for i in xrange(1, m):
             if matrix[i][0] == '1':
                 size[i][0] = 1
-            max_size = max(max_size, matrix[i][0])
+            max_size = max(max_size, size[i][0])  # bugfixed
 
         for i in xrange(1, m):
             for j in xrange(1, n):
