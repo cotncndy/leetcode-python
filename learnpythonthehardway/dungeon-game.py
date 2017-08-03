@@ -49,3 +49,6 @@ class Solution:
                 dp[i][j] = max(1, min(dp[i + 1][j], dp[i][j + 1]) - dungeon[i][j])  # bugfixed
 
         return dp[0][0]
+
+    def calculateMinimumHP2(self, dungeon):
+# todo
