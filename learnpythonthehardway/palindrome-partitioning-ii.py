@@ -23,7 +23,7 @@ class Solution:
                     min_cuts[i] = min(min_cuts[i], min_cuts[j + 1] + 1)
         return min_cuts[0]
 
-    def minCut2(self, s):
+    def minCut2(self, s):  # todo fix this method
         lookup = [[False for j in xrange(len(s))] for i in xrange(len(s))]
         min_cuts = [i for i in xrange(len(s))]
 
