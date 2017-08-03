@@ -31,3 +31,7 @@ class Solution:
             last, now = now, max(last + i, now)
 
         return now
+
+
+if __name__ == '__main__':
+    print Solution().rob2([1, 3, 7, 2])
