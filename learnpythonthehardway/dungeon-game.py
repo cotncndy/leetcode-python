@@ -46,6 +46,6 @@ class Solution:
 
         for i in reversed(xrange(m - 1)):
             for j in reversed(xrange(n - 1)):
-                dp[i][j] = max(1, min(dp[i + 1][j], dp[i][j + 1])) - dungeon[i][j]
+                dp[i][j] = max(1, min(dp[i + 1][j], dp[i][j + 1]) - dungeon[i][j])  # bugfixed
 
         return dp[0][0]
