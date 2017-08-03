@@ -22,3 +22,15 @@ class Solution:
                     lookup[i][j] = True
                     min_cuts[i] = min(min_cuts[i], min_cuts[j + 1] + 1)
         return min_cuts[0]
+
+    def minCut2(self, s):
+        lookup = [[False for j in xrange(len(s))] for i in xrange(len(s))]
+        min_cuts = [len(s) - 1 - i for i in xrange(len(s) + 1)]
+
+        for i in xrange(len(s)):
+            for j in reversed(xrange(i + 1)):
+                if s[i] == s[j] and (j - i < 2 or lookup[i - 1][j + 1]):
+                    lookup[i][j] = True
+                    min_cuts[i] = min(min_cuts[i], min_cuts[j - 1] + 1)
+
+        return min_cuts[-1]
