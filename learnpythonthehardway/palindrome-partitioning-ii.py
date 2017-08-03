@@ -25,12 +25,16 @@ class Solution:
 
     def minCut2(self, s):
         lookup = [[False for j in xrange(len(s))] for i in xrange(len(s))]
-        min_cuts = [len(s) - 1 - i for i in xrange(len(s) + 1)]
+        min_cuts = [i for i in xrange(len(s))]
 
-        for i in xrange(len(s)):
+        for i in xrange(1, len(s)):
             for j in reversed(xrange(i + 1)):
                 if s[i] == s[j] and (j - i < 2 or lookup[i - 1][j + 1]):
                     lookup[i][j] = True
-                    min_cuts[i] = min(min_cuts[i], min_cuts[j - 1] + 1)
+                    min_cuts[i] = min(min_cuts[i], min_cuts[j - 1] + 1 if j > 1 else 0)
 
         return min_cuts[-1]
+
+
+if __name__ == '__main__':
+    print Solution().minCut2('aab')
