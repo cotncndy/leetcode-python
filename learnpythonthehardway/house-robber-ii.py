@@ -22,13 +22,13 @@ class Solution:
             return nums[0]
 
         def rob_range(nums, left, right):
-            for i in xrange(left, right + 1):
-                last, now = 0, 0
+            last, now = 0, 0
+            for i in xrange(left, right):
                 last, now = now, max(last + nums[i], now)
 
             return now
 
-        return max(rob_range(nums, 0, len(nums) - 1)), rob_range(nums, 1, len(nums))
+        return max(rob_range(nums, 0, len(nums) - 1), rob_range(nums, 1, len(nums)))  # bugfixed
 
 
 if __name__ == '__main__':
