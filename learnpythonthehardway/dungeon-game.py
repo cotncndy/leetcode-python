@@ -40,9 +40,9 @@ class Solution:
         dp[-1][-1] = max(1, 1 - dungeon[-1][-1])
 
         for i in reversed(xrange(m - 1)):
-            dp[i][-1] = max(1, dp[i + 1][-1] - dp[i][-1])
+            dp[i][-1] = max(1, dp[i + 1][-1] - dungeon[i][-1])  # bugfixed
         for j in reversed(xrange(n - 1)):
-            dp[-1][j] = max(1, dp[-1][j + 1] - dp[-1][j])
+            dp[-1][j] = max(1, dp[-1][j + 1] - dungeon[-1][j])  # bugfixed
 
         for i in reversed(xrange(m - 1)):
             for j in reversed(xrange(n - 1)):
