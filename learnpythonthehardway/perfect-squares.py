@@ -18,7 +18,7 @@ class Solution(object):
         """
         dp = self._num
         if len(dp) < n + 1:
-            dp.extend([float('inf')] * (n - len(dp)))
+            dp.extend([float('inf')] * (n + 1 - len(dp)))
             for i in xrange(n + 1):
                 j = 1
                 while i + j * j <= n:
