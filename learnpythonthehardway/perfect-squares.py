@@ -16,8 +16,8 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        dp = [float('inf')] * (n + 1)  # bugfixed
-        dp[0] = 0
+        dp = self._num
+        dp.extend([0] * n)
         for i in xrange(n + 1):
             j = 1
             while i + j * j <= n:
