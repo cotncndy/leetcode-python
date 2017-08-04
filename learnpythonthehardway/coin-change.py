@@ -27,6 +27,7 @@ class Solution(object):
         :rtype: int
         """
         dp = [amount + 1] * (amount + 1)  # initially make the value to be 'amount+1'
+        dp[0] = 0  # bugfixed
         for i in xrange(amount + 1):
             for j in coins:
                 if j <= i:  # coin value shold be <= the amount you want, you can not use 2-cents coin to get number 1
