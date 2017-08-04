@@ -33,7 +33,7 @@ class Solution(object):
                 min_costs[i % 2][j] = costs[i][j] + min(min_costs[(i - 1) % 2][(j + 1) % 3],
                                                         min_costs[(i - 1) % 2][(j + 2) % 3])
 
-        return min_costs[-1]
+        return min(min_costs[-1])
 
 
 
