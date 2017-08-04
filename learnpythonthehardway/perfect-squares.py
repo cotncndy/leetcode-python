@@ -16,7 +16,8 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        dp = [float('inf')] * n
+        dp = [float('inf')] * (n + 1)  # bugfixed
+        dp[0] = 0
         for i in xrange(n + 1):
             j = 1
             while i + j * j <= n:
@@ -24,3 +25,7 @@ class Solution(object):
                 j += 1
 
         return dp[n]
+
+
+if __name__ == '__main__':
+    print Solution().numSquares(1)
