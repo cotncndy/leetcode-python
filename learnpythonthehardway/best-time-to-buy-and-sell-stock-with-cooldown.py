@@ -26,10 +26,12 @@ class Solution(object):
         """
         # buy[i] = max(sell[i-2]-prices[i], buy[i-1])
         # sell[i] = max(buy[i-1] + prices[i], sell[i-1])
-        buy, pre_buy, sell, pre_sell = 0, 0, 0, 0
+        buy, pre_buy, sell, pre_sell = float('-inf'), 0, 0, 0  # bugfixed,at beginning, buy should be float('-inf')
         for p in prices:
-            pre_buy, buy = buy, max(pre_sell - p, pre_buy)
-            pre_sell, sell = sell, max(pre_buy + p, pre_sell)
+            pre_buy = buy  # bugfixed, can not combine this 2 line , we need to use the new value of pre_buy and pre_sell
+            buy = max(pre_sell - p, pre_buy)
+            pre_sell = sell
+            sell = max(pre_buy + p, pre_sell)
 
         return sell
 
