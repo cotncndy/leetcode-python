@@ -17,15 +17,22 @@ class Solution(object):
         :rtype: int
         """
         dp = self._num
-        dp.extend([0] * n)
-        for i in xrange(n + 1):
-            j = 1
-            while i + j * j <= n:
-                dp[i + j * j] = min(dp[i] + 1, dp[i + j * j])
-                j += 1
+        if len(dp) < n + 1:
+            dp.extend([float('inf')] * (n - len(dp)))
+            for i in xrange(n + 1):
+                j = 1
+                while i + j * j <= n:
+                    dp[i + j * j] = min(dp[i] + 1, dp[i + j * j])
+                    j += 1
 
         return dp[n]
 
+    def numSquares2(self, n):
+        num = self._num
+        while len(num) <= n:
+            num += min(num[-i * i] for i in xrange(1, int(len(num) ** 0.5 + 1))) + 1,
+        return num[n]
+
 
 if __name__ == '__main__':
-    print Solution().numSquares(1)
+    print Solution().numSquares2(6)
