@@ -27,7 +27,7 @@ class Solution(object):
 
         return dp[n]
 
-    def numSquares2(self, n):
+    def numSquares2(self, n):  # todo, try to understand
         num = self._num
         while len(num) <= n:
             num += min(num[-i * i] for i in xrange(1, int(len(num) ** 0.5 + 1))) + 1,
