@@ -35,7 +35,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        coins = [1] + [i for i in nums if i > 0] + [1]
+        coins = [1] + [i for i in nums] + [1]  # still correct
         n = len(coins)
         max_coins = [[0 for _ in xrange(n)] for _ in xrange(n)]
 
