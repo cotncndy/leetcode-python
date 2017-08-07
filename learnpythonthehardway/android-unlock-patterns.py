@@ -28,14 +28,19 @@ class Solution(object):
     def backtrack(self, start, len, m, n, jumps, visited, res):
         if len >= m:  # any pattern which larger than m satisfied the requirements, could be count as one pattern
             res += 1
-        if len > n:
-            return res
         len += 1
+        if len > n:  # bugfixed
+            return res
         visited[start] = True
         for next in xrange(1, 10):
             jump = jumps[start][next]
             if not visited[next] and (jump == 0 or visited[jump]):
-                self.backtrack(next, len, m, n, jumps, visited, res)
+                res = self.backtrack(next, len, m, n, jumps, visited,
+                                     res)  # can not miss res = , otherwise you would get 0
 
         visited[start] = False  # backtrack
         return res
+
+
+if __name__ == '__main__':
+    print Solution().numberOfPatterns(1, 1)
