@@ -46,4 +46,9 @@ class Solution(object):
             for j in xrange(i + 1, n):
                 pay[i][j] = min(k + 1 + max(pay[i][k - 1], pay[k + 1][j]) for k in xrange(i, j + 1))
 
+        print pay
         return pay[0][n - 1]
+
+
+if __name__ == '__main__':
+    print Solution().getMoneyAmount(5)
