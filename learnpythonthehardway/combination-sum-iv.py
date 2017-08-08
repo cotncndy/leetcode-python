@@ -39,7 +39,7 @@ class Solution(object):
 
         for i in xrange(1, target + 1):
             for j in xrange(len(nums)):
-                if nums[j] < i:
+                if nums[j] <= i:  # bugfixed should be <=
                     dp[i] += dp[i - nums[j]]
                 else:
                     break
