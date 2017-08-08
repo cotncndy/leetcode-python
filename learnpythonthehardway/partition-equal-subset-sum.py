@@ -22,7 +22,7 @@
 # Output: false
 #
 # Explanation: The array cannot be partitioned into equal sum subsets.
-
+import collections
 class Solution(object):
     def canPartition(self, nums):
         """
@@ -30,6 +30,7 @@ class Solution(object):
         :rtype: bool
         """
         s = sum(nums)  # knowledge there is a sum function in python
+        counter = collections.Counter(nums)
         if s % 2:
             return False
 
@@ -39,6 +40,10 @@ class Solution(object):
         for num in nums:
             for i in xrange(1, len(dp)):
                 if num <= i:  # bugfixed
-                    dp[i] = dp[i] or dp[i - num]
+                    dp[i] = dp[i] or dp[i - num] if i != 2 * num else (dp[i - num] and counter[num] > 1)  # bugfixed
 
         return dp[-1]
+
+
+if __name__ == '__main__':
+    print Solution().canPartition([1, 2, 5])
