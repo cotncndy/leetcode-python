@@ -40,10 +40,29 @@ class Solution(object):
         for num in nums:
             for i in xrange(1, len(dp)):
                 if num <= i:  # bugfixed
-                    dp[i] = dp[i] or dp[i - num] if i != 2 * num else (dp[i - num] and counter[num] > 1)  # bugfixed
+                    dp[i] = dp[i] or (dp[i - num] if i != 2 * num else (dp[i - num] and counter[num] > 1))  # bugfixed
 
         return dp[-1]
 
+    def canPartition2(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        s = sum(nums)
+        if s % 2:
+            return False
+
+        dp = [False] * (s / 2 + 1)
+        dp[0] = True
+
+        for num in nums:
+            for i in reversed(xrange(num, len(dp))):
+                dp[i] = dp[i] or dp[i - num]
+
+        # print dp
+        return dp[-1]
 
 if __name__ == '__main__':
-    print Solution().canPartition([1, 2, 5])
+    # print Solution().canPartition([1, 2, 5])
+    print Solution().canPartition2([1, 5, 11, 3])
