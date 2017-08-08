@@ -44,7 +44,7 @@ class Solution(object):
         :type stones: List[int]
         :rtype: bool
         """
-        if stones[1] != -1:
+        if stones[1] != 1:  # bugfixed should be 1 instead of -1
             return False
         map = {s: set() for s in stones}
         map[1].add(1)
