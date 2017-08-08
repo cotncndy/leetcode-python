@@ -40,6 +40,36 @@ class Solution(object):
 
         return res
 
+    def maxKilledEnemies2(self, grid):
+        if not grid or not len(grid) or not len(grid[0]):
+            return 0
+        m, n, res = len(grid), len(grid[0]), 0
+        rowCnt, colCnt = 0, [0] * n
+
+        for i in xrange(m):
+            for j in xrange(n):
+                if j == 0 or grid[i][j - 1] == 'W':
+                    rowCnt = 0
+                    for k in xrange(j, n):
+                        if grid[i][k] == 'W':
+                            break
+                        if grid[i][k] == 'E':
+                            rowCnt += 1
+                if i == 0 or grid[i - 1][j] == 'W':
+                    colCnt[j] = 0
+                    for k in xrange(i, m):
+                        if grid[k][j] == 'W':
+                            break
+                        if grid[k][j] == 'E':
+                            colCnt[j] += 1
+
+                if grid[i][j] == '0':
+                    res = max(res, rowCnt + colCnt[j])
+
+        return res
+
+
+
 
 if __name__ == '__main__':
-    print Solution().maxKilledEnemies([['0', 'E', '0', '0'], ['E', '0', 'W', 'E'], ['0', 'E', '0', '0']])
+    print Solution().maxKilledEnemies2([['0', 'E', '0', '0'], ['E', '0', 'W', 'E'], ['0', 'E', '0', '0']])
