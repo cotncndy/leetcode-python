@@ -47,3 +47,14 @@ class Solution(object):
             maxIdx = prev[maxIdx]
 
         return res[::-1]
+
+    def largestDivisibleSubset2(self, nums):  # todo , try to understand
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        dict = {-1: set()}
+        for i in sorted(nums):
+            dict[i] = max((dict[d] for d in dict if i % d == 0), key=len) | {i}
+
+        return list(max(dict.values(), key=len))
