@@ -38,7 +38,7 @@ class Solution(object):
 
         for num in nums:
             for i in xrange(1, len(dp)):
-                if num <= dp[i]:
+                if num <= i:  # bugfixed
                     dp[i] = dp[i] or dp[i - num]
 
         return dp[-1]
