@@ -33,3 +33,61 @@ class Solution(object):
             start = (start + word_row_count[start]) % len(sentence)
 
         return words / len(sentence)
+
+    def wordsTyping2(self, sentence, rows, cols):  # todo, try to understand
+        """
+        :type sentence: List[str]
+        :type rows: int
+        :type cols: int
+        :rtype: int
+        """
+        s = " " + " ".join(sentence)
+        start = 0
+        l = len(s)
+        res = 0
+
+        i = 1
+        for _ in range(rows):
+            i += cols
+            if i > l - 1:
+                res += i / l
+                i = i % l
+            # 此刻i是剩余的格数，如果i不等于“ ”就要回退i到空格处
+            while s[i] != ' ':
+                i -= 1
+
+            i += 1
+
+        return res
+
+    def wordsTyping3(self, sentence, rows, cols):  # todo , try to understand
+        """
+        :type sentence: List[str]
+        :type rows: int
+        :type cols: int
+        :rtype: int
+        """
+        s = [len(w) for w in sentence]
+        sentence_len = sum(s) + len(s) - 1
+        times_per_row = (cols + 1) / (sentence_len + 1)
+        times = times_per_row * rows
+        rest_per_row = cols - times_per_row * (sentence_len + 1)
+
+        rest_num_w = []
+        for start in range(len(s)):
+            rest = rest_per_row
+            end = start
+            num = 0
+            while rest >= s[end]:
+                rest -= (s[end] + 1)
+                end = (end + 1) % len(s)
+                num += 1
+            rest_num_w.append(num)
+
+        word_point = 0
+        for _ in range(rows):
+            word_point += rest_num_w[word_point]
+            if word_point >= len(s):
+                times += 1
+            word_point = word_point % len(s)
+        return times
