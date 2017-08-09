@@ -60,9 +60,10 @@ class Solution(object):
             for i in reversed(xrange(num, len(dp))):
                 dp[i] = dp[i] or dp[i - num]
 
-        # print dp
+        print dp
         return dp[-1]
 
 if __name__ == '__main__':
     # print Solution().canPartition([1, 2, 5])
-    print Solution().canPartition2([1, 5, 11, 3])
+    # print Solution().canPartition2([1, 5, 11, 3])
+    print Solution().canPartition2([1, 3, 5, 11])
