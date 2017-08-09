@@ -34,9 +34,14 @@ class Solution(object):
 
             if next_debt == 0:
                 dp[i] = number - 1
+                for s in subset:
+                    if i & s == s:
+                        dp[i] = min(dp[i], dp[s] + dp[i - s])
+                subset.append(i)
 
         return dp[-1]
 
 
 if __name__ == '__main__':
-    print Solution().minTransfers([[0, 1, 10], [2, 0, 5]])
+    # print Solution().minTransfers([[0, 1, 10], [2, 0, 5]])
+    print Solution().minTransfers([[2, 0, 5], [3, 4, 4]])
