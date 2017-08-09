@@ -41,4 +41,6 @@ class Solution(object):
             else:
                 res += (l - 1) * (l - 2) / 2
                 l = 0
+        if l:  # bugfixed
+            res += (l - 1) * (l - 2) / 2
         return res
