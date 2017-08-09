@@ -39,8 +39,13 @@ class Solution(object):
             if A[i] - A[i - 1] == A[i - 1] - A[i - 2]:
                 l += 1
             else:
-                res += (l - 1) * (l - 2) / 2
+                if l > 2:  # bugfixed
+                    res += (l - 1) * (l - 2) / 2
                 l = 0
-        if l:  # bugfixed
+        if l > 2:  # bugfixed
             res += (l - 1) * (l - 2) / 2
         return res
+
+
+if __name__ == '__main__':
+    print Solution().numberOfArithmeticSlices([2, 1, 3, 4, 2, 3])
