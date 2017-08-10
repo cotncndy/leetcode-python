@@ -15,7 +15,7 @@
 #
 # A zero-indexed array A consisting of N numbers is given.
 # A subsequence slice of that array is any sequence of integers (P0, P1, ..., Pk)
-# such that 0 ≤ P0 < P1 < ... < Pk < N.
+# such that 0 <= P0 < P1 < ... < Pk < N.
 #
 # A subsequence slice (P0, P1, ..., Pk) of array A is called arithmetic
 # if the sequence A[P0], A[P1], ..., A[Pk-1], A[Pk] is arithmetic. In particular, this means that k >= 2.
@@ -51,7 +51,7 @@ class Solution(object):
         :type A: List[int]
         :rtype: int
         """
-        dp, res = [collections.defaultdict(int)] * len(A), 0
+        dp, res = [collections.defaultdict(int) for i in xrange(len(A))], 0  # bugfixed
         for i in xrange(1, len(A)):
             for j in xrange(i):
                 diff = A[i] - A[j]
@@ -60,3 +60,7 @@ class Solution(object):
                     dp[i][diff] += dp[j][diff]
                     res += dp[j][diff]
         return res
+
+
+if __name__ == '__main__':
+    print Solution().numberOfArithmeticSlices([2, 4, 6, 8, 10])
