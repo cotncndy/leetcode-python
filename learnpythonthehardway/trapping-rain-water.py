@@ -15,7 +15,7 @@ class Solution:
     # @param A, a list of integers
     # @return an integer
     def trap(self, A):
-        l, r, res = 0, len(A), 0
+        l, r, res = 0, len(A) - 1, 0  # bugfixed
         while l < r:
             min_h = min(A[l], A[r])
             if min_h == A[l]:
