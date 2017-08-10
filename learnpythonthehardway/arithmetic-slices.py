@@ -46,6 +46,15 @@ class Solution(object):
             res += (l - 1) * (l - 2) / 2
         return res
 
+    def numberOfArithmeticSlices2(self, A):
+        res, cur = 0, 0
+        for i in xrange(2, len(A)):
+            if A[i] - A[i - 1] == A[i - 1] - A[i - 2]:
+                cur += cur + 1
+                res += cur
+            else:
+                cur = 0
+        return res
 
 if __name__ == '__main__':
     print Solution().numberOfArithmeticSlices([2, 1, 3, 4, 2, 3])
