@@ -50,7 +50,7 @@ class Solution(object):
         res, cur = 0, 0
         for i in xrange(2, len(A)):
             if A[i] - A[i - 1] == A[i - 1] - A[i - 2]:
-                cur += cur + 1
+                cur += 1  # bugfixed
                 res += cur
             else:
                 cur = 0
