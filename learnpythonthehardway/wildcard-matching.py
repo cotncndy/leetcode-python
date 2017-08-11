@@ -47,7 +47,7 @@ class Solution:
     def isMatch2(self, s, p):
         dp = [[False] * (len(p) + 1) for _ in xrange(len(s) + 1)]
         dp[0][0] = True
-        for i in xrange(len(p) + 1):
+        for i in xrange(1, len(p) + 1):  # bugfixed
             if p[i - 1] == '*':
                 dp[0][i] = dp[0][i - 1]
 
@@ -66,4 +66,4 @@ class Solution:
 
 
 if __name__ == '__main__':
-    print Solution().isMatch('aa', '*')
+    print Solution().isMatch2('', '')
