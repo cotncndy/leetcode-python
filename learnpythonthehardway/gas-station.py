@@ -20,7 +20,7 @@ class Solution:
         total, sum, res = 0, 0, 0  # bugfixed, res should be 0 instead of -1, see test case : [5],[4]
         for i in xrange(len(gas)):
             total += gas[i] - cost[i]
-            sum = gas[i] - cost[i]
+            sum += gas[i] - cost[i]  # bugfixed
             if sum < 0:
                 res, sum = i + 1, 0
 
@@ -30,4 +30,4 @@ class Solution:
 
 
 if __name__ == '__main__':
-    print Solution().canCompleteCircuit([5], [4])
+    print Solution().canCompleteCircuit([2, 3, 1], [3, 1, 2])
