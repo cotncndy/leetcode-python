@@ -21,4 +21,5 @@ class Solution:
         return profit
 
     def maxProfit2(self, prices):
+        # knowledge see how the map and lamda got used
         return sum(map(lambda x: max(prices[x + 1] - prices[x], 0), range(len(prices[:-1]))))
