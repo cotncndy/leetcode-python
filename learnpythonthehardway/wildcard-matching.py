@@ -29,7 +29,7 @@ class Solution:
     def isMatch(self, s, p):
         scur, pcur, sstar, pstar = 0, 0, -1, -1
         while scur < len(s):
-            if s[scur] == p[pcur] or p[pcur] == '?':
+            if pcur < len(p) and (s[scur] == p[pcur] or p[pcur] == '?'):  # bugfixed
                 scur, pcur = scur + 1, pcur + 1
             elif pcur < len(p) and p[pcur] == '*':
                 pstar, pcur, sstar = pcur, pcur + 1, scur
@@ -43,3 +43,7 @@ class Solution:
             pcur += 1
 
         return pcur == len(p)
+
+
+if __name__ == '__main__':
+    print Solution().isMatch('aa', 'a')
