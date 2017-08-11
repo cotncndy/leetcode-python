@@ -85,7 +85,7 @@ class Solution:
                     # for what char in s[i-1], '*' could match it
                     dp[i % k][j] = dp[i % k][j - 1] or dp[(i - 1) % k][j]
 
-        return dp[len(s)][len(p)]
+        return dp[len(s) % k][len(p)]  # bugfixed
 
 
 
