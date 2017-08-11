@@ -39,11 +39,11 @@ class Solution:
             else:
                 return False
 
-        while p[pcur] == '*':
+        while pcur < len(p) and p[pcur] == '*':
             pcur += 1
 
         return pcur == len(p)
 
 
 if __name__ == '__main__':
-    print Solution().isMatch('aa', 'a')
+    print Solution().isMatch('aa', 'aa')
