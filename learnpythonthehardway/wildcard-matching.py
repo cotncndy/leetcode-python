@@ -34,8 +34,8 @@ class Solution:
             elif pcur < len(p) and p[pcur] == '*':
                 pstar, pcur, sstar = pcur, pcur + 1, scur
             elif pstar > -1:
-                pcur, scur = pstar, sstar
-                sstar += 1
+                pcur, sstar = pstar, sstar + 1  # bugfixed
+                scur = sstar
             else:
                 return False
 
@@ -46,4 +46,4 @@ class Solution:
 
 
 if __name__ == '__main__':
-    print Solution().isMatch('aa', 'aa')
+    print Solution().isMatch('aa', '*')
