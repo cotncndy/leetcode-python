@@ -44,6 +44,8 @@ class Solution:
 
         return pcur == len(p)
 
+    # time : O(m * n)
+    # space : O(m * n)
     def isMatch2(self, s, p):
         dp = [[False] * (len(p) + 1) for _ in xrange(len(s) + 1)]
         dp[0][0] = True
@@ -62,6 +64,29 @@ class Solution:
                     dp[i][j] = dp[i][j - 1] or dp[i - 1][j]
 
         return dp[len(s)][len(p)]
+
+    # time : O(m * n)
+    # space : O(m * n)
+    def isMatch3(self, s, p):
+        k = 2
+        dp = [[False] * (len(p) + 1) for _ in xrange(k)]
+        dp[0][0] = True
+        for i in xrange(1, len(p) + 1):  # bugfixed
+            if p[i - 1] == '*':
+                dp[0][i] = dp[0][i - 1]
+
+        for i in xrange(1, len(s) + 1):
+            for j in xrange(1, len(p) + 1):
+                if p[j - 1] != '*':
+                    dp[i % k][j] = dp[(i - 1) % k][j - 1] and (s[i - 1] == p[j - 1] or p[j - 1] == '?')
+                else:
+                    # when p[j-1] == '*', if '*' means empty string, dp[i][j] = dp[i][j-1]
+                    # else '*' could represent any char, so dp[i-1][j], ie, if dp[i-1][j] is true, then no matter
+                    # for what char in s[i-1], '*' could match it
+                    dp[i % k][j] = dp[i % k][j - 1] or dp[(i - 1) % k][j]
+
+        return dp[len(s)][len(p)]
+
 
 
 
