@@ -31,7 +31,8 @@ class Solution(object):
         for c in s:
             if len(res) == 0 or c not in res and (map[res[-1]] == 0 or c > res[-1]):  # bugfixed
                 res += c
-            elif c < res[-1] and map[res[-1]] > 0:
+            elif c < res[-1] and map[
+                res[-1]] > 0:  # this should be  a while loop to remove any letter is bigger than cur˚
                 res[-1] = c
             map[c] -= 1
 
