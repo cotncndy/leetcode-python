@@ -76,6 +76,7 @@ class Solution:
                 dp[0][i] = dp[0][i - 1]
 
         for i in xrange(1, len(s) + 1):
+            dp[i % k][0] = False  # bugfixed
             for j in xrange(1, len(p) + 1):
                 if p[j - 1] != '*':
                     dp[i % k][j] = dp[(i - 1) % k][j - 1] and (s[i - 1] == p[j - 1] or p[j - 1] == '?')
@@ -91,4 +92,4 @@ class Solution:
 
 
 if __name__ == '__main__':
-    print Solution().isMatch2('', '')
+    print Solution().isMatch3('bbbaab', 'a**?***')
