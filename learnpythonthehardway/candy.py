@@ -26,4 +26,5 @@ class Solution:
             if ratings[i - 1] > ratings[i]:
                 candies[i - 1] = max(candies[i] + 1, candies[i - 1])
 
-        return sum(candies)
+        # return sum(candies)
+        return reduce(operator.add, candies)  # knowledge how to use reduce and operator
