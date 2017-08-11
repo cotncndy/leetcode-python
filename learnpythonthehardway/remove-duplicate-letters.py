@@ -29,7 +29,7 @@ class Solution(object):
 
         res = []
         for c in s:
-            if len(res) == 0 or map[res[-1]] == 0 or c > res[-1]:
+            if len(res) == 0 or c not in res and (map[res[-1]] == 0 or c > res[-1]):  # bugfixed
                 res += c
             elif c < res[-1] and map[res[-1]] > 0:
                 res[-1] = c
