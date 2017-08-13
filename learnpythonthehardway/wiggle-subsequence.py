@@ -42,6 +42,8 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        if not nums:  # bugfixed null check
+            return 0
         pos, neg = [1] * len(nums), [1] * len(nums)
         for i in xrange(1, len(nums)):
             for j in xrange(i):
