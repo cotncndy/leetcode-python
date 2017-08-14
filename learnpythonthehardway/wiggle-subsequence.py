@@ -55,6 +55,8 @@ class Solution(object):
         return max(pos[-1], neg[-1])
 
     def wiggleMaxLength2(self, nums):
+        if not nums:  # bugfixed null check
+            return 0
         pos, neg = 1, 1
         for i in xrange(1, len(nums)):
             if nums[i] > nums[i - 1]:
