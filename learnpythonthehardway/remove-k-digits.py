@@ -40,9 +40,12 @@ class Solution(object):
                 k -= 1
             res.append(num[i])
 
-        return "".join(res).lstrip('0') or '0'  # bugfixed
+        # bugfixed for test case 9, 1, we got res = [9],but k is still 1, so we need res[:-k] at this case, since we need to remove
+        # k chars. but for test cases 1342219, 3, we got 1219, k = 0, then res[:0] = '', so we need do [:(-k or None]
+        return "".join(res).lstrip('0')[:(-k or None)] or '0'  # bugfixed
 
 
 if __name__ == '__main__':
-    print Solution().removeKdigits("10", 2)
+    # print Solution().removeKdigits("10", 2)
+    # print Solution().removeKdigits("9", 1)
     print Solution().removeKdigits("1342219", 3)
