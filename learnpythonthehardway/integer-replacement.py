@@ -65,7 +65,8 @@ class Solution(object):
 
         while p != 1:
             if p & 1:
-                if p & 3:  # notice, 3 is 011, then add 1 would be come 100, which is multiplications of 4
+                # bugfixed
+                if p & 2 and p != 3:  # notice, 3 is 011, then add 1 would be come 100, which is multiplications of 4
                     p += 1  # if x & 3, for ex 15, 15-16-8-4-2-1(6), or 15-14-7-8-4-2-1(7)
                 else:
                     p -= 1
@@ -75,3 +76,8 @@ class Solution(object):
             res += 1
 
         return res
+
+
+if __name__ == '__main__':
+    print Solution().integerReplacement3(25)
+    print Solution().integerReplacement2(25)
