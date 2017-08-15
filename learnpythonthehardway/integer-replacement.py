@@ -43,3 +43,15 @@ class Solution(object):
             return 1 + self.integerReplacement(n >> 1)
         else:
             return 1 + min(self.integerReplacement(n - 1), self.integerReplacement(n + 1))
+
+    def integerReplacement2(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n == 1:
+            return 0
+        if not n & 1:
+            return 1 + self.integerReplacement(n >> 1)
+        else:
+            return 2 + min(self.integerReplacement((n - 1) >> 1), self.integerReplacement((n + 1) >> 1))
