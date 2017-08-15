@@ -150,7 +150,7 @@ class NumArray2(object):
 
         return sumRangeHelper(self.__root, i, j)
 
-    # review the usage of inner class in python https://stackoverflow.com/questions/719705/what-is-the-purpose-of-pythons-inner-classes
+    # knowledge the usage of inner class in python https://stackoverflow.com/questions/719705/what-is-the-purpose-of-pythons-inner-classes
     class _SegmentTreeNode:
         def __init__(self, i, j, s):
             self.start, self.end, self.sum = i, j, s

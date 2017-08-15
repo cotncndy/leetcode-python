@@ -24,7 +24,7 @@ class Solution(object):
         :type people: List[List[int]]
         :rtype: List[List[int]]
         """
-        res = []  # review this code is so clear
+        res = []  # knowledge sort this code is so clear
         people.sort(key=lambda (h, k): (-h, k))
         for p in people:
             res.insert(p[1], p)

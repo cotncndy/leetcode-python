@@ -38,7 +38,7 @@ class Solution(object):
         :type intervals: List[Interval]
         :rtype: int
         """
-        intervals.sort(key=lambda interval: interval.start)
+        intervals.sort(key=lambda interval: interval.start)  # knowledge how to write comparator for sort
         res, prev = 0, 0
         for i in xrange(1, len(intervals)):
             if intervals[i].start < intervals[prev].end:

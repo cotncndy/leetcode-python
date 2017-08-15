@@ -26,7 +26,7 @@ class Solution(object):
         """
         if not intervals:
             return intervals
-        intervals.sort(key=lambda x: x.start)  # review usge of lamda and key, key is a function
+        intervals.sort(key=lambda x: x.start)  # knowledge sort usge of lamda and key, key is a function
         # https://stackoverflow.com/questions/8966538/syntax-behind-sortedkey-lambda
         res = [intervals[0]]
         for i in xrange(1, len(intervals)):

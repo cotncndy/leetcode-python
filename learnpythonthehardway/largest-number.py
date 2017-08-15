@@ -13,7 +13,7 @@ class Solution:
     # @return a string
     def largestNumber(self, num):
         num = [str(x) for x in num]
-        # review for sort, what's the difference of 'key' and 'cmp'
+        # knowledge for sort, what's the difference of 'key' and 'cmp'
         num.sort(cmp=lambda x, y: cmp(y + x, x + y))
         largest = ''.join(num)
 
