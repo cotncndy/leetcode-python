@@ -40,7 +40,7 @@ class Solution(object):
                 k -= 1
             res.append(num[i])
 
-        return "".join(res)
+        return "".join(res).lstrip('0')  # bugfixed
 
 
 if __name__ == '__main__':
