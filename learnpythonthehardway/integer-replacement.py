@@ -55,3 +55,23 @@ class Solution(object):
             return 1 + self.integerReplacement(n >> 1)
         else:
             return 2 + min(self.integerReplacement((n - 1) >> 1), self.integerReplacement((n + 1) >> 1))
+
+    def integerReplacement3(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        p, res = n, 0
+
+        while p != 1:
+            if p & 1:
+                if p & 3:  # notice, 3 is 011, then add 1 would be come 100, which is multiplications of 4
+                    p += 1  # if x & 3, for ex 15, 15-16-8-4-2-1(6), or 15-14-7-8-4-2-1(7)
+                else:
+                    p -= 1
+            else:
+                p /= 2
+
+            res += 1
+
+        return res
