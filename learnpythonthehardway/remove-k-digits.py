@@ -40,8 +40,9 @@ class Solution(object):
                 k -= 1
             res.append(num[i])
 
-        return "".join(res).lstrip('0')  # bugfixed
+        return "".join(res).lstrip('0') or '0'  # bugfixed
 
 
 if __name__ == '__main__':
-    print Solution().removeKdigits("1432219", 3)
+    print Solution().removeKdigits("10", 2)
+    print Solution().removeKdigits("1342219", 3)
