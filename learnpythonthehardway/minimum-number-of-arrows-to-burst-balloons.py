@@ -32,6 +32,7 @@ class Solution(object):
         """
         if not points:
             return 0
+        points.sort()  # bugfixed, need to sort firstly
         i, res = 0, 0
         while i < len(points):
             j, right_bound = i + 1, points[i][1]
@@ -44,4 +45,5 @@ class Solution(object):
 
 if __name__ == '__main__':
     print Solution().findMinArrowShots([[10, 16], [2, 8], [1, 6], [7, 12]])
-    print Solution().findMinArrowShots([[1, 2], [2, 3], [3, 4], [4, 5]]
+    print Solution().findMinArrowShots([[1, 2], [2, 3], [3, 4], [4, 5]])
+    print Solution().findMinArrowShots([[9, 12], [1, 10], [4, 11], [8, 12], [3, 9], [6, 9], [6, 7]])
