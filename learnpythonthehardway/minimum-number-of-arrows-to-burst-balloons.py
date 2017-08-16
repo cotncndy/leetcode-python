@@ -35,13 +35,13 @@ class Solution(object):
         i, res = 0, 0
         while i < len(points):
             j, right_bound = i + 1, points[i][1]
-            while j < len(points) and points[j][0] < right_bound:
+            while j < len(points) and points[j][0] <= right_bound:  # bugfixed should be <=
                 right_bound, j = min(right_bound, points[j][1]), j + 1
 
             res, i = res + 1, j
 
         return res
 
-
 if __name__ == '__main__':
     print Solution().findMinArrowShots([[10, 16], [2, 8], [1, 6], [7, 12]])
+    print Solution().findMinArrowShots([[1, 2], [2, 3], [3, 4], [4, 5]]
