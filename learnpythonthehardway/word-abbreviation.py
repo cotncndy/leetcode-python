@@ -30,16 +30,17 @@ class Solution(object):
             res[i] = self.abbrev(dict[i], pre[i])
 
         for i in xrange(n):
-            word_set = set()
-            for j in xrange(i + 1, n):
-                if res[j] == res[i]:
-                    word_set.add(j)
-            if not word_set:
-                continue
-            word_set.add(i)
-            for k in word_set:
-                pre[k] += 1
-                res[k] = self.abbrev(dict[k], pre[k])
+            while True:
+                word_set = set()
+                for j in xrange(i + 1, n):
+                    if res[j] == res[i]:
+                        word_set.add(j)
+                if not word_set:
+                    break
+                word_set.add(i)
+                for k in word_set:
+                    pre[k] += 1
+                    res[k] = self.abbrev(dict[k], pre[k])
 
         return res
 
