@@ -24,7 +24,7 @@ class Solution(object):
         :rtype: List[str]
         """
         n = len(dict)
-        res, pre = [], [1] * n
+        res, pre = [''] * n, [1] * n  # bugfixed
 
         for i in xrange(n):
             res[i] = self.abbrev(dict[i], pre[i])
@@ -35,7 +35,7 @@ class Solution(object):
                 if res[j] == res[i]:
                     word_set.add(j)
             if not word_set:
-                break
+                continue
             word_set.add(i)
             for k in word_set:
                 pre[k] += 1
