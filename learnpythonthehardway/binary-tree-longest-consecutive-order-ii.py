@@ -29,7 +29,7 @@
 #         self.right = None
 
 class Solution(object):
-    def longestConsecutive(self, root):
+    def longestConsecutive(self, root):  # review wonderful recursion problem. so good.
         """
         :type root: TreeNode
         :rtype: int
@@ -56,3 +56,26 @@ class Solution(object):
         helper(root, root)
 
         return max_len[0]
+
+    def longestConsecutive2(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        global l  # knowledge usage of global
+        l = 0
+
+        def dfs(node, parent):
+            global l
+            if not node: return 0, 0
+            li, ld = dfs(node.left, node)
+            ri, rd = dfs(node.right, node)
+            l = max(l, li + 1 + rd, ld + 1 + ri)
+            if node.val == parent.val + 1:
+                return max(li, ri) + 1, 0
+            if node.val == parent.val - 1:
+                return 0, max(ld, rd) + 1
+            return 0, 0
+
+        dfs(root, root)
+        return l
