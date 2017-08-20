@@ -35,6 +35,8 @@ class Solution(object):
         for str in strs:
             if str > str[::-1]:
                 s += str  # bugfixed, no need `,` here
+            else:
+                s += str[::-1]
 
         for i in xrange(len(strs)):
             tr1, tr2 = strs[i], strs[i][::-1]
@@ -43,12 +45,12 @@ class Solution(object):
                 if tr1[j] >= res[0]:
                     res = max(res, tr1[j:] + mid + tr1[:j])
                 if tr2[j] >= res[0]:
-                    res = max(res, tr2[j] + mid + tr2[:j])
+                    res = max(res, tr2[j:] + mid + tr2[:j])  # bugfixed
             cur += len(tr1)
 
         return res
 
 
 if __name__ == '__main__':
-    print Solution().splitLoopedString(["lc", "love", "ydc"])
+    # print Solution().splitLoopedString(["lc", "love", "ydc"])
     print Solution().splitLoopedString(["abc", "xyz"])
