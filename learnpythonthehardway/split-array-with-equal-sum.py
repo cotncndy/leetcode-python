@@ -15,6 +15,7 @@
 # Note:
 # 1 <= n <= 2000.
 # Elements in the given array will be in range [-1,000,000, 1,000,000].
+import collections
 
 
 class Solution(object):
@@ -44,4 +45,57 @@ class Solution(object):
                     if s in sums:
                         return True
 
+        return False
+
+    def splitArray2(self, nums):  # review 859ms, a lot faster
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        size = len(nums)
+        sums = [0] * (size + 1)
+        for x in range(size):
+            sums[x + 1] += sums[x] + nums[x]
+
+        idxs = collections.defaultdict(list)
+        for x in range(size):
+            idxs[sums[x + 1]].append(x)
+
+        jlist = collections.defaultdict(list)
+        for i in range(1, size):
+            for j in idxs[2 * sums[i] + nums[i]]:
+                if i < j < size:
+                    jlist[sums[i]].append(j + 1)
+
+        for k in range(size - 2, 0, -1):
+            for j in jlist[sums[size] - sums[k + 1]]:
+                if j + 1 > k: continue
+                if sums[k] - sums[j + 1] == sums[size] - sums[k + 1]:
+                    return True
+        return False
+
+    def splitArray3(self, nums):  # 359 ms, even faster
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        if not nums:
+            return False
+        su0i = 0
+        d = {}
+        for i in xrange(1, len(nums)):
+            suij, sujk = 0, 0
+            su0i += nums[i - 1]
+            if i + 1 < len(nums) and nums[i] == 0 and nums[i + 1] == 0:
+                continue
+            for j in xrange(i + 1, len(nums)):
+                suij += nums[j]
+                if i + 1 < len(nums) and nums[i] == 0 and nums[i + 1] == 0:
+                    continue
+                if suij == su0i:
+                    sujk = 0
+                    for k in xrange(j + 2, len(nums)):
+                        sujk += nums[k]
+                        if sujk == suij and sum(nums[k + 2:]) == sujk:
+                            return True
         return False
