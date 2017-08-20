@@ -34,7 +34,7 @@ class Solution(object):
         s, res, cur = "", "a", 0
         for str in strs:
             if str > str[::-1]:
-                s += str,
+                s += str
 
         for i in xrange(len(strs)):
             tr1, tr2 = strs[i], strs[i][::-1]
@@ -44,6 +44,7 @@ class Solution(object):
                     res = max(res, tr1[j:] + mid + tr1[:j])
                 if tr2[j] > res[0]:
                     res = max(res, tr2[j] + mid + tr2[:j])
+            cur += len(tr1)
 
         return res
 
