@@ -40,9 +40,9 @@ class Solution(object):
             tr1, tr2 = strs[i], strs[i][::-1]
             mid = s[cur + len(tr1):] + s[0:cur]  # bugfixed forget to put `:`
             for j in xrange(len(tr1)):
-                if tr1[j] > res[0]:
+                if tr1[j] >= res[0]:
                     res = max(res, tr1[j:] + mid + tr1[:j])
-                if tr2[j] > res[0]:
+                if tr2[j] >= res[0]:
                     res = max(res, tr2[j] + mid + tr2[:j])
             cur += len(tr1)
 
@@ -51,3 +51,4 @@ class Solution(object):
 
 if __name__ == '__main__':
     print Solution().splitLoopedString(["lc", "love", "ydc"])
+    print Solution().splitLoopedString(["abc", "xyz"])
