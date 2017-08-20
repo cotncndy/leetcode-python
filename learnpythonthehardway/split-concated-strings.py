@@ -34,11 +34,11 @@ class Solution(object):
         s, res, cur = "", "a", 0
         for str in strs:
             if str > str[::-1]:
-                s += str
+                s += str  # bugfixed, no need `,` here
 
         for i in xrange(len(strs)):
             tr1, tr2 = strs[i], strs[i][::-1]
-            mid = s[cur + len(tr1)] + s[0:cur]
+            mid = s[cur + len(tr1):] + s[0:cur]  # bugfixed forget to put `:`
             for j in xrange(len(tr1)):
                 if tr1[j] > res[0]:
                     res = max(res, tr1[j:] + mid + tr1[:j])
