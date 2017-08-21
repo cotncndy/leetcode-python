@@ -56,14 +56,14 @@ class Solution(object):
         reverse = []
         for string in strs:
             reverse.append(max(string, string[::-1]))
-            max_letter = max(max_letter, max(string))
+            max_letter = max(max_letter, max(string))  # knowledge `max(string)` to find the max char in a string
 
         max_string = ""
         for idx1, entry in enumerate(reverse):
             if max_letter not in entry:
                 continue
             else:
-                for data in (entry, entry[::-1]):
+                for data in (entry, entry[::-1]):  # notice ,how to generate a list and loop it
                     for idx2, l in enumerate(data):
                         if l == max_letter:
                             new_string = data[idx2:] + "".join(reverse[idx1 + 1:]) + "".join(reverse[:idx1]) + data[
