@@ -197,7 +197,7 @@ class Solution(object):
 
         return max_length
 
-    def longestLine6(self, M):
+    def longestLine6(self, M):  # review, good solution
         """
         :type M: List[List[int]]
         :rtype: int
