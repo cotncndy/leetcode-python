@@ -81,6 +81,28 @@ class Solution(object):
 
         return res
 
+    def maxVacationDays2(self, flights, days):
+        """
+        :type flights: List[List[int]]
+        :type days: List[List[int]]
+        :rtype: int
+        """
+        n, k, res = len(flights), len(days[0]), 0  # bugfixed
+        dp = [[0] * k for _ in xrange(n)]  # dp[i][j] means max vacations at city i on jth week
+
+        for j in xrange(k):
+            for i in xrange(n):
+                if j == 0 and flights[0][i]:
+                    dp[i][j] = days[i][j]
+                for p in xrange(n):
+                    if ((p == i or flights[p][i]) and j > 0 and dp[p][j - 1] > 0):  # dp[p][j-1] > 0 means city 0 could
+                        # reach p directly or indirectly
+                        dp[i][j] = max(dp[i][j], dp[p][j - 1] + days[i][j])
+                if j == k - 1:
+                    res = max(res, dp[i][j])
+        return res
+
+
 
 if __name__ == '__main__':
-    print Solution().maxVacationDays([[0, 1, 1], [1, 0, 1], [1, 1, 0]], [[1, 3, 1], [6, 0, 3], [3, 3, 3]])
+    print Solution().maxVacationDays2([[0, 1, 1], [1, 0, 1], [1, 1, 0]], [[1, 3, 1], [6, 0, 3], [3, 3, 3]])
