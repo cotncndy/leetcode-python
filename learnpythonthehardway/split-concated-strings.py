@@ -33,10 +33,7 @@ class Solution(object):
 
         s, res, cur = "", "a", 0
         for str in strs:
-            if str > str[::-1]:
-                s += str  # bugfixed, no need `,` here
-            else:
-                s += str[::-1]
+            s += max(str, str[::-1])
 
         for i in xrange(len(strs)):
             tr1, tr2 = strs[i], strs[i][::-1]
@@ -50,7 +47,32 @@ class Solution(object):
 
         return res
 
+    def splitLoopedString2(self, strs):  # review
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        max_letter = ""
+        reverse = []
+        for string in strs:
+            reverse.append(max(string, string[::-1]))
+            max_letter = max(max_letter, max(string))
+
+        max_string = ""
+        for idx1, entry in enumerate(reverse):
+            if max_letter not in entry:
+                continue
+            else:
+                for data in (entry, entry[::-1]):
+                    for idx2, l in enumerate(data):
+                        if l == max_letter:
+                            new_string = data[idx2:] + "".join(reverse[idx1 + 1:]) + "".join(reverse[:idx1]) + data[
+                                                                                                               :idx2]
+                            max_string = max(new_string, max_string)
+
+        return max_string
+
 
 if __name__ == '__main__':
-    # print Solution().splitLoopedString(["lc", "love", "ydc"])
+    print Solution().splitLoopedString(["lc", "love", "ydc"])
     print Solution().splitLoopedString(["abc", "xyz"])
