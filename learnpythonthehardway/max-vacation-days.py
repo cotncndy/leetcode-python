@@ -66,7 +66,7 @@ class Solution(object):
         :type days: List[List[int]]
         :rtype: int
         """
-        n, k, res = len(flights), len(days), 0
+        n, k, res = len(flights), len(days[0]), 0  # bugfixed
         dp = [[0] * k for _ in xrange(n)]  # dp[i][j] means max vacations at city i on jth week
 
         for j in reversed(xrange(k)):
