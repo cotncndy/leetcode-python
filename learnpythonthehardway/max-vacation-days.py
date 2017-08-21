@@ -73,7 +73,7 @@ class Solution(object):
             for i in xrange(n):
                 dp[i][j] = days[i][j]
                 for p in xrange(n):
-                    if p == i or flights[i][p] and j + 1 < k:
+                    if (p == i or flights[i][p]) and j + 1 < k:  # bugfixed
                         dp[i][j] = max(dp[i][j], dp[p][j + 1] + days[i][j])
 
                 if j == 0 and (i == 0 or flights[0][i]):
