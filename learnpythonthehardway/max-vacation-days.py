@@ -92,7 +92,7 @@ class Solution(object):
 
         for j in xrange(k):
             for i in xrange(n):
-                if j == 0 and flights[0][i]:
+                if j == 0 and (flights[0][i] or i == 0):  # bugfixed
                     dp[i][j] = days[i][j]
                 for p in xrange(n):
                     if ((p == i or flights[p][i]) and j > 0 and dp[p][j - 1] > 0):  # dp[p][j-1] > 0 means city 0 could
@@ -106,3 +106,4 @@ class Solution(object):
 
 if __name__ == '__main__':
     print Solution().maxVacationDays2([[0, 1, 1], [1, 0, 1], [1, 1, 0]], [[1, 3, 1], [6, 0, 3], [3, 3, 3]])
+    print Solution().maxVacationDays2([[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[1, 1, 1], [7, 7, 7], [7, 7, 7]])
