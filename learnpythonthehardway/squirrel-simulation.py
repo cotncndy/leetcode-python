@@ -30,10 +30,10 @@ class Solution(object):
         :type nuts: List[List[int]]
         :rtype: int
         """
-        res, max_diff = 0, 0
+        res, max_diff = 0, float('-inf')  # bugfixed
         for nut in nuts:
             dist = abs(tree[0] - nut[0]) + abs(tree[1] - nut[1])
             res += 2 * dist
-            max_diff = max(max_diff, dist - abs(tree[0] - squirrel[0]) - abs(tree[1] - squirrel[1]))
+            max_diff = max(max_diff, dist - abs(nut[0] - squirrel[0]) - abs(nut[1] - squirrel[1]))  # bugfixed
 
         return res - max_diff
