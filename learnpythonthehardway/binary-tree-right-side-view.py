@@ -33,7 +33,7 @@ class Solution:
 
     def dfs_traversal(self, root, depth, res):
         if not root:
-            return res
+            return
         if len(res) < depth:
             res.append(root.val)
         self.dfs_traversal(root.right, depth + 1, res)  # review firstly from right, then left
@@ -68,5 +68,6 @@ if __name__ == "__main__":
     root.right = TreeNode(3)
     root.left.right = TreeNode(5)
     root.right.right = TreeNode(4)
-    result = Solution().rightsideview2(root)
+    # result = Solution().rightsideview2(root)
+    result = Solution().rightSideView(root)
     print result
