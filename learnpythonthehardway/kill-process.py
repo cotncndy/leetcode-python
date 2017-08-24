@@ -38,7 +38,8 @@ class Solution(object):
         :type kill: int
         :rtype: List[int]
         """
-        map, queue, res = collections.defaultDict(list), [kill], []
+        map, queue, res = collections.defaultdict(list), [kill], []  # bugfixed should be defaultdit instead of
+        # defaultDict
         for i in xrange(len(pid)):
             map[ppid[i]] += pid[i],
 
