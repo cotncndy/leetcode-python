@@ -44,7 +44,7 @@ class Solution(object):
             map[ppid[i]] += pid[i],
 
         while queue:
-            child = queue.pop(0)
+            child = queue.pop()  # notice, this improve performance a lot, 382ms vs 932ms`
             res.append(child)
             if not map[child]:
                 continue
