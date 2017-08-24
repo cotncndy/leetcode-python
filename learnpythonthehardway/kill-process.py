@@ -53,6 +53,34 @@ class Solution(object):
 
         return res
 
+    def killProcess2(self, pid, ppid, kill):
+        """
+        :type pid: List[int]
+        :type ppid: List[int]
+        :type kill: int
+        :rtype: List[int]
+        """
+
+        # Key is node_id - value is process index of children
+        ref = {}
+        for i, elem in enumerate(ppid):
+            if elem in ref:
+                ref[elem].append(i)
+            else:
+                ref[elem] = [i]
+
+        res = []
+        s = [kill]
+
+        while s:
+            node = s.pop()  # notice , you don't need to `pop(0)`, it would be slower than pop
+            res.append(node)
+            if node in ref:
+                for elem in ref[node]:
+                    s.append(pid[elem])
+
+        return res
+
 
 if __name__ == '__main__':
     print Solution().killProcess([1, 3, 10, 5], [3, 0, 5, 3], 5)
