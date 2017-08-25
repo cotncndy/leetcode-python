@@ -51,10 +51,10 @@ class StringIterator(object):
         """
         :rtype: bool
         """
-        if self.count == 0 and self.pos < len:
+        if self.count == 0 and self.pos < self.leng:
             self.ch = self.st[self.pos]
             self.pos += 1
-            while self.st[self.pos].isdigit():
+            while self.pos < self.leng and self.st[self.pos].isdigit():  # bugfixed
                 self.count = self.count * 10 + ord(self.st[self.pos]) - ord('0')
                 self.pos += 1
 
