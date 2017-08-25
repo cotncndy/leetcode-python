@@ -28,6 +28,8 @@ class Solution:
     def backtrack(self, n, k, start, cur, res):
         if k == 0:
             # res.append(list(cur))
+            # cur[:] means a clone of cur. if we append cur directly, then during backtrack, cur could be change,
+            # so the res would also change , this is not what we want, so we need copy of cur, kind of like java
             res.append(cur[:])  # knowledge what doesn this mean
             return
         for i in xrange(start, n):
@@ -65,5 +67,5 @@ class Solution:
 
 
 if __name__ == "__main__":
-    result = Solution().combine2(4, 2)
+    result = Solution().combine(4, 2)
     print result
