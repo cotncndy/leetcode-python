@@ -41,7 +41,7 @@ class Solution(object):
         map, queue, res = collections.defaultdict(list), [kill], []  # bugfixed should be defaultdit instead of
         # defaultDict
         for i in xrange(len(pid)):
-            map[ppid[i]] += pid[i],
+            map[ppid[i]] += pid[i],  # notice ',' here
 
         while queue:
             child = queue.pop()  # notice, this improve performance a lot, 382ms vs 932ms`
