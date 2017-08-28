@@ -72,3 +72,7 @@ class Solution:
                 if S_char == T_char:
                     ways[j + 1] += ways[j]
         return ways[len(T)]
+
+
+if __name__ == '__main__':
+    print Solution().numDistinct4("rabbbit", "rabbit")
