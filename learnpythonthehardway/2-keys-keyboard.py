@@ -36,6 +36,23 @@ class Solution(object):
 
         return dp[n]
 
+    def minSteps2(self, n):  # review , smart method, no need to keep the intermedia results.
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n == 1: return 0
+        res = 0
+        i = 2
+        while i * i <= n:
+            while n % i == 0:
+                res += i
+                n = n // i
+            i += 1
+        if n != 1:
+            res += n
+        return res
+
 
 if __name__ == '__main__':
     print Solution().minSteps(3)
