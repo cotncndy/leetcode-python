@@ -68,6 +68,6 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print Solution().addBoldTag("aaabbcc", ["aab", "abb", "bc"])
-    print Solution().addBoldTag("aaabbcc", ["d"])
-    print Solution().addBoldTag("aaabbcc", [""])
+    # print Solution().addBoldTag("aaabbcc", ["aab", "abb", "bc"])
+    # print Solution().addBoldTag("aaabbcc", ["d"])
+    print Solution().addBoldTag("aaabbcc", [])
