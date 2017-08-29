@@ -48,7 +48,8 @@ class Solution(object):
             return merged
 
         for w in dict:
-            while s.find(w, start) > -1:
+            while s.find(w, start) > -1:  # bugfixed, start's position need to be updated
+                start = s.find(w, start)
                 intervals.append([start, start + len(w)])
                 start += 1
 
@@ -70,4 +71,5 @@ class Solution(object):
 if __name__ == '__main__':
     # print Solution().addBoldTag("aaabbcc", ["aab", "abb", "bc"])
     # print Solution().addBoldTag("aaabbcc", ["d"])
-    print Solution().addBoldTag("aaabbcc", [])
+# print Solution().addBoldTag("aaabbcc", [])
+# print Solution().addBoldTag("abcxyz123", ["abc","123"])
