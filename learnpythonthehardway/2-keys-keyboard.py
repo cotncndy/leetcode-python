@@ -24,6 +24,8 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
+        if n < 2:  # bugfixed
+            return 0
         dp = [0] * (n + 1)
         dp[0], dp[1], dp[2] = 0, 0, 2
         for i in xrange(3, n + 1):
