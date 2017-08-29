@@ -57,4 +57,5 @@ class Solution:
 
 
 if __name__ == '__main__':
-    print Solution().diffWaysToCompute("2-1-1")
+    # print Solution().diffWaysToCompute("2-1-1")
+    print Solution().diffWaysToCompute("2*3-4*5")

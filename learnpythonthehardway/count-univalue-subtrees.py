@@ -62,4 +62,5 @@ if __name__ == '__main__':
     r1.left, r1.right = TreeNode(5), TreeNode(5)
     r2.left, r2.right = TreeNode(5), TreeNode(5)
 
+    print Solution().countUnivalSubtrees(r)
     print Solution().countUnivalSubtrees2(r)

@@ -73,6 +73,14 @@ class Solution:
                     ways[j + 1] += ways[j]
         return ways[len(T)]
 
+    def numDistinct5(self, S, T):  # todo figure out how this 1-d dp works?
+        ways = [1 for _ in xrange(len(S) + 1)]
+        for T_char in T:
+            ways[0] = 0
+            for j, S_char in reversed(list(enumerate(S))):
+                if S_char == T_char:
+                    ways[j + 1] += ways[j]
+        return ways[len(S)]
 
 if __name__ == '__main__':
-    print Solution().numDistinct4("rabbbit", "rabbit")
+    print Solution().numDistinct5("rabbbit", "rabbit")
