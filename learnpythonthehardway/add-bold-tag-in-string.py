@@ -54,8 +54,9 @@ class Solution(object):
                 intervals.append([start, start + len(w)])
                 start += 1
 
-        sorted(intervals)
-        merged = merge(intervals);
+        # sorted(intervals, key=lambda x : x[0])
+        intervals.sort(key=lambda x: x[0])  # bugfixed, need to sort by key
+        merged = merge(intervals)
         res, prev = "", 0
         for i in merged:
             res += (s[prev:i[0]])
@@ -72,6 +73,11 @@ class Solution(object):
 if __name__ == '__main__':
     # print Solution().addBoldTag("aaabbcc", ["aab", "abb", "bc"])
     # print Solution().addBoldTag("aaabbcc", ["d"])
-# print Solution().addBoldTag("aaabbcc", [])
-# print Solution().addBoldTag("abcxyz123", ["abc","123"])
-    print Solution().addBoldTag("aaabbcc", ["aaa", "aab", "bc", "aaabbcc"])
+    # print Solution().addBoldTag("aaabbcc", [])
+    # print Solution().addBoldTag("abcxyz123", ["abc","123"])
+    print Solution().addBoldTag(
+        "xhhjzbkvpmasiypsqqjobufcqmlhdjffrdohsxgksftaekzhwzydhbfdiylihnvjlvpoptnqigszckimljbepgisnmyszfsxkxyfdfqngytfuihepohapvhbyhqydvroflfnsyjmygtykdejfudrhxxawcewgiguiwsvqrgbxrbdnrvguzjftqcsjbvjlbxfsvzpdpmtlzobwnxrtgisbcqmhugncjwgatfctydryakvbnmlbiftndfefylsmlebzdumefuflwhtwijtrhhhmknklalgqjaoicmnywtvzldbeftkydjsdkkonayhdxhrjazosqloilagcwzeezavnsqelxqhtlzymedxmkrovxhkrgfenyhxgdroeejedbwpnkqbqknalwgxoxweyxngorvrpnfkvagdqkbtuayaihyhwcsdtjzzvxfavrhzgf",
+        [
+            "xh", "hj", "zb", "kv", "pm", "as", "iy", "ps", "qq", "jo", "bu", "fc", "qm", "lh", "dj", "ff", "rd",
+            "oh", "sx", "gk", "sf", "ta", "ek", "zh", "wz", "yd", "hb", "fd", "li", "hn", "vj", "lv", "po", "pt", "nq",
+            "ig", "sz", "ck", "im", "lj", "be", "pg", "is", "nm", "ys", "zf", "kx"])
