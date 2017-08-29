@@ -54,8 +54,9 @@ class Solution(object):
                 intervals.append([start, start + len(w)])
                 start += 1
 
-        # sorted(intervals, key=lambda x : x[0])
-        intervals.sort(key=lambda x: x[0])  # bugfixed, need to sort by key
+        intervals = sorted(
+            intervals)  # bugfixed, alternative, should use a = sorted(a), I confused it with java sort(a)
+        # intervals.sort(key=lambda x: x[0])  # bugfixed, need to sort by key
         merged = merge(intervals)
         res, prev = "", 0
         for i in merged:
@@ -68,6 +69,46 @@ class Solution(object):
             res += (s[prev:])
 
         return res
+
+    def addBoldTag2(self, s, dict):
+        """
+        :type s: str
+        :type dict: List[str]
+        :rtype: str
+        """
+
+        # find all overlapping matches
+        def merge(interval):
+            res = []
+            for i in interval:
+                if res and i[0] <= res[-1][1]:
+                    res[-1][1] = max(res[-1][1], i[1])
+                else:
+                    res.append(i)
+            return res
+
+        matches = []
+        for word in dict:
+            start = 0
+            while True:
+                start = s.find(word, start)
+                if start == -1:
+                    break
+                else:
+                    matches.append([start, start + len(word)])
+                    start += 1
+        # merge all matches like intervals
+        matches = sorted(matches)
+        # self.mergeInterval(matches)
+        matches = merge(matches)
+        # concatenate string
+        ret = ""
+        pos = 0
+        for start, end in matches:
+            ret += s[pos:start] + '<b>' + s[start:end] + '</b>'
+            pos = end
+        ret += s[pos:]
+        return ret
 
 
 if __name__ == '__main__':
