@@ -28,6 +28,8 @@ class Solution(object):
 
             return res
 
+        if not matrix or not len(matrix[0]):
+            return 0
         height, area = [0] * len(matrix[0]), 0
         for i in xrange(len(matrix)):
             for j in xrange(len(matrix[i])):
