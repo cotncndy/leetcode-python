@@ -30,3 +30,22 @@ class Solution:
                     r -= 1
 
         return res
+
+    def trap2(self, A):
+        l, r, res = 0, len(A) - 1, 0
+
+        while l < r:
+            if A[l] < A[r]:
+                k = l + 1
+                while k < r and A[k] < A[l]:
+                    res += A[l] - A[k]
+                    k += 1
+                l = k
+            else:
+                k = r - 1
+                while k > l and A[k] < A[r]:
+                    res += A[r] - A[k]
+                    k -= 1
+                r = k
+
+        return res
