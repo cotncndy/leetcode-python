@@ -16,7 +16,7 @@ class Solution(object):
             stack, res, i = [], 0, 0
 
             while i <= len(height):
-                if not stack or (i > len(height) and height[i] > height[stack[-1]]):
+                if not stack or (i < len(height) and height[i] > height[stack[-1]]):  # bugfixed
                     stack.append(i)
                     i += 1
                 else:
@@ -28,7 +28,7 @@ class Solution(object):
 
             return res
 
-        height = [0] * len(matrix[0])
+        height, area = [0] * len(matrix[0]), 0
         for i in xrange(len(matrix)):
             for j in xrange(len(matrix[i])):
                 if matrix[i][j] == 0:
@@ -36,4 +36,6 @@ class Solution(object):
                 else:
                     height[j] += 1
 
-        return largetRect(height)
+            area = max(area, largetRect())
+
+        return area
