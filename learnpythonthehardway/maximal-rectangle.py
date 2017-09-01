@@ -31,11 +31,15 @@ class Solution(object):
         height, area = [0] * len(matrix[0]), 0
         for i in xrange(len(matrix)):
             for j in xrange(len(matrix[i])):
-                if matrix[i][j] == 0:
+                if matrix[i][j] == '0':  # bugfixed
                     height[j] = 0
                 else:
                     height[j] += 1
 
-            area = max(area, largetRect())
+            area = max(area, largetRect(height))  # bugfixed
 
         return area
+
+
+if __name__ == '__main__':
+    print Solution().maximalRectangle(["10100", "10111", "11111", "10010"])
