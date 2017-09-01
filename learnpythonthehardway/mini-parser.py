@@ -103,7 +103,7 @@ class Solution(object):
         res, count, start = NestedInteger(), 0, 1
 
         for i in xrange(1, len(s)):  # notice, [123,[456]], the loop always start from index 1
-            if not count and (s[i] in ',]' and s[i - 1].isdigit()):
+            if not count and (s[i] in ',]' or i == len(s) - 1):  # bugfixed
                 res.add(self.deserialize(s[start:i]))
                 start = i + 1  # [123,456]
             elif s[i] == '[':
