@@ -92,3 +92,22 @@ class Solution(object):
                 start = i + 1
 
         return stack.pop()
+
+    def deserialize2(self, s):
+        if not s:
+            return NestedInteger()
+        if s[0] != '[':
+            return NestedInteger(int(s[1:]))
+        if len(s) <= 2:
+            return NestedInteger()
+        res, count, start = NestedInteger(), 0, 1
+
+        for i in xrange(1, len(s)):  # notice, [123,[456]], the loop always start from index 1
+            if not count and (s[i] in ',]' and s[i - 1].isdigit()):
+                res.add(self.deserialize(s[start:i]))
+                start = i + 1  # [123,456]
+            elif s[i] == '[':
+                count += 1
+            elif s[i] == ']':
+                count -= 1
+        return res

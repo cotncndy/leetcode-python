@@ -26,7 +26,7 @@ class Solution(object):
 
     def firstUniqChar2(self, s):
         lookup = collections.defaultdict(int)
-        candidates = set()
+        candidates = set()  # knowledge how to use set in python
 
         for i, char in enumerate(s):
             if char in lookup:
