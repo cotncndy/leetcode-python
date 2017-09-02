@@ -9,7 +9,7 @@ class Solution(object):
             if s[i] == '+' and s[i + 1] == '+':
                 st = list(s)
                 st[i], st[i + 1] = '-', '-'
-                if self.canWin(''.join(st)):
+                if not self.canWin(''.join(st)):  # bugfixed
                     return True
 
         return False
