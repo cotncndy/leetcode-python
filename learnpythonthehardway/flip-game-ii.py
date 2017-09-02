@@ -34,3 +34,64 @@ class Solution(object):
                     winset.add(s)
                     return True
         return False
+
+    def plan_a(s):
+        sub = set()
+        for game in s.split('-'):
+            if not game: continue
+            n = len(game)
+            if n in sub:
+                sub.remove(n)
+            else:
+                sub.add(n)
+        if not sub: return False
+        N = max(sub) + 1
+        nims = [0] * N
+
+        def mex(sub):
+            i = 0
+            while i in sub: i += 1
+            return i
+
+        for i in range(2, N):
+            s = set()
+            for j in range(i // 2):
+                s.add(nims[j] ^ nims[i - j - 2])
+            nims[i] = mex(s)
+
+        r = 0
+        for n in sub: r ^= nims[n]
+        return bool(r)
+
+    class Solution2(object):
+        def canWin(self, s):
+            """
+            :type s: str
+            :rtype: bool
+            """
+            return plan_a(s)
+
+    def canWin3(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        f = [0, 0]
+        n = len(s)
+        for i in range(2, n + 1):
+            dic = set()
+            for j in range(i - 1):
+                dic.add(f[i - j - 2] ^ f[j])
+            g = sorted(list(dic))
+            for j in range(len(g)):
+                if g[j] != j:
+                    f.append(j)
+                    break
+            if len(f) != i + 1:
+                f.append(len(g))
+        print f
+        g = s.split('-')
+        res = 0
+        for i in g:
+            res ^= f[len(i)]
+        return res != 0
