@@ -33,7 +33,12 @@ class Solution(object):
         res = 0
         for i in reversed(xrange(len(factors))):
             res = res * 10 + factors[i]
-            if res > 2 ** 32 / 10 and i > 0:
+            if res > (1 << 32 - 1):
                 return 0
 
+
         return res
+
+
+if __name__ == '__main__':
+    print Solution().smallestFactorization(18000000)
