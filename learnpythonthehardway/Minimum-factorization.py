@@ -39,6 +39,28 @@ class Solution(object):
 
         return res
 
+    def smallestFactorization2(self, a):
+        """
+        :type a: int
+        :rtype: int
+        """
+        if a <= 1:
+            return a
+
+        A = []
+
+        for i in xrange(9, 1, -1):
+            while a % i == 0:
+                a /= i
+                A.append(str(i))
+
+        if a >= 2:
+            return 0
+
+        ans = int(''.join(A[::-1]))  # review, so concise
+
+        return ans if ans < 2 ** 31  else 0
+
 
 if __name__ == '__main__':
     print Solution().smallestFactorization(18000000)
