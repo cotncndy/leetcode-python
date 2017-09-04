@@ -25,6 +25,11 @@ class Solution(object):
         min_a1, max_a1, res = arrays[0][0], arrays[0][-1], 0
         for i in xrange(1, len(arrays)):
             res = max(res, abs(arrays[i][0] - max_a1), abs(arrays[i][-1] - min_a1))
-            min_a1, max_a1 = arrays[i][0], arrays[i][-1]
+            min_a1, max_a1 = min(min_a1, arrays[i][0]), max(max_a1, arrays[i][-1])  # bugfixed
+
 
         return res
+
+
+if __name__ == '__main__':
+    print Solution().maxDistance([[-8, -7, -7, -5, 1, 1, 3, 4], [-2], [-10, -10, -7, 0, 1, 3], [2]])
