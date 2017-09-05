@@ -40,3 +40,15 @@ class Solution(object):
                 dp[i] = max(dp[i], (i - k - 1) * dp[k])
 
         return dp[N]
+
+    def maxA2(self, N):  # review, why this is correct
+        """
+        :type N: int
+        :rtype: int
+        """
+        rslt = range(N + 1)
+        if N < 4:
+            return rslt[N]
+        for i in xrange(7, N + 1):
+            rslt[i] = max(3 * rslt[i - 4], rslt[i - 5] * 4)
+        return rslt[N]
