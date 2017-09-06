@@ -35,6 +35,16 @@ class Solution(object):
 
         return dp[n] % (10 ** 9 + 7)
 
+    def findDerangement2(self, n):
+        if n < 2: return 0
+        dp = [0] * (n + 1)
+        dp[0], dp[1], dp[2] = 1, 0, 1
+        for i in xrange(3, n + 1):
+            dp[i] = (i - 1) * (dp[i - 1] + dp[i - 2]) % (10 ** 9 + 7)
+
+        return dp[n]
+
+
     def combination(self, n, r):
         f = self.factorial
         return (f(n) // f(r) // f(n - r))  # %(10**9+7)
