@@ -23,10 +23,10 @@ class Solution(object):
         :rtype: int
         """
         dp = [0] * (n + 1)
-        dp[1], dp[2], res = 1, 1, 0
+        dp[0], dp[1], dp[2], res = 1, 0, 1, 0
 
         for i in xrange(3, n + 1):
-            for j in xrange(1, i):
+            for j in xrange(1, i + 1):
                 res += self.combination(i, j) * dp[i - j]
             dp[i] = self.factorial(i) - res % (10 ** 9 + 7)
 
