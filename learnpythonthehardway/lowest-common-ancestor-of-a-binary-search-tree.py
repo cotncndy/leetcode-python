@@ -39,6 +39,21 @@ class Solution:
 
         return root
 
+    def lowestCommonAncestor2(self, root, p, q):
+        """
+        :type root: TreeNode
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: TreeNode
+        """
+        s, b = sorted([p.val, q.val])
+
+        while not s <= root.val <= b:
+            root = root.left if b <= root.val else root.right  # review so cool, replace s <= root.val with b <=
+            # root.val, performance the same 122ms, 65%
+
+        return root
+
     def lowestCommon(self, root, p, q):
         if root.val > q.val and root.val > p.val:
             return self.lowestCommon(root.left, p, q)
