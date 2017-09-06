@@ -23,9 +23,10 @@ class Solution(object):
         :rtype: int
         """
         dp = [0] * (n + 1)
-        dp[0], dp[1], dp[2], res = 1, 0, 1, 0
+        dp[0], dp[1], dp[2] = 1, 0, 1
 
         for i in xrange(3, n + 1):
+            res = 0
             for j in xrange(1, i + 1):
                 res += self.combination(i, j) * dp[i - j]
             dp[i] = self.factorial(i) - res % (10 ** 9 + 7)
@@ -42,7 +43,7 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print Solution().findDerangement(3)
+    # print Solution().findDerangement(3)
     print Solution().findDerangement(4)
     print Solution().findDerangement(5)
     print Solution().findDerangement(6)
