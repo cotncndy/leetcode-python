@@ -23,14 +23,15 @@ class Solution(object):
         :rtype: int
         """
         if n == 1: return 0
-        dp = [0] * (n + 1)
+        dp, combine = [0] * (n + 1), [1] * (n + 1)
         dp[0], dp[1] = 1, 0
 
         for i in xrange(2, n + 1):
-            res = 0
+            res, combine[i] = 0, combine[i - 1] * i  # % (10**9+7)
             for j in xrange(1, i + 1):
-                res += self.combination(i, j) * dp[i - j]
-            dp[i] = (self.factorial(i) - res)
+                # res += (self.combination(i, j) * dp[i - j])%(10**9+7)
+                res += (combine[i] // combine[j] // combine[i - j]) * dp[i - j]  # %(10**9+7)
+            dp[i] = combine[i] - res
 
         return dp[n] % (10 ** 9 + 7)
 
@@ -45,3 +46,7 @@ class Solution(object):
 
 if __name__ == '__main__':
     print Solution().findDerangement(13)
+    print Solution().findDerangement(14)
+    print Solution().findDerangement(15)
+    print Solution().findDerangement(16)
+    print Solution().findDerangement(667)
