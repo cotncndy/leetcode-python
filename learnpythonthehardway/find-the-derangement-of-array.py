@@ -30,23 +30,18 @@ class Solution(object):
             res = 0
             for j in xrange(1, i + 1):
                 res += self.combination(i, j) * dp[i - j]
-            dp[i] = self.factorial(i) - res % (10 ** 9 + 7)
+            dp[i] = (self.factorial(i) - res)
 
         return dp[n] % (10 ** 9 + 7)
 
     def combination(self, n, r):
         f = self.factorial
-        return f(n) // f(r) // f(n - r)
+        return (f(n) // f(r) // f(n - r))  # %(10**9+7)
 
     def factorial(self, n):
         f = math.factorial
-        return f(n) % (10 ** 9 + 7)
+        return f(n)  #% (10 ** 9 + 7)
 
 
 if __name__ == '__main__':
-    print Solution().findDerangement(1)
-    print Solution().findDerangement(2)
-    print Solution().findDerangement(3)
-    print Solution().findDerangement(4)
-    print Solution().findDerangement(5)
-    print Solution().findDerangement(6)
+    print Solution().findDerangement(13)
