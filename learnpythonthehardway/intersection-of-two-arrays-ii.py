@@ -57,3 +57,6 @@ class Solution(object):
 
         return res
 
+
+if __name__ == '__main__':
+    print Solution().intersect([1, 2, 3, 4], [2, 2, 3, 4])
