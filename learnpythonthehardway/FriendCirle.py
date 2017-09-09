@@ -35,8 +35,8 @@ class UnionFind(object):
 
     def find(self, x):
         while (x != self.__group[x]):
-            self.__group[x] = self.__group[self.__group[x]]  # bugfixed
-            x = self.__group[x]
+            self.__group[x] = self.__group[self.__group[x]]
+            x = self.__group[x]  # bugfixed, forgot this one
 
         return x
 
@@ -45,6 +45,9 @@ class UnionFind(object):
         if x != y:
             if self.__group[x] > self.__group[y]:
                 self.__group[y] = x
+            else:
+                self.__group[x] = y
+            self.size -= 1
 
 
 class Solution(object):
