@@ -43,10 +43,7 @@ class UnionFind(object):
     def union(self, x, y):
         x, y = self.find(x), self.find(y)
         if x != y:
-            if self.__group[x] > self.__group[y]:
-                self.__group[y] = x
-            else:
-                self.__group[x] = y
+            self.__group[min(x, y)] = max(x, y)
             self.size -= 1
 
 
