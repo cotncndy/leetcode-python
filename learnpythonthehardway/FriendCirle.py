@@ -65,6 +65,27 @@ class Solution(object):
 
         return union_find.size
 
+    def recursive(self, index):
+        for i, item in enumerate(self.M[index]):
+            if item == 1 and i not in self.nums:
+                self.nums.add(i)
+                self.recursive(i)
+
+    def findCircleNum2(self, M):
+        """
+        :type M: List[List[int]]
+        :rtype: int
+        """
+        self.nums = set()
+        self.M = M
+        count = 0
+        for index in xrange(len(M)):
+            if index not in self.nums:
+                count += 1
+                self.nums.add(index)
+                self.recursive(index)
+        return count
+
 
 if __name__ == '__main__':
     print Solution().findCircleNum([[1, 1, 0], [1, 1, 0], [0, 0, 1]])
