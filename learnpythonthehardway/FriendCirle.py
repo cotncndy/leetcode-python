@@ -88,4 +88,10 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print Solution().findCircleNum([[1, 1, 0], [1, 1, 0], [0, 0, 1]])
+    print Solution().findCircleNum2([[1, 1, 0], [1, 1, 0], [0, 0, 1]])
+    print Solution().findCircleNum2([[1, 1, 0, 0, 0, 0],
+                                     [1, 1, 0, 0, 0, 0],
+                                     [0, 0, 1, 1, 0, 0],
+                                     [0, 0, 1, 1, 1, 0],
+                                     [0, 0, 0, 1, 1, 0],
+                                     [0, 0, 0, 0, 0, 1]])

@@ -34,6 +34,12 @@ class Solution(object):
         :rtype: List[str]
         """
         targets = collections.defaultdict(list)
+        # why we need sort the tickets and reverse it?
+        # tickets = [["JFK", "SFO"], ["JFK", "ATL"], ["SFO", "ATL"], ["ATL", "JFK"], ["ATL", "SFO"]]
+        # after sort: [['ATL', 'JFK'], ['ATL', 'SFO'], ['JFK', 'ATL'], ['JFK', 'SFO'], ['SFO', 'ATL']]
+        # after reverse: [['SFO', 'ATL'], ['JFK', 'SFO'], ['JFK', 'ATL'], ['ATL', 'SFO'], ['ATL', 'JFK']]
+        # then the map would be {SFO : {ATL}, JFK : {SFO,ATL}, ATL : {SFO,JFK}}
+        # start with JFK, since it is recursion, JFK -> SFO->ATL->SFO, then we record SFO, ATL,SFO
         for a, b in sorted(tickets)[::-1]:
             targets[a] += b,
         route = []
@@ -65,4 +71,7 @@ class Solution(object):
 
 
 if __name__ == '__main__':
+    tickets = [["JFK", "SFO"], ["JFK", "ATL"], ["SFO", "ATL"], ["ATL", "JFK"], ["ATL", "SFO"]]
+    print sorted(tickets)
+    print sorted(tickets)[::-1]
     print Solution().findItinerary2([["JFK", "SFO"], ["JFK", "ATL"], ["SFO", "ATL"], ["ATL", "JFK"], ["ATL", "SFO"]])
