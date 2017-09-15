@@ -131,6 +131,65 @@ class Solution(object):
         else:
             ans.append(reversed_s)
 
+    def removeInvalidParentheses4(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        sol = list()
+
+        def removeP(sol, s, previ, prevj, par):
+            stack = 0
+            for i in range(previ, len(s)):
+                if s[i] == par[0]:
+                    stack += 1
+                elif s[i] == par[1]:
+                    stack -= 1
+                if stack >= 0:
+                    continue
+                for j in range(prevj, i + 1):
+                    if s[j] == par[1] and ((j == 0) or s[j - 1] != par[1]):
+                        removeP(sol, s[:j] + s[j + 1:], i, j, par)
+                return
+            if par[0] == '(':
+                if stack == 0:
+                    sol.append(s)
+                else:
+                    removeP(sol, s[::-1], 0, 0, [')', '('])
+            else:
+                sol.append(s[::-1])
+
+        removeP(sol, s, 0, 0, ['(', ')'])
+        return sol
+
+    def removeInvalidParentheses5(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        self.res = []
+        self.rec(s, 0, 0, ('(', ')'))
+        return self.res
+
+    def rec(self, s, i_start, j_start, order):
+        stk = 0
+        for i in range(i_start, len(s)):
+            if s[i] == order[0]:
+                stk += 1
+            elif s[i] == order[1]:
+                stk -= 1
+            if stk >= 0:
+                continue
+            for j in range(j_start, i + 1):
+                if s[j] == order[1] and (j == 0 or s[j] != s[j - 1]):
+                    self.rec(s[:j] + s[(j + 1):], i, j, order)
+            return
+        s = s[::-1]
+        if order[0] == ')':
+            self.res.append(s)
+        else:
+            self.rec(s, 0, 0, (')', '('))
+
 
 if __name__ == '__main__':
-    print Solution().removeInvalidParentheses('()())()')
+    print Solution().removeInvalidParentheses4('()())()')
