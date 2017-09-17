@@ -19,17 +19,17 @@ class Solution(object):
         if not prices or not k:
             return 0
         days = len(prices)
-        if k >= (days >> 1):
+        if k >= days:
             return self.quickSolve(prices);
-        global_max, local_max = [[0 for _ in xrange(k)] for _ in xrange(days)], \
-                                [[0 for _ in xrange(k)] for _ in xrange(days)]
+        global_max, local_max = [[0 for _ in xrange(k + 1)] for _ in xrange(days)], \
+                                [[0 for _ in xrange(k + 1)] for _ in xrange(days)]
         for i in xrange(1, days):
             diff = prices[i] - prices[i - 1]
-            for j in xrange(1, k):
+            for j in xrange(1, k + 1):  # bugfixed
                 local_max[i][j] = max(global_max[i - 1][j - 1], local_max[i - 1][j]) + diff
                 global_max[i][j] = max(global_max[i - 1][j], local_max[i][j])
 
-        return global_max[-1][k - 1]
+        return global_max[-1][k]  # bugfixed
 
     def quickSolve(self, prices):
         res = 0
