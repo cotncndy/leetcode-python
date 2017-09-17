@@ -53,7 +53,8 @@ class Solution:
         if s1 == s2:
             return True
 
-        dp = [[[False for j in xrange(len(s2))] for i in xrange(len(s1))] for n in xrange(len(s1) + 1)]
+        # dp = [[[False for j in xrange(len(s2))] for i in xrange(len(s1))] for n in xrange(len(s1) + 1)]
+        dp = [[[False] * len(s2)] * len(s1)] * (len(s1) + 1)
         for i in xrange(len(s1)):
             for j in xrange(len(s2)):
                 if s1[i] == s2[j]:
