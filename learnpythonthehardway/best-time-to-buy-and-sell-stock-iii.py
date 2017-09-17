@@ -40,7 +40,7 @@ class Solution:
         days = len(prices)
         for i in xrange(1, days):
             diff = prices[i] - prices[i - 1]
-            for j in reversed(xrange(1, 3)):
+            for j in reversed(xrange(1, 3)):  # notice the j is reversed
                 local_max[j] = max(global_max[j - 1] + max(diff, 0), local_max[j] + diff)
                 global_max[j] = max(global_max[j], local_max[j])
 
