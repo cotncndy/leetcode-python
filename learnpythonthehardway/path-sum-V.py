@@ -36,7 +36,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        nodes = [[-1 for _ in xrange(5)] for _ in xrange(10)]
+        nodes = [[-1 for _ in xrange(10)] for _ in xrange(5)]
         for n in nums:
             nodes[n / 100][(n % 100) / 10] = n % 10
 
@@ -63,5 +63,6 @@ class Solution(object):
         self.traverse(nodes, i + 1, 2 * j, t2, res)
 
 if __name__ == '__main__':
-    print Solution().pathSum([113, 215, 221])
-    print Solution().pathSum([113, 221])
+    # print Solution().pathSum([113, 215, 221])[115,215,224,325,336,446,458]
+    # print Solution().pathSum([113, 221])
+    print Solution().pathSum([115, 215, 224, 325, 336, 446, 458])
