@@ -35,7 +35,8 @@ class Solution:
 
 
 if __name__ == "__main__":
-    num = [1, 4, 3, 2]
+    # num = [1, 4, 3, 2]
+    num = [1, 2, 3, 4]
     Solution().nextPermutation(num)
     print num
     Solution().nextPermutation(num)

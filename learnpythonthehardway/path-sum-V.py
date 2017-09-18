@@ -41,18 +41,19 @@ class Solution(object):
             nodes[n / 100][(n % 100) / 10] = n % 10
 
         res = [nodes[1][1]]
-        res = self.traverse(nodes, 1, 1, res)
+        self.traverse(nodes, 1, 1, res)
         return res[0]
 
     def traverse(self, nodes, i, j, res):
+        if nodes[i][j] != -1:
+            res[0] += nodes[i][j]
         if i == 4 and nodes[i][j] != -1:
-            return nodes[i][j]
-        if nodes[i][j] != -1 and nodes[i + 1][2 * j - 1] == -1 and nodes[i + 1][2 * j] == -1:
-            return nodes[i][j]
-        res[0] += self.traverse(nodes, i + 1, 2 * j - 1, res)
-        res[0] += self.traverse(nodes, i + 1, 2 * j, res)
-        return res
-
+            return
+        if nodes[i + 1][2 * j - 1] == -1 and nodes[i + 1][2 * j] == -1:
+            return
+        self.traverse(nodes, i + 1, 2 * j - 1, res)
+        self.traverse(nodes, i + 1, 2 * j, res)
 
 if __name__ == '__main__':
-    print Solution().pathSum([113, 215, 221])
+    # print Solution().pathSum([113, 215, 221])
+    print Solution().pathSum([113, 221])
