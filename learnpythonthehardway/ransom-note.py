@@ -36,7 +36,7 @@ class Solution(object):
 
     def canConstruct2(self, ransomNote, magazine):
         rset, mset = set(ransomNote), set(magazine)
-        if not rset < mset:
+        if not rset <= mset:  # bugfixed should be <= rather than <
             return False
         for c in rset:
             if ransomNote.count(c) > magazine.count(c):
