@@ -49,13 +49,13 @@ class Solution(object):
         sumA = sum(A)
         for i in xrange(1, len(A)):
             dp[0] += i * A[i]
-        res = float('-inf')
         for k in xrange(1, len(A)):
             dp[k] = dp[k - 1] - len(A) * A[len(A) - k] + sumA
-            res = max(res, dp[k])
-        res = 0 if res == float('-inf') else res  # bugfixed
-        return res
+
+        return max(dp)
 
 if __name__ == '__main__':
     print Solution().maxRotateFunction2([4, 3, 2, 6])
     print Solution().maxRotateFunction2([-2147483648, -2147483648])
+    print Solution().maxRotateFunction2([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    print Solution().maxRotateFunction2([])
