@@ -34,15 +34,17 @@ class Solution(object):
             c[0:k], c[k:] = c[l - k:], c[0:l - k]
             return c
 
-        res = 0
+        res = float('-inf')  # bugfixed
         for k in xrange(len(A)):
             fk, c = 0, rightRote(A, k)
             for i in xrange(len(c)):
                 fk += i * c[i]
             res = max(res, fk)
 
+        res = 0 if res == float('-inf') else res
         return res
 
 
 if __name__ == '__main__':
-    print Solution().maxRotateFunction([4, 3, 2, 6])
+    # print Solution().maxRotateFunction([4, 3, 2, 6])
+    print Solution().maxRotateFunction([-2147483648, -2147483648])
