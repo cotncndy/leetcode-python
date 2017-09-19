@@ -44,7 +44,18 @@ class Solution(object):
         res = 0 if res == float('-inf') else res
         return res
 
+    def maxRotateFunction2(self, A):
+        dp = [0] * len(A)
+        sumA = sum(A)
+        for i in xrange(1, len(A)):
+            dp[0] += i * A[i]
+        res = float('-inf')
+        for k in xrange(1, len(A)):
+            dp[k] = dp[k - 1] - len(A) * A[len(A) - k] + sumA
+            res = max(res, dp[k])
+
+        return res
 
 if __name__ == '__main__':
-    # print Solution().maxRotateFunction([4, 3, 2, 6])
-    print Solution().maxRotateFunction([-2147483648, -2147483648])
+    print Solution().maxRotateFunction2([4, 3, 2, 6])
+    print Solution().maxRotateFunction2([-2147483648, -2147483648])
