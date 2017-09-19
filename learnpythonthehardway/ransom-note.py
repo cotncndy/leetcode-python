@@ -33,3 +33,17 @@ class Solution(object):
                 return False
 
         return True
+
+    def canConstruct2(self, ransomNote, magazine):
+        rset, mset = set(ransomNote), set(magazine)
+        if not rset < mset:
+            return False
+        for c in rset:
+            if ransomNote.count(c) > magazine.count(c):
+                return False
+
+        return True
+
+
+if __name__ == '__main__':
+    print Solution().canConstruct2("", "")
