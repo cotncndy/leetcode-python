@@ -53,7 +53,7 @@ class Solution(object):
         for k in xrange(1, len(A)):
             dp[k] = dp[k - 1] - len(A) * A[len(A) - k] + sumA
             res = max(res, dp[k])
-
+        res = 0 if res == float('-inf') else res  # bugfixed
         return res
 
 if __name__ == '__main__':
