@@ -45,6 +45,8 @@ class Solution(object):
         return res
 
     def maxRotateFunction2(self, A):
+        if not A:
+            return 0
         dp = [0] * len(A)
         sumA = sum(A)
         for i in xrange(1, len(A)):
