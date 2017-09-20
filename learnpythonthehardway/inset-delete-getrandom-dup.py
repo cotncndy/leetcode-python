@@ -67,7 +67,6 @@ class RandomizedCollection(object):
         self.__map[val].pop()  # remove the last index for val
         if len(self.__map[val]) == 0:  # after remove the last index, if not occur in list any more, remove it
             del self.__map[val]
-        tail_idx = self.__map[self.__nums[-1]][-1]
         if val != self.__nums[-1]:
             self.__map[self.__nums[-1]].pop()
             self.__map[self.__nums[-1]].append(idx)
