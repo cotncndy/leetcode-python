@@ -37,8 +37,8 @@ class RandomizedCollection(object):
         """
         Initialize your data structure here.
         """
-        self.__map = collections.defaultdict([])
-        # self.__map = {}
+        # self.__map = collections.defaultdict([])
+        self.__map = {}
         self.__nums = []
 
     def insert(self, val):
@@ -68,7 +68,7 @@ class RandomizedCollection(object):
         if len(self.__map[val]) == 0:  # after remove the last index, if not occur in list any more, remove it
             del self.__map[val]
         if val != self.__nums[-1]:
-            self.__map[self.__nums[-1]].pop()
+            self.__map[self.__nums[-1]].remove(len(self.__nums) - 1)  # bugfixed
             self.__map[self.__nums[-1]].append(idx)
             self.__nums[idx] = self.__nums[-1]  # place the last ele in list nums to the original val's position
         del self.__nums[-1]
@@ -100,5 +100,12 @@ if __name__ == '__main__':
     print p2
     p3 = obj.insert(2)
     print p3
+    print obj.insert(2)
+    print obj.insert(2)
     print obj.remove(1)
+    print obj.remove(1)
+    print obj.remove(2)
+    print obj.insert(1)
+    print obj.remove(2)
+    print obj.getRandom()
     print obj.getRandom()
