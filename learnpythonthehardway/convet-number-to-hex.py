@@ -38,6 +38,18 @@ class Solution(object):
 
         return ''.join(res[::-1])
 
+    def toHex2(self, num):
+        nums = "0123456789abcdef"
+        res = []
+        for i in xrange(8):
+            t = (num >> 4 * i) & 15
+            res.append(nums[t])
+        if not res:
+            return "0"
+        return "".join(res[::-1]).lstrip('0')
+
 
 if __name__ == '__main__':
-    print Solution().toHex(350)
+    print Solution().toHex2(350)
+    print Solution().toHex2(-350)
+    print Solution().toHex2(-1)
