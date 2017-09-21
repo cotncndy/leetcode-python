@@ -44,9 +44,7 @@ class Solution(object):
         for i in xrange(8):
             t = (num >> 4 * i) & 15
             res.append(nums[t])
-        if not res:
-            return "0"
-        return "".join(res[::-1]).lstrip('0')
+        return "".join(res[::-1]).lstrip('0') or '0'  # bugfixed
 
 
 if __name__ == '__main__':
