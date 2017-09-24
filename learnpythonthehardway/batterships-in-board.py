@@ -46,6 +46,15 @@ class Solution(object):
                     res += int(board[i][j])
         return res
 
+    def countBattleships2(self, board):
+        res = 0
+        for i in xrange(len(board)):
+            for j in xrange(len(board[0])):
+                if board[i][j] == '.' or (i > 0 and board[i - 1][j] == 'X') or (j > 0 and board[i][j - 1] == 'X'):
+                    continue
+                res += 1
+        return res
 
 if __name__ == '__main__':
-    print Solution().countBattleships(["X..X", "X..X", "X..X"])
+    # print Solution().countBattleships(["X..X", "X..X", "X..X"])
+    print Solution().countBattleships2(['XX', '..'])
