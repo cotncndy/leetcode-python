@@ -62,7 +62,7 @@ class Solution(object):
                 root = root.right
         return res
 
-    # Morris Traversal Solution
+    # review Morris Traversal Solution
     def inorderTraversal2(self, root):
         result, cur = [], root
 
