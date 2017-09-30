@@ -20,6 +20,7 @@
 
 from heapq import heappop, heappush
 import bisect
+import collections
 
 
 class Solution(object):
@@ -58,10 +59,40 @@ class Solution(object):
                 break;
         return [left, right]
 
+    def smallestRange2(self, nums):
+        new_arr = []
+        for i in xrange(len(nums)):
+            for j in xrange(len(nums[i])):
+                new_arr.append((nums[i][j], i))  # add tuple (ele, arry#)
+        new_arr = sorted(new_arr)
+
+        left, n, k, cnt, map, range, res = 0, len(new_arr), len(nums), 0, collections.defaultdict(int), \
+                                           float('inf'), []
+        for right in xrange(n):
+            if not map[new_arr[right][1]]:
+                cnt += 1
+            map[new_arr[right][1]] += 1
+
+            while cnt == k and left < right:
+                if range > new_arr[right][0] - new_arr[left][0]:
+                    range = new_arr[right][0] - new_arr[left][0]
+                    res = [new_arr[left][0], new_arr[right][0]]
+
+                map[new_arr[left][1]] -= 1
+                if map[new_arr[left][1]] == 0:
+                    cnt -= 1
+                left += 1
+
+        return res
+
+
+
+
+
 
 if __name__ == '__main__':
     # for this test case, my algorithm can get correct answer [20, 24]
-    print Solution().smallestRange([[4, 10, 15, 24, 26], [0, 9, 12, 20], [5, 18, 22, 30]])
+    print Solution().smallestRange2([[4, 10, 15, 24, 26], [0, 9, 12, 20], [5, 18, 22, 30]])
     # but for this one, I got wrong ans, [3,4], but it should be [1,2], smallest range not only has min(right-left),
     # when we have same (right-left), we want min left.
-    print Solution().smallestRange([[1, 2, 3], [1, 2, 4]])
+    print Solution().smallestRange2([[1, 2, 3], [1, 2, 4]])
