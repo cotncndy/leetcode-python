@@ -73,7 +73,7 @@ class Solution(object):
                 cnt += 1
             map[new_arr[right][1]] += 1
 
-            while cnt == k and left < right:
+            while cnt == k and left <= right:  # bugfixed, left <= right, for test case[[1]]
                 if range > new_arr[right][0] - new_arr[left][0]:
                     range = new_arr[right][0] - new_arr[left][0]
                     res = [new_arr[left][0], new_arr[right][0]]
@@ -96,3 +96,5 @@ if __name__ == '__main__':
     # but for this one, I got wrong ans, [3,4], but it should be [1,2], smallest range not only has min(right-left),
     # when we have same (right-left), we want min left.
     print Solution().smallestRange2([[1, 2, 3], [1, 2, 4]])
+    # notice this test case
+    print Solution().smallestRange2([[1]])
