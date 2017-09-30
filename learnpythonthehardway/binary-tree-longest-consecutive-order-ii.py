@@ -93,7 +93,7 @@ class Solution(object):
             if node.val == parent.val + 1:
                 return max(li, ri) + 1, 0
             if node.val == parent.val - 1:
-                return max(ld, rd) + 1, 0
+                return 0, max(ld, rd) + 1  # bugfixed
 
             return 0, 0
 
