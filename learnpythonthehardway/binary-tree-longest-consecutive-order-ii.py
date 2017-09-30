@@ -79,3 +79,24 @@ class Solution(object):
 
         dfs(root, root)
         return l
+
+    def longestConsecutive3(self, root):
+        self.max_len = 0
+
+        def dfs(node, parent):
+            if not node:
+                return 0, 0
+            li, ld = dfs(node.left, node)
+            ri, rd = dfs(node.right, node)
+
+            self.max_len = max(self.max_len, li + 1 + rd, ld + 1 + ri)
+            if node.val == parent.val + 1:
+                return max(li, ri) + 1, 0
+            if node.val == parent.val - 1:
+                return max(ld, rd) + 1, 0
+
+            return 0, 0
+
+        dfs(root, root)
+
+        return self.max_len
