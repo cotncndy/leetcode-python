@@ -22,13 +22,15 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[int]
         """
+        if not root:
+            return []
         st, prev, res = [root], root, []
         while st:
             top = st[-1]
             if (top.left is None and top.right is None) or top.left == prev or top.right == prev:
-                res.apppend(top)
+                res.append(top)
                 prev = top
-                res.pop()
+                st.pop()  # bugfixed
             elif top.right is not None:
                 res.append(top.right)
             elif top.left is not None:
