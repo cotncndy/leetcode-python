@@ -31,9 +31,11 @@ class Solution(object):
                 res.append(top)
                 prev = top
                 st.pop()  # bugfixed
-            elif top.right is not None:
-                res.append(top.right)
-            elif top.left is not None:
-                res.append(top.left)
+            else:
+
+                if top.right is not None:
+                    res.append(top.right)
+                if top.left is not None:
+                    res.append(top.left)
 
         return res
