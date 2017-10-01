@@ -34,6 +34,8 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
+from collections import defaultdict
+
 
 class Solution(object):
     def pathSum(self, root, sum):
@@ -54,3 +56,38 @@ class Solution(object):
             return 0
         # bugfixed, forgot to put a 0
         return helper(root, 0, sum) + self.pathSum(root.left, sum) + self.pathSum(root.right, sum)
+
+    def pathSum2(self, root, sums):
+        """
+        :type root: TreeNode
+        :type sum: int
+        :rtype: int
+        """
+        if not root:
+            return 0
+        prefix_map = defaultdict(int)
+        # **important**
+        # this will make sure that
+        # path from the root will be counted
+        prefix_map[0] = 1
+        return self.helper(root, 0, prefix_map, sums)
+
+    def helper(self, root, cursum, prefix_map, target):
+        if not root:
+            return 0
+        # get current sum
+        cursum = cursum + root.val
+        # check if a segment has the target sum,
+        # if yes, get the count (otherwise res will be 0)
+        res = prefix_map[cursum - target]
+        # increase the count of cursum if it exists, otherwise
+        # store cursum (from root to current node) and count
+        # bc of defaultdict, if cursum does not exist in map
+        # originally, it will be 0 by default
+        prefix_map[cursum] = prefix_map[cursum] + 1
+        # recursively get the result from left, right subtrees
+        res += self.helper(root.left, cursum, prefix_map, target) + self.helper(root.right, cursum, prefix_map, target)
+        # **important**
+        # when backtracking, decrease cursum count
+        prefix_map[cursum] = prefix_map[cursum] - 1
+        return res
