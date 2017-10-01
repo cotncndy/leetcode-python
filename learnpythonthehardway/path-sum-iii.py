@@ -52,4 +52,5 @@ class Solution(object):
 
         if not root:  # bugfixed dont' forget this check, otherwise, the code below would throw NPE
             return 0
-        return helper(root, sum) + self.pathSum(root.left, sum) + self.pathSum(root.right, sum)
+        # bugfixed, forgot to put a 0
+        return helper(root, 0, sum) + self.pathSum(root.left, sum) + self.pathSum(root.right, sum)
