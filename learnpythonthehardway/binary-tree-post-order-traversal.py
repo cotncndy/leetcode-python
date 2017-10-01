@@ -28,14 +28,14 @@ class Solution(object):
         while st:
             top = st[-1]
             if (top.left is None and top.right is None) or top.left == prev or top.right == prev:
-                res.append(top)
+                res.append(top.val)  # bugfixed
                 prev = top
                 st.pop()  # bugfixed
             else:
 
                 if top.right is not None:
-                    res.append(top.right)
+                    st.append(top.right)  # bugfixed
                 if top.left is not None:
-                    res.append(top.left)
+                    st.append(top.left)  #bugfixed
 
         return res
