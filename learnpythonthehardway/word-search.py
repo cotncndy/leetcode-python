@@ -41,7 +41,6 @@ class Solution:
             return False
 
         visited[i][j] = True
-        visited[i][j] = True
         result = self.backtrack(board, word, cur + 1, i + 1, j, visited) or \
                  self.backtrack(board, word, cur + 1, i - 1, j, visited) or \
                  self.backtrack(board, word, cur + 1, i, j + 1, visited) or \
