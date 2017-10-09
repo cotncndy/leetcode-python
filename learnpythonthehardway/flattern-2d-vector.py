@@ -29,8 +29,9 @@ class Vector2D(object):
         """
         :rtype: int
         """
-        self._col += 1
-        return self.v[self._row][self._col]
+        if self.hasNext():
+            self._col += 1
+            return self.v[self._row][self._col]
 
     def hasNext(self):
         """
