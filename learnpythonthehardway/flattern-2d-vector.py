@@ -30,14 +30,15 @@ class Vector2D(object):
         :rtype: int
         """
         if self.hasNext():
+            t = self.v[self._row][self._col]  # bugfixed
             self._col += 1
-            return self.v[self._row][self._col]
+            return t
 
     def hasNext(self):
         """
         :rtype: bool
         """
-        if self._col == len(self.v[self._row]):
+        if self._row < len(self.v) and self._col == len(self.v[self._row]):  # bugfixed
             self._row, self._col = self._row + 1, 0
 
         return self._row < len(self.v)
