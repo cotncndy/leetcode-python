@@ -50,8 +50,8 @@ class Solution:
             return [[i for i in range(1, n + 1)]]
         else:
             res = []
-            res += self.combine(n - 1, k)
-            part = self.combine(n - 1, k - 1)
+            res += self.combine2(n - 1, k)
+            part = self.combine2(n - 1, k - 1)
             for item in part:
                 item.append(n)
             res += part

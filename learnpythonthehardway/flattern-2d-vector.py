@@ -38,7 +38,7 @@ class Vector2D(object):
         """
         :rtype: bool
         """
-        if self._row < len(self.v) and self._col == len(self.v[self._row]):  # bugfixed
+        while self._row < len(self.v) and self._col == len(self.v[self._row]):  # bugfixed, if should be while
             self._row, self._col = self._row + 1, 0
 
         return self._row < len(self.v)

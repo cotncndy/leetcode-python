@@ -28,6 +28,7 @@
 #       1
 #
 # The path sum is (3 + 1) = 4.
+import collections
 
 
 class Solution(object):
@@ -61,6 +62,31 @@ class Solution(object):
         t2 = temp[:]
         self.traverse(nodes, i + 1, 2 * j - 1, t1, res)
         self.traverse(nodes, i + 1, 2 * j, t2, res)
+
+    def pathSum2(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if not nums:
+            return 0
+
+        n = len(nums)
+        i = n - 1
+        table = collections.defaultdict(int)
+        ans = 0
+        while i >= 0:
+            num = str(nums[i])
+            level, position, value = int(num[0]), int(num[1]), int(num[2])
+            key = (level, position)
+            if key not in table:
+                table[key] = 1
+            ans += table[key] * value
+            parent = (level - 1, (position + 1) / 2)
+            table[parent] += table[key]
+            i -= 1
+
+        return ans
 
 if __name__ == '__main__':
     # print Solution().pathSum([113, 215, 221])[115,215,224,325,336,446,458]

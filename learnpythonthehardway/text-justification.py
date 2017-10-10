@@ -69,6 +69,26 @@ class Solution(object):
 
         return s
 
+    def fullJustify2(self, words, maxWidth):
+        """
+        :type words: List[str]
+        :type maxWidth: int
+        :rtype: List[str]
+        """
+        ret = []
+        num_letters = 0
+        cur = []
+        for w in words:
+            if num_letters + len(cur) + len(w) > maxWidth:
+                for i in range(maxWidth - num_letters):
+                    cur[i % (len(cur) - 1 or 1)] += ' '
+                ret.append(''.join(cur))
+                cur = []
+                num_letters = 0
+            cur += [w]
+            num_letters += len(w)
+        return ret + [' '.join(cur).ljust(maxWidth)]
+
 
 if __name__ == "__main__":
-    print Solution().fullJustify(["This", "is", "an", "example", "of", "text", "justification."], 16)
+    print Solution().fullJustify2(["This", "is", "an", "example", "of", "text", "justification."], 16)
