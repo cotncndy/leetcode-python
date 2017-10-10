@@ -16,11 +16,11 @@ class Solution(object):
             s = 0
             for j in nums:
                 s += (j & bit_mask)
-            res += s % 3
+            res += (s % 3) << i  # bugfixed
             bit_mask <<= 1
         return res
 
 
 if __name__ == '__main__':
-    print Solution().singleNumber([1])
+    # print Solution().singleNumber([1])
     print Solution().singleNumber([0, 0, 0, 5])
