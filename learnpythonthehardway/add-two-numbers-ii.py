@@ -50,6 +50,10 @@ class Solution(object):
             prv = head
             sum //= 10
 
+        if sum >= 1:  # bugfixed
+            head = ListNode(sum % 10)
+            head.next = prv
+
         return head
 
 
