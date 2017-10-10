@@ -15,12 +15,12 @@ class Solution(object):
         for i in xrange(32):
             s = 0
             for j in nums:
+                j >>= i  # bugfixed
                 s += (j & bit_mask)
             res += (s % 3) << i  # bugfixed
-            bit_mask <<= 1
         return res
 
 
 if __name__ == '__main__':
     # print Solution().singleNumber([1])
-    print Solution().singleNumber([0, 0, 0, 5])
+    print Solution().singleNumber([2, 2, 3, 2])
