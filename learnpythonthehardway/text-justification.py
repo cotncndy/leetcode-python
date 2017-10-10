@@ -85,9 +85,9 @@ class Solution(object):
                 ret.append(''.join(cur))
                 cur = []
                 num_letters = 0
-            cur += [w]
-            num_letters += len(w)
-        return ret + [' '.join(cur).ljust(maxWidth)]
+            cur += [w]  # ['this  ', "is  ", "an"]
+            num_letters += len(w)  # 8
+        return ret + [' '.join(cur).ljust(maxWidth)]  # the last line might have multiple words, so need space here ' '
 
 
 if __name__ == "__main__":

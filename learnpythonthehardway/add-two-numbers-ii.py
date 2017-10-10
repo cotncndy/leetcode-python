@@ -38,7 +38,7 @@ class Solution(object):
             st2.append(l2.val)
             l2 = l2.next
 
-        sum, head = 0, None
+        sum, head, prv = 0, None, None
         while st1 or st2:
             if st1:
                 sum += st1.pop()
@@ -46,12 +46,11 @@ class Solution(object):
                 sum += st2.pop()
 
             head = ListNode(sum % 10)
-            res = ListNode(sum / 10)
-            res.next = head
-            head = res
+            head.next = prv
+            prv = head
             sum //= 10
 
-        return head if head.val == 0 else head.next
+        return head
 
 
 if __name__ == "__main__":
