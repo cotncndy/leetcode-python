@@ -45,14 +45,15 @@ class Solution(object):
 
         l, r = -2 << 31, 2 << 31
         while (r - l > 0.000005):
-            mid = (l + r) >> 1
+            mid = (l + r) / 2.0
             t = check(nums, k, mid)
             if t:
                 l = mid
             else:
                 r = mid
 
-        return (l + r) >> 1
+        return (l + r) / 2.0  # return r is also ok.
+
 
 
 if __name__ == '__main__':
