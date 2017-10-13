@@ -104,7 +104,7 @@ class Solution(object):
 
         for i in xrange(1, len(s)):  # notice, [123,[456]], the loop always start from index 1
             if not count and (s[i] in ',]' or i == len(s) - 1):  # bugfixed
-                res.add(self.deserialize(s[start:i]))
+                res.add(self.deserialize2(s[start:i]))
                 start = i + 1  # [123,456]
             elif s[i] == '[':
                 count += 1
