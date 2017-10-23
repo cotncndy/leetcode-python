@@ -71,7 +71,9 @@ class Twitter(object):
 
         temp = []
         for id in friends:
-            heappush(temp, [self.tweets[id][-1], len(self.tweets[id]) - 1, id])
+            # bugfixed
+            if self.tweets[id]:
+                heappush(temp, [self.tweets[id][-1], len(self.tweets[id]) - 1, id])
 
         res = []
         while temp and len(res) < 10:
@@ -107,13 +109,12 @@ class Twitter(object):
 
 if __name__ == '__main__':
     obj = Twitter()
-    obj.postTweet(1, 5)
+    obj.postTweet(1, 1)
     print obj.getNewsFeed(1)
-    obj.follow(1, 2)
-    obj.postTweet(2, 6)
-    print obj.getNewsFeed(1)
-    obj.unfollow(1, 2)
-    print obj.getNewsFeed(1)
+    obj.follow(2, 1)
+    print obj.getNewsFeed(2)
+    obj.unfollow(2, 1)
+    print obj.getNewsFeed(2)
 
 
 
