@@ -103,7 +103,9 @@ class Twitter(object):
         :type followeeId: int
         :rtype: void
         """
-        self.followed_by[followerId].remove(followeeId)
+        # bugfixed
+        if followeeId in self.followed_by[followerId]:
+            self.followed_by[followerId].remove(followeeId)
         # todo , you need to remove all followeeid's tweets from followerid
 
 
