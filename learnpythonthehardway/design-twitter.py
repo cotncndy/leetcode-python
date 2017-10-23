@@ -79,7 +79,7 @@ class Twitter(object):
         while temp and len(res) < 10:
             a = heappop(temp)
             res.append(a[0][1])  # don't forget the negative
-            if a[1] - 1 > 0:
+            if a[1] - 1 >= 0:  # bugfixed
                 a[1] -= 1
                 a[0] = self.tweets[a[2]][a[1]]
                 heappush(temp, a)
@@ -111,12 +111,13 @@ class Twitter(object):
 
 if __name__ == '__main__':
     obj = Twitter()
-    obj.postTweet(1, 1)
+    obj.postTweet(1, 5)
+    obj.postTweet(1, 3)
     print obj.getNewsFeed(1)
-    obj.follow(2, 1)
-    print obj.getNewsFeed(2)
-    obj.unfollow(2, 1)
-    print obj.getNewsFeed(2)
+    # obj.follow(2, 1)
+    # print obj.getNewsFeed(2)
+    # obj.unfollow(2, 1)
+    # print obj.getNewsFeed(2)
 
 
 
