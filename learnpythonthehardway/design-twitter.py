@@ -45,7 +45,7 @@ class Twitter(object):
         """
         self.twitte_id = 0
         self.followed_by = collections.defaultdict(set)
-        self.tweets = collections.defaultdict([])
+        self.tweets = collections.defaultdict(list)
 
     def postTweet(self, userId, tweetId):
         """
@@ -54,12 +54,10 @@ class Twitter(object):
         :type tweetId: int
         :rtype: void
         """
-        heappush(self.tweets[userId], -tweetId)  # there is no maxheap in python, so use min-heap to simulate it
+        # heappush(self.tweets[userId], (-self.twitte_id, tweetId))  # there is no maxheap in python, so use min-heap to
+        self.tweets[userId].append((-self.twitte_id, tweetId))
+        self.twitte_id += 1
 
-        for id in self.followed_by[userId]:
-            heappush(self.tweets[id], -tweetId)
-
-        tweetId += 1
 
     def getNewsFeed(self, userId):
         """
@@ -68,12 +66,21 @@ class Twitter(object):
         :type userId: int
         :rtype: List[int]
         """
-        res = []
-        while len(res) < 10:
-            res.append(heappop(-self.tweets[userId]))  # don't forget the negative
+        friends = self.followed_by[userId]  # got all followers of userId
+        friends.add(userId)  # add itself as friend
 
-        for i in reversed(xrange(len(res))):
-            heappush(self.tweets[userId], -res[i])  # don't remember to push back the poped one
+        temp = []
+        for id in friends:
+            heappush(temp, [self.tweets[id][-1], len(self.tweets[id]) - 1, id])
+
+        res = []
+        while temp and len(res) < 10:
+            a = heappop(temp)
+            res.append(a[0][1])  # don't forget the negative
+            if a[1] - 1 > 0:
+                a[1] -= 1
+                a[0] = self.tweets[a[2]][a[1]]
+                heappush(temp, a)
 
         return res
 
@@ -84,7 +91,8 @@ class Twitter(object):
         :type followeeId: int
         :rtype: void
         """
-        self.followed_by[followeeId].add(followerId)
+        self.followed_by[followerId].add(followeeId)
+        # todo you need put all followeeID's tweet to folower
 
     def unfollow(self, followerId, followeeId):
         """
@@ -93,7 +101,21 @@ class Twitter(object):
         :type followeeId: int
         :rtype: void
         """
-        self.followed_by[followeeId].remove(followerId)
+        self.followed_by[followerId].remove(followeeId)
+        # todo , you need to remove all followeeid's tweets from followerid
+
+
+if __name__ == '__main__':
+    obj = Twitter()
+    obj.postTweet(1, 5)
+    print obj.getNewsFeed(1)
+    obj.follow(1, 2)
+    obj.postTweet(2, 6)
+    print obj.getNewsFeed(1)
+    obj.unfollow(1, 2)
+    print obj.getNewsFeed(1)
+
+
 
 # Your Twitter object will be instantiated and called as such:
 # obj = Twitter()
