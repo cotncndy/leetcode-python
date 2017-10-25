@@ -47,3 +47,15 @@ class Solution(object):
             n += 1
 
         return res
+
+    # my solution during mock interview, easier to understand
+    def pick2(self, target):
+        """
+        :type target: int
+        :rtype: int
+        """
+        i = 0
+        while self._nums[i] != target:
+            i = randint(0, len(self._nums) - 1)
+
+        return i
