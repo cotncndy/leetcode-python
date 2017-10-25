@@ -15,4 +15,16 @@ class Solution:
     # @return {integer}
     def countDigitOne(self, n):
         # todo  https://www.evernote.com/shard/s2/nl/20757047/267fab1f-ceb4-472d-8f84-497967b37488/
-        pass
+        res, a, b = 0, 1, 1
+        while n > 0:
+            res += (n + 8) / 10 * a + (b if n % 10 == 1 else 0)
+            b += n % 10 * a
+            a *= 10
+            n /= 10
+
+        return res
+
+
+if __name__ == '__main__':
+    print Solution().countDigitOne(99)
+    print Solution().countDigitOne(156)
