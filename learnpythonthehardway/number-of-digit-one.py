@@ -24,6 +24,24 @@ class Solution:
 
         return res
 
+    def countDigitOne2(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        t = n
+        i = 0
+        j = 1
+        res = 0
+        while n > 0:
+            k = n % 10
+            res += k * i + (j if k > 1 else (t % j + 1 if k == 1 else 0))
+            i *= 10
+            i += j
+            n //= 10
+            j *= 10
+        return res
+
 
 if __name__ == '__main__':
     print Solution().countDigitOne(99)
