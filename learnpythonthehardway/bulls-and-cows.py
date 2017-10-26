@@ -38,10 +38,10 @@ class Solution(object):
         print cows
         print myset
 
-        for i in xrange(len(cows)):
-            if guess[i] in myset:
+        for i in cows:
+            if i in myset:
                 cow += 1
-                myset.remove(guess[i])
+                myset.remove(i)
 
         return str(bulls) + 'A' + str(cow) + 'B'
 
