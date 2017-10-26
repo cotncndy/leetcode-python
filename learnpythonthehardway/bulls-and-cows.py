@@ -28,13 +28,13 @@ class Solution(object):
         :type guess: str
         :rtype: str
         """
-        myset, bulls, cows, cow = set(), 0, [], 0
+        myset, bulls, cows, cow = list(), 0, [], 0
         for i in xrange(len(secret)):
             if secret[i] == guess[i]:
                 bulls += 1
             else:
                 cows.append(guess[i])
-                myset.add(secret[i])
+                myset.append(secret[i])
         print cows
         print myset
 
@@ -48,3 +48,4 @@ class Solution(object):
 
 if __name__ == '__main__':
     print Solution().getHint("1807", "7810")
+    print Solution().getHint("1122", "2211")
