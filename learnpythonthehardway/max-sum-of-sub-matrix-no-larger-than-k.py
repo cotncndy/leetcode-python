@@ -67,19 +67,19 @@ class Solution(object):
 
                 for r in xrange(0, i + 1):
                     for s in xrange(0, j + 1):
-                        t = dp[r][s]
-                        if j > 0:
-                            t -= dp[r][j - 1]
-                            if i == 0:
+                        t = dp[i][j]  # bugfixed
+                        if r > 0:
+                            t -= dp[r - 1][j]
+                            if s == 0:
                                 if t <= k:
                                     res = max(res, t)
-                        if i > 0:
-                            t -= dp[i - 1][s]
+                        if s > 0:
+                            t -= dp[i][s - 1]
                             if j == 0:
                                 if t <= k:
                                     res = max(res, t)
-                        if i > 0 and j > 0:
-                            t += dp[i - 1][j - 1]
+                        if r > 0 and s > 0:
+                            t += dp[r - 1][s - 1]
                             if t <= k:
                                 res = max(res, t)
                         else:
@@ -87,6 +87,37 @@ class Solution(object):
                                 res = max(res, t)
         return res
 
+    def maxSumSubmatrix2(self, matrix, k):
+        if len(matrix) == 0 or len(matrix[0]) == 0:
+            return 0
+        row, col, res = len(matrix), len(matrix[0]), float('-inf')
+        dp = [[0] * col for _ in xrange(row)]
+        for i in xrange(row):
+            for j in xrange(col):
+                t = matrix[i][j]
+                if j > 0:
+                    t += dp[i][j - 1]
+                if i > 0:
+                    t += dp[i - 1][j]
+                if i > 0 and j > 0:
+                    t -= dp[i - 1][j - 1]
+
+                dp[i][j] = t
+
+                for r in xrange(0, i + 1):
+                    for s in xrange(0, j + 1):
+                        t = dp[i][j]
+                        if r > 0:
+                            t -= dp[r - 1][j]
+                        if s > 0:
+                            t -= dp[i][s - 1]
+                        if s > 0 and r > 0:
+                            t += dp[r - 1][s - 1]
+
+                        if t <= k:
+                            res = max(res, t)
+        return res
+
 
 if __name__ == '__main__':
-    print Solution().maxSumSubmatrix([[2, 2, 1]], 1)
+    print Solution().maxSumSubmatrix2([[5, -4, -3, 4], [-3, -4, 4, 5], [5, 1, 5, -4]], 9)
