@@ -65,8 +65,8 @@ class Solution(object):
                     t += dp[i - 1][j - 1]
                 dp[i][j] = t
 
-                for r in xrange(i, row):
-                    for s in xrange(j, row):
+                for r in xrange(0, i + 1):
+                    for s in xrange(0, j + 1):
                         t = dp[r][s]
                         if j > 0:
                             t -= dp[r][j - 1]
