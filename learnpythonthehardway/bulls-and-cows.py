@@ -19,6 +19,7 @@
 # In this case, the 1st 1 in friend's guess is a bull, the 2nd or 3rd 1 is a cow, and your function should return
 # "1A1B".
 # You may assume that the secret number and your friend's guess only contain digits, and their lengths are always equal.
+import collections
 
 
 class Solution(object):
@@ -44,6 +45,32 @@ class Solution(object):
                 myset.remove(i)
 
         return str(bulls) + 'A' + str(cow) + 'B'
+
+    def getHint2(self, secret, guess):
+        """
+        :type secret: str
+        :type guess: str
+        :rtype: str
+        """
+        countCows = 0
+        countBulls = 0
+        lookUp = collections.defaultdict(int)
+
+        for i in range(0, len(secret)):
+            if secret[i] == guess[i]:
+                countBulls += 1
+            else:
+                lookUp[secret[i]] += 1
+
+        for i in range(0, len(guess)):
+            if secret[i] != guess[i]:
+                if guess[i] in lookUp and lookUp[guess[i]] != 0:
+                    lookUp[guess[i]] -= 1
+                    countCows += 1
+
+        result = str(countBulls) + 'A' + str(countCows) + 'B'
+
+        return result
 
 
 if __name__ == '__main__':
