@@ -92,7 +92,8 @@ class Solution(object):
     def dfs(self, board, visited, x, y):
         for dx, dy in zip((1, 0, -1, 0), (0, 1, 0, -1)):
             newX, newY = x + dx, y + dy
-            if not visited[newX][newY]:
+            if 0 <= newX < len(board) and 0 <= newY < len(board[0]) \
+                    and not visited[newX][newY] and board[newX][newY] == 'X':
                 visited[newX][newY] = True
 
 
