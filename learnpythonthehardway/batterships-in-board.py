@@ -95,6 +95,7 @@ class Solution(object):
             if 0 <= newX < len(board) and 0 <= newY < len(board[0]) \
                     and not visited[newX][newY] and board[newX][newY] == 'X':
                 visited[newX][newY] = True
+                self.dfs(board, visited, newX, newY)
 
 
 if __name__ == '__main__':
