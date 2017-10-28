@@ -68,8 +68,7 @@ class Solution(object):
                 if board[i][j] == 'X':
                     if (i > 0 and board[i - 1][j] == 'X') or (j > 0 and board[i][j - 1] == 'X'):
                         continue
-                    else:
-                        cnt += 1
+                    cnt += 1  # optimize the code, else is not necessary
 
         return cnt
 
