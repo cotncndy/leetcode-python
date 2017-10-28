@@ -55,6 +55,23 @@ class Solution(object):
                 res += 1
         return res
 
+    def countBattleships(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: int
+        """
+        row, col = len(board), len(board[0])
+        cnt, visited = 0, [[False] * col for _ in xrange(row)]
+
+        for i in xrange(row):
+            for j in xrange(col):
+                if board[i][j] == 'X' and not visited[i][j]:
+                    if i == 0 or j == 0 or (board[i - 1][j] == '.' and board[i][j - 1] == '.'):
+                        cnt += 1
+                    visited[i][j] = True
+
+        return cnt
+
 if __name__ == '__main__':
     # print Solution().countBattleships(["X..X", "X..X", "X..X"])
     print Solution().countBattleships2(['XX', '..'])
