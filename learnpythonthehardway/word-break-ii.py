@@ -99,7 +99,7 @@ class Solution(object):
         d = defaultdict(list)
         res = []
 
-        def dp(end_index):  # top-down dp , memo, so cool
+        def dp(end_index):  # review top-down dp , memo, so cool
             if end_index in d:
                 return d[end_index]
             if s[:end_index] in wordset:
