@@ -55,7 +55,7 @@ class Solution(object):
                 res += 1
         return res
 
-    def countBattleships(self, board):
+    def countBattleships3(self, board):
         """
         :type board: List[List[str]]
         :rtype: int
@@ -71,6 +71,30 @@ class Solution(object):
                     cnt += 1  # optimize the code, else is not necessary
 
         return cnt
+
+    def countBattleships3(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: int
+        """
+        row, col = len(board), len(board[0])
+        cnt, visited = 0, [[False] * col for _ in xrange(row)]
+
+        for i in xrange(row):
+            for j in xrange(col):
+                if board[i][j] == 'X' and not visited[i][j]:
+                    visited[i][j] = True
+                    cnt += 1
+                    self.dfs(board, visited, i, j)
+
+        return cnt
+
+    def dfs(self, board, visited, x, y):
+        for dx, dy in zip((1, 0, -1, 0), (0, 1, 0, -1)):
+            newX, newY = x + dx, y + dy
+            if not visited[newX][newY]:
+                visited[newX][newY] = True
+
 
 if __name__ == '__main__':
     # print Solution().countBattleships(["X..X", "X..X", "X..X"])
