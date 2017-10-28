@@ -66,7 +66,9 @@ class Solution(object):
         for i in xrange(row):
             for j in xrange(col):
                 if board[i][j] == 'X':
-                    if (i > 0 and board[i - 1][j] == '.') or (j > 0 and board[i][j - 1] == '.'):
+                    if (i > 0 and board[i - 1][j] == 'X') or (j > 0 and board[i][j - 1] == 'X'):
+                        continue
+                    else:
                         cnt += 1
 
         return cnt
