@@ -23,7 +23,7 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
-        cnts, clues, nums, res = collections.defaultdict(int), ['z', 'w', 'u', 'x', 'g', 'o', 'r', 'f', 's', 'n'], \
+        cnts, clues, nums, res = collections.defaultdict(int), ['z', 'w', 'u', 'x', 'g', 'o', 'r', 'f', 's', 'i'], \
                                  ['0', '2', '4', '6', '8', '1', '3', '5', '7', '9'], ""
         mappings = ['zero', 'two', 'four', 'six', 'eight', 'one', 'three', 'five', 'seven', 'nine']
         for c in s:
@@ -42,3 +42,4 @@ class Solution(object):
 
 if __name__ == '__main__':
     print Solution().originalDigits('owoztneoer')
+    print Solution().originalDigits('nnei')
