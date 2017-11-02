@@ -42,6 +42,47 @@ class Solution(object):
 
         return area
 
+    def maximalRectangle2(self, matrix):
+        """
+        :type matrix: List[List[str]]
+        :rtype: int
+        """
+        if len(matrix) == 0 or len(matrix[0]) == 0:
+            return 0
+        row, col = len(matrix), len(matrix[0])
+        dp, res = [0] * col, float('-inf')
+
+        for i in xrange(row):
+            for j in xrange(col):
+                if matrix[i][j] == '1':
+                    if i == 0:
+                        dp[j] = 1
+                    else:
+                        dp[j] += 1
+                else:
+                    dp[j] = 0
+
+            res = max(res, self.findMaxRec(dp))
+
+        return res
+
+    def findMaxRec(self, dp):
+        stack, maxArea = [], 0
+        a, i = [], 0
+        a.extend(dp)
+        a.extend([0])
+        while i < len(a):
+            if not stack or dp[stack[-1]] <= a[i]:
+                stack.append(i)
+                i += 1
+            else:
+                maxArea = max(maxArea, (i - stack[-1]) * a[stack[-1]])
+                stack.pop()
+
+        return maxArea
+
 
 if __name__ == '__main__':
-    print Solution().maximalRectangle(["10100", "10111", "11111", "10010"])
+    print Solution().maximalRectangle2(["10100", "10111", "11111", "10010"])
+    # print Solution().maximalRectangle2(["1"])
+    # print Solution().findMaxRec([3,1,2,2,2,0])

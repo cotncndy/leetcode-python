@@ -37,11 +37,36 @@ class Solution:
 
         return node
 
+    def buildTree2(self, inorder, postorder):
+        """
+        :type inorder: List[int]
+        :type postorder: List[int]
+        :rtype: TreeNode
+        """
+        if not inorder and not postorder:
+            return None
+
+        idx = -1
+        if len(postorder) == 1:
+            return TreeNode(postorder[0])
+
+        for i, k in enumerate(inorder):
+            if postorder[-1] == k:
+                idx = i
+                break
+        root = TreeNode(postorder[-1])
+        left_inorder, right_inorder = inorder[0:idx], inorder[idx + 1:]
+        left_postorder, right_postorder = postorder[0:idx], \
+                                          postorder[idx:len(postorder) - 1]
+        root.left, root.right = self.buildTree2(left_inorder, left_postorder), \
+                                self.buildTree2(right_inorder, right_postorder)
+        return root
+
 
 if __name__ == "__main__":
-    inorder = [2, 1, 3]
-    postorder = [2, 3, 1]
-    result = Solution().buildTree(inorder, postorder)
+    inorder = [1, 2, 3, 4]
+    postorder = [2, 1, 4, 3]
+    result = Solution().buildTree2(inorder, postorder)
     print result.val
     print result.left.val
     print result.right.val
