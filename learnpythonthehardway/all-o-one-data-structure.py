@@ -75,11 +75,11 @@ class AllOne(object):
             return
 
         t = self.map[key]
-        if t.prev.val == t.val - 1:
-            t.prev.set.add(key)
-            self.map[key] = t.prev
-        else:
-            if t.val > 1:
+        if t.val > 1:
+            if t.prev.val == t.val - 1:
+                t.prev.set.add(key)
+                self.map[key] = t.prev
+            else:
                 k = Node(t.val - 1)
                 k.set.add(key)
                 self.insert(t.prev, t, k)
@@ -88,6 +88,8 @@ class AllOne(object):
         t.set.remove(key)
         if not len(t.set):
             self.delete(t)
+        if t.val == 1:  # bugfixed, this little sucker, waste me a lot of time
+            del self.map[key]
 
     def getMaxKey(self):
         """
@@ -107,15 +109,16 @@ class AllOne(object):
 if __name__ == '__main__':
     obj = AllOne()
     obj.inc("a")
-    obj.inc("b")
-    obj.inc("b")
-    obj.inc("c")
-    obj.inc("c")
-    obj.inc("c")
-    obj.dec("b")
-    obj.dec("b")
+    # obj.inc("b")
+    # obj.inc("b")
+    # obj.inc("c")
+    # obj.inc("c")
+    # obj.inc("c")
+    # obj.dec("b")
+    # obj.dec("b")
     print obj.getMinKey()
     obj.dec('a')
+    obj.inc('c')
     print obj.getMaxKey()
     print obj.getMinKey()
 
