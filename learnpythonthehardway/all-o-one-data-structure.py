@@ -33,6 +33,7 @@ class AllOne(object):
 
     def delete(self, cur):
         cur.prev.next, cur.next.prev = cur.next, cur.prev
+        cur.next, cur.prev = None, None
 
     def inc(self, key):
         """
@@ -78,9 +79,11 @@ class AllOne(object):
             t.prev.set.add(key)
             self.map[key] = t.prev
         else:
-            k = Node(t.val - 1)
-            self.insert(t.prev, t, k)
-            self.map[key] = k
+            if t.val > 1:
+                k = Node(t.val - 1)
+                k.set.add(key)
+                self.insert(t.prev, t, k)
+                self.map[key] = k
 
         t.set.remove(key)
         if not len(t.set):
@@ -103,19 +106,19 @@ class AllOne(object):
 
 if __name__ == '__main__':
     obj = AllOne()
+    obj.inc("a")
+    obj.inc("b")
+    obj.inc("b")
+    obj.inc("c")
+    obj.inc("c")
+    obj.inc("c")
+    obj.dec("b")
+    obj.dec("b")
+    print obj.getMinKey()
+    obj.dec('a')
     print obj.getMaxKey()
     print obj.getMinKey()
-    obj.inc("1")
-    obj.inc("2")
-    obj.inc("1")
-    print obj.getMaxKey()
-    print obj.getMinKey()
-    obj.dec("1")
-    print obj.getMaxKey()
-    print obj.getMinKey()
-    obj.dec("1")
-    print obj.getMaxKey()
-    print obj.getMinKey()
+
 
 
 
