@@ -17,17 +17,26 @@ class MyCalendar(object):
         :type end: int
         :rtype: bool
         """
-        i = 0
-        while i < len(self.res):
-            if self.res[i].start <= start < self.res[i].end or self.res[i].start < end < self.res[i].end \
-                    or (start <= self.res[i].start and end >= self.res[i].end):
+        if not self.res:
+            self.res.append(Interval(start, end))
+            return True
+        left, right = 0, len(self.res)
+        while left < right:
+            mid = left + (right - left) / 2
+            if start == self.res[mid].start:
                 return False
-            if i + 1 < len(self.res) and self.res[i].end <= start and self.res[i + 1].start >= end:
-                self.res = self.res[0:i + 1] + [Interval(start, end)] + self.res[i + 1:]
-                return True
-            i += 1
+            if start < self.res[mid].start:
+                right = mid
+            else:
+                left = mid + 1
 
-        self.res.append(Interval(start, end))
+        # print left
+        if self.res and (left > 0 and self.res[left - 1].start <= start < self.res[left - 1].end or self.res[
+                left - 1].start < end <
+            self.res[left - 1].end) \
+                or (left < len(self.res) and start <= self.res[left].start and end > self.res[left].start):
+            return False
+        self.res.insert(left, Interval(start, end))
 
         return True
 
@@ -39,6 +48,13 @@ if __name__ == '__main__':
     # print a.book(4, 17)
     # print a.book(35, 48)
     # print a.book(8, 25)
-    print a.book(10, 20)
-    print a.book(15, 25)
-    print a.book(20, 30)
+    # print a.book(10, 20)
+    # print a.book(15, 25)
+    # print a.book(20, 30)
+    print a.book(47, 50)
+    print a.book(33, 41)
+    print a.book(39, 45)
+    print a.book(33, 42)
+    print a.book(25, 32)
+    print a.book(26, 35)
+    print a.book(19, 25)
