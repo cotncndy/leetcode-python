@@ -61,7 +61,8 @@ class MyCalendarTwo(object):
         l = left
         while l and self.res[l][1] >= start:
             l -= 1
-        l += 1
+        if self.res[l][1] < start:
+            l += 1
 
         r = left
         while r < len(self.res) and self.res[r][0] < end:
@@ -90,6 +91,9 @@ if __name__ == '__main__':
     print a.book(27, 43)
     print a.book(5, 21)
     print a.book(30, 40)
+    print a.book(14, 29)
+    print a.book(3, 19)
+    print a.book(3, 14)
 
 
 
