@@ -58,33 +58,38 @@ class MyCalendarTwo(object):
             self.res.append((start, end))
             return True
 
-        intersec = self.interRange((start, end), self.res[left])
+        l = left
+        while l and self.res[l][1] >= start:
+            l -= 1
+        l += 1
 
-        if (left > 0 and self.interRange(intersec, self.res[left - 1]) is not None) or (left + 1 < len(self.res) and \
-                                                                                                    self.interRange(
-                                                                                                        intersec,
-                                                                                                        self.res[
-                                                                                                                left
-                                                                                                                + 1])
-                                                                                                is not None):
-            return False
+        r = left
+        while r < len(self.res) and self.res[r][0] < end:
+            r += 1
+        for i in xrange(l, r):
+            for j in xrange(i + 1, r):
+                intersect = self.interRange(self.res[i], self.res[j])
+                if self.interRange((start, end), intersect) is not None:
+                    return False
+
         self.res.insert(left, (start, end))
-
         return True
 
     def interRange(self, range1, range2):
-        if range1[1] < range2[0] or range2[1] < range1[0]:
+        if range1 is None or range2 is None:
+            return None
+        if range1[1] <= range2[0] or range2[1] <= range1[0]:
             return None
         return (max(range1[0], range2[0]), min(range1[1], range2[1]))
 
 
 if __name__ == '__main__':
     a = MyCalendarTwo()
-    print a.book(10, 20)
-    print a.book(50, 60)
-    print a.book(10, 40)
-    print a.book(5, 15)
-    print a.book(5, 10)
+    print a.book(24, 40)
+    print a.book(43, 50)
+    print a.book(27, 43)
+    print a.book(5, 21)
+    print a.book(30, 40)
 
 
 
