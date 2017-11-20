@@ -58,21 +58,11 @@ class MyCalendarTwo(object):
             else:
                 right = mid
 
-
-        l = left
-        while l and self.res[l - 1][1] >= start:
-            l -= 1
-
-
-        r = left
-        while r < len(self.res) and self.res[r][0] < end:
-            r += 1
-        for i in xrange(l, r):
-            for j in xrange(i + 1, r):
+        for i in xrange(len(self.res)):
+            for j in xrange(i + 1, len(self.res)):
                 intersect = self.interRange(self.res[i], self.res[j])
                 if self.interRange((start, end), intersect) is not None:
                     return False
-
         self.res.insert(left, (start, end))
         return True
 
@@ -88,34 +78,40 @@ if __name__ == '__main__':
     a = MyCalendarTwo()
     # print a.book(10,20)
     # print a.book(50,60)
-    print a.book(47, 50)
-    print a.book(1, 10)
-    print a.book(27, 36)
-    print a.book(40, 47)
-    print a.book(20, 27)
-    print a.book(15, 23)
-    print a.book(10, 18)
-    print a.book(27, 36)
-    print a.book(17, 25)
-    print a.book(8, 17)
-    print a.book(24, 33)
-    print a.book(23, 28)
-    print a.book(21, 27)
-    print a.book(47, 50)
-    print a.book(14, 21)
-    print a.book(26, 32)
-    print a.book(16, 21)
-    print a.book(2, 7)
-    print a.book(24, 33)
-    print a.book(6, 13)
-    print a.book(44, 50)
-    print a.book(33, 39)
-    print a.book(30, 36)
-    print a.book(6, 15)
-    print a.book(21, 27)
-    print a.book(49, 50)
-    print a.book(38, 45)
-    print a.book(4, 12)
+    # print a.book(47, 50)
+    # print a.book(1, 10)
+    # print a.book(27, 36)
+    # print a.book(40, 47)
+    # print a.book(20, 27)
+    # print a.book(15, 23)
+    # print a.book(10, 18)
+    # print a.book(27, 36)
+    # print a.book(17, 25)
+    # print a.book(8, 17)
+    # print a.book(24, 33)
+    # print a.book(23, 28)
+    # print a.book(21, 27)
+    # print a.book(47, 50)
+    # print a.book(14, 21)
+    # print a.book(26, 32)
+    # print a.book(16, 21)
+    # print a.book(2, 7)
+    # print a.book(24, 33)
+    # print a.book(6, 13)
+    # print a.book(44, 50)
+    # print a.book(33, 39)
+    # print a.book(30, 36)
+    # print a.book(6, 15)
+    # print a.book(21, 27)
+    # print a.book(49, 50)
+    # print a.book(38, 45)
+    # print a.book(4, 12)
+    l = [(5, 17), (16, 26), (20, 37), (33, 44), (42, 61), (44, 55), (58, 73), (70, 82), (77, 87), (85, 95), (91,
+                                                                                                             100),
+         (96, 100), (60, 70)]
+    for j in l:
+        print a.book(j[0], j[1])
+
 
 
 
