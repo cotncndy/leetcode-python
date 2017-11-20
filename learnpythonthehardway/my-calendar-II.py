@@ -43,6 +43,10 @@ class MyCalendarTwo(object):
 
         """
 
+        if not self.res:
+            self.res.append((start, end))
+            return True
+
         left, right = 0, len(self.res)
         while left < right:
             mid = left + (right - left) / 2
@@ -54,15 +58,11 @@ class MyCalendarTwo(object):
             else:
                 right = mid
 
-        if left == len(self.res):
-            self.res.append((start, end))
-            return True
 
         l = left
-        while l and self.res[l][1] >= start:
+        while l and self.res[l - 1][1] >= start:
             l -= 1
-        if self.res[l][1] < start:
-            l += 1
+
 
         r = left
         while r < len(self.res) and self.res[r][0] < end:
@@ -86,14 +86,37 @@ class MyCalendarTwo(object):
 
 if __name__ == '__main__':
     a = MyCalendarTwo()
-    print a.book(24, 40)
-    print a.book(43, 50)
-    print a.book(27, 43)
-    print a.book(5, 21)
-    print a.book(30, 40)
-    print a.book(14, 29)
-    print a.book(3, 19)
-    print a.book(3, 14)
+    # print a.book(10,20)
+    # print a.book(50,60)
+    print a.book(47, 50)
+    print a.book(1, 10)
+    print a.book(27, 36)
+    print a.book(40, 47)
+    print a.book(20, 27)
+    print a.book(15, 23)
+    print a.book(10, 18)
+    print a.book(27, 36)
+    print a.book(17, 25)
+    print a.book(8, 17)
+    print a.book(24, 33)
+    print a.book(23, 28)
+    print a.book(21, 27)
+    print a.book(47, 50)
+    print a.book(14, 21)
+    print a.book(26, 32)
+    print a.book(16, 21)
+    print a.book(2, 7)
+    print a.book(24, 33)
+    print a.book(6, 13)
+    print a.book(44, 50)
+    print a.book(33, 39)
+    print a.book(30, 36)
+    print a.book(6, 15)
+    print a.book(21, 27)
+    print a.book(49, 50)
+    print a.book(38, 45)
+    print a.book(4, 12)
+
 
 
 
