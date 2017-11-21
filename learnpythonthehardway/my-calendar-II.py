@@ -35,6 +35,7 @@ import collections
 class MyCalendarTwo(object):
     def __init__(self):
         self.res = []
+        self.overlap = []
         self.res2 = collections.defaultdict(int)
 
     def book(self, start, end):
@@ -75,6 +76,7 @@ class MyCalendarTwo(object):
             return None
         return (max(range1[0], range2[0]), min(range1[1], range2[1]))
 
+    # the same algorithm is worked in c++ , java (use TreeMap , 510ms), looks like python is slow by nature.
     def book2(self, start, end):
         self.res2[start] += 1
         self.res2[end] -= 1
@@ -87,6 +89,22 @@ class MyCalendarTwo(object):
                 return False
 
         return True
+
+    def book3(self, start, end):
+        for range in self.overlap:
+            if self.interRange((start, end), range) is not None:
+                return False
+
+        for range in self.res:
+            intersect = self.interRange((start, end), range)
+            if intersect is not None:
+                self.overlap.append(intersect)
+
+        self.res.append((start, end))
+
+        return True
+
+
 
 
 
