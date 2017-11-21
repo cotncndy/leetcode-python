@@ -29,11 +29,13 @@
 #
 # The number of calls to MyCalendar.book per test case will be at most 1000.
 # In calls to MyCalendar.book(start, end), start and end are integers in the range [0, 10^9].
+import collections
 
 
 class MyCalendarTwo(object):
     def __init__(self):
         self.res = []
+        self.res2 = collections.defaultdict(int)
 
     def book(self, start, end):
         """
@@ -72,6 +74,22 @@ class MyCalendarTwo(object):
         if range1[1] <= range2[0] or range2[1] <= range1[0]:
             return None
         return (max(range1[0], range2[0]), min(range1[1], range2[1]))
+
+    def book2(self, start, end):
+        self.res2[start] += 1
+        self.res2[end] -= 1
+        acc = 0
+        for k, v in self.res2.items():
+            acc += v
+            if acc >= 3:
+                self.res2[start] -= 1
+                self.res2[end] += 1
+                return False
+
+        return True
+
+
+
 
 
 if __name__ == '__main__':
