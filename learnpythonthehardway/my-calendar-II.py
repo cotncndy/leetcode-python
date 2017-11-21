@@ -79,7 +79,7 @@ class MyCalendarTwo(object):
         self.res2[start] += 1
         self.res2[end] -= 1
         acc = 0
-        for k, v in self.res2.items():
+        for k, v in self.res2.items():  # this is not correct, the keys need to be sort
             acc += v
             if acc >= 3:
                 self.res2[start] -= 1
@@ -124,11 +124,10 @@ if __name__ == '__main__':
     # print a.book(49, 50)
     # print a.book(38, 45)
     # print a.book(4, 12)
-    l = [(5, 17), (16, 26), (20, 37), (33, 44), (42, 61), (44, 55), (58, 73), (70, 82), (77, 87), (85, 95), (91,
-                                                                                                             100),
-         (96, 100), (60, 70)]
+    l = [(5, 17), (16, 26), (20, 37), (33, 44), (42, 61), (44, 55), (58, 73),
+         (70, 82), (77, 87), (85, 95), (91, 100), (96, 100), (60, 70)]
     for j in l:
-        print a.book(j[0], j[1])
+        print a.book2(j[0], j[1])
 
 
 
