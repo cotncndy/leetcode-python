@@ -89,7 +89,7 @@ class Solution(object):
             if memo[i][j] is not None:
                 return memo[i][j]
             ans = 1
-            if i < j:
+            if i <= j:  # bugfixed should be i <= j instead of i < j
                 for x in xrange(4):  # only a,b,c,d 4 chars
                     i0 = next[i][x]
                     j0 = prev[j][x]
@@ -109,4 +109,4 @@ class Solution(object):
 
 if __name__ == '__main__':
     # print Solution().countPalindromicSubsequences('abbcab')
-    print Solution().countPalindromicSubsequences2('b')
+    print Solution().countPalindromicSubsequences2('')
