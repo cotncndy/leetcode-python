@@ -79,7 +79,7 @@ class MyCalendarTwo(object):
         self.res2[start] += 1
         self.res2[end] -= 1
         acc = 0
-        for k, v in self.res2.items():  # this is not correct, the keys need to be sort
+        for k, v in sorted(self.res2.items()):  # this is not correct, the keys need to be sort
             acc += v
             if acc >= 3:
                 self.res2[start] -= 1
