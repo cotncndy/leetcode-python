@@ -15,7 +15,7 @@ class Solution(object):
             for j in xrange(n):
                 if k != -1 and S[j] == T[i]:
                     dp[i][j] = k
-                else:
+                if dp[i - 1][j] != -1:
                     k = dp[i - 1][j]
 
         start, length = -1, float('inf')
