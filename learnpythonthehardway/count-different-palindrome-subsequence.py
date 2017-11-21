@@ -63,7 +63,50 @@ class Solution(object):
 
         return dp(0, N - 1) - 1
 
+    def countPalindromicSubsequences2(self, S):
+        """
+        :type S: str
+        :rtype: int
+        """
+        N = len(S)
+        last, prev, next = [None] * 4, [None] * N, [None] * N
+
+        A = [ord(i) - ord('a') for i in S]
+
+        for i in xrange(N):
+            last[A[i]] = i
+            prev[i] = tuple(last)
+
+        last = [None] * 4
+
+        for i in xrange(N - 1, -1, -1):
+            last[A[i]] = i
+            next[i] = tuple(last)
+
+        MOOD, memo = 10 ** 9 + 7, [[None] * N for _ in xrange(N)]
+
+        def dp(i, j):
+            if memo[i][j] is not None:
+                return memo[i][j]
+            ans = 1
+            if i < j:
+                for x in xrange(4):  # only a,b,c,d 4 chars
+                    i0 = next[i][x]
+                    j0 = prev[j][x]
+
+                    if i <= i0 <= j:  # there is an 'x' (a or b or c or d) there
+                        ans += 1
+                    if None < i0 < j0:
+                        ans += dp(i0 + 1, j0 - 1)
+
+            ans %= MOOD
+            memo[i][j] = ans
+
+            return memo[i][j]
+
+        return dp(0, N - 1) - 1
+
 
 if __name__ == '__main__':
     # print Solution().countPalindromicSubsequences('abbcab')
-    print Solution().countPalindromicSubsequences('a')
+    print Solution().countPalindromicSubsequences2('b')
