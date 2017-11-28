@@ -29,7 +29,7 @@ class Solution(object):
 
         return asteroids
 
-    def asteroidCollision2(self, asteroids):
+    def asteroidCollision2(self, asteroids):  # using stack, why I didn't think out this way.
         res = []
         for k in asteroids:
             if len(res) == 0 or k >= 0:
