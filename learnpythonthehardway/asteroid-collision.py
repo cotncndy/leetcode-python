@@ -29,11 +29,36 @@ class Solution(object):
 
         return asteroids
 
+    def asteroidCollision2(self, asteroids):
+        res = []
+        for k in asteroids:
+            if len(res) == 0 or k >= 0:
+                res.append(k)
+            elif k + res[-1] > 0:
+                continue
+            elif k + res[-1] < 0:
+                while len(res) > 0 and res[-1] > 0 and k + res[-1] < 0:
+                    res.pop()
+                if res[-1] < 0 or len(res) == 0:
+                    res.append(k)
+                elif res[-1] + k > 0:
+                    continue
+                elif res[-1] + k == 0:
+                    res.pop()
+                    continue
+                else:
+                    res.append(k)
+            else:  # k + res[-1] == 0
+                res.pop()
+                continue
+
+        return res
+
 
 if __name__ == '__main__':
-    print Solution().asteroidCollision([5, 10, -5])
-    print Solution().asteroidCollision([8, -8])
-    print Solution().asteroidCollision([10, 2, -5])
-    print Solution().asteroidCollision([-2, 1, -2, -2])
-    print Solution().asteroidCollision([-2, 2, -1, -2])
-    print Solution().asteroidCollision([-2, 1, -1, 2])
+    print Solution().asteroidCollision2([5, 10, -5])
+    print Solution().asteroidCollision2([8, -8])
+    print Solution().asteroidCollision2([10, 2, -5])
+    print Solution().asteroidCollision2([-2, 1, -2, -2])
+    print Solution().asteroidCollision2([-2, 2, -1, -2])
+    print Solution().asteroidCollision2([-2, 1, -1, 2])
