@@ -39,7 +39,7 @@ class Solution(object):
             elif k + res[-1] < 0:
                 while len(res) > 0 and res[-1] > 0 and k + res[-1] < 0:
                     res.pop()
-                if res[-1] < 0 or len(res) == 0:
+                if len(res) == 0 or res[-1] < 0 == 0:
                     res.append(k)
                 elif res[-1] + k > 0:
                     continue
@@ -62,3 +62,4 @@ if __name__ == '__main__':
     print Solution().asteroidCollision2([-2, 1, -2, -2])
     print Solution().asteroidCollision2([-2, 2, -1, -2])
     print Solution().asteroidCollision2([-2, 1, -1, 2])
+    print Solution().asteroidCollision2([1, -2, -2, -2])
