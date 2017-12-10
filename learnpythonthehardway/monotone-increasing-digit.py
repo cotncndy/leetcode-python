@@ -29,6 +29,7 @@ class Solution(object):
                 if ''.join(res) + temp > str_n:
                     res.append(str(j - 1))
                     break
+            else:  # knowledge notice the else usgae here, there is no if here
                 res.append('9')
         return int(''.join(res))
 
