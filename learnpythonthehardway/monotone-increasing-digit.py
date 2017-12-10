@@ -29,8 +29,8 @@ class Solution(object):
                 if ''.join(res) + temp > str_n:
                     res.append(str(j - 1))
                     break
+                res.append('9')
         return int(''.join(res))
-
 
 if __name__ == '__main__':
     print Solution().monotoneIncreasingDigits(1234)
