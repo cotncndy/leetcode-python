@@ -31,6 +31,8 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        if not nums:
+            return 0
         dict = collections.defaultdict(int)
 
         for i in nums:
