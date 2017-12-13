@@ -45,8 +45,11 @@ class Solution(object):
                     res[i][i + d] = newNums[i] * dict[newNums[i]]
                 else:
                     for k in xrange(i, i + d + 1):
-                        a = res[i][k - 2] if k - 2 >= i else 0
-                        b = res[k + 2][i + d] if k + 2 <= i + d else 0
+                        a, b = res[i][k - 1] if k >= i + 1 else 0, res[k + 1][i + d] if k + 1 <= i + d else 0
+                        if k > 0 and newNums[k] == newNums[k - 1] + 1:
+                            a = res[i][k - 2] if k - 2 >= i else 0
+                        if k + 1 < n and newNums[k] == newNums[k + 1] - 1:
+                            b = res[k + 2][i + d] if k + 2 <= i + d else 0
                         temp = a + newNums[k] * dict[newNums[k]] + b
                         res[i][i + d] = max(res[i][i + d], temp)
 
@@ -55,3 +58,4 @@ class Solution(object):
 
 if __name__ == '__main__':
     print Solution().deleteAndEarn([5, 7, 2])
+    print Solution().deleteAndEarn([2, 2, 3, 3, 3, 4])
