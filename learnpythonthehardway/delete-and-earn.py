@@ -78,10 +78,30 @@ class Solution(object):
 
         return max(using, avoiding)
 
+    def deleteAndEarn3(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        count = collections.Counter(nums)
+        using, avoiding, prev = 0, 0, -1
+
+        for k in sorted(count):
+            m = max(using, avoiding)
+            if k - 1 == prev:
+                using = avoiding + k * count[k]
+            else:
+                using = m + k * count[k]
+            prev, avoiding = k, m
+
+        return max(using, avoiding)
+
+
+
 
 
 
 if __name__ == '__main__':
     print Solution().deleteAndEarn2([5, 7, 2])
     print Solution().deleteAndEarn2([2, 2, 3, 3, 3, 4])
-    print Solution().deleteAndEarn([2, 2, 3, 3, 3, 4])
+    print Solution().deleteAndEarn3([2, 2, 3, 3, 3, 4])
