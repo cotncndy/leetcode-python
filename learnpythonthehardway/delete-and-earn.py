@@ -58,6 +58,7 @@ class Solution(object):
 
         return res[0][n - 1]
 
+    # O(N+W) w - range 1-10000
     def deleteAndEarn2(self, nums):
         """
         :type nums: List[int]
@@ -78,6 +79,7 @@ class Solution(object):
 
         return max(using, avoiding)
 
+    # O(NlogN) , somehow it is faster than the prevous one
     def deleteAndEarn3(self, nums):
         """
         :type nums: List[int]
