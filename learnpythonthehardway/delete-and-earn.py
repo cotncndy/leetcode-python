@@ -26,6 +26,7 @@ import collections
 
 
 class Solution(object):
+    # time complexity O(N^2)
     def deleteAndEarn(self, nums):
         """
         :type nums: List[int]
@@ -57,7 +58,30 @@ class Solution(object):
 
         return res[0][n - 1]
 
+    def deleteAndEarn2(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        count, using, avoiding, prev = [0] * 10001, 0, 0, -1
+
+        for i in nums:
+            count[i] += 1
+
+        for i in xrange(10001):
+            m = max(using, avoiding)
+            if i - 1 != prev:
+                using = m + i * count[i]
+            else:
+                using = avoiding + i * count[i]
+            avoiding, prev = m, i
+
+        return max(using, avoiding)
+
+
+
 
 if __name__ == '__main__':
-    print Solution().deleteAndEarn([5, 7, 2])
+    print Solution().deleteAndEarn2([5, 7, 2])
+    print Solution().deleteAndEarn2([2, 2, 3, 3, 3, 4])
     print Solution().deleteAndEarn([2, 2, 3, 3, 3, 4])
