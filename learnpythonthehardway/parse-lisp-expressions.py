@@ -64,13 +64,14 @@
 # The answer and all intermediate calculations of that answer are guaranteed to fit in a 32-bit integer.
 
 class Solution(object):
+    def __init__(self):
+        self.scope = []
+
     def evaluate(self, expression):
         """
         :type expression: str
         :rtype: int
         """
-        self.scope = []
-
         def parse(exp):
             res, p, st = [], 0, ''
             tmp = exp.split()
@@ -97,21 +98,23 @@ class Solution(object):
                     if exp in self.scope[i]:
                         return self.scope[i][exp]
 
-            self.scope.append({})
-
             st = exp[6:-1] if exp[1] == 'm' else exp[5:-1]
             tokens = parse(st)
             if exp[1] == 'a':
-                return evaluate_iner(tokens[0]) + evaluate_iner(tokens[1])
+                return self.evaluate(tokens[0]) + self.evaluate(tokens[1])
             elif exp[1] == 'm':
-                return evaluate_iner(tokens[0]) * evaluate_iner(tokens[1])
+                return self.evaluate(tokens[0]) * self.evaluate(tokens[1])
             else:
                 for i in xrange(1, len(tokens), 2):
-                    self.scope[-1][tokens[i - 1]] = evaluate_iner(tokens[i])  # fix it
+                    self.scope[-1][tokens[i - 1]] = self.evaluate(tokens[i])  # fix it
 
-            return evaluate_iner(tokens[-1])
+            return self.evaluate(tokens[-1])
 
-        return evaluate_iner(expression)
+        self.scope.append({})
+        ans = evaluate_iner(expression)
+        self.scope.pop()
+
+        return ans
 
 
 if __name__ == '__main__':
@@ -121,4 +124,5 @@ if __name__ == '__main__':
     # print Solution().evaluate("(let x 2 (mult x (let x 3 y 4 (add x y))))")
     # print Solution().evaluate("(let x 3 x 2 x)")
     # print Solution().evaluate("(let x 1 y 2 x (add x y) (add x y))")
-    print Solution().evaluate("(let x 2 (add (let x 3 (let x 4 x)) x))")
+    # print Solution().evaluate("(let x 2 (add (let x 3 (let x 4 x)) x))")
+    print Solution().evaluate("(let a1 3 b2 (add a1 1) b2)")
