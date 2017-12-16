@@ -120,4 +120,5 @@ if __name__ == '__main__':
     # print Solution().evaluate("(let x 2 (mult x 5))")
     # print Solution().evaluate("(let x 2 (mult x (let x 3 y 4 (add x y))))")
     # print Solution().evaluate("(let x 3 x 2 x)")
-    print Solution().evaluate("(let x 1 y 2 x (add x y) (add x y))")
+    # print Solution().evaluate("(let x 1 y 2 x (add x y) (add x y))")
+    print Solution().evaluate("(let x 2 (add (let x 3 (let x 4 x)) x))")
