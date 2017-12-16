@@ -107,7 +107,7 @@ class Solution(object):
                 return evaluate_iner(tokens[0]) * evaluate_iner(tokens[1])
             else:
                 for i in xrange(1, len(tokens), 2):
-                    self.scope[-1][tokens[i - 1]] = int(tokens[i])
+                    self.scope[-1][tokens[i - 1]] = evaluate_iner(tokens[i])  # fix it
 
             return evaluate_iner(tokens[-1])
 
