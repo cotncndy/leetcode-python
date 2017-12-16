@@ -74,24 +74,27 @@ class Solution(object):
         """
         def parse(exp):
             res, p, st = [], 0, ''
-            tmp = exp.split()
+            tmp = exp.split(' ')
             for s in tmp:
                 for i in s:
                     if i == '(':
                         p += 1
                     elif i == ')':
                         p -= 1
-                    st += i
-                    if p == 0:
-                        res.append(st)
-                        st = ""
-                if p != 0:
+
+                if len(st) > 0:
                     st += ' '
+                st += s
+                if p == 0:
+                    res.append(st)
+                    st = ""
+            if len(st) > 0:
+                res.append(st)
 
             return res
 
         def evaluate_iner(exp):
-            if exp[0] != '-':
+            if exp[0] != '(':
                 if exp.isdigit() or exp[0] == '-':  # 2, -2
                     return int(exp)
                 for i in reversed(xrange(0, len(self.scope))):  # x, y, z...
@@ -118,11 +121,11 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    # print Solution().evaluate("(add 1 2)")
-    # print Solution().evaluate("(mult 3 (add 2 3))")
-    # print Solution().evaluate("(let x 2 (mult x 5))")
-    # print Solution().evaluate("(let x 2 (mult x (let x 3 y 4 (add x y))))")
-    # print Solution().evaluate("(let x 3 x 2 x)")
-    # print Solution().evaluate("(let x 1 y 2 x (add x y) (add x y))")
-    # print Solution().evaluate("(let x 2 (add (let x 3 (let x 4 x)) x))")
+    print Solution().evaluate("(add 1 2)")
+    print Solution().evaluate("(mult 3 (add 2 3))")
+    print Solution().evaluate("(let x 2 (mult x 5))")
+    print Solution().evaluate("(let x 2 (mult x (let x 3 y 4 (add x y))))")
+    print Solution().evaluate("(let x 3 x 2 x)")
+    print Solution().evaluate("(let x 1 y 2 x (add x y) (add x y))")
+    print Solution().evaluate("(let x 2 (add (let x 3 (let x 4 x)) x))")
     print Solution().evaluate("(let a1 3 b2 (add a1 1) b2)")
