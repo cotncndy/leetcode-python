@@ -38,7 +38,7 @@ class Solution(object):
         if range <= 0:
             return
         i = 0
-        while (1 << i) < range:
+        while (1 << (i + 1)) <= range:
             i += 1
         newRange, suffix = 1 << i, str(32 - i)
         res.append(self.num2IpString(num) + "/" + str(suffix))
@@ -53,6 +53,47 @@ class Solution(object):
 
         return count
 
+    def ipToCIDR2(self, ip, rng):
+        """
+        :type ip: str
+        :type range: int
+        :rtype: List[str]
+        """
+        res = []
+        MX = 256
+
+        def toip(n):
+            ip = []
+            while len(ip) < 4:
+                ip.append(str(n % MX))
+                n /= MX
+            return ".".join(reversed(ip))
+
+        def toint(ip):
+            n = 0
+            for nn in map(int, ip.split(".")):
+                n *= MX
+                n += nn
+            return n
+
+        start = toint(ip)
+        end = start + rng
+
+        def maxcomm(start, end):
+            for b in xrange(32, -1, -1):
+                mask = ((1 << b) - 1)
+                if start & mask == 0 and start | mask < end:
+                    return 32 - b, start | mask
+            assert (False)
+
+        while start < end:
+            comm, newstart = maxcomm(start, end)
+            res.append("{}/{}".format(toip(start), comm))
+            start = newstart + 1
+
+        return res
+
 
 if __name__ == '__main__':
-    print Solution().ipToCIDR("255.0.0.7", 10)
+    print Solution().ipToCIDR2("255.0.0.7", 10)
+    print Solution().ipToCIDR2("117.145.102.62", 8)
