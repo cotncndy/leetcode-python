@@ -38,7 +38,7 @@ class Solution(object):
         if range <= 0:
             return
         i = 0
-        while (1 << (i + 1)) <= range:
+        while (1 << (i + 1)) <= range:  # bugfixed shoud be 1<<(i+1) instead of 1 << i, also should be <= instead of <<
             i += 1
         newRange, suffix = 1 << i, str(32 - i)
         res.append(self.num2IpString(num) + "/" + str(suffix))
