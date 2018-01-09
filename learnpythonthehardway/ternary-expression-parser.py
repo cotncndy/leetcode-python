@@ -26,22 +26,6 @@ class Solution(object):
 
         return str(stack.pop())
 
-    def parseTernary2(self, expression):
-        st = []
-        for i in reversed(xrange(0, len(expression))):
-            if expression[i] == '?':
-                first, second = st.pop(), st.pop()
-                if expression[i - 1] == 'T':
-                    st.append(first)
-                else:
-                    st.append(second)
-
-            elif expression[i] == ':' or (i < len(expression) - 1 and expression[i + 1] == '?'):
-                continue
-            else:
-                st.append(expression[i])
-
-        return str(st.pop())
 
 
 
