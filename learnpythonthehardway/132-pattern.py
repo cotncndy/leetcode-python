@@ -46,3 +46,16 @@ class Solution(object):
                 st.append(nums[i])
 
         return False
+
+    def find132pattern2(self, nums):
+        st = []
+        for i in nums:
+            if not st or i > st[-1]:
+                st.append(i)
+            while st and i < st[-1]:
+                st.pop()
+            if st:
+                return True
+            st.append(i)
+
+        return False
