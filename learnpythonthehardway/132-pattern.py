@@ -52,6 +52,7 @@ class Solution(object):
         for i in nums:
             if not st or i > st[-1]:
                 st.append(i)
+                continue
             while st and i < st[-1]:
                 st.pop()
             if st:
