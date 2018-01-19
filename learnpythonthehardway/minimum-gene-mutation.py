@@ -52,7 +52,7 @@ class Solution(object):
         for s in bank:
             map[s] = float('inf')
         map[start] = 0
-        map[end] = float('inf')  # bugfixed end might not be in the bank
+        # map[end] = float('inf')  # bugfixed end might not be in the bank
 
         que.append(start)
 
@@ -77,7 +77,7 @@ class Solution(object):
                     que.append(t)
                     map[t] = map[w] + 1
 
-        return res
+        return res if res < float('inf') else -1
 
 
 if __name__ == '__main__':
