@@ -80,4 +80,6 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print Solution().minMutation("AAAAACCC", "AACCCCCC", ["AAAACCCC", "AAACCCCC", "AACCCCCC"])
+    print Solution().minMutation("AAAAAAAA", "CCCCCCCC",
+                                 ["AAAAAAAA", "AAAAAAAC", "AAAAAACC", "AAAAACCC", "AAAACCCC", "AACACCCC", "ACCACCCC",
+                                  "ACCCCCCC", "CCCCCCCA"])
