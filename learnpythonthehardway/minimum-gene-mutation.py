@@ -37,6 +37,8 @@
 # bank: ["AAAACCCC", "AAACCCCC", "AACCCCCC"]
 #
 # return: 3
+
+# what is BFS 's time complexity and space complexity?
 import collections
 
 
