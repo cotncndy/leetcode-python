@@ -48,13 +48,15 @@ class Solution(object):
         return False
 
     def find132pattern2(self, nums):
-        st = []
+        st, third = [], float('inf')
         for i in nums:
+            if i > third:
+                return True
             if not st or i > st[-1]:
                 st.append(i)
                 continue
             while st and i < st[-1]:
-                st.pop()
+                third = st.pop()
             if st:
                 return True
             st.append(i)
