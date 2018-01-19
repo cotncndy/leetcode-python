@@ -49,9 +49,10 @@ class Solution(object):
         :rtype: int
         """
         que, map, res = collections.deque(), collections.defaultdict(int), float('inf')
-        map[start] = 0
         for s in bank:
-            map[s] = [float('inf')]
+            map[s] = float('inf')
+        map[start] = 0
+        map[end] = float('inf')  # bugfixed end might not be in the bank
 
         que.append(start)
 
