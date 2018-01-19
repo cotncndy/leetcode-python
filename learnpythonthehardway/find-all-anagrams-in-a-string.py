@@ -28,6 +28,9 @@
 # The substring with start index = 0 is "ab", which is an anagram of "ab".
 # The substring with start index = 1 is "ba", which is an anagram of "ab".
 # The substring with start index = 2 is "ab", which is an anagram of "ab".
+
+# Time complexity : O(len(s))
+# Space complexity : O(len(p))  - we use map to store the pattern
 import collections
 
 
@@ -64,7 +67,5 @@ class Solution(object):
             right += 1
 
         return res
-
-
 if __name__ == '__main__':
     print Solution().findAnagrams("aebcbac", "cab")
