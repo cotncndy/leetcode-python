@@ -97,3 +97,5 @@ if __name__ == '__main__':
     print Solution().strongPasswordChecker2("AaAbbbcc")
     print Solution().strongPasswordChecker("aaa111")
     print Solution().strongPasswordChecker2("aaa111")
+    print Solution().strongPasswordChecker("1010101010aaaB10101010")
+    print Solution().strongPasswordChecker2("1010101010aaaB10101010")
