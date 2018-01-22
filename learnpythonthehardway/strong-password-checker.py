@@ -29,7 +29,7 @@ class Solution(object):
         if len(s) > 6:
             res += len(s) - 20
         start, change = 0, 0
-        while start < 20 - 3:
+        while start < min(20, len(s)) - 3:
             if s[start] == s[start + 1] and s[start + 1] == s[start + 2]:
                 change += 1
                 start += 3
