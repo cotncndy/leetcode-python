@@ -26,7 +26,7 @@ class Solution(object):
 
         if len(s) < 6:
             return max(missingType, 6 - len(s))
-        if len(s) > 6:
+        if len(s) > 20:
             res += len(s) - 20
         start, change = 0, 0
         while start < min(20, len(s)) - 3:
