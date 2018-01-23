@@ -37,7 +37,8 @@ class Solution(object):
         Returns a random shuffling of the array.
         :rtype: List[int]
         """
-        temp = self._arr
+        temp = []
+        temp.extend(self._arr)  # bugfixed notice copy by-value vs copy by-reference
         for i in reversed(xrange(len(temp))):
             j = random.randint(0, i)
             temp[i], temp[j] = temp[j], temp[i]
