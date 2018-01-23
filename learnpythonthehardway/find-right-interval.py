@@ -45,7 +45,7 @@ class Solution(object):
         :type intervals: List[Interval]
         :rtype: List[int]
         """
-        map, stack, res = collections.defaultdict(int), [], []
+        map, stack, res = collections.defaultdict(int), [], [-1] * len(intervals)
         for i, k in enumerate(intervals):
             map[k] = i
         intervals.sort(key=lambda x: x.start)
@@ -55,7 +55,6 @@ class Solution(object):
                 res[map[stack[-1]]] = map[intervals[i]]
                 stack.pop()
             stack.append(intervals[i])
-            res[map[intervals[i]]] = -1
 
         return res
 
