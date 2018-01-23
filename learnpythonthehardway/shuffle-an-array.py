@@ -45,6 +45,15 @@ class Solution(object):
 
         return temp
 
+    def shuffle2(self):
+        temp = self._arr[:]  # another way to get the copy
+        for i in xrange(1, len(self._arr)):
+            j = random.randint(0, i)
+            temp[i] = temp[j]
+            temp[j] = self._arr[i]
+
+        return temp
+
 # Your Solution object will be instantiated and called as such:
 # obj = Solution(nums)
 # param_1 = obj.reset()
