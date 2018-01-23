@@ -26,15 +26,28 @@ class Solution(object):
 
         if len(s) < 6:
             return max(missingType, 6 - len(s))
+        delete = 0
         if len(s) > 20:
-            res += len(s) - 20
+            delete = len(s) - 20
         start, change = 0, 0
-        while start < min(20, len(s)) - 2:
+        while start < len(s) - 2:
             if s[start] == s[start + 1] and s[start + 1] == s[start + 2]:
                 change += 1
                 start += 3
             else:
                 start += 1
+
+        # now I have delete and change, missing type
+        if delete >= change:
+            delete -= change  # delete the consecutive letters
+            res += delete
+        else:
+            change -= delete  # delete the consective letters
+
+
+
+
+
 
         res += max(missingType, change)
 
