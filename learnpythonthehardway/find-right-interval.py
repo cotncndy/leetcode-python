@@ -32,11 +32,14 @@
 
 
 # Definition for an interval.
-# class Interval(object):
-#     def __init__(self, s=0, e=0):
-#         self.start = s
-#         self.end = e
 import collections
+import heapq
+
+
+class Interval(object):
+    def __init__(self, s=0, e=0):
+        self.start = s
+        self.end = e
 
 
 class Solution(object):
@@ -45,19 +48,20 @@ class Solution(object):
         :type intervals: List[Interval]
         :rtype: List[int]
         """
-        map, stack, res = collections.defaultdict(int), [], [-1] * len(intervals)
+        map, heap, res = collections.defaultdict(int), [], [-1] * len(intervals)
         for i, k in enumerate(intervals):
             map[k] = i
         intervals.sort(key=lambda x: x.start)
 
         for i in xrange(len(intervals)):
-            while stack and intervals[i].start >= stack[-1].end:
-                res[map[stack[-1]]] = map[intervals[i]]
-                stack.pop()
-            stack.append(intervals[i])
+            while heap and intervals[i].start >= heap[0][0]:
+                end, interval = heapq.heappop(heap)
+                res[map[interval]] = map[intervals[i]]
+            heapq.heappush(heap, (intervals[i].end, intervals[i]))
 
         return res
 
 
 if __name__ == '__main__':
-# print Solution().findRightInterval()
+    intervals = [Interval(-100, -98), Interval(-99, -97), Interval(-98, -96)]
+    print Solution().findRightInterval(intervals)
