@@ -55,6 +55,18 @@ class Solution(object):
 
         return (biggest, idx)
 
+    def constructMaximumBinaryTree2(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: TreeNode
+        """
+        if nums:
+            pos = nums.index(max(nums))  # knowledge, how to use some builtin function of paython list
+            root = TreeNode(nums[pos])
+            root.left = self.constructMaximumBinaryTree(nums[:pos])
+            root.right = self.constructMaximumBinaryTree(nums[pos + 1:])
+            return root
+
 
 if __name__ == '__main__':
     root = Solution().constructMaximumBinaryTree([3, 2, 1, 6, 0, 5])
