@@ -53,7 +53,8 @@ class Solution(object):
             if v > biggest:
                 biggest, idx = v, k
 
-        return (biggest, idx)
+        # return (biggest, idx)
+        return biggest, idx  # knowledge ,(biggest,idx) is a tuple, biggest, idx is a list , both works
 
     def constructMaximumBinaryTree2(self, nums):
         """
