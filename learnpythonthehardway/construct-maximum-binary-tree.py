@@ -68,6 +68,20 @@ class Solution(object):
             root.right = self.constructMaximumBinaryTree(nums[pos + 1:])
             return root
 
+    def constructMaxTree(self, nums):
+        st = []
+        for n in nums:
+            t = TreeNode(n)
+            while st and st[-1].val < n:
+                t.left = st.pop()
+
+            if st:
+                st[-1].right = t
+
+            st.append(t)
+
+        return st[0]
+
 
 if __name__ == '__main__':
     root = Solution().constructMaximumBinaryTree([3, 2, 1, 6, 0, 5])
