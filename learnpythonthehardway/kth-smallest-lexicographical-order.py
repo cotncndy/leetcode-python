@@ -16,7 +16,7 @@
 
 class Solution(object):
     def __init__(self):
-        self.count = 1
+        self.count = 0
 
     def findKthNumber(self, n, k):
         """
@@ -24,21 +24,27 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        start = "1"
+        start = ""
         return self.recur(n, k, start)
 
     def recur(self, n, k, start):
-        if int(start) > n or self.count == k + 1:
+        if len(start) > 0 and (int(start) > n or self.count == k + 1):
             return -1
         if self.count == k:
             return int(start)
 
+        temp = start
         for i in xrange(10):
+            if len(start) == 0 and i == 0:
+                continue
             if int(start + str(i)) > n:
-                break
+                return -1
             start += str(i)
             self.count += 1
             t = self.recur(n, k, start)
+            if t == -1:
+                start = temp
+                continue
             if self.count == k:
                 return t
         return -1

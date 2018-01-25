@@ -68,6 +68,7 @@ class Solution(object):
             root.right = self.constructMaximumBinaryTree(nums[pos + 1:])
             return root
 
+    # how to use stack to do and what is its time complexity
     def constructMaxTree(self, nums):
         st = []
         for n in nums:
