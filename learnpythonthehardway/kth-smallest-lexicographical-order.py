@@ -58,7 +58,7 @@ class Solution(object):
         cur, k = 1, k - 1
         while k:
             step = self.calcSteps(n, cur, cur + 1)
-            if step < k:
+            if step <= k:
                 k, cur = k - step, cur + 1
             else:
                 k, cur = k - 1, cur * 10
