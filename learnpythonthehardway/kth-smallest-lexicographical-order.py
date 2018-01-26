@@ -49,6 +49,31 @@ class Solution(object):
                 return t
         return -1
 
+    def findKthNumber2(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: int
+        """
+        cur, k = 1, k - 1
+        while k:
+            step = self.calcSteps(n, cur, cur + 1)
+            if step < k:
+                k, cur = k - step, cur + 1
+            else:
+                k, cur = k - 1, cur * 10
+        return cur
+
+    def calcSteps(self, n, n1, n2):
+        step = 0
+        while n1 <= n:
+            step += min(n + 1, n2) - n1
+            n1, n2 = n1 * 10, n2 * 10
+        return step
+
+
 
 if __name__ == '__main__':
-    print Solution().findKthNumber(13, 7)
+    # print Solution().findKthNumber2(4289384, 1922239)
+    # print Solution().findKthNumber(4289384, 1922239)
+    print Solution().findKthNumber2(13, 8)
