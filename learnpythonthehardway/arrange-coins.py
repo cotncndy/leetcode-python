@@ -42,8 +42,17 @@ class Solution(object):
 
         return cnt
 
+    def arrangeCoins2(self, n):
+        t = 2 * n
+        k = int(t ** 0.5)
+        if k * (k + 1) == t:
+            return k
+        else:
+            return k - 1
+
+
 
 if __name__ == '__main__':
-    print Solution().arrangeCoins(8)
-    print Solution().arrangeCoins(5)
-    print Solution().arrangeCoins(10)
+    print Solution().arrangeCoins2(8)
+    print Solution().arrangeCoins2(5)
+    print Solution().arrangeCoins2(10)
