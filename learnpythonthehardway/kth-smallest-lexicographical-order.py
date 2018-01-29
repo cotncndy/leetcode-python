@@ -76,4 +76,4 @@ class Solution(object):
 if __name__ == '__main__':
     # print Solution().findKthNumber2(4289384, 1922239)
     # print Solution().findKthNumber(4289384, 1922239)
-    print Solution().findKthNumber2(13, 8)
+    print Solution().findKthNumber(13, 8)
