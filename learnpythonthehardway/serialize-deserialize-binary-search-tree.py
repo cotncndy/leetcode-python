@@ -54,6 +54,8 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
+        if not data:
+            return None
         vals = collections.deque(val for val in data)
         root = TreeNode(int(vals.popleft()))
         cur, que = root, collections.deque()
