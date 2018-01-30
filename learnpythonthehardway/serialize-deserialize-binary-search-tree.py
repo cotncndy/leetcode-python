@@ -39,10 +39,8 @@ class Codec:
             t = vals.popleft()
             if t:
                 res += str(t.val)
-                if t.left:
-                    vals.append(root.left)
-                if t.right:
-                    vals.append(root.right)
+                vals.append(t.left)
+                vals.append(t.right)
             else:
                 res += '#'
 
@@ -82,6 +80,6 @@ class Codec:
 
 if __name__ == '__main__':
     root = TreeNode(2)
-    root.left, root.right = TreeNode(1), TreeNode(3)
+    root.right = TreeNode(3)
     codec = Codec()
     print codec.deserialize(codec.serialize(root))
