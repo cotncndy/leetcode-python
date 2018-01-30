@@ -39,10 +39,12 @@ class Codec:
             t = vals.popleft()
             if t:
                 res += str(t.val)
+                res += ' '
                 vals.append(t.left)
                 vals.append(t.right)
             else:
                 res += '#'
+                res += ' '
 
         return res
 
@@ -54,7 +56,7 @@ class Codec:
         """
         if not data:
             return None
-        vals = collections.deque(val for val in data)
+        vals = collections.deque(val for val in data.split())
         root = TreeNode(int(vals.popleft()))
         cur, que = root, collections.deque()
         que.append(cur)
@@ -79,7 +81,7 @@ class Codec:
 # codec.deserialize(codec.serialize(root))
 
 if __name__ == '__main__':
-    root = TreeNode(2)
-    root.right = TreeNode(3)
+    root = TreeNode(20)
+    root.right = TreeNode(30)
     codec = Codec()
     print codec.deserialize(codec.serialize(root))
