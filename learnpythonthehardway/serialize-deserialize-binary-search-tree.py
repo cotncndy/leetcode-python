@@ -39,9 +39,9 @@ class Codec:
             t = vals.popleft()
             if t:
                 res += str(t.val)
-                if root.left:
+                if t.left:
                     vals.append(root.left)
-                if root.right:
+                if t.right:
                     vals.append(root.right)
             else:
                 res += '#'
@@ -59,9 +59,9 @@ class Codec:
         cur, que = root, collections.deque()
         que.append(cur)
 
-        while que:
-            cur = que.popleft()
+        while vals:
             t = vals.popleft()
+            cur = que.popleft()
             if t != '#':
                 node = TreeNode(int(t))
                 cur.left = node
