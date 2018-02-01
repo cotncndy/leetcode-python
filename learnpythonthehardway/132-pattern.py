@@ -62,3 +62,7 @@ class Solution(object):
             st.append(i)
 
         return False
+
+
+if __name__ == '__main__':
+    print Solution().find132pattern2([3, 1, 4, 2])
