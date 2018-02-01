@@ -67,6 +67,8 @@ class Solution(object):
 
         if root.val == key:
             succ = findSuccessor(root)
+            if not succ:
+                return root.left
             succ.left, succ.right = root.left, root.right
             return succ
         cur, p = root, root
@@ -91,6 +93,15 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    root = TreeNode(4)
+    root = TreeNode(18)
+    node1, node2 = TreeNode(10), TreeNode(20)
+    root.left, root.right = node1, node2
+    node3, node4 = TreeNode(8), TreeNode(16)
+    node1.left, node2.left = node3, node4
+    node5 = TreeNode(14)
+    node4.left = node5
+    node6, node7 = TreeNode(12), TreeNode(13)
+    node5.left, node5.right = node6, node7
     root.left = TreeNode(2)
-    print Solution().deleteNode(root, 4)
+    n_root = Solution().deleteNode(root, 10)
+    print n_root.val
