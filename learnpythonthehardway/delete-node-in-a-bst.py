@@ -58,10 +58,12 @@ class Solution(object):
         def findSuccessor(node):
             if not node.right:
                 return None
-            cur, prev = node.right, None
+            cur, prev = node.right, node.right
             while cur.left:
                 prev, cur = cur, cur.left
             prev.left = None
+            if prev == cur:
+                node.right = None
 
             return cur
 
