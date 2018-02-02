@@ -58,10 +58,10 @@ class Solution(object):
         def findSuccessor(node):
             if not node.right:
                 return None
-            cur = node.right
+            cur, prev = node.right, None
             while cur.left:
                 prev, cur = cur, cur.left
-            prev.next = None
+            prev.left = None
 
             return cur
 
@@ -97,11 +97,11 @@ if __name__ == '__main__':
     node1, node2 = TreeNode(10), TreeNode(20)
     root.left, root.right = node1, node2
     node3, node4 = TreeNode(8), TreeNode(16)
-    node1.left, node2.left = node3, node4
+    node1.left, node1.right = node3, node4
     node5 = TreeNode(14)
     node4.left = node5
     node6, node7 = TreeNode(12), TreeNode(13)
     node5.left, node5.right = node6, node7
-    root.left = TreeNode(2)
+    # root.left = TreeNode(2)
     n_root = Solution().deleteNode(root, 10)
     print n_root.val
