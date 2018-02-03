@@ -63,7 +63,7 @@ class Solution(object):
                 prev, cur = cur, cur.left
             prev.left = None
             if prev == cur:  # bugfixed node.right is successor
-                node.right = None
+                node.right = cur.right  # bugfixed cur.right might not be null
 
             return cur
 
