@@ -61,7 +61,7 @@ class Solution(object):
             cur, prev = node.right, node.right
             while cur.left:
                 prev, cur = cur, cur.left
-            prev.left = None
+            prev.left = cur.right  # bugfixed successor might have right child
             if prev == cur:  # bugfixed node.right is successor
                 node.right = cur.right  # bugfixed cur.right might not be null
 
