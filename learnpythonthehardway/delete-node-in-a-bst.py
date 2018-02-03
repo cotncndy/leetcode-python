@@ -87,7 +87,7 @@ class Solution(object):
         if p.left == cur:
             p.left = succ if succ else cur.left
         else:
-            p.right = succ if succ else cur.right
+            p.right = succ if succ else cur.left  # bugfixed
 
         if succ:
             succ.left, succ.right = cur.left, cur.right
