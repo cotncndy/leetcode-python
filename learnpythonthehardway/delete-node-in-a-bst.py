@@ -91,7 +91,6 @@ class Solution(object):
 
         if succ:
             succ.left, succ.right = cur.left, cur.right
-
         return root
 
 
