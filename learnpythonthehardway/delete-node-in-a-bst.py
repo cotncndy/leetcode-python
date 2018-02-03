@@ -52,7 +52,7 @@ class Solution(object):
         :type key: int
         :rtype: TreeNode
         """
-        if not root or (root.left == None and root.right == None):
+        if not root:
             return root
 
         def findSuccessor(node):
@@ -62,7 +62,7 @@ class Solution(object):
             while cur.left:
                 prev, cur = cur, cur.left
             prev.left = None
-            if prev == cur:
+            if prev == cur:  # bugfixed node.right is successor
                 node.right = None
 
             return cur
@@ -80,7 +80,8 @@ class Solution(object):
                 cur = cur.right
             else:
                 cur = cur.left
-
+        if not cur:  # bugfixed no such key in tree
+            return root
         succ = findSuccessor(cur)
 
         if p.left == cur:
@@ -105,5 +106,7 @@ if __name__ == '__main__':
     node6, node7 = TreeNode(12), TreeNode(13)
     node5.left, node5.right = node6, node7
     # root.left = TreeNode(2)
-    n_root = Solution().deleteNode(root, 10)
-    print n_root.val
+    # n_root = Solution().deleteNode(root, 9)
+    root = TreeNode(2)
+    n_root = Solution().deleteNode(root, 2)
+    print n_root
