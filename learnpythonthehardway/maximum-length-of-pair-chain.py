@@ -23,15 +23,21 @@ class Solution(object):
         :rtype: int
         """
         pairs.sort()
-        heap, res = [], 0
+        heap, res = [], []
 
         for p in pairs:
             while heap and p[1] < heap[0][0]:
                 heapq.heappop(heap)
-            if not heap or (heap and p[0] > heap[0][0]):
+
+            if not heap:
+                heapq.heappush(heap, (p[1], p))
+            elif p[0] > heap[0][0]:
+                while heap and p[0] > heap[0][0]:
+                    end, pair = heapq.heappop(heap)
+                    res.append(pair)
                 heapq.heappush(heap, (p[1], p))
 
-        return len(heap)
+        return len(res) + len(heap)
 
 
 if __name__ == '__main__':
