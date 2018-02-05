@@ -29,7 +29,23 @@ class Solution(object):
         t2 = t1 ^ (or_1 ^ or_2)
         return [t1, t2]
 
+    def findErrorNums2(self, nums):
+        dup, missing = -1, -1
+        for i in nums:
+            if nums[abs(i) - 1] < 0:
+                dup = i
+            else:
+                nums[abs(i) - 1] *= -1
+
+        for i in xrange(len(nums)):
+            if nums[i] > 0:
+                missing = i + 1
+
+        return [dup, missing]
+
 
 if __name__ == '__main__':
     print Solution().findErrorNums([1, 2, 2, 4])
+    print Solution().findErrorNums2([1, 2, 2, 4])
     print Solution().findErrorNums([1, 2, 3, 3, 4, 6])
+    print Solution().findErrorNums2([1, 2, 3, 3, 4, 6])
