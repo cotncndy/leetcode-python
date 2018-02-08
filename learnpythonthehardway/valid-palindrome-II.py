@@ -32,7 +32,7 @@ class Solution(object):
             if m[c] & 1:
                 cnt += 1
                 l = c
-        if cnt > 1:
+        if cnt > 2:
             return False
 
         t = ""
@@ -51,6 +51,7 @@ class Solution(object):
 
 
 if __name__ == '__main__':
+    print Solution().validPalindrome("abca")
     print Solution().validPalindrome("aba")
     print Solution().validPalindrome("abab")
     print Solution().validPalindrome("abcda")
