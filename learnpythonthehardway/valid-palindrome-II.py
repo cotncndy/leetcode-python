@@ -19,51 +19,23 @@ class Solution(object):
         :rtype: bool
         """
 
-        def isPalindrome(s):
+        def isPalindrome(s, left, right):
             # return s == s[::-1]
-            i, j = 0, len(s) - 1
+            i, j = left, right
             while i < j:
                 if s[i] != s[j]:
                     return False
                 i, j = i + 1, j - 1
             return True
 
-
-        if isPalindrome(s):
-            return True
-        m = collections.defaultdict(set)
-        for k, v in enumerate(s):
-            m[v].add(k)
-        candidate = set()
-        for c in m:
-            if len(m[c]) & 1:
-                candidate.add(c)
-        if len(candidate) > 2:
-            return False
-
-        t = ""
-        for c in candidate:
-            for i in m[c]:
-                if i == 0:
-                    t = s[1:]
-                elif i == len(s) - 1:
-                    t = s[0:i]
-                else:
-                    t = s[0:i] + s[i + 1:]
-                if isPalindrome(t):
+        i, j = 0, len(s) - 1
+        while i < j:
+            if s[i] != s[j]:
+                if isPalindrome(s, i, j - 1) or isPalindrome(s, i + 1, j):
                     return True
+            i, j = i + 1, j - 1
 
-        for i in xrange(len(s)):
-            if i == 0:
-                t = s[1:]
-            elif i == len(s) - 1:
-                t = s[0:i]
-            else:
-                t = s[0:i] + s[i + 1:]
-            if isPalindrome(t):
-                return True
         return False
-
 
 if __name__ == '__main__':
     print Solution().validPalindrome("eedede")
