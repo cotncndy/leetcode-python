@@ -53,21 +53,20 @@ class Solution(object):
                 if isPalindrome(t):
                     return True
 
-        # for i in xrange(len(s)):
-        #     if s[i] != l:
-        #         continue
-        #     if i == 0:
-        #         t = s[1:]
-        #     elif i == len(s) - 1:
-        #         t = s[0:i]
-        #     else:
-        #         t = s[0:i] + s[i + 1:]
-        #     if isPalindrome(t):
-        #         return True
+        for i in xrange(len(s)):
+            if i == 0:
+                t = s[1:]
+            elif i == len(s) - 1:
+                t = s[0:i]
+            else:
+                t = s[0:i] + s[i + 1:]
+            if isPalindrome(t):
+                return True
         return False
 
 
 if __name__ == '__main__':
+    print Solution().validPalindrome("eedede")
     print Solution().validPalindrome("abca")
     print Solution().validPalindrome("aba")
     print Solution().validPalindrome("abab")
