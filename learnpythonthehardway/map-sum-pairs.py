@@ -35,22 +35,21 @@ class Trie(object):
         self.map = map
 
     def getSum(self, prefix):
-        cur, temp, cnt = self.root, '', 0
+        cur, cnt = self.root, 0
         for c in prefix:
             if c in cur.leaves:
                 cur = cur.leaves[c]  # bugfixed how do you know c for sure in cur.leaves?
-                temp += c
-                if cur.is_word:
-                    cnt += self.map.get(temp, 0)  # knowledge notice usage of 'get' with 'default value'
+                # if cur.is_word:  # bugfixed should not do this, if aa = 2 aaa = 3, when prefix is aaa,
+                # we should not add 'aa' value
+                #     cnt += self.map.get(temp, 0)  # knowledge notice usage of 'get' with 'default value'
             else:  # if c in prefix but not in trie,illegal
                 return 0
 
-        que = [(cur, temp)]
+        que = [(cur, prefix)]
         while que:
             cur, str = que.pop(0)
             if cur.is_word:
-                if str != temp:  # temp already count in
-                    cnt += self.map.get(str, 0)
+                cnt += self.map.get(str, 0)
 
             for t in cur.leaves:
                 que.append((cur.leaves[t], str + t))
