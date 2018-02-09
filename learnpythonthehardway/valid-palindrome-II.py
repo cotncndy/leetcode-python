@@ -31,11 +31,10 @@ class Solution(object):
         i, j = 0, len(s) - 1
         while i < j:
             if s[i] != s[j]:
-                if isPalindrome(s, i, j - 1) or isPalindrome(s, i + 1, j):
-                    return True
+                return isPalindrome(s, i, j - 1) or isPalindrome(s, i + 1, j)
             i, j = i + 1, j - 1
 
-        return False
+        return True
 
 if __name__ == '__main__':
     print Solution().validPalindrome("eedede")
