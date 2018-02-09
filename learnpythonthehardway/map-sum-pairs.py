@@ -83,6 +83,7 @@ class MapSum(object):
         self.trie.setMap(self.map)
         return self.trie.getSum(prefix)
 
+
 # Your MapSum object will be instantiated and called as such:
 # obj = MapSum()
 # obj.insert(key,val)
