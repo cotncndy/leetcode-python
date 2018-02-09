@@ -39,17 +39,26 @@ class Solution(object):
                 if st[-1] == '(':
                     st.pop()
                 elif st[-1] == '*':  # if it is '*' we could pop or not
-                    temp = st
+                    temp = []
+                    temp.extend(st)
                     temp.pop()
                     r = self.helper(s[i + 1:], temp)
                     if r:
                         return True
-            else:  # if it is '*', we could push  or not push
-                temp = st
-                temp.append(s[i])
+            else:  # if it is '*', we could push  or not push or pop
+                temp = []
+                temp.extend(st)
                 r = self.helper(s[i + 1:], temp)
                 if r:
                     return True
+                if st and st[-1] == '(':
+                    temp = []
+                    temp.extend(st)
+                    temp.pop()  # we pop
+                    r = self.helper(s[i + 1:], temp)
+                    if r:
+                        return True
+
 
         return False if len(st) else True
 
@@ -59,9 +68,12 @@ if __name__ == '__main__':
     # print Solution().checkValidString("(()")
     # print Solution().checkValidString("(())")
     # print Solution().checkValidString("(*)")
+    #
+    # print Solution().checkValidString("(*()")
+
     print Solution().checkValidString("(*())")
     print Solution().checkValidString("(())")
-    # print Solution().checkValidString("((*))")
+    print Solution().checkValidString("((*))")
     print Solution().checkValidString("((**")
     print Solution().checkValidString("((**(")
     print Solution().checkValidString("((**))")
