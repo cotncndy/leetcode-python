@@ -37,10 +37,13 @@ class Trie(object):
     def getSum(self, prefix):
         cur, temp, cnt = self.root, '', 0
         for c in prefix:
-            cur = cur.leaves[c]
-            temp += c
-            if cur.is_word:
-                cnt += self.map.get(temp, 0)  # knowledge notice usage of 'get' with 'default value'
+            if c in cur.leaves:
+                cur = cur.leaves[c]  # bugfixed how do you know c for sure in cur.leaves?
+                temp += c
+                if cur.is_word:
+                    cnt += self.map.get(temp, 0)  # knowledge notice usage of 'get' with 'default value'
+            else:  # if c in prefix but not in trie,illegal
+                return 0
 
         que = [(cur, temp)]
         while que:
@@ -92,3 +95,4 @@ if __name__ == '__main__':
     print s.sum('ap')
     s.insert('app', 3)
     print s.sum('ap')
+    print s.sum('ab')
