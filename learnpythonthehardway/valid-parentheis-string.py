@@ -31,7 +31,7 @@ class Solution(object):
             return True
         for i in xrange(len(s)):
             c = s[i]
-            if c == '(':
+            if c in ['(', '*']:
                 st.append(c)
             elif c == ')':
                 if not st:
@@ -42,41 +42,67 @@ class Solution(object):
                     temp = []
                     temp.extend(st)
                     temp.pop()
-                    r = self.helper(s[i + 1:], temp)
+                    r = self.helper(s[i:], temp)
                     if r:
                         return True
-            else:  # if it is '*', we could push  or not push or pop
-                temp = []
-                temp.extend(st)
-                temp.append(s[i])  # we push
-                r = self.helper(s[i + 1:], temp)
-                if r:
-                    return True
-                if st and st[-1] == '(':
-                    temp = []
-                    temp.extend(st)
-                    temp.pop()  # we pop
-                    r = self.helper(s[i + 1:], temp)
-                    if r:
-                        return True
+            # else:  # if it is '*', we could push  or not push or pop
+            #     if st and st[-1] == '(':
+            #         temp = []
+            #         temp.extend(st)
+            #         temp.pop()  # we pop
+            #         r = self.helper(s[i + 1:], temp)
+            #         if r:
+            #             return True
 
-
+        while len(st) > 1 and st[-1] == '*' and st[-2] == '(':
+            st.pop()
+            st.pop()
         return False if len(st) else True
+
+    def checkValidString2(self, s):
+        left, star = [], []
+        for n, c in enumerate(s):
+            if c == '(':
+                left.append(n)
+            elif c == '*':
+                star.append(n)
+            else:
+                if left:
+                    left.pop()
+                elif star:
+                    star.pop()
+
+        while left and star:
+            if left[-1] > star[-1]:
+                return False
+            left.pop()
+            star.pop()
+
+        return len(left) == 0
+
+
+
+
+
+
 
 
 if __name__ == '__main__':
-    print Solution().checkValidString("()")
-    print Solution().checkValidString("(()")
-    print Solution().checkValidString("(())")
-    print Solution().checkValidString("(*)")
+    print Solution().checkValidString("()")  # True
+    print Solution().checkValidString("(()")  # False
+    print Solution().checkValidString("(())")  # True
+    print Solution().checkValidString("(*)")  # True
 
-    print Solution().checkValidString("(*()")
-    print Solution().checkValidString("(*))")
-    print Solution().checkValidString("*()(())*()(()()((()(()()*)(*(())((((((((()*)(()(*)")
+    print Solution().checkValidString("(*()")  # TRUE
 
-    print Solution().checkValidString("(*())")
-    print Solution().checkValidString("(())")
-    print Solution().checkValidString("((*))")
-    print Solution().checkValidString("((**")
-    print Solution().checkValidString("((**(")
-    print Solution().checkValidString("((**))")
+    print Solution().checkValidString("(*))")  # True
+
+    print Solution().checkValidString("*()(())*()(()()((()(()()*)(*(())((((((((()*)(()(*)")  # True
+    print Solution().checkValidString("(((((()*)(*)*))())())(()())())))((**)))))(()())()")  # False
+
+    # print Solution().checkValidString("(*())") # True
+    # print Solution().checkValidString("(())") # True
+    # print Solution().checkValidString("((*))")
+    # print Solution().checkValidString("((**")
+    # print Solution().checkValidString("((**(")
+    # print Solution().checkValidString("((**))")
