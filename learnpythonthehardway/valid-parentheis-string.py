@@ -27,7 +27,7 @@ class Solution(object):
         return self.helper(s, st)
 
     def helper(self, s, st):
-        if not s:
+        if not s and not len(st):  # bugfixed when s is empty but st is not empty, is is false
             return True
         for i in xrange(len(s)):
             c = s[i]
@@ -48,6 +48,7 @@ class Solution(object):
             else:  # if it is '*', we could push  or not push or pop
                 temp = []
                 temp.extend(st)
+                temp.append(s[i])  # we push
                 r = self.helper(s[i + 1:], temp)
                 if r:
                     return True
@@ -64,12 +65,14 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    # print Solution().checkValidString("()")
-    # print Solution().checkValidString("(()")
-    # print Solution().checkValidString("(())")
-    # print Solution().checkValidString("(*)")
-    #
-    # print Solution().checkValidString("(*()")
+    print Solution().checkValidString("()")
+    print Solution().checkValidString("(()")
+    print Solution().checkValidString("(())")
+    print Solution().checkValidString("(*)")
+
+    print Solution().checkValidString("(*()")
+    print Solution().checkValidString("(*))")
+    print Solution().checkValidString("*()(())*()(()()((()(()()*)(*(())((((((((()*)(()(*)")
 
     print Solution().checkValidString("(*())")
     print Solution().checkValidString("(())")
