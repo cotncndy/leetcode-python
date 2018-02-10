@@ -67,6 +67,8 @@ class Solution(object):
             elif c == '*':
                 star.append(n)
             else:
+                if not left and not star:  # bugfixed if there is a ')', but not '(' and '*' then False
+                    return False
                 if left:
                     left.pop()
                 elif star:
