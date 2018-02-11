@@ -21,7 +21,7 @@ class Solution(object):
             slow, fast = i, i
             while slow < len(nums):
                 s = self.goNext(nums, slow)
-                if slow == s:
+                if slow == s or s == self.goNext(nums, s):
                     break
                 f = self.goNext(nums, self.goNext(nums, fast))
 
@@ -42,3 +42,4 @@ if __name__ == '__main__':
     print Solution().circularArrayLoop([2, -1, 1, 2, 2])
     print Solution().circularArrayLoop([-1, 2])
     print Solution().circularArrayLoop([-2, 1, -1, -2, -2])
+    print Solution().circularArrayLoop([-1, -2, -3, -4, -5])
