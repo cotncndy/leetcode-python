@@ -46,17 +46,17 @@ class Solution(object):
             t = self.goNext(nums, i)
             while nums[i] * nums[t] > 0:
                 if t == i:  # only one element
-                    break  # for ex [-1,2] if t = 1, i = 1, then infinite loop
+                    break  # bugfixed for ex [-1,2] if t = 1, i = 1, then infinite loop
                 if t in m:
                     return True
-                i, visited[t] = t, True
-                m[i], t = t, self.goNext(nums, t)
+                m[i], i, visited[t] = t, t, True  # bugfixed , need to record m[i] = t here
+                t = self.goNext(nums, t)
         return False
 
 
 
 if __name__ == '__main__':
-    # print Solution().circularArrayLoop2([2, -1, 1, 2, 2])
+    print Solution().circularArrayLoop2([2, -1, 1, 2, 2])
     print Solution().circularArrayLoop2([-1, 2])
-    # print Solution().circularArrayLoop2([-2, 1, -1, -2, -2])
-    # print Solution().circularArrayLoop2([-1, -2, -3, -4, -5])
+    print Solution().circularArrayLoop2([-2, 1, -1, -2, -2])
+    print Solution().circularArrayLoop2([-1, -2, -3, -4, -5])
