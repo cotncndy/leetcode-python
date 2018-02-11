@@ -46,7 +46,7 @@ class Solution(object):
             t = self.goNext(nums, i)
             while nums[i] * nums[t] > 0:
                 if t == i:  # only one element
-                    continue
+                    break  # for ex [-1,2] if t = 1, i = 1, then infinite loop
                 if t in m:
                     return True
                 i, visited[t] = t, True
