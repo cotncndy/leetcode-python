@@ -17,22 +17,28 @@ class Solution(object):
         :type nums: List[int]
         :rtype: bool
         """
-        slow, fast = 0, 0
-        cnt = 0
-        while slow < len(nums):
-            slow = slow + nums[slow]
-            slow = (slow + len(nums)) % len(nums) if slow < 0 else slow % len(nums)
-            fast = fast + nums[fast]
-            fast = fast % len(nums) if fast > 0 else (fast + len(nums)) % len(nums)
-            fast = fast + nums[fast]
-            fast = fast % len(nums) if fast > 0 else (fast + len(nums)) % len(nums)
+        for i in xrange(len(nums)):
+            slow, fast = i, i
+            while slow < len(nums):
+                s = self.goNext(nums, slow)
+                if slow == s:
+                    break
+                f = self.goNext(nums, self.goNext(nums, fast))
 
-            if fast == slow:
-                return False if cnt == 0 else True
-            cnt += 1
+                if s == f:
+                    if nums[s] * nums[slow] > 0 and nums[f] * nums[fast] > 0:
+                        return True
+                    return False
+                fast, slow = f, s
+
         return False
+
+    def goNext(self, nums, k):
+        t = (k + nums[k]) % len(nums)
+        return t if t >= 0 else t + len(nums)
 
 
 if __name__ == '__main__':
-    # print Solution().circularArrayLoop([2, -1, 1, 2, 2])
+    print Solution().circularArrayLoop([2, -1, 1, 2, 2])
     print Solution().circularArrayLoop([-1, 2])
+    print Solution().circularArrayLoop([-2, 1, -1, -2, -2])
