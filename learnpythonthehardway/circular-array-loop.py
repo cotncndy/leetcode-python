@@ -37,9 +37,26 @@ class Solution(object):
         t = (k + nums[k]) % len(nums)
         return t if t >= 0 else t + len(nums)
 
+    def circularArrayLoop2(self, nums):
+        m, visited = {}, [False] * len(nums)
+        for i in xrange(len(nums)):
+            if visited[i]:
+                continue
+            visited[i] = True
+            t = self.goNext(nums, i)
+            while nums[i] * nums[t] > 0:
+                if t == i:  # only one element
+                    continue
+                if t in m:
+                    return True
+                i, visited[t] = t, True
+                m[i], t = t, self.goNext(nums, t)
+        return False
+
+
 
 if __name__ == '__main__':
-    print Solution().circularArrayLoop([2, -1, 1, 2, 2])
-    print Solution().circularArrayLoop([-1, 2])
-    print Solution().circularArrayLoop([-2, 1, -1, -2, -2])
-    print Solution().circularArrayLoop([-1, -2, -3, -4, -5])
+    # print Solution().circularArrayLoop2([2, -1, 1, 2, 2])
+    print Solution().circularArrayLoop2([-1, 2])
+    # print Solution().circularArrayLoop2([-2, 1, -1, -2, -2])
+    # print Solution().circularArrayLoop2([-1, -2, -3, -4, -5])
