@@ -67,3 +67,7 @@ class Solution(object):
             if not ip or len(ip) > 4 or not ip.isalnum():  # bugfixed len(ip) > 4 is false
                 return False
         return True
+
+
+if __name__ == '__main__':
+    print Solution().validIPAddress("1e1.4.5.6")
