@@ -66,8 +66,12 @@ class Solution(object):
         for ip in ips:
             if not ip or len(ip) > 4 or not ip.isalnum():  # bugfixed len(ip) > 4 is false
                 return False
+            for c in ip:  # notice it is hex, so it is from 0-f(or 0-F)
+                if not ((c >= '0' and c <= '9') or (c >= 'a' and c <= 'f') or (c >= 'A' and c <= 'F')):
+                    return False
         return True
 
 
 if __name__ == '__main__':
     print Solution().validIPAddress("1e1.4.5.6")
+    print Solution().validIPAddress("20EE:FGb8:85a3:0:0:8A2E:0370:7334")
