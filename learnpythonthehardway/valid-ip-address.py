@@ -64,8 +64,6 @@ class Solution(object):
         if len(ips) != 8:
             return False
         for ip in ips:
-            if not ip:
-                return False
-            if not ip.isalnum():
+            if not ip or len(ip) > 4 or not ip.isalnum():
                 return False
         return True
