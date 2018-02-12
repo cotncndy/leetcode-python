@@ -53,7 +53,7 @@ class Solution(object):
         if len(ips) != 4:
             return False
         for ip in ips:
-            if int(ip) > 255 or int(ip) < 0:
+            if not ip.isdigit() or int(ip) > 255 or int(ip) < 0:  # bugfixed ip need to be digit
                 return False
             if len(ip) > 1 and ip[0] == '0':
                 return False
@@ -64,6 +64,6 @@ class Solution(object):
         if len(ips) != 8:
             return False
         for ip in ips:
-            if not ip or len(ip) > 4 or not ip.isalnum():
+            if not ip or len(ip) > 4 or not ip.isalnum():  # bugfixed len(ip) > 4 is false
                 return False
         return True
