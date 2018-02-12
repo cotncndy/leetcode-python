@@ -28,6 +28,9 @@ class Solution(object):
         :type n2: int
         :rtype: int
         """
+        if self.lcs(s1, s2) == len(s2):
+            return int(n1 / n2)
+
         t1, t2 = s1 * n1, s2 * n2
         n = int(len(t1) / len(t2))
         left, right = 0, n
@@ -53,6 +56,20 @@ class Solution(object):
                     dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
         return dp[l1][l2]
 
+    def getMaxRepetitions2(self, s1, n1, s2, n2):
+        """
+        :type s1: str
+        :type n1: int
+        :type s2: str
+        :type n2: int
+        :rtype: int
+        """
+        if self.lcs(s1, s2) == len(s2):
+            return int(n1 / n2)
+
+
+
 
 if __name__ == '__main__':
-    print Solution().getMaxRepetitions("acb", 4, "ab", 2)
+    print Solution().getMaxRepetitions("acb", 1000, "ab", 300)
+    print Solution().getMaxRepetitions("lovelive", 1000, "lovelive", 999)
