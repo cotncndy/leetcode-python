@@ -19,11 +19,11 @@ class Solution(object):
         """
         for i in xrange(len(nums)):
             slow, fast = i, i
-            while slow < len(nums):
-                s = self.goNext(nums, slow)
+            while True:  # [-1,-2, -3,-4, -5]
+                s = self.goNext(nums, slow)  # 4
                 if slow == s or s == self.goNext(nums, s):
                     break
-                f = self.goNext(nums, self.goNext(nums, fast))
+                f = self.goNext(nums, self.goNext(nums, fast))  # 4
 
                 if s == f:
                     if nums[s] * nums[slow] > 0 and nums[f] * nums[fast] > 0:
@@ -56,7 +56,8 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print Solution().circularArrayLoop2([2, -1, 1, 2, 2])
-    print Solution().circularArrayLoop2([-1, 2])
-    print Solution().circularArrayLoop2([-2, 1, -1, -2, -2])
+    # print Solution().circularArrayLoop2([2, -1, 1, 2, 2])
+    # print Solution().circularArrayLoop2([-1, 2])
+    # print Solution().circularArrayLoop2([-2, 1, -1, -2, -2])
     print Solution().circularArrayLoop2([-1, -2, -3, -4, -5])
+    print Solution().circularArrayLoop([-1, -2, -3, -4, -5])
