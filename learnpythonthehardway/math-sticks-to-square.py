@@ -27,6 +27,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: bool
         """
+
         m, sum, side = collections.defaultdict(int), 0, 0
         for n in nums:
             sum += n
@@ -35,13 +36,25 @@ class Solution(object):
             return False
         side = sum / 4
 
+        cnt = 0
         for k in m:
-            if m[side - k] not in m:
+            if m[k] == 0:
+                continue
+            if k == side:
+                m[k] -= 1
+                cnt += 1
+                continue
+            if m[side - k] == 0:
                 return False
-            m[k], m[side - k] = m[k] - 1, m[side - k] - 1
-            if not m[k]:
-                del m[k]
-            if not m[side - k]:
-                del m[side - k]
+            m[k] -= 1  # bugfixed
+            m[side - k] -= 1
+            cnt += 1
 
-        return True if not m else False
+        for k in m:
+            if m[k] and k != side:
+                return False
+        return True if m[side] == 4 - cnt else False
+
+
+if __name__ == '__main__':
+    print Solution().makesquare([1, 1, 2, 2, 2])
