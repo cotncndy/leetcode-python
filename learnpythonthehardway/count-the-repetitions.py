@@ -64,12 +64,24 @@ class Solution(object):
         :type n2: int
         :rtype: int
         """
-        if self.lcs(s1, s2) == len(s2):
-            return int(n1 / n2)
+        cnt1, cnt2, i, j = 0, 0, 0, 0
+        while cnt1 < n1:
+            if s1[i] == s2[j]:
+                j += 1
+                if j == len(s2):
+                    cnt2, j = cnt2 + 1, 0
+            i += 1
+            if i == len(s1):
+                i, cnt1 = 0, cnt1 + 1
+
+        return cnt2 / n2
+
+
 
 
 
 
 if __name__ == '__main__':
-    print Solution().getMaxRepetitions("acb", 1000, "ab", 300)
-    print Solution().getMaxRepetitions("lovelive", 1000, "lovelive", 999)
+    print Solution().getMaxRepetitions2("acb", 1000, "ab", 300)
+    print Solution().getMaxRepetitions2("lovelive", 1000, "lovelive", 999)
+    print Solution().getMaxRepetitions2("aaa", 3, "aa", 1)
