@@ -22,12 +22,12 @@ import collections
 
 
 class Solution(object):
+    # this implementation is wrong
     def makesquare(self, nums):
         """
         :type nums: List[int]
         :rtype: bool
         """
-
         m, sum, side = collections.defaultdict(int), 0, 0
         for n in nums:
             sum += n
@@ -55,6 +55,38 @@ class Solution(object):
                 return False
         return True if m[side] == 4 - cnt else False
 
+    def makesquare2(self, nums):
+        m, sum, side = collections.defaultdict(int), 0, 0
+        for n in nums:
+            sum += n
+            m[n] += 1
+        if sum % 4:
+            return False
+        side = sum / 4
+
+        for i in xrange(4):
+            if not self.dfs(m, nums, 0, side):
+                return False
+
+        return True
+
+    def dfs(self, map, nums, l, size):
+        if l == size:
+            return True
+        for n in nums:
+            if map[n] and n <= size - l:
+                map[n] -= 1
+                if self.dfs(map, nums, l + n, size):
+                    return True
+                map[n] += 1  # backtrack
+
+        return False
+
+
+
+
+
 
 if __name__ == '__main__':
-    print Solution().makesquare([1, 1, 2, 2, 2])
+    print Solution().makesquare2([1, 1, 2, 2, 2])
+    print Solution().makesquare2([5, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3])
