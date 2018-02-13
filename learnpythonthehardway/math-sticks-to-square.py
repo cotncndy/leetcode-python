@@ -89,6 +89,8 @@ class Solution(object):
             return False
         sides = [0] * 4
         s = sum(nums)
+        if s % 4:  # bugfixed for tset case [6,14,6,5,14,17,9,5,20,4,13,16,19,20,6], forgot this one
+            return False
         size = s / 4
         nums = sorted(nums, reverse=True)  # knowledge  how to sort a list descending
         # bugfixed list.sort() and list= sorted()
@@ -115,3 +117,4 @@ if __name__ == '__main__':
     # print Solution().makesquare2([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
     # print Solution().makesquare3([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
     print Solution().makesquare3([1, 3, 5, 7, 1, 3, 5, 6, 1, 2, 4, 6, 4, 6, 5])
+    print Solution().makesquare3([6, 14, 6, 5, 14, 17, 9, 5, 20, 4, 13, 16, 19, 20, 6])
