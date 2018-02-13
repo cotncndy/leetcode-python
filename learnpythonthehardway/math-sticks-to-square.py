@@ -56,6 +56,8 @@ class Solution(object):
         return True if m[side] == 4 - cnt else False
 
     def makesquare2(self, nums):
+        if not nums:  # bugfixed the [] test case
+            return False
         m, sum, side = collections.defaultdict(int), 0, 0
         for n in nums:
             sum += n
@@ -82,11 +84,38 @@ class Solution(object):
 
         return False
 
+    def makesquare3(self, nums):
+        if not nums or len(nums) < 4:
+            return False
+        sides = [0] * 4
+        s = sum(nums)
+        size = s / 4
+        sorted(nums, reverse=True)  # knowledge  how to sort a list descending
+
+        return self.helper(nums, sides, size, 0)
+
+    def helper(self, nums, sides, size, pos):
+        if pos == len(nums):
+            if sides[0] == size and sides[1] == size and sides[2] == size:
+                return True
+
+        for i in xrange(4):
+            if sides[i] + nums[pos] > size:
+                continue
+            sides[i] += nums[pos]
+            if self.helper(nums, sides, size, pos + 1):
+                return True
+            sides[i] -= nums[pos]  # backtrack
+
+        return False
+
 
 
 
 
 
 if __name__ == '__main__':
-    print Solution().makesquare2([1, 1, 2, 2, 2])
-    print Solution().makesquare2([5, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3])
+    # print Solution().makesquare2([1, 1, 2, 2, 2])
+    # print Solution().makesquare2([5, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3])
+    print Solution().makesquare2([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
+    print Solution().makesquare3([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
