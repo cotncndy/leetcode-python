@@ -90,14 +90,14 @@ class Solution(object):
         sides = [0] * 4
         s = sum(nums)
         size = s / 4
-        sorted(nums, reverse=True)  # knowledge  how to sort a list descending
+        nums = sorted(nums, reverse=True)  # knowledge  how to sort a list descending
+        # bugfixed list.sort() and list= sorted()
 
         return self.helper(nums, sides, size, 0)
 
     def helper(self, nums, sides, size, pos):
         if pos == len(nums):
-            if sides[0] == size and sides[1] == size and sides[2] == size:
-                return True
+            return sides[0] == size and sides[1] == size and sides[2] == size
 
         for i in xrange(4):
             if sides[i] + nums[pos] > size:
@@ -109,13 +109,9 @@ class Solution(object):
 
         return False
 
-
-
-
-
-
 if __name__ == '__main__':
     # print Solution().makesquare2([1, 1, 2, 2, 2])
     # print Solution().makesquare2([5, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3])
-    print Solution().makesquare2([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
-    print Solution().makesquare3([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
+    # print Solution().makesquare2([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
+    # print Solution().makesquare3([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
+    print Solution().makesquare3([1, 3, 5, 7, 1, 3, 5, 6, 1, 2, 4, 6, 4, 6, 5])
