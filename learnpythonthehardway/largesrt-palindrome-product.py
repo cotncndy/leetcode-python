@@ -39,7 +39,7 @@ class Solution(object):
     def largestPalindrome2(self, n):
         upper = 10 ** n - 1
         lower = upper / 10
-        for i in reversed(xrange(upper + 1)):
+        for i in reversed(xrange(lower + 1, upper + 1)):  # fix the lower bound bug
             s = str(i) + str(i)[::-1]
             j = upper
             while j * j > int(s):
@@ -50,4 +50,4 @@ class Solution(object):
 
 if __name__ == '__main__':
     # print Solution().largestPalindrome(8)
-    print Solution().largestPalindrome2(2)
+    print Solution().largestPalindrome2(1)
