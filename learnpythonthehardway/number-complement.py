@@ -36,7 +36,15 @@ class Solution(object):
 
         return res
 
+    def findComplement2(self, num):
+        i = 1
+        while i <= num:
+            num ^= i
+            i <<= 1
+        return num
+
+
 
 if __name__ == '__main__':
-    print Solution().findComplement(5)
-    print Solution().findComplement(1)
+    print Solution().findComplement2(5)
+    print Solution().findComplement2(1)
