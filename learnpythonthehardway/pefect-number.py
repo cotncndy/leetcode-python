@@ -15,6 +15,9 @@ class Solution(object):
         :type num: int
         :rtype: bool
         """
+        if num == 1:
+            return False
+
         sign = -1 if num < 0 else 1
         sum, i, num = 1, 2, abs(num)  # bugfixed negative number issue
         while i <= int(num ** 0.5):
