@@ -43,8 +43,8 @@ class Solution(object):
             s = str(i) + str(i)[::-1]
             j = upper
             while j * j > int(s):
-                if int(s) % j == 0:
-                    return int(s) % 1337
+                if long(s) % j == 0:
+                    return long(s) % 1337
                 j -= 1
         return 9
 
