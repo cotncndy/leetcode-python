@@ -15,12 +15,13 @@ class Solution(object):
         :type num: int
         :rtype: bool
         """
-        sum, i = 1, 2
+        sign = -1 if num < 0 else 1
+        sum, i, num = 1, 2, abs(num)  # bugfixed negative number issue
         while i <= int(num ** 0.5):
             if num % i == 0:
                 sum += i
                 if i != num ** 0.5:
-                    sum += num / i
+                    sum += num / i * sign
             i += 1
 
         return sum == num
