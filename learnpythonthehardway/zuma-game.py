@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Think about Zuma Game. You have a row of balls on the table, colored red(R), yellow(Y), blue(B), green(G),
 # and white(W). You also have several balls in your hand.
 #
@@ -37,12 +38,17 @@ import collections
 
 
 class Solution(object):
+    def __init__(self):
+        self.res = float('-inf')
+
     def findMinStep(self, board, hand):
         """
         :type board: str
         :type hand: str
         :rtype: int
         """
+        self.dfs(board, hand)
+        return -1 if self.res == float('-inf') else len(hand) - self.res
         
     def dfs(self, board, hand):
         if not board:
@@ -59,20 +65,35 @@ class Solution(object):
         for k in map:  # remove all 3's 4's, etc
             if k > 2:
                 for v in map[k]:
-                    board = board[0:v] + board[v + k:]
+                    temp_board = board[0:v] + board[v + k:]
+                    has, l = self.dfs(temp_board, hand)
+                    if has:
+                        self.res = max(self.res, l)
 
+        has, l = False, 0
         for k in map:
             if k == 2:
                 for v in map[k]:
                     if board[v] in hand:
                         temp_board, temp_hand = board[0:v] + board[v + k:], hand.replace(board[v], "", 1)
-                        return self.dfs(temp_board, temp_hand)
+                        has, l = self.dfs(temp_board, temp_hand)
+                        if has:
+                            self.res = max(self.res, l)
 
         for k in map:
             if k == 1:
                 for v in map[k]:
                     if board[v] in hand:
                         temp_board, temp_hand = board[0:v] + board[v] + board[v:], hand.replace(board[v], "", 1)
-                        return self.dfs(temp_board, temp_hand)
+                        has, l = self.dfs(temp_board, temp_hand)
+                        if has:
+                            self.res = max(self.res, l)
 
-        return (False, hand)
+        return (has, l)
+
+
+if __name__ == '__main__':
+    # print Solution().findMinStep("WRRBBW", "RB")
+    # print Solution().findMinStep("WWRRBBWW", "WRBRW")
+    # print Solution().findMinStep("G", "GGGGG")
+    print Solution().findMinStep("RBYYBBRRB", "YRBGB")
