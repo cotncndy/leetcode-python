@@ -92,7 +92,7 @@ class Solution(object):
 
         return sum
 
-    cnt = 0
+    cnt = 0  # knowledge , how to define class level variable
 
 
 
