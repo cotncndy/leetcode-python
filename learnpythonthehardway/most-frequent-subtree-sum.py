@@ -73,32 +73,34 @@ class Solution(object):
     def findFrequentTreeSum2(self, root):
         res = []
         count, biggest = collections.defaultdict(int), 0
-        self.helper2(root, count, biggest, res)
+        self.helper2(root, count, res)
 
         return res
 
-    def helper2(self, root, count, biggest, res):
+    def helper2(self, root, count, res):
         if not root:
             return 0
-        left = self.helper2(root.left, count, biggest, res)
-        right = self.helper2(root.right, count, biggest, res)
+        left = self.helper2(root.left, count, res)
+        right = self.helper2(root.right, count, res)
         sum = root.val + left + right
         count[sum] += 1
-        if count[sum] >= biggest:
-            biggest = count[sum]
-            if count[sum] > biggest:
+        if count[sum] >= self.cnt:
+            if count[sum] > self.cnt:
                 del res[:]
+            self.cnt = count[sum]
             res.append(sum)
 
         return sum
 
+    cnt = 0
+
 
 
 if __name__ == '__main__':
-    # R, l, r  = TreeNode(5), TreeNode(2), TreeNode(-3)
-    # R.left, R.right = l, r
+    R, l, r = TreeNode(5), TreeNode(2), TreeNode(-3)
+    R.left, R.right = l, r
 
-    R, l, l_l = TreeNode(5), TreeNode(14), TreeNode(1)
-    R.left, l.left = l, l_l
+    # R, l, l_l = TreeNode(5), TreeNode(14), TreeNode(1)
+    # R.left, l.left = l, l_l
 
     print Solution().findFrequentTreeSum2(R)
