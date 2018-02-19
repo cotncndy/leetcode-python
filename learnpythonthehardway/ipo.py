@@ -40,7 +40,7 @@ class Solution(object):
         :type Capital: List[int]
         :rtype: int
         """
-        heap, res, used = [], 0, [False] * len(Capital)
+        heap, res, used = [], W, [False] * len(Capital)
 
         while k:
             for key, v in enumerate(Capital):
@@ -48,10 +48,12 @@ class Solution(object):
                     heapq.heappush(heap, (-Profits[key], v))  # convert to max heap
                     used[key] = True
 
+            if not heap:
+                break
             profit, cap = heapq.heappop(heap)
             p, k = abs(profit), k - 1
-            W += p
-            res = max(res, W)
+            W += p - cap
+            res += p
             if W < 0:
                 break
 
@@ -60,3 +62,4 @@ class Solution(object):
 
 if __name__ == '__main__':
     print Solution().findMaximizedCapital(2, 0, [1, 2, 3], [0, 1, 1])
+    print Solution().findMaximizedCapital(1, 0, [1, 2, 3], [1, 1, 2])
