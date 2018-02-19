@@ -50,7 +50,7 @@ class Solution(object):
         tmax = 0
         for k, v in count.iteritems():
             tmax = max(tmax, v)
-        for k, v in count.iteritems():
+        for k, v in count.iteritems():  # knowledge hwo to loop dict with key, value pair
             if v == tmax:
                 res.append(k)
 
@@ -68,13 +68,14 @@ class Solution(object):
         sum = root.val + left + right
 
         count[sum] += 1
+        return sum  # bugfixed don't forgot
 
 
 if __name__ == '__main__':
     # R, l, r  = TreeNode(5), TreeNode(2), TreeNode(-3)
     # R.left, R.right = l, r
 
-    R, l, r = TreeNode(5), TreeNode(2), TreeNode(-5)
-    R.left, R.right = l, r
+    R, l, l_l = TreeNode(5), TreeNode(14), TreeNode(1)
+    R.left, l.left = l, l_l
 
     print Solution().findFrequentTreeSum(R)
