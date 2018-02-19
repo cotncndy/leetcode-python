@@ -52,8 +52,8 @@ class Solution(object):
                 break
             profit, cap = heapq.heappop(heap)
             p, k = abs(profit), k - 1
-            W += p - cap
-            res += p
+            W += p
+            res = max(res, W)
             if W < 0:
                 break
 
@@ -61,5 +61,6 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print Solution().findMaximizedCapital(2, 0, [1, 2, 3], [0, 1, 1])
-    print Solution().findMaximizedCapital(1, 0, [1, 2, 3], [1, 1, 2])
+    # print Solution().findMaximizedCapital(2, 0, [1, 2, 3], [0, 1, 1])
+    # print Solution().findMaximizedCapital(1, 0, [1, 2, 3], [1, 1, 2])
+    print Solution().findMaximizedCapital(11, 11, [1, 2, 3], [11, 12, 13])
