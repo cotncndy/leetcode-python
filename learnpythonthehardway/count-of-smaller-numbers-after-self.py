@@ -54,7 +54,7 @@ class Solution(object):
         return counts
 
     # todo using BIT to do it
-    def countSmaller(self, nums):
+    def countSmaller2(self, nums):
         pass
 
 

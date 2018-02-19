@@ -49,7 +49,7 @@ class Solution(object):
         """
         self.dfs(board, hand)
         return -1 if self.res == float('-inf') else len(hand) - self.res
-        
+
     def dfs(self, board, hand):
         if not board:
             return (True, len(hand))
