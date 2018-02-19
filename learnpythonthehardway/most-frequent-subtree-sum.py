@@ -70,6 +70,29 @@ class Solution(object):
         count[sum] += 1
         return sum  # bugfixed don't forgot
 
+    def findFrequentTreeSum2(self, root):
+        res = []
+        count, biggest = collections.defaultdict(int), 0
+        self.helper2(root, count, biggest, res)
+
+        return res
+
+    def helper2(self, root, count, biggest, res):
+        if not root:
+            return 0
+        left = self.helper2(root.left, count, biggest, res)
+        right = self.helper2(root.right, count, biggest, res)
+        sum = root.val + left + right
+        count[sum] += 1
+        if count[sum] >= biggest:
+            biggest = count[sum]
+            if count[sum] > biggest:
+                del res[:]
+            res.append(sum)
+
+        return sum
+
+
 
 if __name__ == '__main__':
     # R, l, r  = TreeNode(5), TreeNode(2), TreeNode(-3)
@@ -78,4 +101,4 @@ if __name__ == '__main__':
     R, l, l_l = TreeNode(5), TreeNode(14), TreeNode(1)
     R.left, l.left = l, l_l
 
-    print Solution().findFrequentTreeSum(R)
+    print Solution().findFrequentTreeSum2(R)
