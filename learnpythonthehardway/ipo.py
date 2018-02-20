@@ -59,8 +59,33 @@ class Solution(object):
 
         return res
 
+    def findMaximizedCapital2(self, k, W, Profits, Capital):
+        minHeap, maxHeap = [], []
+
+        for key, v in enumerate(Capital):
+            heapq.heappush(minHeap, (v, Profits[key]))
+
+        while k:
+
+            while minHeap and minHeap[0][0] <= W:
+                cap, pro = heapq.heappop(minHeap)
+                heapq.heappush(maxHeap, (-pro, cap))
+
+            if not maxHeap:
+                break
+
+            pro, cap = heapq.heappop(maxHeap)
+            W += abs(pro)
+            k -= 1
+
+        return W
+
+
+
+
 
 if __name__ == '__main__':
     # print Solution().findMaximizedCapital(2, 0, [1, 2, 3], [0, 1, 1])
     # print Solution().findMaximizedCapital(1, 0, [1, 2, 3], [1, 1, 2])
+    print Solution().findMaximizedCapital2(11, 11, [1, 2, 3], [11, 12, 13])
     print Solution().findMaximizedCapital(11, 11, [1, 2, 3], [11, 12, 13])
