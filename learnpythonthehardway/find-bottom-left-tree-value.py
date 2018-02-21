@@ -62,15 +62,15 @@ class Solution(object):
     maxDepth = 1
     res = None
     def findBottomLeftValue2(self, root):  # how to do it recursively
-        def helper(root, depth, maxDepth, res):
+        def helper(root, depth):
             if not root:
                 return
             if depth > self.maxDepth:
                 self.res = root
                 self.maxDepth = depth
-            helper(root.left, depth + 1, self.maxDepth, res)
-            helper(root.right, depth + 1, self.maxDepth, res)
+            helper(root.left, depth + 1)
+            helper(root.right, depth + 1)
 
         self.res = root
-        helper(root, 1, self.maxDepth, self.res)
+        helper(root, 1)
         return self.res.val
