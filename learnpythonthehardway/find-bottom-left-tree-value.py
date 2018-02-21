@@ -58,3 +58,17 @@ class Solution(object):
                     que.append(node.right)
 
         return mostLeft
+
+    def findBottomLeftValue2(self, root):  # how to do it recursively
+        def helper(root, depth, maxDepth, res):
+            if not root:
+                return
+            if depth > maxDepth:
+                res = root
+                depth = maxDepth
+            helper(root.left, depth + 1, maxDepth, res)
+            helper(root.right, depth + 1, maxDepth, res)
+
+        res = None
+        helper(root, 1, 1, res)
+        return res
