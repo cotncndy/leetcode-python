@@ -71,5 +71,6 @@ class Solution(object):
             helper(root.left, depth + 1, self.maxDepth, res)
             helper(root.right, depth + 1, self.maxDepth, res)
 
+        self.res = root
         helper(root, 1, self.maxDepth, self.res)
         return self.res.val
