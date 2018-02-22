@@ -53,11 +53,11 @@ class Solution(object):
         for k, v in enumerate(ring):
             dict[v].add(k)
 
-        self.dfs(key, dict, 0, 0)
+        self.dfs(ring, key, dict, 0, 0)
 
         return self.minStep
 
-    def dfs(self, key, dict, pos, step):
+    def dfs(self, ring, key, dict, pos, step):
         if pos == len(key):
             if step < self.minStep:
                 self.minStep = step
@@ -65,26 +65,31 @@ class Solution(object):
 
         cSet = dict[key[pos]]
         for p in cSet:
-            adjust = min(p, 7 - p)
+            adjust = min(p, len(ring) - p)
             tStep = step + adjust + 1
             if tStep > self.minStep:  # prunning
                 continue
             # https://stackoverflow.com/questions/2465921/how-to-copy-a-dictionary-and-only-edit-the-copy
             dict2 = dict.copy()  # knowledge how to copy a dict
             if adjust == p:  # rotate anti-clock
-                self.reset(key, dict2, -p)
+                self.reset(ring, dict2, -p)
             else:
-                self.reset(key, dict2, len(key) - p)
+                self.reset(ring, dict2, len(ring) - p)
 
-            self.dfs(key, dict2, pos + 1, tStep)
+            self.dfs(ring, key, dict2, pos + 1, tStep)
 
-    def reset(self, key, dict, adjust):
+    def reset(self, ring, dict, adjust):
         for k, v in dict.iteritems():
+            temp = set()
             for s in v:
-                s = (s + adjust) % len(key)
-                s = s + len(key) if s < 0 else s
+                s = (s + adjust) % len(ring)
+                s = s + len(ring) if s < 0 else s
+                temp.add(s)
+            dict[k] = temp
 
 
 if __name__ == '__main__':
     print Solution().findRotateSteps("godding", "gd")
     print Solution().findRotateSteps("godding", "gdi")
+    print Solution().findRotateSteps("godding", "ggn")
+    print Solution().findRotateSteps("godding", "gni")
