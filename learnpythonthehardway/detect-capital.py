@@ -34,6 +34,12 @@ class Solution(object):
 
         return cnt == 0 or cnt == len(word) or (cnt == 1 and word[0].isupper())
 
+    def detectCapitalUse(self, word):
+        """
+        :type word: str
+        :rtype: bool
+        """
+        return word.isupper() or word.islower() or word.istitle()
 
 if __name__ == '__main__':
     print Solution().detectCapitalUse("Hello")
