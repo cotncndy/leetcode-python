@@ -42,6 +42,7 @@ import collections
 class Solution(object):
     minStep = float('inf')
 
+
     def findRotateSteps(self, ring, key):
         """
         :type ring: str
@@ -49,21 +50,29 @@ class Solution(object):
         :rtype: int
         """
         dict = collections.defaultdict(set)
+        memo = collections.defaultdict(int)
 
         for k, v in enumerate(ring):
             dict[v].add(k)
 
-        self.dfs(ring, key, dict, 0, 0)
+        # return self.dfs(ring, key, dict, 0, 0, "", memo)
 
-        return self.minStep
+        return self.dfs2(ring, key, dict, 0, memo)
 
-    def dfs(self, ring, key, dict, pos, step):
+        # return self.minStep
+
+    def dfs(self, ring, key, dict, pos, step, st, memo):
         if pos == len(key):
-            if step < self.minStep:
-                self.minStep = step
-            return
+            if st not in memo or step < memo[st]:
+                memo[st] = step
+            # if step < self.minStep:
+            #     self.minStep = step
+            return step
 
-        cSet = dict[key[pos]]
+        if st in memo:
+            return memo[st]
+
+        cSet, tep = dict[key[pos]], float('inf')
         for p in cSet:
             adjust = min(p, len(ring) - p)
             tStep = step + adjust + 1
@@ -71,25 +80,58 @@ class Solution(object):
                 continue
             # https://stackoverflow.com/questions/2465921/how-to-copy-a-dictionary-and-only-edit-the-copy
             dict2 = dict.copy()  # knowledge how to copy a dict
+            res = ""
             if adjust == p:  # rotate anti-clock
-                self.reset(ring, dict2, -p)
+                res = self.reset(ring, dict2, -p)
             else:
-                self.reset(ring, dict2, len(ring) - p)
+                res = self.reset(ring, dict2, len(ring) - p)
 
-            self.dfs(ring, key, dict2, pos + 1, tStep)
+            tep = min(tep, self.dfs(ring, key, dict2, pos + 1, tStep, res, memo))
+            memo[res] = min(tep, memo[res]) if res in memo else tep
+
+        memo[st] = tep
+        return tep
+
+    def dfs2(self, ring, key, dict, pos, memo):
+        if pos == len(key):
+            return 0
+        if ring in memo:
+            return memo[ring]
+
+        cSet = dict[key[pos]]
+        res = float('inf')
+        for p in cSet:
+            adjust = min(p, len(ring) - p)
+            dict2 = dict.copy()  # knowledge how to copy a dict
+            st = ""
+            if adjust == p:  # rotate anti-clock
+                st = self.reset(ring, dict2, -p)
+            else:
+                st = self.reset(ring, dict2, len(ring) - p)
+
+            res = min(adjust + self.dfs2(st, key, dict2, pos + 1, memo), res)
+
+        memo[ring] = res + 1
+        return memo[ring]
+
 
     def reset(self, ring, dict, adjust):
+        list = [''] * len(ring)
         for k, v in dict.iteritems():
             temp = set()
             for s in v:
                 s = (s + adjust) % len(ring)
                 s = s + len(ring) if s < 0 else s
                 temp.add(s)
+                list[s] = k
             dict[k] = temp
+        return ''.join(list)
 
 
 if __name__ == '__main__':
-    print Solution().findRotateSteps("godding", "gd")
-    print Solution().findRotateSteps("godding", "gdi")
+    # print Solution().findRotateSteps("godding", "gd")
+    # print Solution().findRotateSteps("godding", "gdi")
     print Solution().findRotateSteps("godding", "ggn")
-    print Solution().findRotateSteps("godding", "gni")
+    # print Solution().findRotateSteps("godding", "gni")
+    # print Solution().findRotateSteps("godding", "ndi")
+    # print Solution().findRotateSteps("caotmcaataijjxi", "oatjiioicitatajtijciocjcaaxaaatmctxamacaamjjx")
