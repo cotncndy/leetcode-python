@@ -60,3 +60,5 @@ class Solution(object):
 
 if __name__ == '__main__':
     print Solution().countSmaller([5, 2, 6, 1])
+
+    # youtube : https://youtu.be/3M-bYicmeS0
