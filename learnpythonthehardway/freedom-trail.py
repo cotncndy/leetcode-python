@@ -93,23 +93,23 @@ class Solution(object):
         memo[st] = tep
         return tep
 
-    def dfs2(self, ring, key, dict, offset, pos, memo):
-        if pos == len(key):
+    def dfs2(self, ring, key, dict, ringStart, keyPos, memo):
+        if keyPos == len(key):
             return 0
 
-        if memo[offset][pos]:
-            return memo[offset][pos]
+        if memo[ringStart][keyPos]:
+            return memo[ringStart][keyPos]
 
-        cSet = dict[key[pos]]
+        cSet = dict[key[keyPos]]
         res = float('inf')
         for p in cSet:
-            adjust = abs(p - offset)
+            adjust = abs(p - ringStart)
             step = min(adjust, len(ring) - adjust)
 
-            res = min(step + self.dfs2(ring, key, dict, p, pos + 1, memo), res)
+            res = min(step + self.dfs2(ring, key, dict, p, keyPos + 1, memo), res)
 
-        memo[offset][pos] = res + 1
-        return memo[offset][pos]
+        memo[ringStart][keyPos] = res + 1
+        return memo[ringStart][keyPos]
 
 
     def reset(self, ring, dict, adjust):
@@ -124,11 +124,32 @@ class Solution(object):
             dict[k] = temp
         return ''.join(list)
 
+    def findRotateSteps3(self, ring, key):
+        indexes = collections.defaultdict(list)
+        for i, c in enumerate(ring): indexes[c].append(i)
+
+        def T(ring, key, i, j, cache, indexes):
+
+            if j == len(key): return 0
+            tup = (i, j)
+            if tup in cache: return cache[tup]
+
+            res = 0x7fffffff
+            for ni in indexes[key[j]]:
+                cost = abs(i - ni)
+                cost = min(cost, len(ring) - cost)
+                cost += 1
+                res = min(res, cost + T(ring, key, ni, j + 1, cache, indexes))
+            cache[tup] = res
+            return res
+
+        return T(ring, key, 0, 0, {}, indexes)
+
 
 if __name__ == '__main__':
-    print Solution().findRotateSteps("godding", "gd")
-    print Solution().findRotateSteps("godding", "gdi")
-    print Solution().findRotateSteps("godding", "ggn")
-    print Solution().findRotateSteps("godding", "gni")
+    # print Solution().findRotateSteps("godding", "gd")
+    # print Solution().findRotateSteps("godding", "gdi")
+    # print Solution().findRotateSteps("godding", "ggn")
+    # print Solution().findRotateSteps("godding", "gni")
     print Solution().findRotateSteps("godding", "ndi")
-    print Solution().findRotateSteps("caotmcaataijjxi", "oatjiioicitatajtijciocjcaaxaaatmctxamacaamjjx")
+    print Solution().findRotateSteps3("caotmcaataijjxi", "oatjiioicitatajtijciocjcaaxaaatmctxamacaamjjx")
