@@ -32,7 +32,6 @@ class Solution(object):
             count = merge_sort(nums, start, mid) + merge_sort(nums, mid + 1, end)
 
             r, temp = mid + 1, []
-            j = 0
 
             for i in xrange(start, mid + 1):
                 while r <= end and nums[r] * 2 < nums[i]:
