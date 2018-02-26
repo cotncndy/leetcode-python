@@ -44,9 +44,9 @@ class Solution(object):
 
         for i in xrange(1, amount + 1):
             for k in xrange(1, m + 1):
-                for c in coins:
-                    if i >= c:
-                        bag[i][k] = bag[i - c][k - 1]
+                bag[i][k] = bag[i][k - 1]
+                if i >= coins[k - 1]:
+                    bag[i][k] += bag[i - coins[k - 1]][k]
         return bag[amount][m]
 
 
