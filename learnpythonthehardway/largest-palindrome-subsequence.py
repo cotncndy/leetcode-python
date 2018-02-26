@@ -40,9 +40,9 @@ class Solution(object):
                     dp[i][i + k] = 1
                 else:
                     if s[i] == s[i + k]:
-                        dp[i][i + k] = max(dp[i + 1][i + k - 1] + 2, dp[i][i + k - 1], dp[i + 1][i + k])
+                        dp[i][i + k] = dp[i + 1][i + k - 1] + 2
                     else:
-                        dp[i][i + k] = max(dp[i][i + k - 1], dp[i + 1][i + k], dp[i + 1][i + k - 1])
+                        dp[i][i + k] = max(dp[i][i + k - 1], dp[i + 1][i + k])
 
         return dp[0][-1]
 
