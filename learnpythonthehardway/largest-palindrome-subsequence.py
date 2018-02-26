@@ -46,7 +46,19 @@ class Solution(object):
 
         return dp[0][-1]
 
+    def longestPalindromeSubseq2(self, s):
+        l = len(s)
+        dp = [[0] * l for _ in xrange(l)]
+        for i in xrange(l - 1, -1, -1):
+            dp[i][i] = 1
+            for j in xrange(i + 1, l):
+                if s[i] == s[j]:
+                    dp[i][j] = dp[i + 1][j - 1] + 2
+                else:
+                    dp[i][j] = max(dp[i][j - 1], dp[i + 1][j])
+
+        return dp[0][-1]
 
 if __name__ == '__main__':
-    print Solution().longestPalindromeSubseq("bbbab")
-    print Solution().longestPalindromeSubseq("cbbd")
+    print Solution().longestPalindromeSubseq2("bbbab")
+    print Solution().longestPalindromeSubseq2("cbbd")
