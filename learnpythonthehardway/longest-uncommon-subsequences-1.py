@@ -47,6 +47,9 @@ class Solution(object):
 
         return dp[-1][-1]
 
+    def findLUSlength2(self, a, b):
+        return -1 if a == b else max(len(a), len(b))
+
 
 if __name__ == '__main__':
     print Solution().findLUSlength("aba", "cdc")
