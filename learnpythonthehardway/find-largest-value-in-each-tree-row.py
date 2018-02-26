@@ -42,3 +42,21 @@ class Solution(object):
             res.append(lMax)
 
         return res
+
+    def largestValues2(self, root):
+        def dfs(root, level, res):
+            if not root:
+                return
+            if level == len(res):
+                res.append(root.val)
+            else:
+                res[level] = max(res[level], root.val)
+            dfs(root.left, level + 1, res)
+            dfs(root.right, level + 1, res)
+
+            return
+
+        res = []
+        dfs(root, 0, res)
+
+        return res
