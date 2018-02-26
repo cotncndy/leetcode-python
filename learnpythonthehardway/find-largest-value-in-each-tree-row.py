@@ -27,6 +27,8 @@ class Solution(object):
         :rtype: List[int]
         """
         que, res = [], []
+        if not root:
+            return res
         que.append(root)
         while que:
             l, lMax = len(que), float('-inf')
