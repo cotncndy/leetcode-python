@@ -38,16 +38,27 @@ class Solution(object):
         :rtype: int
         """
         m = len(coins)
-        bag = [[0] * (m + 1) for _ in xrange(amount + 1)]
-        for i in xrange(amount + 1):
-            bag[i][0] = 1
+        # bag = [[0] * (m + 1) for _ in xrange(amount + 1)]
+        bag = [[0] * (amount + 1) for _ in xrange(m + 1)]
 
-        for i in xrange(1, amount + 1):
-            for k in xrange(1, m + 1):
-                bag[i][k] = bag[i][k - 1]
+        # for i in xrange(1, amount + 1):
+        #     bag[i][0] = 1
+        #     for k in xrange(1, m + 1):
+        #         bag[i][k] = bag[i][k - 1]
+        #         if i >= coins[k - 1]:
+        #             bag[i][k] += bag[i - coins[k - 1]][k]
+        # return bag[amount][m]
+
+        for k in xrange(1, m + 1):  # loop coins firstly
+            bag[k][0] = 1
+            for i in xrange(1, amount + 1):
+                bag[k][i] = bag[k - 1][i]
                 if i >= coins[k - 1]:
-                    bag[i][k] += bag[i - coins[k - 1]][k]
-        return bag[amount][m]
+                    bag[k][i] += bag[k][i - coins[k - 1]]
+
+        return bag[m][amount]
+
+
 
 
 if __name__ == '__main__':
