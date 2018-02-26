@@ -32,8 +32,8 @@ class Solution(object):
         """
         m, n = len(a), len(b)
         dp = [[0] * m for _ in xrange(n)]
-        for i in xrange(m):
-            for j in xrange(n):
+        for i in xrange(n):
+            for j in xrange(m):
                 if a[i] == a[j]:
                     if i == 0 or j == 0:
                         dp[i][j] = 1
@@ -45,8 +45,9 @@ class Solution(object):
                     else:
                         dp[i][j] = dp[i - 1][j - 1] + 2
 
-        return dp[m - 1][n - 1]
+        return dp[-1][-1]
 
 
 if __name__ == '__main__':
     print Solution().findLUSlength("aba", "cdc")
+    print Solution().findLUSlength("abcdaca", "aba")
