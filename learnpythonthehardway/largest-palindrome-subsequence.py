@@ -62,3 +62,4 @@ class Solution(object):
 if __name__ == '__main__':
     print Solution().longestPalindromeSubseq2("bbbab")
     print Solution().longestPalindromeSubseq2("cbbd")
+    print Solution().longestPalindromeSubseq("cbbd")
