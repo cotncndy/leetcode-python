@@ -40,6 +40,7 @@ class Solution(object):
         m = len(coins)
         # bag = [[0] * (m + 1) for _ in xrange(amount + 1)]
         bag = [[0] * (amount + 1) for _ in xrange(m + 1)]
+        bag[0][0] = 1
 
         # for i in xrange(1, amount + 1):
         #     bag[i][0] = 1
