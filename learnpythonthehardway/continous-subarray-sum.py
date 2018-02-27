@@ -30,24 +30,32 @@ class Solution(object):
         """
         if not nums:
             return False
-        if not k:
-            return True
 
         sum = [0] * len(nums)
 
         for key, val in enumerate(nums):
             sum[key] = sum[key - 1] + val
-            if key > 0 and sum[key] % k == 0:
+            if key > 0 and self.isMulitple(sum[key], k):
                 return True
             if key > 1:
                 for i in xrange(key - 1):
-                    if (sum[key] - sum[i]) % k == 0:
+                    if self.isMulitple(sum[key] - sum[i], k):
                         return True
 
         return False
 
+    def isMulitple(self, n, k):
+        if n == 0 and k == 0:
+            return True
+        if n != 0 and k == 0:
+            return False
+        return n % k == 0
+
 
 if __name__ == '__main__':
-    print Solution().checkSubarraySum([23, 2, 4, 6, 7], 8)
-    print Solution().checkSubarraySum([23, 2, 4, 6, 7], 6)
-    print Solution().checkSubarraySum([23, 2, 6, 4, 7], 6)
+    # print Solution().checkSubarraySum([23, 2, 4, 6, 7], 8)
+    # print Solution().checkSubarraySum([23, 2, 4, 6, 7], 6)
+    # print Solution().checkSubarraySum([23, 2, 6, 4, 7], 6)
+    print Solution().checkSubarraySum([23, 2, 6, 4, 7], 0)
+    # print Solution().checkSubarraySum([1,2,-2,-1], 0)
+    # print Solution().checkSubarraySum([2,-2], 1)
