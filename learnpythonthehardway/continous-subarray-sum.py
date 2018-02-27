@@ -28,6 +28,11 @@ class Solution(object):
         :type k: int
         :rtype: bool
         """
+        if not nums:
+            return False
+        if not k:
+            return True
+
         sum = [0] * len(nums)
 
         for key, val in enumerate(nums):
