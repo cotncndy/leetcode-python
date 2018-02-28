@@ -21,23 +21,34 @@ class Solution(object):
         :rtype: int
         """
 
-        res, st1, st0 = 0, [], []
+        res, st1, st0 = 1, [], []
 
         for k, v in enumerate(nums):
-            if v == 1:
-                st1.append(v)
+            if not st1:
+                st1.append(k)
+            elif (v == 1 and nums[st1[-1]] == 0) or (v == 0 and nums[st1[-1]] == 1):
+                st0.append(st1.pop())
+                st0.append(k)
             else:
-                st0.append(v)
+                st1.append(k)
 
-            if len(st1) == len(st0):
-                res = max(res, len(st1))
+        st0.sort()
 
-        return res * 2
+        temp = 1
+        for i in xrange(1, len(st0)):
+            if st0[i] == st0[i - 1] + 1:
+                temp += 1
+                res = max(res, temp)
+            else:
+                temp = 1
+
+        return res
 
 
 if __name__ == '__main__':
-    print Solution().findMaxLength([0, 1])
-    print Solution().findMaxLength([0, 1, 0])
-    print Solution().findMaxLength([0, 0, 0, 1, 1, 0, 1, 1, 0, 0])
-    print Solution().findMaxLength([0, 0, 0, 1, 1, 0, 1, 1, 0, 1])
-    print Solution().findMaxLength([0, 1, 1, 0, 1, 1, 1, 0])
+    # print Solution().findMaxLength([0, 1])
+    # print Solution().findMaxLength([0, 1, 0])
+    # print Solution().findMaxLength([0, 0, 0, 1, 1, 0, 1, 1, 0, 0])
+    # print Solution().findMaxLength([0, 0, 0, 1, 1, 0, 1, 1, 0, 1])
+    # print Solution().findMaxLength([0, 1, 1, 0, 1, 1, 1, 0])
+    print Solution().findMaxLength([0, 0, 1, 0, 0, 0, 1, 1])
