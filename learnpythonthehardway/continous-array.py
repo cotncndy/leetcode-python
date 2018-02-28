@@ -59,12 +59,27 @@ class Solution(object):
                 res = max(2 * s[k], res)
         return res
 
+    def findMaxLength3(self, nums):
+        m, s, res = {}, 0, 0
+        for k, v in enumerate(nums):
+            if v == 1:
+                s += 1
+            else:
+                s -= 1
+            if s in m:
+                res = max(res, k - m[s])
+            else:
+                m[s] = k
+
+        return res
+
+
 
 
 if __name__ == '__main__':
-    print Solution().findMaxLength([0, 1])
-    print Solution().findMaxLength([0, 1, 0])
-    print Solution().findMaxLength([0, 0, 0, 1, 1, 0, 1, 1, 0, 0])
-    print Solution().findMaxLength([0, 0, 0, 1, 1, 0, 1, 1, 0, 1])
-    print Solution().findMaxLength([0, 1, 1, 0, 1, 1, 1, 0])
-    print Solution().findMaxLength2([0, 0, 1, 0, 0, 0, 1, 1])
+    print Solution().findMaxLength3([0, 1])
+    print Solution().findMaxLength3([0, 1, 0])
+    print Solution().findMaxLength3([0, 0, 0, 1, 1, 0, 1, 1, 0, 0])
+    print Solution().findMaxLength3([0, 0, 0, 1, 1, 0, 1, 1, 0, 1])
+    print Solution().findMaxLength3([0, 1, 1, 0, 1, 1, 1, 0])
+    print Solution().findMaxLength3([0, 0, 1, 0, 0, 0, 1, 1])
