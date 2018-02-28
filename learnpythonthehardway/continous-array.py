@@ -28,7 +28,9 @@ class Solution(object):
                 st1.append(v)
             else:
                 st0.append(v)
-            res = min(len(st0), len(st1))
+
+            if len(st1) == len(st0):
+                res = max(res, len(st1))
 
         return res * 2
 
@@ -38,3 +40,4 @@ if __name__ == '__main__':
     print Solution().findMaxLength([0, 1, 0])
     print Solution().findMaxLength([0, 0, 0, 1, 1, 0, 1, 1, 0, 0])
     print Solution().findMaxLength([0, 0, 0, 1, 1, 0, 1, 1, 0, 1])
+    print Solution().findMaxLength([0, 1, 1, 0, 1, 1, 1, 0])
