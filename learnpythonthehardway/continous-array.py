@@ -61,6 +61,7 @@ class Solution(object):
 
     def findMaxLength3(self, nums):
         m, s, res = {}, 0, 0
+        m[0] = -1  # bugfixed
         for k, v in enumerate(nums):
             if v == 1:
                 s += 1
@@ -78,8 +79,8 @@ class Solution(object):
 
 if __name__ == '__main__':
     print Solution().findMaxLength3([0, 1])
-    print Solution().findMaxLength3([0, 1, 0])
-    print Solution().findMaxLength3([0, 0, 0, 1, 1, 0, 1, 1, 0, 0])
-    print Solution().findMaxLength3([0, 0, 0, 1, 1, 0, 1, 1, 0, 1])
-    print Solution().findMaxLength3([0, 1, 1, 0, 1, 1, 1, 0])
-    print Solution().findMaxLength3([0, 0, 1, 0, 0, 0, 1, 1])
+    # print Solution().findMaxLength3([0, 1, 0])
+    # print Solution().findMaxLength3([0, 0, 0, 1, 1, 0, 1, 1, 0, 0])
+    # print Solution().findMaxLength3([0, 0, 0, 1, 1, 0, 1, 1, 0, 1])
+    # print Solution().findMaxLength3([0, 1, 1, 0, 1, 1, 1, 0])
+    # print Solution().findMaxLength3([0, 0, 1, 0, 0, 0, 1, 1])
