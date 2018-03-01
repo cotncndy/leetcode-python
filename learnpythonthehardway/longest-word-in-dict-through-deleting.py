@@ -62,17 +62,17 @@ class Solution(object):
         return dp[-1][-1]
 
     def findLongestWord2(self, s, d):
-        def sort(x, y):
-            if len(x) == len(y):
-                return cmp(x, y)
-            return len(y) - len(x)
+        # def sort(x, y):
+        #     if len(x) == len(y):
+        #         return cmp(x, y)
+        #     return len(y) - len(x)
 
-        # sList = sorted(d, cmp=lambda x, y: x < y if len(x) == len(y) else len(y) - len(x))
-        sList = sorted(d, cmp=sort)
+        sList = sorted(d, cmp=lambda x, y: cmp(x, y) if len(x) == len(y) else len(y) - len(x))  # knowledge how to use
+        #  lambda function to sort
 
         for str in sList:
             it = iter(s)
-            if all(c in it for c in str):
+            if all(c in it for c in str):  # knowledge how to use all function
                 return str
         return ""
 
