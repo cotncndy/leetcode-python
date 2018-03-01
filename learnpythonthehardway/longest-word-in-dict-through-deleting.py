@@ -61,6 +61,15 @@ class Solution(object):
 
         return dp[-1][-1]
 
+    def findLongestWord2(self, s, d):
+        sList = sorted(d, cmp=lambda x, y: x - y if len(x) == len(y) else len(y) - len(x))
+
+        for str in sList:
+            it = iter(s)
+            if all(c in it for c in str):
+                return str
+        return ""
+
 
 if __name__ == '__main__':
     print Solution().findLongestWord("abpcplea", ["ale", "apple", "monkey", "plea"])
