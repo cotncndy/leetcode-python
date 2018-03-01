@@ -34,15 +34,17 @@ class Solution(object):
         :rtype: str
         """
         slist = sorted(set(d), key=len, reverse=True)
-        mp, res = collections.defaultdict(int), ""
+        mp, res = collections.defaultdict(int), []
         for c in s:
             mp[c] += 1
         for l in slist:
             if self.lcs(l, s, mp) == len(l):
-                res = l
-                break
+                if res and len(l) < len(res[-1]):  # if l is shorter than the found solution in res, no need looping
+                    break
+                res.append(l)
 
-        return res
+        res.sort()
+        return res[0] if res else ""
 
     def lcs(self, s, t, mp):
         m, n = len(s), len(t)
@@ -63,3 +65,4 @@ class Solution(object):
 if __name__ == '__main__':
     print Solution().findLongestWord("abpcplea", ["ale", "apple", "monkey", "plea"])
     print Solution().findLongestWord("abpcplea", ["a", "b", "c"])
+    print Solution().findLongestWord("foobarfoobar", ["foo", "bar"])
