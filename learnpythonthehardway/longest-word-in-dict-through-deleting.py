@@ -62,7 +62,13 @@ class Solution(object):
         return dp[-1][-1]
 
     def findLongestWord2(self, s, d):
-        sList = sorted(d, cmp=lambda x, y: x - y if len(x) == len(y) else len(y) - len(x))
+        def sort(x, y):
+            if len(x) == len(y):
+                return cmp(x, y)
+            return len(y) - len(x)
+
+        # sList = sorted(d, cmp=lambda x, y: x < y if len(x) == len(y) else len(y) - len(x))
+        sList = sorted(d, cmp=sort)
 
         for str in sList:
             it = iter(s)
@@ -72,6 +78,6 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print Solution().findLongestWord("abpcplea", ["ale", "apple", "monkey", "plea"])
+    print Solution().findLongestWord2("abpcplea", ["ale", "apple", "monkey", "plea"])
     print Solution().findLongestWord("abpcplea", ["a", "b", "c"])
-    print Solution().findLongestWord("foobarfoobar", ["foo", "bar"])
+    print Solution().findLongestWord2("foobarfoobar", ["foo", "bar"])
