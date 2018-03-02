@@ -54,10 +54,11 @@ class Solution(object):
             return -1
         avg = s / l
 
+        res = 0
         for k, v in enumerate(machines):
             machines[k] = v - avg
+            res = max(res, machines[k])
 
-        res = 0
         for k, v in enumerate(machines):
             if k == 0:
                 continue
@@ -73,3 +74,4 @@ class Solution(object):
 if __name__ == '__main__':
     print Solution().findMinMoves([0, 0, 11, 5])
     print Solution().findMinMoves([1, 0, 5])
+    print Solution().findMinMoves([0, 3, 0])
