@@ -77,18 +77,18 @@ class Solution(object):
         res, cnt, prev = 0, 0, 0
         for k, v in enumerate(machines):
             cnt = v - avg
-            res = max(abs(cnt), abs(prev + cnt), res)
+            res = max(cnt, abs(prev + cnt), res)
             prev += cnt
         return res
 
 
 
 if __name__ == '__main__':
-    print Solution().findMinMoves([0, 0, 11, 5])
-    print Solution().findMinMoves2([0, 0, 11, 5])
-    print Solution().findMinMoves([1, 0, 5])
-    print Solution().findMinMoves2([1, 0, 5])
-    print Solution().findMinMoves([0, 3, 0])
-    print Solution().findMinMoves2([0, 3, 0])
-    print Solution().findMinMoves([9, 1, 8, 8, 9])
+    # print Solution().findMinMoves([0, 0, 11, 5])
+    # print Solution().findMinMoves2([0, 0, 11, 5])
+    # print Solution().findMinMoves([1, 0, 5])
+    # print Solution().findMinMoves2([1, 0, 5])
+    # print Solution().findMinMoves([0, 3, 0])
+    # print Solution().findMinMoves2([0, 3, 0])
+    # print Solution().findMinMoves([9, 1, 8, 8, 9])
     print Solution().findMinMoves2([9, 1, 8, 8, 9])
