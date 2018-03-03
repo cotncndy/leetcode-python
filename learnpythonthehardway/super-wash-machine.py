@@ -66,12 +66,29 @@ class Solution(object):
             res = max(abs(machines[k]), res)
             machines[k - 1] = 0
 
-        if machines[-1]:
-            return -1
         return res
+
+    def findMinMoves2(self, machines):
+        s, l = sum(machines), len(machines)
+        if s % l != 0:
+            return -1
+        avg = s / l
+
+        res, cnt, prev = 0, 0, 0
+        for k, v in enumerate(machines):
+            cnt = v - avg
+            res = max(abs(cnt), abs(prev + cnt), res)
+            prev += cnt
+        return res
+
 
 
 if __name__ == '__main__':
     print Solution().findMinMoves([0, 0, 11, 5])
+    print Solution().findMinMoves2([0, 0, 11, 5])
     print Solution().findMinMoves([1, 0, 5])
+    print Solution().findMinMoves2([1, 0, 5])
     print Solution().findMinMoves([0, 3, 0])
+    print Solution().findMinMoves2([0, 3, 0])
+    print Solution().findMinMoves([9, 1, 8, 8, 9])
+    print Solution().findMinMoves2([9, 1, 8, 8, 9])
