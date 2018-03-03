@@ -81,6 +81,18 @@ class Solution(object):
             prev += cnt
         return res
 
+    def findMinMoves3(self, machines):
+        s, l = sum(machines), len(machines)
+        if s % l != 0:
+            return -1
+        avg = s / l
+
+        res, cnt = 0, 0
+        for k, v in enumerate(machines):
+            cnt += v - avg
+            res = max(v - avg, abs(cnt), res)
+
+        return res
 
 
 if __name__ == '__main__':
@@ -91,4 +103,4 @@ if __name__ == '__main__':
     # print Solution().findMinMoves([0, 3, 0])
     # print Solution().findMinMoves2([0, 3, 0])
     # print Solution().findMinMoves([9, 1, 8, 8, 9])
-    print Solution().findMinMoves2([9, 1, 8, 8, 9])
+    print Solution().findMinMoves3([9, 1, 8, 8, 9])
