@@ -21,11 +21,11 @@
 
 
 # Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 class Solution(object):
     res = 0
@@ -53,6 +53,13 @@ class Solution(object):
             right = self.inorder(root.right)
             min3 = right.val - root.val
             min4 = root.right.val - root.val
-        self.res = min(min1, min2, min3, min4)
+        self.res = min(self.res, min1, min2, min3, min4)
 
         return root
+
+
+if __name__ == '__main__':
+    root = TreeNode(1)
+    root.right = TreeNode(3)
+    root.right.left = TreeNode(2)
+    print Solution().getMinimumDifference(root)
