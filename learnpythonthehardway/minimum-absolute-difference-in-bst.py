@@ -40,14 +40,20 @@ class Solution(object):
         return self.res
 
     def inorder(self, root):
+        if not root:
+            return None
         if root and not root.left and not root.right:
             return root
 
         left = self.inorder(root.left)
-        min1 = root.val - left.val
+        min1 = float('inf')
+        if left:
+            min1 = root.val - left.val
         min2 = root.val - root.left.val
         right = self.inorder(root.right)
-        min3 = right.val - root.val
+        min3 = float('inf')
+        if right:
+            min3 = right.val - root.val
         min4 = root.right.val - root.val
         self.res = min(min1, min2, min3, min4)
 
