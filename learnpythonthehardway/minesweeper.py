@@ -154,7 +154,7 @@ class Solution(object):
                 cnt = 0
                 for i in xrange(-1, 2):
                     for j in xrange(-1, 2):
-                        x, y = click[0] + i, click[1] + j
+                        x, y = row + i, col + j
                         if 0 <= x < m and 0 <= y < n:
                             if board[x][y] == 'M':
                                 cnt += 1
@@ -162,7 +162,7 @@ class Solution(object):
                                 que.append([x, y])
 
                 if cnt > 0:
-                    board[click[0]][click[1]] = str(cnt)
+                    board[row][col] = str(cnt)
                 else:
-                    board[click[0]][click[1]] = 'B'  # if it is 'B', we need recursively find all its neighbor
+                    board[row][col] = 'B'  # if it is 'B', we need recursively find all its neighbor
         return board
