@@ -28,38 +28,35 @@ class TreeNode(object):
         self.right = None
 
 class Solution(object):
-    res = 0
+    res = float('inf')
 
     def getMinimumDifference(self, root):
         """
         :type root: TreeNode
         :rtype: int
         """
-        self.inorder(root)
+        self.inorder(root, [])
 
         return self.res
 
-    def inorder(self, root):
-        if root and not root.left and not root.right:
-            return root
+    def inorder(self, root, arr):
 
-        min1, min2, min3, min4 = float('inf'), float('inf'), float('inf'), float('inf')
-        if root.left:
-            left = self.inorder(root.left)
-            min1 = root.val - left.val
-            min2 = root.val - root.left.val
+        if not root:
+            return
 
-        if root.right:
-            right = self.inorder(root.right)
-            min3 = right.val - root.val
-            min4 = root.right.val - root.val
-        self.res = min(self.res, min1, min2, min3, min4)
+        self.inorder(root.left, arr)
+        if not arr:
+            arr.append(root.val)
+        else:
+            self.res = min(self.res, root.val - arr.pop())
+            arr.append(root.val)
+        self.inorder(root.right, arr)
 
-        return root
 
 
 if __name__ == '__main__':
-    root = TreeNode(1)
-    root.right = TreeNode(3)
-    root.right.left = TreeNode(2)
+    root = TreeNode(236)
+    root.left, root.right = TreeNode(104), TreeNode(701)
+    root.left.right = TreeNode(227)
+    root.right.right = TreeNode(911)
     print Solution().getMinimumDifference(root)
