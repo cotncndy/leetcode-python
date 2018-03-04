@@ -151,18 +151,21 @@ class Solution(object):
                 board[row][col] = 'X'
 
             else:  # search its all 8 neighbor , check how many mines there
-                cnt = 0
+                cnt, neighbor = 0, []
                 for i in xrange(-1, 2):
                     for j in xrange(-1, 2):
                         x, y = row + i, col + j
                         if 0 <= x < m and 0 <= y < n:
                             if board[x][y] == 'M':
                                 cnt += 1
-                            if board[x][y] == 'E':
-                                que.append([x, y])
+                            if cnt == 0 and board[x][y] == 'E':  # bugfixed
+                                neighbor.append([x, y])
 
                 if cnt > 0:
                     board[row][col] = str(cnt)
                 else:
                     board[row][col] = 'B'  # if it is 'B', we need recursively find all its neighbor
+                    for x, y in neighbor:  # bugfixed
+                        board[x][y] = 'B'
+                        que.append([x, y])
         return board
