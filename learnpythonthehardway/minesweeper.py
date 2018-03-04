@@ -77,6 +77,7 @@ class Solution(object):
         if not m or not n:
             return board
 
+
         if board[click[0]][click[1]] == 'M':
             board[click[0]][click[1]] = 'X'
         else:  # search its all 8 neighbor , check how many mines there
@@ -97,4 +98,39 @@ class Solution(object):
                         if 0 <= x < m and 0 <= y < n:
                             if board[x][y] == 'E':  # only find those has not been marked yet
                                 self.updateBoard(board, [x, y])
+        return board
+
+    def updateBoard2(self, board, click):
+        """
+        :type board: List[List[str]]
+        :type click: List[int]
+        :rtype: List[List[str]]
+        """
+        if not board:
+            return board
+        m, n = len(board), len(board[0])
+        if not m or not n:
+            return board
+
+        empty = []
+
+        if board[click[0]][click[1]] == 'M':
+            board[click[0]][click[1]] = 'X'
+        else:  # search its all 8 neighbor , check how many mines there
+            cnt = 0
+            for i in xrange(-1, 2):
+                for j in xrange(-1, 2):
+                    x, y = click[0] + i, click[1] + j
+                    if 0 <= x < m and 0 <= y < n:
+                        if board[x][y] == 'M':
+                            cnt += 1
+                        if board[x][y] == 'E':
+                            empty.append([x, y])
+
+            if cnt > 0:
+                board[click[0]][click[1]] = str(cnt)
+            else:
+                board[click[0]][click[1]] = 'B'  # if it is 'B', we need recursively find all its neighbor
+                for x, y in empty:
+                    self.updateBoard(board, [x, y])
         return board
