@@ -134,3 +134,35 @@ class Solution(object):
                 for x, y in empty:
                     self.updateBoard(board, [x, y])
         return board
+
+    def updateBoard3(self, board, click):
+        if not board:
+            return board
+        m, n = len(board), len(board[0])
+        if not m or not n:
+            return board
+
+        que = []
+        que.append(click)
+
+        while que:
+            row, col = que.pop(0)
+            if board[row][col] == 'M':
+                board[row][col] = 'X'
+
+            else:  # search its all 8 neighbor , check how many mines there
+                cnt = 0
+                for i in xrange(-1, 2):
+                    for j in xrange(-1, 2):
+                        x, y = click[0] + i, click[1] + j
+                        if 0 <= x < m and 0 <= y < n:
+                            if board[x][y] == 'M':
+                                cnt += 1
+                            if board[x][y] == 'E':
+                                que.append([x, y])
+
+                if cnt > 0:
+                    board[click[0]][click[1]] = str(cnt)
+                else:
+                    board[click[0]][click[1]] = 'B'  # if it is 'B', we need recursively find all its neighbor
+        return board
