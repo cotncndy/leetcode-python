@@ -49,4 +49,19 @@ class Solution(object):
                     res.add((min(key, key - k), max(key, key - k)))
                 if key + k in cnt:
                     res.add((min(key, key + k), max(key, key + k)))
+
         return len(res)
+
+    def findPairs2(self, nums, k):
+        if k < 0:
+            return 0
+        cnt, res = collections.Counter(nums), 0
+
+        for key, val in cnt.iteritems():
+            if k == 0:
+                if val > 1:
+                    res += 1
+            else:
+                if key + k in cnt:
+                    res += 1
+        return res
