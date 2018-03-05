@@ -36,15 +36,15 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        cnt, res = collections.Counter(nums), 0
+        cnt, res = collections.Counter(nums), set()
 
         for key, val in cnt.iteritems():
-            if key - k in cnt and cnt[key - k] > 0 and val > 0:
-                res += 1
-                cnt[key - k] = cnt[key - k] - 1
-                cnt[key] = val - 1
-            if key + k in cnt and cnt[key + k] > 0 and val > 0:
-                res += 1
-                cnt[key + k] = cnt[key + k] - 1
-                cnt[key] = val - 1
-        return res
+            if k == 0:
+                if val > 1:
+                    res.add((min(key, key - k), max(key, key - k)))
+            else:
+                if key - k in cnt:
+                    res.add((min(key, key - k), max(key, key - k)))
+                if key + k in cnt:
+                    res.add((min(key, key + k), max(key, key + k)))
+        return len(res)
