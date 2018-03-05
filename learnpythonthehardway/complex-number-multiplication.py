@@ -39,6 +39,10 @@ class Solution(object):
         # print fir, sec, thi, four
         return str(s1) + '+' + str(s2) + 'i'
 
+    def complexNumberMultiply2(self, a, b):
+        a = map(int, a[:-1].split('+', 1))
+        b = map(int, b[:-1].split('+', 1))
+        return '%s+%si' % (a[0] * b[0] - a[1] * b[1], a[0] * b[1] + a[1] * b[0])
 
 if __name__ == '__main__':
     print Solution().complexNumberMultiply("1+2i", "3+-2i")
