@@ -29,11 +29,9 @@ class Solution(object):
         :rtype: str
         """
         aL, bL = a.split('+'), b.split('+')
-        fir, thi = int(aL[0]), int(bL[0])
-        sec = int(aL[1][1:-1]) * -1 if aL[1][0] == '-' else int(aL[1][0:-1])
-        four = int(bL[1][1:-1]) * -1 if bL[1][0] == '-' else int(bL[1][0:-1])
+        fir, thi, sec, four = int(aL[0]), int(bL[0]), int(aL[1][:-1]), int(bL[1][:-1])
 
-        s1 = fir * thi + sec * four * -1
+        s1 = fir * thi - sec * four
         s2 = fir * four + sec * thi
 
         # print fir, sec, thi, four
