@@ -36,6 +36,8 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
+        if k < 0:
+            return 0
         cnt, res = collections.Counter(nums), set()
 
         for key, val in cnt.iteritems():
