@@ -40,3 +40,21 @@ class Solution(object):
         self.convertBST(root.left)
 
         return root
+
+    def convertBST2(self, root):
+        """
+        :type root: TreeNode
+        :rtype: TreeNode
+        """
+
+        def helper(root, val):
+            if not root:
+                return val
+            right = helper(root.right, val)
+            root.val += right
+            left = helper(root.left, root.val)
+            return left
+
+        helper(root, 0)
+
+        return root
