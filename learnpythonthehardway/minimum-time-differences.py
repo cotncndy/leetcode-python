@@ -46,6 +46,18 @@ class Solution(object):
 
         return res
 
+    def time_to_minute(self, t):
+        return 60 * int(t[:2]) + int(t[-2:])
+
+    def findMinDifference2(self, timePoints):
+        """
+        :type timePoints: List[str]
+        :rtype: int
+        """
+        minutes = sorted(map(self.time_to_minute, timePoints))
+        return min((y - x) % (24 * 60)
+                   for x, y in zip(minutes, minutes[1:] + minutes[:1]))
+
 
 if __name__ == '__main__':
     print Solution().findMinDifference(["13:14", "8:23", "11:49", "6:00", "23:04"])
