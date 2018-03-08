@@ -36,6 +36,24 @@ class Solution(object):
                     left = mid + 2
         return -1
 
+    def singleNonDuplicate2(self, nums):
+        start, end = 0, len(nums) - 1
+        while start < end:
+            mid = start + (end - start) // 2
+            if nums[mid] == nums[mid - 1]:
+                if mid % 2 == 0:
+                    end = mid - 2
+                else:
+                    start = mid + 1
+            elif nums[mid] == nums[mid + 1]:
+                if mid % 2 == 0:
+                    start = mid + 2
+                else:
+                    end = mid - 1
+            else:
+                return nums[mid]
+        return nums[start]
+
 
 if __name__ == '__main__':
     print Solution().singleNonDuplicate([1, 1, 2, 3, 3, 4, 4, 8, 8])
