@@ -28,8 +28,9 @@ class Solution(object):
             if not prev:
                 prev = t
             else:
-                res = min(res, self.getDiff(t, prev))
+                res = min(res, self.getDiff(t, prev), self.getDiff(prev, t))
                 prev = t
+        res = min(res, self.getDiff(timePoints[0], timePoints[-1]), self.getDiff(timePoints[-1], timePoints[0]))
         return res
 
     def getDiff(self, t1, t2):
@@ -41,7 +42,7 @@ class Solution(object):
             if a[0] < 0:
                 a[0] += 24
 
-        res += min(a[0] - b[0], 24 - (a[0] - b[0])) * 60
+        res += min(abs(a[0] - b[0]), 24 - abs(a[0] - b[0])) * 60
 
         return res
 
