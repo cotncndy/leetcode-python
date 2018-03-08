@@ -17,12 +17,25 @@ class Solution(object):
         """
         if k >= len(s):
             return s[::-1]
-        right = k
+        left, right = 0, k * 2
         while right < len(s):
             s = s[:right - k] + s[right - k: right][::-1] + s[right:]
-            right += k * 2
+            left, right = right, right + right
+
+        s = s[0:left] + s[left: min(k, len(s) - left + 1)][::-1]
         return s
+
+    def reverseStr2(self, s, k):
+        res = ''
+        i = 0
+        while i < len(s):
+            res = res + s[i:i + k][::-1]
+            res = res + s[i + k:i + (k * 2)]
+            i = i + (k * 2)
+        return res
 
 
 if __name__ == '__main__':
     print Solution().reverseStr("abcdefg", 2)
+    print Solution().reverseStr(
+        "hyzqyljrnigxvdtneasepfahmtyhlohwxmkqcdfehybknvdmfrfvtbsovjbdhevlfxpdaovjgunjqlimjkfnqcqnajmebeddqsgl", 39)
