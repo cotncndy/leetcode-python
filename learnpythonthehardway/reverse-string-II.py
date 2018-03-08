@@ -15,8 +15,10 @@ class Solution(object):
         :type k: int
         :rtype: str
         """
+        if k >= len(s):
+            return s[::-1]
         right = k
-        while right <= len(s):
+        while right < len(s):
             s = s[:right - k] + s[right - k: right][::-1] + s[right:]
             right += k * 2
         return s
