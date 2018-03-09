@@ -61,7 +61,8 @@ class Solution(object):
         self.dfs(matrix, visited, step + 1, x - 1, y)
         self.dfs(matrix, visited, step + 1, x, y + 1)
         self.dfs(matrix, visited, step + 1, x, y - 1)
+        visited[x][y] = False
 
 
 if __name__ == '__main__':
-    print Solution().updateMatrix([[0, 0, 0], [0, 1, 0], [1, 1, 1]])
+    print Solution().updateMatrix([[0, 1, 0], [0, 1, 0], [0, 1, 0], [0, 1, 0], [0, 1, 0]])
