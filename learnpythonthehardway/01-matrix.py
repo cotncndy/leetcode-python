@@ -61,8 +61,43 @@ class Solution(object):
         self.dfs(matrix, visited, step + 1, x - 1, y)
         self.dfs(matrix, visited, step + 1, x, y + 1)
         self.dfs(matrix, visited, step + 1, x, y - 1)
-        visited[x][y] = False
+        visited[x][y] = False  # bugfixed need backtrack
+
+    def updateMatrix2(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        m, n, que = len(matrix), len(matrix[0]), []
+
+        for i in xrange(m):
+            for j in xrange(n):
+                if matrix[i][j] > 0:
+                    matrix[i][j] = float('inf')
+                else:
+                    que.append((i, j))
+
+        while que:
+            k, v = que.pop(0)
+            for x, y in ((-1, 0), (0, 1), (1, 0), (0, -1)):
+                newX, newY = k + x, v + y
+                if newX < 0 or newX >= m or newY < 0 or newY >= n or matrix[newX][newY] <= matrix[k][v]:
+                    continue
+                matrix[newX][newY] = matrix[k][v] + 1
+                que.append((newX, newY))
+
+        return matrix
+
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == '__main__':
-    print Solution().updateMatrix([[0, 1, 0], [0, 1, 0], [0, 1, 0], [0, 1, 0], [0, 1, 0]])
+    print Solution().updateMatrix2([[0, 1, 0], [0, 1, 0], [0, 1, 0], [0, 1, 0], [0, 1, 0]])
