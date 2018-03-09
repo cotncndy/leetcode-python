@@ -45,7 +45,8 @@ class Solution(object):
         return matrix
 
     def dfs(self, matrix, visited, step, x, y):
-        if visited[x][y]:
+
+        if x < 0 or x >= len(matrix) or y < 0 or y >= len(matrix[x]) or visited[x][y]:
             return
         if matrix[x][y]:
             matrix[x][y] = min(matrix[x][y], step)
