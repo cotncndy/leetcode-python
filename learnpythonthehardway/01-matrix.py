@@ -38,9 +38,15 @@ class Solution(object):
         for i in xrange(m):
             for j in xrange(n):
                 if matrix[i][j] > 0:
+                    matrix[i][j] = float('inf')
+
+        for i in xrange(m):
+            for j in xrange(n):
+                if matrix[i][j] > 0:
                     continue
                 visited = [[False] * n for _ in xrange(m)]
                 self.dfs(matrix, visited, 0, i, j)
+                print matrix
 
         return matrix
 
@@ -55,3 +61,7 @@ class Solution(object):
         self.dfs(matrix, visited, step + 1, x - 1, y)
         self.dfs(matrix, visited, step + 1, x, y + 1)
         self.dfs(matrix, visited, step + 1, x, y - 1)
+
+
+if __name__ == '__main__':
+    print Solution().updateMatrix([[0, 0, 0], [0, 1, 0], [1, 1, 1]])
