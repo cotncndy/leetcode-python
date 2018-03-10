@@ -37,7 +37,7 @@ class Solution(object):
             return (0, 0)  # first is path include root, second is the max of left , or right path
         p1, p2 = self.traverse(root.left)
         p3, p4 = self.traverse(root.right)
-        self.res = max(p1, p3, p2 + p4 + 1)
+        self.res = max(p1, p3, p2 + p4 + 1, self.res)  # bugfixed, forgot self.res
         return (p2 + p4 + 1, max(p2, p4) + 1)
 
 
