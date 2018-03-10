@@ -14,13 +14,14 @@
 
 
 # Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 class Solution(object):
+    res = 0
     def diameterOfBinaryTree(self, root):
         """
         :type root: TreeNode
@@ -28,12 +29,21 @@ class Solution(object):
         """
         if not root:
             return 0
-        return max(self.traverse(root)) - 1
+        self.traverse(root)
+        return self.res - 1
 
     def traverse(self, root):
         if not root:
             return (0, 0)  # first is path include root, second is the max of left , or right path
         p1, p2 = self.traverse(root.left)
         p3, p4 = self.traverse(root.right)
+        self.res = max(p1, p3, p2 + p4 + 1)
+        return (p2 + p4 + 1, max(p2, p4) + 1)
 
-        return (p2 + p4 + 1, max(p1, p3) + 1)
+
+if __name__ == '__main__':
+    root, node = TreeNode(4), TreeNode(2)
+    node.left, node.right = TreeNode(1), TreeNode(3)
+    root.left = node
+
+    print Solution().diameterOfBinaryTree(root)
