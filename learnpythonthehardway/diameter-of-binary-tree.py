@@ -26,6 +26,8 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
+        if not root:
+            return 0
         return max(self.traverse(root)) - 1
 
     def traverse(self, root):
