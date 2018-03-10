@@ -26,7 +26,12 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
-        return max(self.traverse(root), self.diameterOfBinaryTree(root.left), self.diameterOfBinaryTree(root.right))
+        res = self.traverse(root)
+        if root.left:
+            res = max(res, self.diameterOfBinaryTree(root.left))
+        if root.right:
+            res = max(res, self.diameterOfBinaryTree(root.right))
+        return res
 
     def traverse(self, root):
         if not root:
