@@ -26,16 +26,12 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
-        res = self.traverse(root)
-        if root.left:
-            res = max(res, self.diameterOfBinaryTree(root.left))
-        if root.right:
-            res = max(res, self.diameterOfBinaryTree(root.right))
-        return res
+        return max(self.traverse(root)) - 1
 
     def traverse(self, root):
         if not root:
-            return 0
-        left, right = self.diameterOfBinaryTree(root.left), self.diameterOfBinaryTree(root.right)
+            return (0, 0)  # first is path include root, second is the max of left , or right path
+        p1, p2 = self.traverse(root.left)
+        p3, p4 = self.traverse(root.right)
 
-        return left + right + 1
+        return (p2 + p4 + 1, max(p1, p3) + 1)
