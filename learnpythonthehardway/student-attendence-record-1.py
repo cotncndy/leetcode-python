@@ -43,6 +43,7 @@ class Solution(object):
 
         for k, v in enumerate(s):
             if v == 'A':
+                lCnt = 0
                 aCnt += 1
                 if aCnt > 1:
                     return False
