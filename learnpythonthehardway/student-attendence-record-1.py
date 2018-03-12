@@ -34,6 +34,26 @@ class Solution(object):
 
         return True
 
+    def checkRecord2(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        aCnt, lCnt = 0, 0
+
+        for k, v in enumerate(s):
+            if v == 'A':
+                aCnt += 1
+                if aCnt > 1:
+                    return False
+            elif v == 'L':
+                lCnt += 1
+                if lCnt > 2:
+                    return False
+            else:
+                lCnt = 0
+
+        return True
 
 if __name__ == '__main__':
     print Solution().checkRecord("PPALLP")
