@@ -81,10 +81,19 @@ class Solution(object):
 
         return res
 
+    def optimalDivision3(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: str
+        """
+        if len(nums) <= 2:
+            return "/".join(map(str, nums))
+        return str(nums[0]) + '/(' + '/'.join(map(str, nums[1:])) + ')'
+
 if __name__ == '__main__':
-    print Solution().optimalDivision([2])
-    print Solution().optimalDivision([10, 2])
+    print Solution().optimalDivision3([2])
+    print Solution().optimalDivision3([10, 2])
     # print Solution().optimalDivision([100, 10, 2])
     # print Solution().optimalDivision([1000, 100, 10, 2])
-    print Solution().optimalDivision2([2, 3, 4])
-    print Solution().optimalDivision2([6, 2, 3, 4, 5])
+    print Solution().optimalDivision3([2, 3, 4])
+    print Solution().optimalDivision3([6, 2, 3, 4, 5])
