@@ -46,7 +46,7 @@ class Solution(object):
         res1, res = self.dfs(nums, m, m1, n - 1), []
 
         for i in res1:
-            t = nums[len(nums) - 1 - n] // i
+            t = nums[len(nums) - 1 - n] * 1.0 / i
             res.append(t)
             s = m1[i] if '/' not in m1[i] else '(' + m1[i] + ')'
             m1[t] = str(nums[len(nums) - 1 - n]) + '/' + s
@@ -55,7 +55,7 @@ class Solution(object):
             res2 = self.dfs(nums, m, m1, n - 2)
             # res.append(nums[len(nums)-1-n] // nums[len(nums)-n] // i for i in res2)
             for i in res2:
-                t = nums[len(nums) - 1 - n] // nums[len(nums) - n] // i
+                t = nums[len(nums) - 1 - n] * 1.0 / nums[len(nums) - n] / i
                 res.append(t)
                 s = m1[i] if '/' not in m1[i] else '(' + m1[i] + ')'
                 m1[t] = str(nums[len(nums) - 1 - n]) + "/" + str(nums[len(nums) - n]) + '/' + s
@@ -70,5 +70,6 @@ class Solution(object):
 if __name__ == '__main__':
     # print Solution().optimalDivision([2])
     # print Solution().optimalDivision([10, 2])
-    print Solution().optimalDivision([100, 10, 2])
-    print Solution().optimalDivision([1000, 100, 10, 2])
+    # print Solution().optimalDivision([100, 10, 2])
+    # print Solution().optimalDivision([1000, 100, 10, 2])
+    print Solution().optimalDivision([2, 3, 4])
