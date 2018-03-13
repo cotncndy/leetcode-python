@@ -51,6 +51,7 @@ class Solution(object):
         if n == 0:
             return 0
         dp = [1] * (n + 1)
+        dp[1], dp[2] = 2, 4  # dp[1] = {l,p}, dp[2]= {ll,pp, pl, lp}
         M = 10 ** 9 + 7
 
         for i in xrange(3, n + 1):
@@ -64,8 +65,8 @@ class Solution(object):
         return res
 
 if __name__ == '__main__':
-    print Solution().checkRecord(1)
-    print Solution().checkRecord(2)
+    print Solution().checkRecord2(1)
+    print Solution().checkRecord2(2)
     print Solution().checkRecord(3)
     print Solution().checkRecord(4)
     print Solution().checkRecord(21230)
