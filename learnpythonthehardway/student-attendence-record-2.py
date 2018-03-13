@@ -24,7 +24,7 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        A, P, L = [0] * n, [0] * n, [0] * n
+        A, P, L = [0] * (n + 2), [0] * (n + 2), [0] * (n + 2)
         P[0], A[0], L[0], L[1], A[1], A[2] = 1, 1, 1, 3, 2, 4
         M = 1000000007
 
@@ -43,6 +43,7 @@ class Solution(object):
 
 
 if __name__ == '__main__':
+    print Solution().checkRecord(1)
     print Solution().checkRecord(2)
     print Solution().checkRecord(3)
     print Solution().checkRecord(4)
