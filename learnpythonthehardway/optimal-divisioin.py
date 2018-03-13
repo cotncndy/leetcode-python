@@ -34,6 +34,7 @@ class Solution(object):
         """
         m, m1 = collections.defaultdict(), collections.defaultdict(str)
         res = self.dfs(nums, m, m1, len(nums) - 1)
+        print res
         return m1[max(res)]
 
     def dfs(self, nums, m, m1, n):
@@ -66,10 +67,24 @@ class Solution(object):
 
         return res
 
+    def optimalDivision2(self, nums):
+        if len(nums) == 1:
+            return nums[0]
+        if len(nums) == 2:
+            return str(nums[0]) + '/' + str(nums[0])
+        res = str(nums[0]) + '/' + '('
+        for i in xrange(1, len(nums)):
+            res += str(nums[i])
+            if i < len(nums) - 1:
+                res += '/'
+        res += ')'
+
+        return res
 
 if __name__ == '__main__':
-    # print Solution().optimalDivision([2])
-    # print Solution().optimalDivision([10, 2])
+    print Solution().optimalDivision([2])
+    print Solution().optimalDivision([10, 2])
     # print Solution().optimalDivision([100, 10, 2])
     # print Solution().optimalDivision([1000, 100, 10, 2])
-    print Solution().optimalDivision([2, 3, 4])
+    print Solution().optimalDivision2([2, 3, 4])
+    print Solution().optimalDivision2([6, 2, 3, 4, 5])
