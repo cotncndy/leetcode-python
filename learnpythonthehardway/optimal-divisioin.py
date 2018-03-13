@@ -32,23 +32,30 @@ class Solution(object):
         :type nums: List[int]
         :rtype: str
         """
-        m = collections.defaultdict(set)
-        return str(max(self.dfs(nums, m, len(nums) - 1)))
+        m, m1 = collections.defaultdict(set), collections.defaultdict(str)
+        res = self.dfs(nums, m, m1, len(nums) - 1)
+        return m1[max(res)]
 
-    def dfs(self, nums, m, n):
+    def dfs(self, nums, m, m1, n):
         if n == 0:
-            m[0] = [nums[len(nums) - 1]]
+            m[0] = str(nums[len(nums) - 1])
+            m1[nums[len(nums) - 1]] = str(m[0])
             return [nums[len(nums) - 1]]
         if n in m:
             return m[n]
-        res1, res = self.dfs(nums, m, n - 1), []
+        res1, res = self.dfs(nums, m, m1, n - 1), []
         if n > 1:
-            res2 = self.dfs(nums, m, n - 2)
+            res2 = self.dfs(nums, m, m1, n - 2)
             # res.append(nums[len(nums)-1-n] // nums[len(nums)-n] // i for i in res2)
             for i in res2:
-                res.append(nums[len(nums) - 1 - n] // nums[len(nums) - n] // i)
+                t = nums[len(nums) - 1 - n] // nums[len(nums) - n] // i
+                res.append(t)
+                m1[t] = "(" + str(nums[len(nums) - 1 - n]) + "/" + str(nums[len(nums) - n]) + ")" + '/' + m1[i]
+
         for i in res1:
-            res.append(nums[len(nums) - 1 - n] // i)
+            t = nums[len(nums) - 1 - n] // i
+            res.append(t)
+            m1[t] = str(nums[len(nums) - 1 - n]) + '/' + m1[i]
         # res.append(nums[len(nums)-1-n] // i for i in res1)
 
         m[n] = res
