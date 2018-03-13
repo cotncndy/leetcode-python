@@ -33,17 +33,39 @@ class Solution(object):
         # L[i] = p[i-1] + A[i-1] + p[i-2] + A[i-2]
 
         for i in xrange(1, n):
-            P[i] = (P[i - 1] + A[i - 1] + L[i - 1]) % M
+            P[i] = ((P[i - 1] + A[i - 1]) % M + L[i - 1]) % M
             if i > 1:
-                L[i] = (P[i - 1] + A[i - 1] + P[i - 2] + A[i - 2]) % M
+                L[i] = ((P[i - 1] + A[i - 1]) % M + (P[i - 2] + A[i - 2]) % M) % M
             if i > 2:
-                A[i] = (A[i - 1] + A[i - 2] + A[i - 3]) % M
+                A[i] = ((A[i - 1] + A[i - 2]) % M + A[i - 3]) % M
 
-        return (A[n - 1] + P[n - 1] + L[n - 1]) % M
+        return ((A[n - 1] + P[n - 1]) % M + L[n - 1]) % M
 
+    def checkRecord2(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n == 1:
+            return 3
+        if n == 0:
+            return 0
+        dp = [1] * (n + 1)
+        M = 10 ** 9 + 7
+
+        for i in xrange(3, n + 1):
+            # end with p, pl, pll.
+            dp[i] = (dp[i - 1] + dp[i - 2] + dp[i - 3]) % M
+        res = dp[n]
+
+        for i in xrange(n):
+            res += dp[i] * dp[n - 1 - i] % M
+            res %= M
+        return res
 
 if __name__ == '__main__':
     print Solution().checkRecord(1)
     print Solution().checkRecord(2)
     print Solution().checkRecord(3)
     print Solution().checkRecord(4)
+    print Solution().checkRecord(21230)
