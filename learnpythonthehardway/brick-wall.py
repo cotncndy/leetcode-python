@@ -46,6 +46,12 @@ class Solution(object):
 
         temp = 0
         for k, v in subSum.iteritems():
+            if v == len(wall):
+                continue
             temp = max(temp, v)
 
         return len(wall) - temp
+
+
+if __name__ == '__main__':
+    print Solution().leastBricks([[1, 2, 2, 1], [3, 1, 2], [1, 3, 2], [2, 4], [3, 1, 2], [1, 3, 1, 1]])
