@@ -46,7 +46,7 @@ class Solution(object):
         for l in nestedList:  # bugfixed, don't forget this
             helper(l, 0, res)
 
-        # [1,2,3,4] 4 * 1 + 3 * 2+ 2 * 3 + 1 * 4
+        # [1,[2,[3,[4]]]] 4 * 1 + 3 * 2+ 2 * 3 + 1 * 4
         sum = 0
         for i in reversed(xrange(len(res))):
             sum += res[i] * (len(res) - i)
@@ -67,3 +67,7 @@ class Solution(object):
             weighted += un_weighted
 
         return weighted
+
+
+if __name__ == '__main__':
+    print Solution().depthSumInverse2([1, [2, [3, [4]]]])
