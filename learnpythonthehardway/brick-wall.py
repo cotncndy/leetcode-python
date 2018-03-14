@@ -52,9 +52,25 @@ class Solution(object):
 
         return len(wall) - temp
 
+    def leastBricks2(self, wall):
+        """
+        :type wall: List[List[int]]
+        :rtype: int
+        """
+        subSum = collections.defaultdict(int)
+        res = 0
+
+        for i in xrange(len(wall)):
+            temp = 0
+            for j in xrange(len(wall[i]) - 1):
+                temp += wall[i][j]
+                subSum[temp] += 1
+                res = max(res, subSum[temp])
+
+        return len(wall) - res
 
 if __name__ == '__main__':
-    print Solution().leastBricks([[1], [1], [1]])
-    # print Solution().leastBricks([[1, 2, 2, 1], [3, 1, 2], [1, 3, 2], [2, 4], [3, 1, 2], [1, 3, 1, 1]])
-    # print Solution().leastBricks(
-    #     [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]])
+    print Solution().leastBricks2([[1], [1], [1]])
+    print Solution().leastBricks2([[1, 2, 2, 1], [3, 1, 2], [1, 3, 2], [2, 4], [3, 1, 2], [1, 3, 1, 1]])
+    print Solution().leastBricks2(
+        [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]])
