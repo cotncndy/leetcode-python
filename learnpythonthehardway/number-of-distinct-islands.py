@@ -41,7 +41,7 @@ class Solution(object):
             for j in xrange(n):
                 if grid[i][j] == 1 and not visited[i][j]:
                     li = []
-                    self.dfs(grid, i, j, li, visited, i * n + j)
+                    self.dfs(grid, i, j, li, visited, i, j)
                     res = ""
                     for k in sorted(li):
                         res += str(k)
@@ -49,12 +49,16 @@ class Solution(object):
 
         return len(pSet)
 
-    def dfs(self, grid, x, y, li, visited, start):
+    def dfs(self, grid, x, y, li, visited, i, j):
         if x < 0 or x >= len(grid) or y < 0 or y >= len(grid[0]) or visited[x][y] or grid[x][y] == 0:
             return
-        li.append(x * len(grid[0]) + y - start)
+        li.append(((x - i) * len(grid[0]) + (y - j)) * (x - i))
         visited[x][y] = True
-        self.dfs(grid, x - 1, y, li, visited, start)
-        self.dfs(grid, x, y + 1, li, visited, start)
-        self.dfs(grid, x + 1, y, li, visited, start)
-        self.dfs(grid, x, y - 1, li, visited, start)
+        self.dfs(grid, x - 1, y, li, visited, i, j)
+        self.dfs(grid, x, y + 1, li, visited, i, j)
+        self.dfs(grid, x + 1, y, li, visited, i, j)
+        self.dfs(grid, x, y - 1, li, visited, i, j)
+
+
+if __name__ == '__main__':
+    print Solution().numDistinctIslands([[1, 1, 1, 1], [1, 0, 1, 0], [0, 0, 0, 0], [0, 1, 1, 1], [1, 1, 0, 1]])
