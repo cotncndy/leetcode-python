@@ -42,7 +42,10 @@ class Solution(object):
                 if grid[i][j] == 1 and not visited[i][j]:
                     li = []
                     self.dfs(grid, i, j, li, visited, i * n + j)
-                    pSet.add(sorted(li))
+                    res = ""
+                    for k in sorted(li):
+                        res += str(k)
+                    pSet.add(res)
 
         return len(pSet)
 
