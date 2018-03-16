@@ -59,7 +59,8 @@ class Solution(object):
                 if grid[i][j] == 1 and not visited[i][j]:
                     li = []
                     self.dfs2(grid, i, j, li, visited)
-                    pSet.add(self.transform(li))
+                    li = self.transform(li)
+                    pSet.add(''.join(str(e) for e in li))
 
         return len(pSet)
 
@@ -76,14 +77,14 @@ class Solution(object):
     def transform(self, li):
         tr = [[] for _ in xrange(8)]
         for p, q in li:
-            tr[0].append([p, q])
-            tr[1].append([-p, q])
-            tr[2].append([p, -q])
-            tr[3].append([-p, -q])
-            tr[4].append([q, p])
-            tr[5].append([-q, p])
-            tr[6].append([q, -p])
-            tr[7].append([-q, -p])
+            tr[0].append((p, q))
+            tr[1].append((-p, q))
+            tr[2].append((p, -q))
+            tr[3].append((-p, -q))
+            tr[4].append((q, p))
+            tr[5].append((-q, p))
+            tr[6].append((q, -p))
+            tr[7].append((-q, -p))
 
         for t in tr:
             t.sort()
@@ -92,10 +93,13 @@ class Solution(object):
             for u, k in enumerate(t):
                 if u != 0:
                     t[u] = (k[0] - t[0][0], k[1] - t[0][1])
+            t[0] = (0, 0)  # bugfixed ,the first item 's distance to itself should be (0,0)
 
         tr.sort()
-        return tr[0][0]
+        return tr[0]  # bugfixed should return the first list instead of the first ele of the first list
 
 
 if __name__ == '__main__':
     print Solution().numDistinctIslands2([[1, 1, 0, 0, 0], [1, 0, 0, 0, 0], [0, 0, 0, 0, 1], [0, 0, 0, 1, 1]])
+    print Solution().numDistinctIslands2([[1, 1, 1, 1], [1, 0, 1, 0], [0, 0, 0, 0], [0, 1, 1, 1], [1, 1, 0, 1]])
+    print Solution().numDistinctIslands2([[1, 1, 1, 0, 0], [1, 0, 0, 0, 1], [0, 1, 0, 0, 1], [0, 1, 1, 1, 0]])
