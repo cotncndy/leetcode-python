@@ -51,3 +51,51 @@ class Solution(object):
         :type grid: List[List[int]]
         :rtype: int
         """
+        m, n, pSet = len(grid), len(grid[0]), set()
+        visited = [[False] * n for _ in xrange(m)]
+
+        for i in xrange(m):
+            for j in xrange(n):
+                if grid[i][j] == 1 and not visited[i][j]:
+                    li = []
+                    self.dfs2(grid, i, j, li, visited)
+                    pSet.add(self.transform(li))
+
+        return len(pSet)
+
+    def dfs2(self, grid, x, y, li, visited):
+        if x < 0 or x >= len(grid) or y < 0 or y >= len(grid[0]) or visited[x][y] or grid[x][y] == 0:
+            return
+        li.append((x, y))
+        visited[x][y] = True
+        self.dfs2(grid, x - 1, y, li, visited)
+        self.dfs2(grid, x, y + 1, li, visited)
+        self.dfs2(grid, x + 1, y, li, visited)
+        self.dfs2(grid, x, y - 1, li, visited)
+
+    def transform(self, li):
+        tr = [[] for _ in xrange(8)]
+        for p, q in li:
+            tr[0].append([p, q])
+            tr[1].append([-p, q])
+            tr[2].append([p, -q])
+            tr[3].append([-p, -q])
+            tr[4].append([q, p])
+            tr[5].append([-q, p])
+            tr[6].append([q, -p])
+            tr[7].append([-q, -p])
+
+        for t in tr:
+            t.sort()
+
+        for t in tr:
+            for u, k in enumerate(t):
+                if u != 0:
+                    t[u] = (k[0] - t[0][0], k[1] - t[0][1])
+
+        tr.sort()
+        return tr[0][0]
+
+
+if __name__ == '__main__':
+    print Solution().numDistinctIslands2([[1, 1, 0, 0, 0], [1, 0, 0, 0, 0], [0, 0, 0, 0, 1], [0, 0, 0, 1, 1]])

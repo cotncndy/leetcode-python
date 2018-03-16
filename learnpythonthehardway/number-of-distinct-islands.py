@@ -86,6 +86,8 @@ class Solution(object):
         self.dfs2(grid, x, y + 1, li, visited, i, j)
         self.dfs2(grid, x + 1, y, li, visited, i, j)
         self.dfs2(grid, x, y - 1, li, visited, i, j)
+
+
 if __name__ == '__main__':
     print Solution().numDistinctIslands2([[1, 1, 1, 1], [1, 0, 1, 0], [0, 0, 0, 0], [0, 1, 1, 1], [1, 1, 0, 1]])
     print Solution().numDistinctIslands([[1, 1, 1, 1], [1, 0, 1, 0], [0, 0, 0, 0], [0, 1, 1, 1], [1, 1, 0, 1]])
