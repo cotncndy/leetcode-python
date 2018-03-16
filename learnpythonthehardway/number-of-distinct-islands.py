@@ -59,6 +59,33 @@ class Solution(object):
         self.dfs(grid, x + 1, y, li, visited, i, j)
         self.dfs(grid, x, y - 1, li, visited, i, j)
 
+    def numDistinctIslands2(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        m, n, pSet = len(grid), len(grid[0]), set()
+        visited = [[False] * n for _ in xrange(m)]
 
+        for i in xrange(m):
+            for j in xrange(n):
+                if grid[i][j] == 1 and not visited[i][j]:
+                    li = []
+                    self.dfs2(grid, i, j, li, visited, i, j)
+                    res = ''.join(li)
+                    pSet.add(res)
+
+        return len(pSet)
+
+    def dfs2(self, grid, x, y, li, visited, i, j):
+        if x < 0 or x >= len(grid) or y < 0 or y >= len(grid[0]) or visited[x][y] or grid[x][y] == 0:
+            return
+        li.append(str(x - i) + str(y - j))
+        visited[x][y] = True
+        self.dfs2(grid, x - 1, y, li, visited, i, j)
+        self.dfs2(grid, x, y + 1, li, visited, i, j)
+        self.dfs2(grid, x + 1, y, li, visited, i, j)
+        self.dfs2(grid, x, y - 1, li, visited, i, j)
 if __name__ == '__main__':
+    print Solution().numDistinctIslands2([[1, 1, 1, 1], [1, 0, 1, 0], [0, 0, 0, 0], [0, 1, 1, 1], [1, 1, 0, 1]])
     print Solution().numDistinctIslands([[1, 1, 1, 1], [1, 0, 1, 0], [0, 0, 0, 0], [0, 1, 1, 1], [1, 1, 0, 1]])
