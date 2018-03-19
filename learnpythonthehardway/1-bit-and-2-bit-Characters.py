@@ -28,7 +28,7 @@ class Solution(object):
         :rtype: bool
         """
         i = 0
-        while i < len(bits) - 2:
+        while i < len(bits) - 1:  # bugfixed
             if bits[i] == 1:
                 i += 2
             else:
