@@ -28,15 +28,17 @@ class Solution(object):
         :rtype: bool
         """
         i = 0
-        while i < len(bits) - 1:
+        while i < len(bits) - 2:
             if bits[i] == 1:
                 i += 2
             else:
                 i += 1
 
-        return i == len(bits) - 2
+        return i == len(bits) - 1  # bugfixed
 
 
 if __name__ == '__main__':
     print Solution().isOneBitCharacter([1, 0, 0])
     print Solution().isOneBitCharacter([1, 1, 1, 0])
+    print Solution().isOneBitCharacter([1, 1, 1, 0, 0])
+    print Solution().isOneBitCharacter([0, 0])
