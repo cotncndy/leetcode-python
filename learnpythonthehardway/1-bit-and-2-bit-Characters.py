@@ -36,6 +36,19 @@ class Solution(object):
 
         return i == len(bits) - 1  # bugfixed
 
+    def isOneBitCharacter2(self, bits):
+        """
+        :type bits: List[int]
+        :rtype: bool
+        """
+        if len(bits) == 0:
+            return False
+        if len(bits) == 1:
+            return True
+        if bits[0] == 1:
+            return self.isOneBitCharacter(bits[2:])
+
+        return self.isOneBitCharacter(bits[1:])
 
 if __name__ == '__main__':
     print Solution().isOneBitCharacter([1, 0, 0])
