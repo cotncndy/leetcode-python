@@ -25,14 +25,30 @@ class Solution(object):
                 res += 1
             if k and subSum - k in dic:
                 res += dic[subSum - k]
-            elif k == 0 and subSum - k in dic and dic[subSum - k] > 1:
+            elif k == 0 and subSum - k in dic > 1:
                 res += dic[subSum] - 1
 
         return res
 
+    def subarraySum2(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        subSum, dic, res = 0, collections.defaultdict(int), 0
+        dic[0] = 1
+        for key, val in enumerate(nums):
+            subSum += val
+            res += dic[subSum - k]
+            dic[subSum] += 1
+
+        return res
+
+
 
 if __name__ == '__main__':
-    print Solution().subarraySum([1, 1, 1], 2)
-    print Solution().subarraySum([1, 1, 1], 5)
-    print Solution().subarraySum([-1, 1, 0], 0)
-    print Solution().subarraySum([-1, 0, 1], 0)
+    print Solution().subarraySum2([1, 1, 1], 2)
+    print Solution().subarraySum2([1, 1, 1], 5)
+    print Solution().subarraySum2([-1, 1, 0], 0)
+    print Solution().subarraySum2([-1, 0, 1], 0)
