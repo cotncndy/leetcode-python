@@ -13,3 +13,11 @@ class Solution(object):
         :rtype: str
         """
         return ' '.join(s.split()[::-1])[::-1]
+
+    def reverseWords2(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+
+        return ' '.join(c[::-1] for c in s.split())
