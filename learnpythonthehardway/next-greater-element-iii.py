@@ -38,5 +38,5 @@ class Solution(object):
 
 
 if __name__ == "__main__":
-    # print Solution().nextGreaterElement(1236542)
+    print Solution().nextGreaterElement(1236542)
     print Solution().nextGreaterElement(1236452)
