@@ -37,13 +37,13 @@ class Solution(object):
 
         def helper(root):
             if not root:
-                return (0, 0)
+                return 0
             # l, r is the sum of left childen and right childen of root
-            l1, r1 = helper(root.left)
-            l2, r2 = helper(root.right)
-            tilt[0] = abs(r1 - l1) + abs(r2 - l2) + abs(r1 + l1 - r2 - l2)
+            l = helper(root.left)
+            r = helper(root.right)
+            tilt[0] += abs(r - l)
 
-            return (l1 + r1 + root.val, l2 + r2)
+            return l + r + root.val
 
         tilt = [0]
         helper(root)
