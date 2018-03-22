@@ -63,7 +63,7 @@ class Solution(object):
         """
         # dp[100][100][100]
         dp = [[[0] * 100 for _ in xrange(100)] for _ in xrange(100)]
-        return self.dfs(boxes, 0, len(boxes) - 1, 0, dp)
+        return self.dfs2(boxes, 0, len(boxes) - 1, 0, dp)
 
     def dfs(self, boxes, l, r, k, dp):
         if l > r:
@@ -80,8 +80,23 @@ class Solution(object):
 
         return dp[l][r][k]
 
+    def dfs2(self, boxes, l, r, k, dp):
+        if l > r:
+            return 0
+        if dp[l][r][k]:
+            return dp[l][r][k]
+        i = l
+        while boxes[i] == boxes[l]:
+            i, k = i + 1, k + 1
+        l = i - 1  # got new left
+        dp[l][r][k] = (k + 1) ** 2 + self.dfs(boxes, l + 1, r, 0, dp)
+        for i in xrange(l + 1, r + 1):
+            if boxes[i] == boxes[l]:
+                dp[l][r][k] = max(dp[l][r][k],
+                                  self.dfs(boxes, l + 1, i - 1, 0, dp) + self.dfs(boxes, i, r, k + 1, dp))  # bugfixed
+                #  should be l = i,
 
-
+        return dp[l][r][k]
 
 
 if __name__ == '__main__':
