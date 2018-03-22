@@ -49,3 +49,24 @@ class Solution(object):
         helper(root)
 
         return tilt[0]
+
+    def findTilt2(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        self.ans = 0
+
+        def helper(root):
+            if not root:
+                return 0
+            # l, r is the sum of left childen and right childen of root
+            l = helper(root.left)
+            r = helper(root.right)
+            self.ans += abs(r - l)
+
+            return l + r + root.val
+
+        helper(root)
+
+        return self.ans
