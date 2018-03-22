@@ -55,7 +55,7 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
-        self.ans = 0
+        self.ans = 0  # notice instance vairable usage
 
         def helper(root):
             if not root:
