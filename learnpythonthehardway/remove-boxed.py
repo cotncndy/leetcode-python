@@ -75,7 +75,8 @@ class Solution(object):
         for i in xrange(l + 1, r + 1):
             if boxes[i] == boxes[l]:
                 dp[l][r][k] = max(dp[l][r][k],
-                                  self.dfs(boxes, l + 1, i - 1, 0, dp) + self.dfs(boxes, i + 1, r, k + 1, dp))
+                                  self.dfs(boxes, l + 1, i - 1, 0, dp) + self.dfs(boxes, i, r, k + 1, dp))  # bugfixed
+                #  should be l = i,
 
         return dp[l][r][k]
 
