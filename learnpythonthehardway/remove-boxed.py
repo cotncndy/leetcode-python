@@ -86,7 +86,7 @@ class Solution(object):
         if dp[l][r][k]:
             return dp[l][r][k]
         i = l
-        while boxes[i] == boxes[l]:
+        while i <= r and boxes[i] == boxes[l]:  # bugfixed, i <= r
             i, k = i + 1, k + 1
         l = i - 1  # got new left
         dp[l][r][k] = (k + 1) ** 2 + self.dfs(boxes, l + 1, r, 0, dp)
