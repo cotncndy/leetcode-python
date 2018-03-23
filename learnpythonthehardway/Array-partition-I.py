@@ -20,6 +20,14 @@ class Solution(object):
 
         return sum(nums[i] for i in xrange(0, len(nums), 2))  # bugfixed, careless mistakes
 
+    def arrayPairSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums.sort()
+
+        return sum(nums[::2])
 
 if __name__ == '__main__':
     print Solution().arrayPairSum([1, 4, 3, 2])
