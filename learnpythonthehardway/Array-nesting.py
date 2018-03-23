@@ -54,7 +54,7 @@ class Solution(object):
         for k, v in enumerate(a):
             if v == 1:
                 continue
-            l, start = 0, 0
+            l, start = 0, k  # bugfixed
             while not a[nums[start]]:
                 l, start, a[start] = l + 1, nums[start], 1
                 res = max(res, l)
