@@ -42,6 +42,25 @@ class Solution(object):
 
         return res
 
+    def arrayNesting2(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        m, res = collections.defaultdict(set), 0
+
+        a = [0] * len(nums)
+
+        for k, v in enumerate(a):
+            if v == 1:
+                continue
+            l, start = 0, 0
+            while not a[nums[start]]:
+                l, start, a[start] = l + 1, nums[start], 1
+                res = max(res, l)
+
+        return res
+
 
 if __name__ == '__main__':
-    print Solution().arrayNesting([5, 4, 0, 3, 1, 6, 2])
+    print Solution().arrayNesting2([5, 4, 0, 3, 1, 6, 2])
