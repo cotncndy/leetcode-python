@@ -24,7 +24,7 @@ class Solution(object):
         for i in xrange(-1, 2):
             pre = str(prefix + i)
             if l & 1:
-                can = pre + pre[::-2]
+                can = pre + pre[:-1]
             else:
                 can = pre + pre[::-1]
             s.add(int(can))
@@ -33,6 +33,7 @@ class Solution(object):
         for i in s:
             if abs(i - int(n)) < minDiff:
                 res = str(i)
+                minDiff = abs(i - int(n))
             elif abs(i - int(n)) == minDiff and i < res:
                 res = str(i)
 
@@ -40,6 +41,6 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print Solution().nearestPalindromic("121")
+    # print Solution().nearestPalindromic("121")
     print Solution().nearestPalindromic("123")
     print Solution().nearestPalindromic("1234")
