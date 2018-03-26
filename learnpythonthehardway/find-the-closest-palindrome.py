@@ -28,7 +28,8 @@ class Solution(object):
             else:
                 can = pre + pre[::-1]
             s.add(int(can))
-        s.remove(int(n))
+        if int(n) in s:
+            s.remove(int(n))
 
         res, minDiff = -1, float('inf')
         for i in s:
@@ -44,5 +45,5 @@ class Solution(object):
 if __name__ == '__main__':
     # print Solution().nearestPalindromic("121")
     print Solution().nearestPalindromic("1")
-    # print Solution().nearestPalindromic("123")
-    # print Solution().nearestPalindromic("1234")
+    print Solution().nearestPalindromic("123")
+    print Solution().nearestPalindromic("1234")
