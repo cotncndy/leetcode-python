@@ -35,7 +35,7 @@ class Solution(object):
             s = s2[idx:idx + len(s1)]
             for k, v in enumerate(s):
                 if v not in m:
-                    idx += k  #
+                    idx += k  # bugfixed
                     break
             else:
                 if hasStr1 == self.hash(s, m):
