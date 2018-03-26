@@ -83,6 +83,30 @@ class Solution(object):
             return True
         return False
 
+    def isSubtree2(self, s, t):
+        """
+        :type s: TreeNode
+        :type t: TreeNode
+        :rtype: bool
+        """
+        if not s:
+            return False
+        if self.isSame(s, t):
+            return True
+        return self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
+
+    def isSame(self, root1, root2):
+        if not root1 and not root2:
+            return True
+        if not root1 or not root2:
+            return False
+        return root1.val == root2.val and self.isSame(root1.left, root2.left) and self.isSame(root1.right, root2.right)
+
+
+
+
+
+
 
 if __name__ == '__main__':
     root, lN, rN = TreeNode(3), TreeNode(4), TreeNode(5)
