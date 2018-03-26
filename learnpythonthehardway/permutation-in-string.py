@@ -24,7 +24,6 @@ class Solution(object):
         for c in s1:
             m[c] += 1
 
-
         idx = 0
         while idx <= len(s2) - len(s1):  # bugfixed
             if s2[idx] not in m:
@@ -48,11 +47,37 @@ class Solution(object):
 
         return False
 
+    def checkInclusion2(self, s1, s2):
+        """
+        :type s1: str
+        :type s2: str
+        :rtype: bool
+        """
+        m1, m2 = collections.defaultdict(int), collections.defaultdict(int)
+
+        for i in xrange(len(s1)):
+            m1[s1[i]], m2[s2[i]] = m1[s1[i]] + 1, m2[s2[i]] + 1
+
+        if m1 == m2:
+            return True
+
+        for i in xrange(len(s1), len(s2)):
+            m2[s2[i]] += 1
+            m2[s2[i - len(s1)]] -= 1
+            if m2[s2[i - len(s1)]] == 0:
+                del m2[s2[i - len(s1)]]
+            if m1 == m2:
+                return True
+
+        return False
+
+
+
     def hash(self, s, m):
         return ''.join(map(lambda c: c + str(m[c]), sorted(s)))
 
 
 if __name__ == '__main__':
-    # print Solution().checkInclusion("ab", "eidbcabooo")
-    # print Solution().checkInclusion("adc", "dcda")
-    print Solution().checkInclusion("pqzhi", "ghrqpihzybre")
+    print Solution().checkInclusion2("ab", "eidbcabooo")
+    print Solution().checkInclusion2("adc", "dcda")
+    print Solution().checkInclusion2("pqzhi", "ghrqpihzybre")
