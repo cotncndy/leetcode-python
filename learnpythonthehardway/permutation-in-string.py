@@ -53,6 +53,9 @@ class Solution(object):
         :type s2: str
         :rtype: bool
         """
+        if len(s2) < len(s1):
+            return False
+
         m1, m2 = collections.defaultdict(int), collections.defaultdict(int)
 
         for i in xrange(len(s1)):
