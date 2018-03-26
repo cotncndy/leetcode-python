@@ -102,7 +102,32 @@ class Solution(object):
             return False
         return root1.val == root2.val and self.isSame(root1.left, root2.left) and self.isSame(root1.right, root2.right)
 
+    def isSubtree3(self, s, t):
+        """
+        :type s: TreeNode
+        :type t: TreeNode
+        :rtype: bool
+        """
 
+        def serialize(root, li):
+            if not root:
+                li.append(',#')
+                return
+            else:
+                li.append(',')
+                li.append(str(root.val))
+            serialize(root.left, li)
+            serialize(root.right, li)
+
+        l1, l2 = list(), list()
+        serialize(s, l1)
+        serialize(t, l2)
+
+        st1, st2 = "".join(l1), "".join(l2)
+        if st2 in st1:
+            return True
+
+        return False
 
 
 
