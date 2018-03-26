@@ -35,7 +35,7 @@ class Solution(object):
             m1 = m.copy()
             for k, v in enumerate(s):
                 if v not in m:
-                    idx += k + 1  # bugfixed
+                    idx += k  # bugfixed
                     break
                 else:
                     m1[v] -= 1
@@ -54,4 +54,5 @@ class Solution(object):
 
 if __name__ == '__main__':
     # print Solution().checkInclusion("ab", "eidbcabooo")
-    print Solution().checkInclusion("adc", "dcda")
+    # print Solution().checkInclusion("adc", "dcda")
+    print Solution().checkInclusion("pqzhi", "ghrqpihzybre")
