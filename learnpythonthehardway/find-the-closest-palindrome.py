@@ -24,7 +24,7 @@ class Solution(object):
         for i in xrange(-1, 2):
             pre = str(prefix + i)
             if l & 1:
-                can = pre + pre[:-1]
+                can = pre + pre[:-1][::-1]  # bugfixed
             else:
                 can = pre + pre[::-1]
             s.add(int(can))
@@ -43,7 +43,8 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    # print Solution().nearestPalindromic("121")
+    print Solution().nearestPalindromic("121")
     print Solution().nearestPalindromic("1")
     print Solution().nearestPalindromic("123")
     print Solution().nearestPalindromic("1234")
+    print Solution().nearestPalindromic("12346")
