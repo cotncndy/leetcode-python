@@ -27,7 +27,7 @@ class Solution(object):
         hasStr1 = self.hash(s1, m)
 
         idx = 0
-        while idx < len(s2) - len(s1):
+        while idx <= len(s2) - len(s1):  # bugfixed
             if s2[idx] not in m:
                 idx += 1
                 continue
@@ -49,4 +49,5 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print Solution().checkInclusion("ab", "eidbcabooo")
+    # print Solution().checkInclusion("ab", "eidbcabooo")
+    print Solution().checkInclusion("adc", "dcda")
