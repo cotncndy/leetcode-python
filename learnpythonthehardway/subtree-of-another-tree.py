@@ -56,6 +56,16 @@ class Solution(object):
 
             return list
 
+        def traverse2(root, list):
+            if not root:
+                return ""
+            traverse2(root.right, list)
+            traverse2(root.left, list)
+            list += str(root.val)
+
+            return list
+
+
         ls1, ls2 = [], []
         ls1 = traverse(s, ls1)
         ls2 = traverse(t, ls2)
@@ -63,7 +73,13 @@ class Solution(object):
         st1 = "".join(map(str, ls1))
         st2 = "".join(map(str, ls2))
 
-        if st2 in st1:
+        rs1, rs2 = [], []
+        rs1 = traverse(s, rs1)
+        rs2 = traverse(t, rs2)
+
+        rst1 = "".join(map(str, rs1))
+        rst2 = "".join(map(str, rs2))
+        if st2 in st1 and rst2 in rst1:
             return True
         return False
 
