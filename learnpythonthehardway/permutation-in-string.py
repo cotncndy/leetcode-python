@@ -24,7 +24,6 @@ class Solution(object):
         for c in s1:
             m[c] += 1
 
-        hasStr1 = self.hash(s1, m)
 
         idx = 0
         while idx <= len(s2) - len(s1):  # bugfixed
@@ -33,13 +32,18 @@ class Solution(object):
                 continue
 
             s = s2[idx:idx + len(s1)]
+            m1 = m.copy()
             for k, v in enumerate(s):
                 if v not in m:
-                    idx += k  # bugfixed
+                    idx += k + 1  # bugfixed
                     break
+                else:
+                    m1[v] -= 1
+                    if m1[v] < 0:
+                        break
             else:
-                if hasStr1 == self.hash(s, m):
-                    return True
+                return True
+
             idx += 1
 
         return False
