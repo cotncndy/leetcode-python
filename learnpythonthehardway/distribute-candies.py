@@ -32,3 +32,11 @@ class Solution(object):
         if len(s) > len(candies) / 2:
             return len(candies) / 2
         return len(s)
+
+    def distributeCandies2(self, candies):
+        """
+        :type candies: List[int]
+        :rtype: int
+        """
+
+        return min(len(set(candies)), len(candies) // 2)
