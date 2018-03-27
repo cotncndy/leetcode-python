@@ -29,7 +29,7 @@ class Solution(object):
                 can = pre + pre[::-1]
             s.add(int(can))
         if int(n) in s:
-            s.remove(int(n))
+            s.remove(int(n))  # bugfixed
 
         res, minDiff = -1, float('inf')
         for i in s:

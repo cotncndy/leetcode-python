@@ -21,6 +21,7 @@ import collections
 
 
 class Solution(object):
+    # time complexity : O(2n)
     def arrayNesting(self, nums):
         """
         :type nums: List[int]
@@ -42,6 +43,7 @@ class Solution(object):
 
         return res
 
+    # TODO time complexit : O(n)
     def arrayNesting2(self, nums):
         """
         :type nums: List[int]
