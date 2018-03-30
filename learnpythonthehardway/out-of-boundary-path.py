@@ -42,3 +42,31 @@ class Solution(object):
                     dp[k][x][y] = (v1 + v2 + v3 + v4) % 1000000007
 
         return dp[N][i][j]
+
+    def findPaths2(self, m, n, N, i, j):
+        """
+        :type m: int
+        :type n: int
+        :type N: int
+        :type i: int
+        :type j: int
+        :rtype: int
+        """
+
+        res, dp = 0, [[0] * n for _ in xrange(m)]
+        dp[i][j] = 1
+
+        for k in xrange(0, N):
+            t = [[0] * n for _ in xrange(m)]
+            for i in xrange(0, m):
+                for j in xrange(0, n):
+                    for l, k in [(0, -1), (-1, 0), (0, 1), (1, 0)]:
+                        x, y = i + l, j + k
+                        if x < 0 or x >= m or y < 0 or y >= n:
+                            res = (res + dp[i][j]) % 1000000007
+                        else:
+                            t[x][y] = (t[x][y] + dp[i][j]) % 1000000007
+
+            dp = t
+
+        return res
