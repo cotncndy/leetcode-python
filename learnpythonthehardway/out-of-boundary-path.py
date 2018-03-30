@@ -29,7 +29,7 @@ class Solution(object):
         :type j: int
         :rtype: int
         """
-        dp = [[[0] * n for _ in xrange(m)] for _ in xrange(N)]
+        dp = [[[0] * n for _ in xrange(m)] for _ in xrange(N + 1)]
 
         for k in xrange(1, N + 1):
             for x in xrange(0, m):
