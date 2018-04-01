@@ -41,14 +41,15 @@ class Solution(object):
         res, start = 0, -1
         for i in xrange(1, len(nums)):
             if nums[i] < nums[i - 1]:
-                j, k = i, i - 1
-                while k > -1 and nums[j] < nums[k]:
-                    k -= 1
-                nums[k], nums[j] = nums[j], nums[k]
-                if start == -1 or start > k:
-                    start = k
+                j = i
+                while j > 0 and nums[j] < nums[j - 1]:
+                    nums[j], nums[j - 1] = nums[j - 1], nums[j]
+                    j -= 1
 
-                res = max(res, i - start)
+                if start == -1 or start > j:
+                    start = j
+
+                res = max(res, i - start + 1)
         return res
 
 
@@ -58,3 +59,4 @@ if __name__ == '__main__':
     print Solution().findUnsortedSubarray2([1, 4, 3, 5, 6, 2, 7, 8, 9])
     print Solution().findUnsortedSubarray2([2, 1])
     print Solution().findUnsortedSubarray2([1, 2, 3, 4, 5])
+    print Solution().findUnsortedSubarray2([5, 4, 3, 2, 1])
