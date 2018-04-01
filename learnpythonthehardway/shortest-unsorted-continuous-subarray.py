@@ -59,17 +59,14 @@ class Solution(object):
         """
         a = sorted(nums)
 
-        l, m = 0, len(nums)
+        l, m = 0, len(nums) - 1
 
-        for i in xrange(0, len(nums)):
-            if a[i] != nums[i]:
-                l = i
-                break
+        while a[l] == nums[l]:
+            l += 1
 
-        for j in reversed(xrange(0, len(nums))):
-            if a[j] != nums[j]:
-                m = j
-                break
+        while a[m] == nums[m]:
+            m -= 1
+
 
         return m - l + 1
 
