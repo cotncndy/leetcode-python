@@ -33,6 +33,25 @@ class Solution(object):
 
         return 0 if rMax - rMin < 0 else rMax - rMin + 1
 
+    def findUnsortedSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        res, start = 0, -1
+        for i in xrange(1, len(nums)):
+            if nums[i] < nums[i - 1]:
+                j, k = i, i - 1
+                while k and nums[j] < nums[k]:
+                    k -= 1
+                nums[k], nums[j] = nums[j], nums[k]
+                if start == -1 or start > k:
+                    start = k
+
+                res = max(res, i - start + 1)
+        return res
+
+
 
 if __name__ == '__main__':
     # print Solution().findUnsortedSubarray([2, 6, 4, 8, 10, 9, 15])
