@@ -52,6 +52,27 @@ class Solution(object):
                 res = max(res, i - start + 1)
         return res
 
+    def findUnsortedSubarray3(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        a = sorted(nums)
+
+        l, m = 0, len(nums)
+
+        for i in xrange(0, len(nums)):
+            if a[i] != nums[i]:
+                l = i
+                break
+
+        for j in reversed(xrange(0, len(nums))):
+            if a[j] != nums[j]:
+                m = j
+                break
+
+        return m - l + 1
+
 
 
 if __name__ == '__main__':
