@@ -61,10 +61,10 @@ class Solution(object):
 
         l, m = 0, len(nums) - 1
 
-        while a[l] == nums[l]:
+        while l < len(nums) and a[l] == nums[l]:
             l += 1
 
-        while a[m] == nums[m]:
+        while m > l and a[m] == nums[m]:
             m -= 1
 
 
@@ -73,8 +73,8 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print Solution().findUnsortedSubarray2([2, 6, 4, 8, 10, 9, 15])
-    print Solution().findUnsortedSubarray2([1, 4, 3, 5, 6, 2, 7, 8, 9])
-    print Solution().findUnsortedSubarray2([2, 1])
-    print Solution().findUnsortedSubarray2([1, 2, 3, 4, 5])
-    print Solution().findUnsortedSubarray2([5, 4, 3, 2, 1])
+    # print Solution().findUnsortedSubarray3([2, 6, 4, 8, 10, 9, 15])
+    # print Solution().findUnsortedSubarray3([1, 4, 3, 5, 6, 2, 7, 8, 9])
+    print Solution().findUnsortedSubarray3([2, 1])
+    print Solution().findUnsortedSubarray3([1, 2, 3, 4, 5])
+    print Solution().findUnsortedSubarray3([5, 4, 3, 2, 1])
