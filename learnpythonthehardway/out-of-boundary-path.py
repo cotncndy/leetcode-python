@@ -70,3 +70,7 @@ class Solution(object):
             dp = t
 
         return res
+
+
+if __name__ == '__main__':
+    print Solution().findPaths2(2, 2, 2, 0, 0)
