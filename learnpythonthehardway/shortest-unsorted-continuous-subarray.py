@@ -23,7 +23,7 @@ class Solution(object):
             if not stack1 or nums[i] >= nums[stack1[-1]]:
                 stack1.append(i)
             elif nums[i] < nums[stack1[-1]]:
-                while nums[i] < nums[stack1[-1]]:
+                while stack1 and nums[i] < nums[stack1[-1]]:  # bugfixed empty check
                     rMax, rMin = max(rMax, i), min(rMin, stack1[-1])
                     stack2.append(stack1.pop())
                 stack1.append(i)
@@ -35,5 +35,6 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print Solution().findUnsortedSubarray([2, 6, 4, 8, 10, 9, 15])
-    print Solution().findUnsortedSubarray([1, 4, 3, 5, 6, 2, 7, 8, 9])
+    # print Solution().findUnsortedSubarray([2, 6, 4, 8, 10, 9, 15])
+    # print Solution().findUnsortedSubarray([1, 4, 3, 5, 6, 2, 7, 8, 9])
+    print Solution().findUnsortedSubarray([2, 1])
