@@ -18,7 +18,7 @@ class Solution(object):
         :rtype: int
         """
         stack1, stack2 = [], []
-        rMin, rMax = float('inf'), float('-inf')
+        rMin, rMax = len(nums), 0
         for i in xrange(len(nums)):
             if not stack1 or nums[i] >= nums[stack1[-1]]:
                 stack1.append(i)
@@ -31,10 +31,11 @@ class Solution(object):
                 while stack2:
                     stack1.append(stack2.pop())
 
-        return rMax - rMin + 1
+        return 0 if rMax - rMin < 0 else rMax - rMin + 1
 
 
 if __name__ == '__main__':
     # print Solution().findUnsortedSubarray([2, 6, 4, 8, 10, 9, 15])
     # print Solution().findUnsortedSubarray([1, 4, 3, 5, 6, 2, 7, 8, 9])
-    print Solution().findUnsortedSubarray([2, 1])
+    # print Solution().findUnsortedSubarray([2, 1])
+    print Solution().findUnsortedSubarray([1, 2, 3, 4, 5])
