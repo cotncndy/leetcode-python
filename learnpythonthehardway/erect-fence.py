@@ -56,7 +56,7 @@ class Solution(object):
                         collinear.add(next)
                         next = p
                     else:
-                        collinear.add(next)
+                        collinear.add(p)  # bugfixed
 
             for p in collinear:
                 res.add(p)
