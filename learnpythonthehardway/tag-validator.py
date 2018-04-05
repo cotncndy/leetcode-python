@@ -108,11 +108,11 @@ class Solution(object):
                 if not st or tag != st[-1]:
                     return False
                 st.pop()
-                i += 1
+                i += 1  # bugfixed
             elif code[i] == '<':
                 j = i + 1
                 i = code.find('>', j)
-                if i < 0 or i - j > 9:
+                if i < 0 or i - j == 0 or i - j > 9:  # bugfixed
                     return False
                 for k in xrange(j, i):
                     if code[k] < 'A' or code[k] > 'Z':
@@ -126,4 +126,5 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print Solution().isValid("<DIV>This is the first line <![CDATA[<div>]]></DIV>")
+    # print Solution().isValid("<DIV>This is the first line <![CDATA[<div>]]></DIV>")
+    print Solution().isValid("<DIV><></></DIV>")
