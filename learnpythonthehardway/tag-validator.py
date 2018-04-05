@@ -108,6 +108,7 @@ class Solution(object):
                 if not st or tag != st[-1]:
                     return False
                 st.pop()
+                i += 1
             elif code[i] == '<':
                 j = i + 1
                 i = code.find('>', j)
