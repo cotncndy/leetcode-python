@@ -26,7 +26,7 @@ class Solution(object):
             baX, baY = b[0] - a[0], b[1] - a[1]
             caX, caY = c[0] - a[0], c[1] - a[1]  # bugfixed, typo
 
-            return baX * caX - baY * caY  # bugfixed dot product
+            return baX * caX + baY * caY  # bugfixed dot product
 
         if not dotProduct(p1, p2, p3) and not dotProduct(p4, p2, p3):
             return True
@@ -39,3 +39,4 @@ class Solution(object):
 
 if __name__ == '__main__':
     print Solution().validSquare([0, 0], [1, 1], [1, 0], [0, 1])
+    print Solution().validSquare([1, 0], [-1, 0], [0, 1], [0, -1])
