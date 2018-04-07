@@ -32,6 +32,9 @@ class Solution(object):
             print (b[0] - a[0]) ** 2 + (b[1] - a[1]) ** 2
             return (b[0] - a[0]) ** 2 + (b[1] - a[1]) ** 2
 
+        if p1 == p2 or p1 == p3 or p1 == p4:
+            return False
+
         if not dotProduct(p1, p2, p3) and not dotProduct(p4, p2, p3):
             if distance(p1, p2) == distance(p1, p3) and distance(p1, p2) == distance(p4, p2):
                 return True
