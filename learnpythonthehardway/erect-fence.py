@@ -48,7 +48,7 @@ class Solution(object):
             for p in points:
                 if p == cur:
                     continue
-                cross = self.crossProduct(cur, next, p)
+                cross = self.dotProduct(cur, next, p)
                 if cross > 0:
                     next, collinear = p, set()
                 elif cross == 0:
@@ -68,7 +68,7 @@ class Solution(object):
             cur = next
         return list(res)
 
-    def crossProduct(self, a, b, c):
+    def dotProduct(self, a, b, c):
         baX, baY = a.x - b.x, a.y - b.y
         bcX, bcY = c.x - b.x, c.y - b.y
 

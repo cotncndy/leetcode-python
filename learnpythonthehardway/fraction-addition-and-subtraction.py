@@ -44,7 +44,7 @@ class Solution(object):
                 answer = self.add(answer, num)
                 start = i
 
-        return answer
+        return answer if answer[0] != '+' else answer[1:]  # bugfixed
 
     def add(self, a, b):  # -1/3 + 2 /5
         if a == '0/1':
@@ -63,9 +63,49 @@ class Solution(object):
             a, b = b, a % b
         return a
 
+    def fractionAddition2(self, expression):
+        """
+        :type expression: str
+        :rtype: str
+        """
+        if (expression == ""): return "0/1"
+
+        fracs = map(int, re.findall('[+-]?\d+', expression))
+
+        sumN = fracs[0]
+        sumD = fracs[1]
+
+        for i in xrange(2, len(fracs), 2):
+            gcd = self.gcd(sumD, fracs[i + 1])
+            lcm = (sumD * fracs[i + 1]) / gcd
+            sumN = (lcm / sumD) * sumN + (lcm / fracs[i + 1]) * fracs[i]
+            sumD = lcm
+
+            d = self.gcd(sumN, sumD)
+            sumN = sumN / d
+            sumD = sumD / d
+
+        if (sumN % sumD == 0):
+            sumN = sumN / sumD
+            sumD = 1
+
+        if (sumN == 0):
+            frac = "0/1"
+        elif (sumN < 0 and sumD > 0):
+            frac = "-" + str(sumN * -1) + "/" + str(sumD)
+        elif (sumN > 0 and sumD < 0):
+            frac = "-" + str(sumN) + "/" + str(sumD * -1)
+        else:
+            frac = str(sumN) + "/" + str(sumD)
+
+        return frac
+
 
 if __name__ == '__main__':
     a = "1/2+1/2+1/3-3/7"
     b = re.split('-|\+', a)  # knowledge how to use regex to split string
+    fracs = map(int, re.findall('[+-]?\d+', a))  # knowledge how regex parse the expression
     c, d = map(int, "-3/5".split('/'))
-    print b, c, d
+    print b, c, d, fracs
+
+    print Solution().fractionAddition("-1/2+1/2+1/3")
