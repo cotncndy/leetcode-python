@@ -25,18 +25,26 @@ class Solution(object):
         def dotProduct(a, b, c):
             baX, baY = b[0] - a[0], b[1] - a[1]
             caX, caY = c[0] - a[0], c[1] - a[1]  # bugfixed, typo
-
+            print  baX * caX + baY * caY
             return baX * caX + baY * caY  # bugfixed dot product
 
+        def distance(a, b):
+            return (b[0] - a[0]) ** 2 + (b[1] - a[1]) ** 2
+
         if not dotProduct(p1, p2, p3) and not dotProduct(p4, p2, p3):
-            return True
+            if distance(p1, p2) == distance(p1, p3):
+                return True
         if not dotProduct(p1, p4, p3) and not dotProduct(p2, p4, p3):
-            return True
+            if distance(p1, p4) == distance(p1, p3):
+                return True
         if not dotProduct(p1, p2, p4) and not dotProduct(p3, p2, p3):
-            return True
+            if distance(p1, p2) == distance(p1, p4):
+                return True
         return False
 
 
 if __name__ == '__main__':
-    print Solution().validSquare([0, 0], [1, 1], [1, 0], [0, 1])
-    print Solution().validSquare([1, 0], [-1, 0], [0, 1], [0, -1])
+    # print Solution().validSquare([0, 0], [1, 1], [1, 0], [0, 1])
+    # print Solution().validSquare([1, 0], [-1, 0], [0, 1], [0, -1])
+    # print Solution().validSquare([1, 0], [-1, 0], [0, 1], [0, -1])
+    print Solution().validSquare([0, 0], [5, 0], [5, 4], [0, 4])
