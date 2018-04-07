@@ -32,7 +32,7 @@ class Solution(object):
             return True
         if not dotProduct(p1, p4, p3) and not dotProduct(p2, p4, p3):
             return True
-        if not dotProduct(p1, p3, p4) and not dotProduct(p2, p4, p3):
+        if not dotProduct(p1, p2, p4) and not dotProduct(p3, p2, p3):
             return True
         return False
 
