@@ -29,16 +29,17 @@ class Solution(object):
             return baX * caX + baY * caY  # bugfixed dot product
 
         def distance(a, b):
+            print (b[0] - a[0]) ** 2 + (b[1] - a[1]) ** 2
             return (b[0] - a[0]) ** 2 + (b[1] - a[1]) ** 2
 
         if not dotProduct(p1, p2, p3) and not dotProduct(p4, p2, p3):
-            if distance(p1, p2) == distance(p1, p3):
+            if distance(p1, p2) == distance(p1, p3) and distance(p1, p2) == distance(p4, p2):
                 return True
         if not dotProduct(p1, p4, p3) and not dotProduct(p2, p4, p3):
-            if distance(p1, p4) == distance(p1, p3):
+            if distance(p1, p4) == distance(p1, p3) and distance(p1, p4) == distance(p2, p4):
                 return True
         if not dotProduct(p1, p2, p4) and not dotProduct(p3, p2, p3):
-            if distance(p1, p2) == distance(p1, p4):
+            if distance(p1, p2) == distance(p1, p4) and distance(p1, p2) == distance(p3, p2):
                 return True
         return False
 
@@ -47,4 +48,5 @@ if __name__ == '__main__':
     # print Solution().validSquare([0, 0], [1, 1], [1, 0], [0, 1])
     # print Solution().validSquare([1, 0], [-1, 0], [0, 1], [0, -1])
     # print Solution().validSquare([1, 0], [-1, 0], [0, 1], [0, -1])
-    print Solution().validSquare([0, 0], [5, 0], [5, 4], [0, 4])
+    # print Solution().validSquare([0, 0], [5, 0], [5, 4], [0, 4])
+    print Solution().validSquare([0, 0], [-1, 0], [1, 0], [0, 1])
