@@ -97,7 +97,7 @@ class Solution(object):
         if not s:
             return NestedInteger()
         if s[0] != '[':
-            return NestedInteger(int(s[1:]))
+            return NestedInteger(int(s[0:]))
         if len(s) <= 2:
             return NestedInteger()
         res, count, start = NestedInteger(), 0, 1
