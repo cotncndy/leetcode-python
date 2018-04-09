@@ -80,7 +80,7 @@ class Solution(object):
             if nStr[i] == '1' and nStr[i - 1] == '1':
                 break
             if nStr[i] == '0' and nStr[i - 1] == '0':
-                res -= one[l - i]
+                res -= one[l - i - 1]  # bugfixed
 
         return res
 
@@ -91,6 +91,7 @@ class Solution(object):
 
 
 if __name__ == '__main__':
+    print Solution().findIntegers3(5000)
     print Solution().findIntegers(5)
     print Solution().findIntegers3(5)
     print Solution().findIntegers(50)
