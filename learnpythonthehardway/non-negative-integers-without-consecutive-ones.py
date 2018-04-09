@@ -33,13 +33,40 @@ class Solution(object):
 
         count = 0
         for i in xrange(num + 1):
-            if hasConsecutiveOnes(bin(i)[2:]):  # knowledge how to convert num to binay string
+            if hasConsecutiveOnes(bin(i)[2:]):  # knowledge how to convert num to binay string, it has '0b10101' format
                 continue
             count += 1
 
         return count
 
+    def findIntegers2(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        dp = [0] * (num + 1)
+        dp[0] = 1
+        for i in xrange(1, num + 1):
+            if self.isConsecutiveOnes(i):
+                dp[i] = dp[i - 1]
+            else:
+                dp[i] = dp[i - 1] + 1
+
+        return dp[num]
+
+    def isConsecutiveOnes(self, n):
+        st = bin(n)[2:]
+        for i in xrange(1, len(st)):
+            if st[i] == st[i - 1] and st[i] == '1':
+                return True
+        return False
+
+
 
 if __name__ == '__main__':
     print Solution().findIntegers(5)
+    print Solution().findIntegers2(5)
     print Solution().findIntegers(50)
+    print Solution().findIntegers2(50)
+    # print Solution().findIntegers(10000000)
+    print Solution().findIntegers2(10000000)
