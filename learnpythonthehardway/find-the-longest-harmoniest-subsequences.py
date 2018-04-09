@@ -30,6 +30,15 @@ class Solution(object):
 
         return res
 
+    def findLHS2(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        c = collections.Counter(nums)
+
+        return max(c[x] + c[x - 1] if c[x - 1] else 0 for x in c) if nums else 0
+
 
 if __name__ == '__main__':
     print Solution().findLHS([1, 3, 2, 2, 5, 2, 3, 7])
