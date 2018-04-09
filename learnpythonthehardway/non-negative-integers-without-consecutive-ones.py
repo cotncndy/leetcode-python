@@ -84,17 +84,36 @@ class Solution(object):
 
         return res
 
+    def findIntegers4(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        nStr = bin(num)[2:]
+        l = len(nStr)
+        zero, one = [0] * (l + 1), [0] * (l + 1)
+        zero[1], one[1] = 1, 1
+        for i in xrange(2, l + 1):
+            zero[i] = zero[i - 1] + one[i - 1]
+            one[i] = zero[i - 1]  # bugfixed
 
+        res = zero[l] + one[l]
 
+        for i in xrange(1, l):
+            if nStr[i] == '1' and nStr[i - 1] == '1':
+                break
+            if nStr[i] == '0' and nStr[i - 1] == '0':
+                res -= one[l - i]  # bugfixed
 
+        return res
 
 
 
 if __name__ == '__main__':
-    print Solution().findIntegers3(5000)
+    print Solution().findIntegers4(5000)
     print Solution().findIntegers(5)
     print Solution().findIntegers3(5)
     print Solution().findIntegers(50)
     print Solution().findIntegers3(50)
     # print Solution().findIntegers(10000000)
-    print Solution().findIntegers3(10000000)
+    print Solution().findIntegers4(10000000)
