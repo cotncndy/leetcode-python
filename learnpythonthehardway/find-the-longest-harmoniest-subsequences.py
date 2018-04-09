@@ -27,8 +27,6 @@ class Solution(object):
         for k in keys:
             if k - 1 in keys:
                 res = max(res, m[k] + m[k - 1])
-            if k + 1 in keys:
-                res = max(res, m[k] + m[k + 1])
 
         return res
 
