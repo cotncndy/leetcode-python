@@ -72,7 +72,7 @@ class Solution(object):
         zero[0], one[0] = 1, 1
         for i in xrange(1, l):
             zero[i] = zero[i - 1] + one[i - 1]
-            one[i] = zero[i]
+            one[i] = zero[i - 1]  # bugfixed
 
         res = zero[l - 1] + one[l - 1]
 
