@@ -61,12 +61,39 @@ class Solution(object):
                 return True
         return False
 
+    def findIntegers3(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        nStr = bin(num)[2:]
+        l = len(nStr)
+        zero, one = [0] * l, [0] * l
+        zero[0], one[0] = 1, 1
+        for i in xrange(1, l):
+            zero[i] = zero[i - 1] + one[i - 1]
+            one[i] = zero[i]
+
+        res = zero[l - 1] + one[l - 1]
+
+        for i in xrange(1, l):
+            if nStr[i] == '1' and nStr[i - 1] == '1':
+                break
+            if nStr[i] == '0' and nStr[i - 1] == '0':
+                res -= one[l - i]
+
+        return res
+
+
+
+
+
 
 
 if __name__ == '__main__':
     print Solution().findIntegers(5)
-    print Solution().findIntegers2(5)
+    print Solution().findIntegers3(5)
     print Solution().findIntegers(50)
-    print Solution().findIntegers2(50)
+    print Solution().findIntegers3(50)
     # print Solution().findIntegers(10000000)
-    print Solution().findIntegers2(10000000)
+    print Solution().findIntegers3(10000000)
