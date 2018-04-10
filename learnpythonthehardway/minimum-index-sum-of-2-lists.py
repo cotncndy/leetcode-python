@@ -41,6 +41,6 @@ class Solution(object):
                 elif k + m[v] < s:
                     s = k + m[v]
                     # res.clear()
-                    res[:] = []
+                    res[:] = []  # knowledge how to clear a list in python
                     res.append(v)
         return res
