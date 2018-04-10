@@ -23,6 +23,15 @@ class Solution(object):
         :type n: int
         :rtype: bool
         """
+        if n == 0:
+            return True
+        if not flowerbed:
+            return False
+        if len(flowerbed) == 1 and flowerbed[0] == 0 and n == 1:
+            return True
+        if len(flowerbed) == 1 and flowerbed[0] == 1:
+            return False
+
         for i in xrange(1, len(flowerbed) - 1):
             if flowerbed[i] == 0 and flowerbed[i - 1] == 0 and flowerbed[i + 1] == 0:
                 n, flowerbed[i] = n - 1, 1
