@@ -41,11 +41,13 @@ class Solution(object):
         :type ops: List[List[int]]
         :rtype: int
         """
-        m, n = float('inf'), float('inf')
+        if not ops:
+            return m * n
+        a, b = float('inf'), float('inf')
         for o in ops:
-            m, n = min(m, o[0]), min(n, o[1])
+            a, b = min(a, o[0]), min(b, o[1])
 
-        return m * n
+        return a * b
 
 
 if __name__ == '__main__':
