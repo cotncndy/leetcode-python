@@ -26,15 +26,20 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        # a(n,k) = a(n-1,k) + a(n-1,k-1) + .. + a(n-1,k-n + 1) , if k >= n-1
+        # a(n,k) = a(n-1,k) + a(n-1,k-1) + .. + a(n-1,k-n + 1) , if k >= n-1 or 0 , ie max(k-n+1,0)
 
-        dp = [[0] * (n + 1) for _ in xrange(k + 1)]
+        dp = [[0] * (k + 1) for _ in xrange(n + 1)]
         dp[0][0] = 1
 
         for i in xrange(n + 1):
             for j in xrange(k + 1):
-                if j - i + 1 >= 0:
-                    for l in xrange(j - i + 1, j + 1):
-                        dp[i][j] += dp[i - 1][l]
+                if i - 1 >= 0:
+                    for l in xrange(max(j - i + 1, 0), j + 1):
+                        dp[i][j] = (dp[i][j] + dp[i - 1][l]) % 1000000007
 
         return dp[n][k]
+
+
+if __name__ == '__main__':
+    print Solution().kInversePairs(3, 0)
+    print Solution().kInversePairs(3, 1)
