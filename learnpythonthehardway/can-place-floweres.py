@@ -51,6 +51,22 @@ class Solution(object):
 
         return False
 
+    def canPlaceFlowers2(self, flowerbed, n):
+        """
+        :type flowerbed: List[int]
+        :type n: int
+        :rtype: bool
+        """
+        r = 0
+        zero = 1
+        for f in flowerbed:
+            if f == 0:
+                zero += 1
+            else:
+                r += (zero - 1) / 2
+                zero = 0
+        r += zero / 2
+        return n <= r
 
 if __name__ == '__main__':
     print Solution().canPlaceFlowers([0, 0, 0, 0, 1], 2)
