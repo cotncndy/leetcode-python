@@ -39,7 +39,34 @@ class Solution(object):
 
         return dp[n][k]
 
+    def kInversePairs2(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: int
+        """
+        # a(n,k) = a(n-1,k) + a(n-1,k-1) + .. + a(n-1,k-n + 1) , if k >= n-1 or 0 , ie max(k-n+1,0)
+        # replace k with k+1 , we got
+        # a(n,k+1) = a(n-1,k+1) + a(n-1,k) + .. + a(n-1,k+1-(n - 1))
+        # a(n,k+1) - a(n,k) = a(n-1,k+1)  - a(n-1,k-n+1)
+        # replace k+1  with k back, we got
+        # a(n,k) - a(n,k-1) = a(n-1,k) - a(n-1, k+1-n) => a(n,k) = a(n,k-1) + a(n-1,k) - a(n-1,k-n)
+
+        dp = [[0] * (k + 1) for _ in xrange(n + 1)]
+        dp[0][0] = 1
+
+        for i in xrange(1, n + 1):
+            dp[i][0] = 1
+            for j in xrange(1, k + 1):
+                dp[i][j] = (dp[i][j - 1] + dp[i - 1][j]) % 1000000007
+                if j - i >= 0:
+                    dp[i][j] = (dp[i][j] - dp[i - 1][j - i]) % 1000000007
+
+        return dp[n][k]
+
 
 if __name__ == '__main__':
     print Solution().kInversePairs(3, 0)
     print Solution().kInversePairs(3, 1)
+    print Solution().kInversePairs2(1000, 1000)
+    print Solution().kInversePairs(1000, 1000)
