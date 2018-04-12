@@ -19,7 +19,7 @@
 # Note:
 # The integer 1 <= d, t, n <= 10,000.
 # You can't take two courses simultaneously.
-from _heapq import heappop, heappush
+from _heapq import heappop, heappush, heappushpop
 
 
 class Solution(object):
@@ -63,6 +63,31 @@ class Solution(object):
                 curTime += item
         return len(heap)
 
+    def scheduleCourse3(self, courses):
+        """
+        :type courses: List[List[int]]
+        :rtype: int
+        """
+
+        if len(courses) == 0:
+            return 0
+
+        courses.sort(key=lambda x: x[1])
+
+        selectedT = []
+        sumT = 0
+
+        for course in courses:
+            t, d = course
+            if sumT + t <= d:
+                sumT += t
+                heappush(selectedT, -t)
+            else:
+                if len(selectedT) > 0 and -selectedT[0] > t:
+                    sumT = sumT - (-selectedT[0]) + t
+                    heappushpop(selectedT, -t)
+
+        return len(selectedT)
 
 
 if __name__ == '__main__':
