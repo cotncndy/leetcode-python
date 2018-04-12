@@ -33,7 +33,12 @@ class Solution(object):
                 return c1[1] - c2[1]
             return c1[0] - c2[0]
 
-        sC = sorted(courses, cmp=compare)
+        def compare2(c1, c2):
+            if c1[1] == c2[1]:
+                return c1[0] - c2[0]
+            return c1[1] - c2[1]
+
+        sC = sorted(courses, cmp=compare2)
         curTime, res = 0, 0
         for k, v in enumerate(sC):
             if curTime + v[0] <= v[1]:
@@ -44,4 +49,5 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print Solution().scheduleCourse([[100, 200], [200, 1300], [1000, 1250], [2000, 3200]])
+    # print Solution().scheduleCourse([[100, 200], [200, 1300], [1000, 1250], [2000, 3200]])
+    print Solution().scheduleCourse([[5, 15], [3, 19], [6, 7], [2, 10], [5, 16], [8, 14], [10, 11], [2, 19]])
