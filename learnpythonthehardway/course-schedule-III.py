@@ -53,23 +53,24 @@ class Solution(object):
         :type courses: List[List[int]]
         :rtype: int
         """
-        heap, curTime = [], 0
+        heap, curTime, res = [], 0, 0
         courses.sort(key=lambda c: c[1])
         for k, v in enumerate(courses):
-            if curTime + v[0] > v[1] and heap:
-                item = heappop(heap)
-                curTime += item[0]
             curTime += v[0]
-            heappush(heap, (-v[0], k))
+            heappush(heap, -v[0])
+            if curTime > v[1] and heap:  # bugfixed need to check if heap is empty or not
+                item = heappop(heap)
+                curTime += item
         return len(heap)
 
 
 
 if __name__ == '__main__':
-    print Solution().scheduleCourse([[100, 200], [200, 1300], [1000, 1250], [2000, 3200]])
-    print Solution().scheduleCourse2([[100, 200], [200, 1300], [1000, 1250], [2000, 3200]])
-    print Solution().scheduleCourse([[5, 15], [3, 19], [6, 7], [2, 10], [5, 16], [8, 14], [10, 11], [2, 19]])
-    print Solution().scheduleCourse2([[5, 15], [3, 19], [6, 7], [2, 10], [5, 16], [8, 14], [10, 11], [2, 19]])
-    print Solution().scheduleCourse([[5, 5], [4, 6], [2, 6]])
-    print Solution().scheduleCourse2([[5, 5], [4, 6], [2, 6]])
-    print Solution().scheduleCourse2([[100, 2], [32, 50]])
+    # print Solution().scheduleCourse([[100, 200], [200, 1300], [1000, 1250], [2000, 3200]])
+    # print Solution().scheduleCourse2([[100, 200], [200, 1300], [1000, 1250], [2000, 3200]])
+    # print Solution().scheduleCourse([[5, 15], [3, 19], [6, 7], [2, 10], [5, 16], [8, 14], [10, 11], [2, 19]])
+    # print Solution().scheduleCourse2([[5, 15], [3, 19], [6, 7], [2, 10], [5, 16], [8, 14], [10, 11], [2, 19]])
+    # print Solution().scheduleCourse([[5, 5], [4, 6], [2, 6]])
+    # print Solution().scheduleCourse2([[5, 5], [4, 6], [2, 6]])
+    # print Solution().scheduleCourse2([[100, 2], [32, 50]])
+    print Solution().scheduleCourse2([[7, 17], [3, 12], [10, 20], [9, 10], [5, 20], [10, 19], [4, 18]])
