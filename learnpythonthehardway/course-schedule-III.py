@@ -19,6 +19,7 @@
 # Note:
 # The integer 1 <= d, t, n <= 10,000.
 # You can't take two courses simultaneously.
+from _heapq import heappop, heappush
 
 
 class Solution(object):
@@ -47,7 +48,27 @@ class Solution(object):
 
         return res
 
+    def scheduleCourse2(self, courses):
+        """
+        :type courses: List[List[int]]
+        :rtype: int
+        """
+        heap, curTime = [], 0
+        courses.sort(key=lambda c: c[1])
+        for k, v in enumerate(courses):
+            if curTime + v[0] > v[1]:
+                item = heappop(heap)
+                curTime += item[0]
+            curTime += v[0]
+            heappush(heap, (-v[0], k))
+        return len(heap)
+
+
 
 if __name__ == '__main__':
-    # print Solution().scheduleCourse([[100, 200], [200, 1300], [1000, 1250], [2000, 3200]])
+    print Solution().scheduleCourse([[100, 200], [200, 1300], [1000, 1250], [2000, 3200]])
+    print Solution().scheduleCourse2([[100, 200], [200, 1300], [1000, 1250], [2000, 3200]])
     print Solution().scheduleCourse([[5, 15], [3, 19], [6, 7], [2, 10], [5, 16], [8, 14], [10, 11], [2, 19]])
+    print Solution().scheduleCourse2([[5, 15], [3, 19], [6, 7], [2, 10], [5, 16], [8, 14], [10, 11], [2, 19]])
+    print Solution().scheduleCourse([[5, 5], [4, 6], [2, 6]])
+    print Solution().scheduleCourse2([[5, 5], [4, 6], [2, 6]])
