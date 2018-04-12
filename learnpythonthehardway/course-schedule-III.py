@@ -56,7 +56,7 @@ class Solution(object):
         heap, curTime = [], 0
         courses.sort(key=lambda c: c[1])
         for k, v in enumerate(courses):
-            if curTime + v[0] > v[1]:
+            if curTime + v[0] > v[1] and heap:
                 item = heappop(heap)
                 curTime += item[0]
             curTime += v[0]
@@ -72,3 +72,4 @@ if __name__ == '__main__':
     print Solution().scheduleCourse2([[5, 15], [3, 19], [6, 7], [2, 10], [5, 16], [8, 14], [10, 11], [2, 19]])
     print Solution().scheduleCourse([[5, 5], [4, 6], [2, 6]])
     print Solution().scheduleCourse2([[5, 5], [4, 6], [2, 6]])
+    print Solution().scheduleCourse2([[100, 2], [32, 50]])
