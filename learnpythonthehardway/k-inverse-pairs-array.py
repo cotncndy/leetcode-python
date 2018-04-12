@@ -64,6 +64,39 @@ class Solution(object):
 
         return dp[n][k]
 
+    # copied from the best solution
+    def kInversePairs3(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: int
+        """
+
+        if n * (n - 1) / 2 < k:
+            return 0
+        if k == 0:
+            return 1
+
+        mod = 10 ** 9 + 7
+
+        dp = [0 for _ in range(k + 1)]
+        dp_next = [0 for _ in range(k + 1)]
+        dp[0] = 1
+        dp[1] = 1
+        for nn in range(2, n):
+            s = 0
+            for kk in range(0, k + 1):
+                s += dp[kk]
+                if kk - nn - 1 >= 0:
+                    s -= dp[kk - nn - 1]
+                s %= mod
+                dp_next[kk] = s
+            temp = dp
+            dp = dp_next
+            dp_next = temp
+
+        return dp[k]
+
 
 if __name__ == '__main__':
     print Solution().kInversePairs(3, 0)
