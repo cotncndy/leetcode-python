@@ -34,11 +34,11 @@
 
 
 # Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 class Solution(object):
     def tree2str(self, t):
@@ -46,13 +46,25 @@ class Solution(object):
         :type t: TreeNode
         :rtype: str
         """
+        def preorder(t):
+            if t :
+                res.append(str(t.val))
+            res.append('(')
+            if t.left:
+                preorder(t.left)
+            if t.right:
+                preorder(t.right)
+            res.append(')')
+
         res = []
-        if t :
-            res.append(t.val)
-        res.append('(')
-        self.tree2str(t.left)
-        self.tree2str(t.right)
-        res.append(')')
+        preorder(t)
 
         return "".join(res)
+
+if __name__ == '__main__':
+    root,l,r = TreeNode(1),TreeNode(2),TreeNode(3)
+    root.left, root.right = l,r
+    l.left = TreeNode(4)
+    print Solution().tree2str(root)
+
 
