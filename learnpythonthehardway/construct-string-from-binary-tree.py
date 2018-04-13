@@ -74,6 +74,8 @@ class Solution(object):
                 preorder(t.right)
                 res.append(')')
 
+        if not t:
+            return ""
         res = []
         preorder(t)
 
