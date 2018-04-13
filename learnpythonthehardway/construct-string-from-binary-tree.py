@@ -40,31 +40,49 @@ class TreeNode(object):
         self.left = None
         self.right = None
 
+
 class Solution(object):
     def tree2str(self, t):
         """
         :type t: TreeNode
         :rtype: str
         """
+
+        def isLeave(t):
+            return not t.left and not t.right
+
         def preorder(t):
-            if t :
+            if t:
                 res.append(str(t.val))
-            res.append('(')
-            if t.left:
+            hasLeft = True if t.left else False
+            hasRight = True if t.right else False
+            if hasLeft and hasRight:
+                res.append('(')
                 preorder(t.left)
-            if t.right:
+                res.append(')')
+                res.append('(')
                 preorder(t.right)
-            res.append(')')
+                res.append(')')
+            elif hasLeft:
+                res.append('(')
+                preorder(t.left)
+                res.append(')')
+            elif hasRight:
+                res.append('(')
+                res.append(')')
+                res.append('(')
+                preorder(t.right)
+                res.append(')')
 
         res = []
         preorder(t)
 
         return "".join(res)
 
+
 if __name__ == '__main__':
-    root,l,r = TreeNode(1),TreeNode(2),TreeNode(3)
-    root.left, root.right = l,r
-    l.left = TreeNode(4)
+    root, l, r = TreeNode(1), TreeNode(2), TreeNode(3)
+    root.left, root.right = l, r
+    # l.left = TreeNode(4)
+    l.right = TreeNode(4)
     print Solution().tree2str(root)
-
-
