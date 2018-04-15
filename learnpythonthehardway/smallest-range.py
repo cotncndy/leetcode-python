@@ -25,22 +25,45 @@ class Solution(object):
         :type nums: List[List[int]]
         :rtype: List[int]
         """
-        k, temp, minHeap, maxHeap = len(nums), [], [], []
-        idx, res = [0] * k, []
+        def hasMore() :
+            for i in xrange(len(idx)):
+                if idx[i] < len(nums[i]):
+                    return True
+            return False
 
-        for k, v in enumerate(nums):
-            if len(temp) < k:
-                heappush(minHeap, v[idx[k]])
-                heappush(maxHeap, v[idx[k]])
-                idx[k] += 1
-            else:
-                if not res:
-                    res = [minHeap[0], maxHeap[0]]
-                elif maxHeap[0] - minHeap[0] < res[1] - res[0]:
-                    res = [minHeap[0], maxHeap[0]]
-                elif maxHeap[0] - minHeap[0] == res[1] - res[0]:
-                    if res[0] < minHeap[0]:
-                        res = [minHeap[0], maxHeap[0]]
+        size, minHeap, maxHeap = len(nums), [], []
+        idx, res = [0] * size, []
+
+        while hasMore():
+            for k, v in enumerate(nums):
+                if idx[k] >= len(v):
+                    continue
+                if len(minHeap) < size:
+                    heappush(minHeap, v[idx[k]])
+                    heappush(maxHeap, -v[idx[k]])
+                    idx[k] += 1
+                else:
+                    if not res:
+                        res = [minHeap[0], -maxHeap[0]]
+                    elif -maxHeap[0] - minHeap[0] < res[1] - res[0]:
+                        res = [minHeap[0], -maxHeap[0]]
+                    elif -maxHeap[0] - minHeap[0] == res[1] - res[0]:
+                        if res[0] < minHeap[0]:
+                            res = [minHeap[0], -maxHeap[0]]
+
+                    minHeap.remove(v[idx[k-1]])
+                    maxHeap.remove(-v[idx[k-1]])
+                    heappush(minHeap, v[idx[k]])
+                    heappush(maxHeap, -v[idx[k]])
+                    idx[k] += 1
+
+        if -maxHeap[0] - minHeap[0] < res[1] - res[0] or (-maxHeap[0] - minHeap[0] < res[1] - res[0]  and minHeap[0] < res[0]):
+            res = [minHeap[0], -maxHeap[0]]
+
+        return res
+
+if __name__ == '__main__':
+    print Solution().smallestRange([[4,10,15,24,26], [0,9,12,20], [5,18,22,30]])
 
 
 
