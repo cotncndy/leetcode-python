@@ -51,8 +51,8 @@ class Solution(object):
                         if res[0] < minHeap[0]:
                             res = [minHeap[0], -maxHeap[0]]
 
-                    minHeap.remove(v[idx[k-1]])
-                    maxHeap.remove(-v[idx[k-1]])
+                    minHeap.remove(v[idx[k]-1]) # bugfixed
+                    maxHeap.remove(-v[idx[k]-1])
                     heappush(minHeap, v[idx[k]])
                     heappush(maxHeap, -v[idx[k]])
                     idx[k] += 1
