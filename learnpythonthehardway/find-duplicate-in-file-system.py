@@ -65,5 +65,25 @@ class Solution(object):
 
         return res
 
+    def findDuplicate2(self, paths):
+        """
+        :type paths: List[str]
+        :rtype: List[List[str]]
+        """
+        content_map = {}
+
+        for str_path in paths:
+            parts = str_path.split(" ")
+            path = parts[0]
+            for p in parts[1:]:
+                pparts = p.split("(")
+                name = pparts[0]
+                content = pparts[-1][:-1]
+                path_list = content_map.get(content, [])
+                path_list.append(path + '/' + name)
+                content_map[content] = path_list
+
+        return [c for c in content_map.values() if len(c) > 1]
+
 
 
