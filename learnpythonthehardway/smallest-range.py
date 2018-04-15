@@ -46,7 +46,7 @@ class Solution(object):
                     if -maxHeap[0] - minHeap[0] < res[1] - res[0]:
                         res = [minHeap[0], -maxHeap[0]]
                     elif -maxHeap[0] - minHeap[0] == res[1] - res[0]:
-                        if res[0] < minHeap[0]:
+                        if res[0] > minHeap[0]:
                             res = [minHeap[0], -maxHeap[0]]
 
                     minHeap.remove(v[idx[k]-1]) # bugfixed
@@ -61,8 +61,9 @@ class Solution(object):
         return res
 
 if __name__ == '__main__':
-    print Solution().smallestRange([[4,10,15,24,26], [0,9,12,20], [5,18,22,30]])
-    print Solution().smallestRange([[10],[11]])
+    # print Solution().smallestRange([[4,10,15,24,26], [0,9,12,20], [5,18,22,30]])
+    # print Solution().smallestRange([[10],[11]])
+    print Solution().smallestRange([[1,2,3],[1,2,3],[1,2,3]])
 
 
 
