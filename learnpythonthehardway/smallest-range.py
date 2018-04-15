@@ -63,7 +63,8 @@ class Solution(object):
 if __name__ == '__main__':
     # print Solution().smallestRange([[4,10,15,24,26], [0,9,12,20], [5,18,22,30]])
     # print Solution().smallestRange([[10],[11]])
-    print Solution().smallestRange([[1,2,3],[1,2,3],[1,2,3]])
+    # print Solution().smallestRange([[1,2,3],[1,2,3],[1,2,3]])
+    print Solution().smallestRange([[-5,-4,-3,-2,-1],[1,2,3,4,5]])
 
 
 
