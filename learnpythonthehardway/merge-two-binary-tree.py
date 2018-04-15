@@ -36,21 +36,24 @@ class Solution(object):
         :rtype: TreeNode
         """
 
-        def preorder(r1, r2, r):
+        def preorder(r1, r2):
             if r1 and r2:
-                r.val = r1.val + r2.val
+                r = TreeNode(r1.val + r2.val)
+                r.left = preorder(r1.left, r2.left)
+                r.right = preorder(r1.right, r2.right)
             elif r1:
-                r.val = r1.val
+                r = TreeNode(r1.val)
+                r.left = preorder(r1.left, None)
+                r.right = preorder(r1.right, None)
             elif r2:
-                r.val = r2.val
+                r = TreeNode(r2.val)
+                r.left = preorder(None, r2.left)
+                r.right = preorder(None, r2.right)
             else:
                 return None
-            preorder(r1.left, r2.left, r.left)
-            preorder(r1.right, r2.right, r.right)
 
             return r
 
-        r = TreeNode(-1)
-        return preorder(t1,t2,r)
+        return preorder(t1, t2)
 
 
