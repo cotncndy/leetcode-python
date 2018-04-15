@@ -32,7 +32,7 @@ class Solution(object):
             return False
 
         size, minHeap, maxHeap = len(nums), [], []
-        idx, res = [0] * size, []
+        idx, res = [0] * size, [float('-inf'), float('inf')]
 
         while hasMore():
             for k, v in enumerate(nums):
@@ -43,9 +43,7 @@ class Solution(object):
                     heappush(maxHeap, -v[idx[k]])
                     idx[k] += 1
                 else:
-                    if not res:
-                        res = [minHeap[0], -maxHeap[0]]
-                    elif -maxHeap[0] - minHeap[0] < res[1] - res[0]:
+                    if -maxHeap[0] - minHeap[0] < res[1] - res[0]:
                         res = [minHeap[0], -maxHeap[0]]
                     elif -maxHeap[0] - minHeap[0] == res[1] - res[0]:
                         if res[0] < minHeap[0]:
@@ -64,6 +62,7 @@ class Solution(object):
 
 if __name__ == '__main__':
     print Solution().smallestRange([[4,10,15,24,26], [0,9,12,20], [5,18,22,30]])
+    print Solution().smallestRange([[10],[11]])
 
 
 
