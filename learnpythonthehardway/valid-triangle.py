@@ -52,7 +52,25 @@ class Solution(object):
 
         return res
 
+
+    def triangleNumber3(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums.sort()
+        res  = 0
+        for i in reversed(xrange(0, len(nums))):
+            left , right = 0, i-1
+            while left < right:
+                if nums[left] + nums[right] > nums[i]:
+                    res += right - left
+                    right -= 1
+                else:
+                    left += 1
+        return res
+
 if __name__ == '__main__':
-    print Solution().triangleNumber([2,2,3,4])
-    print Solution().triangleNumber([1,2,3,4,5,6])
+    print Solution().triangleNumber3([2,2,3,4])
+    print Solution().triangleNumber3([1,2,3,4,5,6])
 
