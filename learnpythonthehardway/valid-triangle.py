@@ -26,6 +26,7 @@ class Solution(object):
                 for l3 in reversed(xrange(l2+1,len(nums))):
                     if nums[l1] + nums[l2] > nums[l3] :
                         res += l3 - l2
+                        break
 
         return res
 
