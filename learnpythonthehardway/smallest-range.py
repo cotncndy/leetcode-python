@@ -94,7 +94,7 @@ class Solution(object):
             while len(dict) == n :
                 t = res[right][0] - res[left][0]
                 l = float('inf') if not ans else ans[1] - ans[0]
-                if l > t or (l == t and ans[0] >= left):
+                if l > t or (l == t and ans[0] >= res[left][0]):  #bugfixed 
                     ans = [res[left][0], res[right][0]]
 
                 dict[res[left][1]] -= 1
@@ -116,6 +116,7 @@ if __name__ == '__main__':
     print Solution().smallestRange2([[1,2,3],[1,2,3],[1,2,3]])
     print Solution().smallestRange([[-5,-4,-3,-2,-1],[1,2,3,4,5]])
     print Solution().smallestRange2([[-5,-4,-3,-2,-1],[1,2,3,4,5]])
+    print Solution().smallestRange2([[1,3,5,7,9],[2,4,6,8,10]])
 
 
 
