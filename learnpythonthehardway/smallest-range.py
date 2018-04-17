@@ -16,6 +16,7 @@
 # -105 <= value of elements <= 105.
 # For Java users, please note that the input type has been changed to List<List<Integer>>. And after you reset the
 # code template, you'll see this point.
+import collections
 from _heapq import heappush
 
 
@@ -60,8 +61,62 @@ class Solution(object):
 
         return res
 
+    def smallestRange2(self, nums):
+        """
+        :type nums: List[List[int]]
+        :rtype: List[int]
+        """
+        res = []
+        def mergeArray(arr, i):
+            l1, l2, temp = 0, 0, []
+            while l1 < len(res) and l2 < len(arr):
+                if res[l1][0] < arr[l2]:
+                    temp.append((res[l1]))
+                    l1 += 1
+                else:
+                    temp.append((arr[l2], i))
+                    l2 += 1
+            if l1 < len(res):
+                for j in res[l1:]:
+                    temp.append(j)
+            else:
+                for j in arr[l2:]:
+                    temp.append((j,i))
+
+            return temp
+
+        for k,v in enumerate(nums):
+            res = mergeArray(v,k)
+
+        cnt , dict, left, right, n, l, ans = 0, collections.defaultdict(int), 0, 0, len(nums), float('inf'), []
+        while right < len(res):
+            dict[res[right][1]] += 1
+            while len(dict) == n :
+                t = res[right][0] - res[left][0]
+                if l > t or (l == t and ans and ans[0] >= left):
+                    ans = [res[left][0], res[right][0]]
+                left += 1
+                dict[res[left][1]] -= 1
+                if dict[res[left][1]] == 0:
+                    del dict[res[left][1]]
+
+            right += 1
+
+        return ans
+
+
+
+
+
+
+
+
+
+
+        print res
+
 if __name__ == '__main__':
-    # print Solution().smallestRange([[4,10,15,24,26], [0,9,12,20], [5,18,22,30]])
+    print Solution().smallestRange2([[4,10,15,24,26], [0,9,12,20], [5,18,22,30]])
     # print Solution().smallestRange([[10],[11]])
     # print Solution().smallestRange([[1,2,3],[1,2,3],[1,2,3]])
     print Solution().smallestRange([[-5,-4,-3,-2,-1],[1,2,3,4,5]])
