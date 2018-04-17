@@ -96,34 +96,25 @@ class Solution(object):
                 l = float('inf') if not ans else ans[1] - ans[0]
                 if l > t or (l == t and ans[0] >= left):
                     ans = [res[left][0], res[right][0]]
-                left += 1
+
                 dict[res[left][1]] -= 1
                 if dict[res[left][1]] == 0:
                     del dict[res[left][1]]
+
+                left += 1
 
             right += 1
 
         return ans
 
-
-
-
-
-
-
-
-
-
-        print res
-
 if __name__ == '__main__':
-    # print Solution().smallestRange2([[4,10,15,24,26], [0,9,12,20], [5,18,22,30]])
-    # print Solution().smallestRange([[4,10,15,24,26], [0,9,12,20], [5,18,22,30]])
-    # print Solution().smallestRange([[10],[11]])
-    # print Solution().smallestRange2([[10],[11]])
-    # print Solution().smallestRange([[1,2,3],[1,2,3],[1,2,3]])
-    # print Solution().smallestRange2([[1,2,3],[1,2,3],[1,2,3]])
-    # print Solution().smallestRange([[-5,-4,-3,-2,-1],[1,2,3,4,5]])
+    print Solution().smallestRange2([[4,10,15,24,26], [0,9,12,20], [5,18,22,30]])
+    print Solution().smallestRange([[4,10,15,24,26], [0,9,12,20], [5,18,22,30]])
+    print Solution().smallestRange([[10],[11]])
+    print Solution().smallestRange2([[10],[11]])
+    print Solution().smallestRange([[1,2,3],[1,2,3],[1,2,3]])
+    print Solution().smallestRange2([[1,2,3],[1,2,3],[1,2,3]])
+    print Solution().smallestRange([[-5,-4,-3,-2,-1],[1,2,3,4,5]])
     print Solution().smallestRange2([[-5,-4,-3,-2,-1],[1,2,3,4,5]])
 
 
