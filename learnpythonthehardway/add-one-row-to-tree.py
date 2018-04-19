@@ -56,6 +56,9 @@
 
 
 # Definition for a binary tree node.
+import collections
+
+
 class TreeNode(object):
     def __init__(self, x):
         self.val = x
@@ -71,3 +74,40 @@ class Solution(object):
         :type d: int
         :rtype: TreeNode
         """
+        if d==1:
+            node = TreeNode(v)
+            node.left = root
+            return node
+
+        que = collections.deque()
+        que.append(root)
+        cur = 1
+        while que:
+            l = len(que)
+            for i in xrange(l):
+                node = que.popleft()
+                left ,right = node.left, node.right
+
+                if cur == d-1:
+                    node.left = TreeNode(v)
+                    node.left.left = left
+                    node.right = TreeNode(v)
+                    node.right.right = right
+                else:
+                    if left :
+                        que.append(left)
+                    if right:
+                        que.append(right)
+
+            cur += 1
+            if cur == d:
+                break
+
+        return root
+
+
+
+
+
+
+
