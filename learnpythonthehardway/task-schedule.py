@@ -25,40 +25,35 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        heap, m = [] , collections.defaultdict(int)
+        heap, m = [], collections.defaultdict(int)
         for t in tasks:
             m[t] += 1
 
         res = 0
         for k, v in m.iteritems():
-            heappush(heap, [-v,k])
+            heappush(heap, [-v, k])
 
-        while True:
+        while heap:
             temp = []
-            while heap:
+            l = min(n + 1, len(heap))
+            for i in xrange(l):
                 item = heappop(heap)
                 item[0] = item[0] + 1
-                if item[0] <= 0 :
+                if item[0] <= 0:
                     temp.append(item)
-
 
             if not temp:
                 break
             res += len(temp)
             if temp[0][0] != 0:
-                res += max(0,n+1 - len(temp))
+                res += max(0, n + 1 - len(temp))
             for t in temp:
-                heappush(heap,t)
+                heappush(heap, t)
 
         return res
+
 
 if __name__ == '__main__':
     print Solution().leastInterval(["A","A","A","B","B","B"],2)
     print Solution().leastInterval(["A","A","A","B","B","B"],1)
-
-
-
-
-
-
-
+    print Solution().leastInterval(["A", "A", "A", "A", "A", "A", "B", "C", "D", "E", "F", "G"], 2)
