@@ -56,7 +56,7 @@ class Solution(object):
                     dp[i] += 9 * dp[i-2]
                 elif s[i-2] == '2':
                     dp[i] += 6 * dp[i-2]
-                elif s[i] == '*':
+                elif s[i-2] == '*':
                     dp[i] += 15 * dp[i-2]
 
             dp[i] %= M
