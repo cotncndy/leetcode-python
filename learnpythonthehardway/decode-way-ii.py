@@ -29,6 +29,8 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
+        if s[0] == '0':
+            return 0
         M, dp = 10**9 + 7, [0] * (len(s) + 1)
         dp[0] = 1  # todo very important
         dp[1] = 1 if s[0] != '*' else 9
