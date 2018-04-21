@@ -8,16 +8,19 @@
 # Input: 3
 # Output: False
 
-
 class Solution(object):
     def judgeSquareSum(self, c):
         """
         :type c: int
         :rtype: bool
         """
-        for a in xrange(1, (c/2) ** 0.5):
-            for b in xrange((c/2) ** 0.5 + 1, (c) ** 0.5):
+        for a in xrange(1, int((c/2) ** 0.5) + 1):
+            for b in xrange(int((c/2) ** 0.5) , int((c) ** 0.5) + 1):
                 if a ** 2 + b ** 2 == c:
                     return True
 
         return False
+
+if __name__ == '__main__':
+    print Solution().judgeSquareSum(5)
+    print 5 ** 0.5
