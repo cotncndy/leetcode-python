@@ -41,7 +41,7 @@ class Solution(object):
 
             for i in reversed(xrange(zeros,m+1)):
                 for j in reversed(xrange(ones, n+1)):
-                    dp[i][j] = max(dp[i][j], dp[i-zeros][j-ones] )
+                    dp[i][j] = max(dp[i][j], dp[i-zeros][j-ones] + 1) #bugfixed , dont fogot to add 1
 
         return dp[m][n]
 
