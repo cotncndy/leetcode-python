@@ -30,18 +30,18 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        ones, zeros, dp = 0, 0, [[0] * (n+1) for _ in xrange(m)]
+        ones, zeros, dp = 0, 0, [[0] * (n+1) for _ in xrange(m+1)]
 
         for s in strs:
             for c in s:
                 if c == '0':
-                    ones += 1
-                else:
                     zeros += 1
+                else:
+                    ones += 1
 
-            for i in reversed(xrange(0,m+1)):
-                for j in reversed(xrange(0, n+1)):
-                    dp[i][j] = max(dp[i][j], dp[i-zeros][j-ones])
+            for i in reversed(xrange(zeros,m+1)):
+                for j in reversed(xrange(ones, n+1)):
+                    dp[i][j] = max(dp[i][j], dp[i-zeros][j-ones] )
 
         return dp[m][n]
 
