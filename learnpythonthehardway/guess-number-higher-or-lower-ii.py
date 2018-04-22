@@ -54,7 +54,7 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        pay = [[0] * n for _ in xrange(n)]
+        pay = [[0] * n for _ in xrange(n+1)]
         for i in xrange(1,n):
             for j in xrange(0,n-i):
                 pay[j][j+i] = min(k + 1 + max(pay[j][k - 1], pay[k + 1][j+i]) for k in xrange(j, j + i + 1))
