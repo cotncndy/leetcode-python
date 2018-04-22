@@ -49,6 +49,19 @@ class Solution(object):
         print pay
         return pay[0][n - 1]
 
+    def getMoneyAmount2(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        pay = [[0] * n for _ in xrange(n)]
+        for i in xrange(1,n):
+            for j in xrange(0,n-i):
+                pay[j][j+i] = min(k + 1 + max(pay[j][k - 1], pay[k + 1][j+i]) for k in xrange(j, j + i + 1))
+
+        return pay[0][n-1]
+
 
 if __name__ == '__main__':
-    print Solution().getMoneyAmount(5)
+    # print Solution().getMoneyAmount(5)
+    print Solution().getMoneyAmount2(5)
