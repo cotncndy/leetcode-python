@@ -30,9 +30,10 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        ones, zeros, dp = 0, 0, [[0] * (n+1) for _ in xrange(m+1)]
+        dp = [[0] * (n+1) for _ in xrange(m+1)]
 
         for s in strs:
+            ones, zeros = 0, 0 # bugfixed
             for c in s:
                 if c == '0':
                     zeros += 1
