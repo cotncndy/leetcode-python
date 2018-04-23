@@ -49,16 +49,41 @@ class Solution(object):
                         t = min(t, dp[start+1][k-1] + dp[k][start + gap])
                 dp[start][start+gap] = t
 
-        for d in dp:
-            print d
-
         return dp[0][l-1]
 
+    def strangePrinter2(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        l = len(s)
+        if l == 0:
+            return 0
+        dp = [[float('inf')] * l for _ in xrange(l)] # from ith to jth char, the min steps to print them
+
+        for gap in xrange(0, l):
+            for start in xrange(0,l-gap):
+                if gap == 0:
+                    dp[start][start+gap] = 1
+                    continue
+                t = dp[start][start+gap]
+                t = min(t, dp[start+1][start+gap]+1, dp[start][start+gap-1]+1)
+
+                for k in xrange(start+1, start+gap+1):
+                    if s[k] == s[start]:
+                        t = min(t, dp[start+1][k-1] + dp[k][start + gap])
+                dp[start][start+gap] = t
+
+        return dp[0][l-1]
 if __name__ == '__main__':
-    # print Solution().strangePrinter("aaabbb")
-    # print Solution().strangePrinter("aba")
-    # print Solution().strangePrinter("abbac")
+    print Solution().strangePrinter("aaabbb")
+    print Solution().strangePrinter2("aaabbb")
+    print Solution().strangePrinter("aba")
+    print Solution().strangePrinter2("aba")
+    print Solution().strangePrinter("abbac")
+    print Solution().strangePrinter2("abbac")
     print Solution().strangePrinter("tbgtgb")
+    print Solution().strangePrinter2("tbgtgb")
 
 
 
