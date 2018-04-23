@@ -71,7 +71,10 @@ class Solution(object):
 
                 for k in xrange(start+1, start+gap+1):
                     if s[k] == s[start]:
-                        t = min(t, dp[start+1][k-1] + dp[k][start + gap])
+                        if k - 1 >= start+1:
+                            t = min(t, dp[start+1][k-1] + dp[k][start + gap])
+                        else:
+                            t = min(t, dp[k][start+gap])
                 dp[start][start+gap] = t
 
         return dp[0][l-1]
