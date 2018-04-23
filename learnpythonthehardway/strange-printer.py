@@ -42,18 +42,23 @@ class Solution(object):
                 elif s[start] == s[start+1]:
                     t = min(t,dp[start+1][start+gap])
                 else:
-                    t = min(t, dp[start][start+gap]+1, dp[start][start+gap-1]+1)
+                    t = min(t, dp[start+1][start+gap]+1, dp[start][start+gap-1]+1)
 
                 for k in xrange(start+1, start+gap+1):
                     if s[k] == s[start]:
                         t = min(t, dp[start+1][k-1] + dp[k][start + gap])
                 dp[start][start+gap] = t
 
+        for d in dp:
+            print d
+
         return dp[0][l-1]
+
 if __name__ == '__main__':
-    print Solution().strangePrinter("aaabbb")
-    print Solution().strangePrinter("aba")
-    print Solution().strangePrinter("abbac")
+    # print Solution().strangePrinter("aaabbb")
+    # print Solution().strangePrinter("aba")
+    # print Solution().strangePrinter("abbac")
+    print Solution().strangePrinter("tbgtgb")
 
 
 
