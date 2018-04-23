@@ -25,6 +25,8 @@ class Solution(object):
         :rtype: int
         """
         l = len(s)
+        if l == 0:
+            return 0
         dp = [[float('inf')] * l for _ in xrange(l)] # from ith to jth char, the min steps to print them
         dp[0][0] = 1
 
@@ -47,7 +49,7 @@ class Solution(object):
                         t = min(t, dp[start+1][k-1] + dp[k][start + gap])
                 dp[start][start+gap] = t
 
-        return dp[0][l-1] if l > 0 else 0
+        return dp[0][l-1]
 if __name__ == '__main__':
     print Solution().strangePrinter("aaabbb")
     print Solution().strangePrinter("aba")
