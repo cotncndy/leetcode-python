@@ -48,7 +48,7 @@ class Solution(object):
 
             return lookup[left][right]
 
-        for n in list(itertools.permutations(nums)):
+        for n in set(itertools.permutations(nums)): # change from list to set, so no duplicates permutations for ex [9,9,5,9]
             helper(n,0, l-1)
             for i in lookup[0][l-1]:
                 if abs(24-i) < eps:
@@ -60,6 +60,7 @@ if __name__ == '__main__':
     print Solution().judgePoint24([4,1,8,7])
     print Solution().judgePoint24([8,1,6,6]) # 6 / (1-6/8) = 6/(1/4) = 24
     print Solution().judgePoint24([5,1,5,5])
+    print Solution().judgePoint24([9,9,5,9])
 
 
 
