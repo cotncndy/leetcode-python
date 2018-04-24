@@ -22,7 +22,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: bool
         """
-        l = len(nums)
+        l, eps = len(nums), 0.001
         lookup = [[0] * l for _ in xrange(l)]
 
         def helper(n,left, right):
@@ -39,8 +39,10 @@ class Solution(object):
                             temp.append(x+y)
                             temp.append(x-y)
                             temp.append(x * y)
-                            if y != 0 :
-                                temp.append(x/y)
+                            if x > eps and y:
+                                temp.append(x*1.000/y)
+                            if y > eps and x:
+                                temp.append(y*1.000/x)
 
             lookup[left][right] = temp
 
@@ -49,13 +51,16 @@ class Solution(object):
         for n in list(itertools.permutations(nums)):
             helper(n,0, l-1)
             for i in lookup[0][l-1]:
-                if i == 24:
+                if abs(24-i) < eps:
                     return True
             lookup = [[0] * l for _ in xrange(l)]
         return False
 
 if __name__ == '__main__':
     print Solution().judgePoint24([4,1,8,7])
+    print Solution().judgePoint24([8,1,6,6]) # 6 / (1-6/8) = 6/(1/4) = 24
+    print Solution().judgePoint24([5,1,5,5])
+
 
 
 
