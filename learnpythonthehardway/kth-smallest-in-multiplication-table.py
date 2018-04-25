@@ -37,7 +37,7 @@ class Solution(object):
         """
 
         left, right = 1, m*n
-        while left <= right:
+        while left < right:
             mid = left + (right-left) / 2
             rank = 0
             for i in xrange(1,m+1):
@@ -45,13 +45,16 @@ class Solution(object):
                     rank += n
                 else:
                     rank += mid / i
-            if rank == k:
-                return mid
-            elif rank < k:
+            # if rank == k:
+            #     return mid
+            if rank < k:
                 left = mid + 1
             else:
-                right = mid -1
+                right = mid
 
         return left
 
+
+if __name__ == '__main__':
+    print Solution().findKthNumber(42,34,401)
 
