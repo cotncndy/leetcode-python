@@ -45,6 +45,9 @@ class Solution(object):
         :type forest: List[List[int]]
         :rtype: int
         """
+        if forest[0][0] == -1:
+            return -1
+
         def allClear():
             for f in forest:
                 for i in f:
@@ -55,6 +58,7 @@ class Solution(object):
         que, m, n = [], len(forest), len(forest[0])
         steps = [[float('inf')] * n for _ in xrange(m)]
         steps[0][0] = 0
+        forest[0][0] = 1
 
         que.append((0, 0))
         while que:
