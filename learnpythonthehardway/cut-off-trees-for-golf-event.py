@@ -66,25 +66,34 @@ class Solution(object):
             t, step, cX, cY = float('inf'), steps[x][y], -1, -1
             for dir in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
                 nX, nY = x + dir[0], y + dir[1]
-                if nX < 0 or nX >= m or nY < 0 or nY >= n or forest[nX][nY] == 0 or 1 < forest[nX][nY] < forest[x][y] or \
+                if nX < 0 or nX >= m or nY < 0 or nY >= n or forest[nX][nY] == 0 or 1 < forest[nX][nY] < forest[x][y]\
+                        or \
                         steps[nX][nY] < 1 + steps[x][y]:
-                        continue
+                    continue
                 if t > forest[nX][nY]:
-                    t , cX, cY = forest[nX][nY], nX, nY
+                    t, cX, cY = forest[nX][nY], nX, nY
 
-            if cX == -1 :
+            if cX == -1:
                 if allClear():
                     return step
                 break
             forest[cX][cY], steps[cX][cY] = 1, step + 1
-            que.append((cX,cY))
+            que.append((cX, cY))
 
         return -1
 
 
-
 if __name__ == '__main__':
-    print Solution().cutOffTree([[1,2,3],[0,0,4],[7,6,5]])
-    print Solution().cutOffTree([[1,2,3],[0,0,0],[7,6,5]])
-    print Solution().cutOffTree([[2,3,4],[0,0,5],[8,7,6]])
-
+    print Solution().cutOffTree([[1, 2, 3], [0, 0, 4], [7, 6, 5]])
+    print Solution().cutOffTree([[1, 2, 3], [0, 0, 0], [7, 6, 5]])
+    print Solution().cutOffTree([[2, 3, 4], [0, 0, 5], [8, 7, 6]])
+    # [[54581641, 64080174, 24346381, 69107959],
+    #  [86374198, 61363882, 68783324, 79706116],
+    #  [668150,   92178815, 89819108, 94701471],
+    #  [83920491, 22724204, 46281641, 47531096],
+    #  [89078499, 18904913, 25462145, 60813308]
+    #  ]
+    print Solution().cutOffTree([[54581641, 64080174, 24346381, 69107959], [86374198, 61363882, 68783324, 79706116],
+                                 [668150, 92178815, 89819108, 94701471], [83920491, 22724204, 46281641, 47531096],
+                                 [89078499, 18904913, 25462145, 60813308]]
+                                )
