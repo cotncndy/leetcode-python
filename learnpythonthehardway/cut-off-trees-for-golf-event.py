@@ -45,6 +45,13 @@ class Solution(object):
         :type forest: List[List[int]]
         :rtype: int
         """
+        def allClear():
+            for f in forest:
+                for i in f:
+                    if i > 1:
+                        return False
+            return True
+
         que, m, n = [], len(forest), len(forest[0])
         steps = [[float('inf')] * n for _ in xrange(m)]
         steps[0][0] = 0
@@ -61,14 +68,19 @@ class Solution(object):
                 if t > forest[nX][nY]:
                     t , cX, cY = forest[nX][nY], nX, nY
 
-            if cX == -1:
-                return step
+            if cX == -1 :
+                if allClear():
+                    return step
+                break
             forest[cX][cY], steps[cX][cY] = 1, step + 1
             que.append((cX,cY))
 
         return -1
 
+
+
 if __name__ == '__main__':
     print Solution().cutOffTree([[1,2,3],[0,0,4],[7,6,5]])
     print Solution().cutOffTree([[1,2,3],[0,0,0],[7,6,5]])
+    print Solution().cutOffTree([[2,3,4],[0,0,5],[8,7,6]])
 
