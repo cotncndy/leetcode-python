@@ -75,14 +75,14 @@ class Solution(object):
             pos = que.pop(0)
             x, y = pos[0], pos[1]
             step = steps[x][y]
-            if pos == target:
-                return step
             for dir in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
                 nX, nY = x + dir[0], y + dir[1]
                 if nX < 0 or nX >= m or nY < 0 or nY >= n or forest[nX][nY] == 0 or steps[nX][nY] > 0:
                     continue
                 steps[nX][nY] = 1 + step
                 que.append((nX, nY))
+                if (nX,nY) == target:
+                    return steps[nX][nY]
         return -1
 
 
