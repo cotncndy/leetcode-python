@@ -68,8 +68,8 @@ class Excel(object):
         :type H: int
         :type W: str
         """
-        self.__h = H
-        self.__w = ord(W) - ord('A') + 1
+        self.__h = H + 1
+        self.__w = ord(W) - ord('A') + 2 # 'C' - 'A' = 2, need to include 'A' so we need + 1, we need + 1 again to make it work
         self.table = [[0] * self.__w for _ in xrange(self.__h)]
         self.__bits = [[0] * self.__w for _ in xrange(self.__h)]
         self.__formulars = [[list()] * self.__w for _ in xrange(self.__h)]
