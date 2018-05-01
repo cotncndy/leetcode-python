@@ -28,3 +28,8 @@ class Solution(object):
             return self.getkth(A, B[j::], k - j)
         else:
             return self.getkth(A[i::], B, k - i)
+
+
+if __name__ == '__main__':
+    # print Solution().getkth([1,3,5,7,9],[2,4,6,8,10], 5)
+    print Solution().getkth([1,200,203,207,209],[100,150,192,203,205], 5)

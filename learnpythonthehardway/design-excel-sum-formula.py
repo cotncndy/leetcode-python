@@ -68,11 +68,9 @@ class Excel(object):
         :type H: int
         :type W: str
         """
-        self.__h = H + 1
-        self.__w = ord(W) - ord('A') + 2 # 'C' - 'A' = 2, need to include 'A' so we need + 1, we need + 1 again to make it work
-        self.table = [[0] * self.__w for _ in xrange(self.__h)]
-        self.__bits = [[0] * self.__w for _ in xrange(self.__h)]
-        self.__formulars = [[list()] * self.__w for _ in xrange(self.__h)]
+        self.__h, self.__w = H, ord(W) - ord('A') + 1
+        self.__table = [[0] * self.__w for _ in xrange(self.__h)]
+        self.__map = {}
 
     def set(self, r, c, v):
         """
@@ -81,10 +79,9 @@ class Excel(object):
         :type v: int
         :rtype: void
         """
-        arr = self.__formulars[r][ord(c)-ord('A')]
-        for row, col in arr:
-            self.table[row][col] +=  v - self.table[r][ord(c)-ord('A')]
-        self.update(r, ord(c) - ord('A'), v)
+        if (r,c) in self.__map:
+            del self.__map[(r,c)]
+        self.__table[r-1][ord(c) - ord('A')] = v
 
 
     def get(self, r, c):
@@ -93,7 +90,9 @@ class Excel(object):
         :type c: str
         :rtype: int
         """
-        return self.table[r][ord(c)-ord('A')]
+        if (r,c) in self.__map:
+            return self.sum(r, c, self.__map[(r,c)])
+        return self.__table[r-1][ord(c) - ord('A')]
 
     def sum(self, r, c, strs):
         """
@@ -102,22 +101,21 @@ class Excel(object):
         :type strs: List[str]
         :rtype: int
         """
-        for s  in strs:
-            arr, res = s.split(':'), 0
+        res = 0
+        for s in strs:
+            arr = s.split(':')
             if len(arr) == 1:
-                r1, c1 , r2, c2 = int(arr[0][1]), ord(arr[0][0]) - ord('A'), int(arr[0][1]), ord(arr[0][0]) - ord('A')
+                row, col = int(arr[0][1]) , arr[0][0]
+                res += self.get(row, col)
             else:
-                r1, c1 , r2, c2 = int(arr[0][1]), ord(arr[0][0]) - ord('A'), int(arr[1][1]), ord(arr[1][0]) - ord('A')
+                row1, col1 , row2, col2 = int(arr[0][1]), arr[0][0],int(arr[1][1]), arr[1][0]
+                for i in xrange(row1, row2+1):
+                    for j in xrange(col1, col2 +1):
+                        res += self.get(i, j)
 
-            res += self.getSumRange(r1,c1,r2,c2)
-
-        for i in xrange(r1, r2+1):
-            for j in xrange(c1, c2+1):
-                self.__formulars[i][j].append((r, ord(c)-ord('A')))
-
-        self.update(r, ord(c)-ord('A'), res)
-
+        self.__map[(r,c)] = strs
         return res
+
 
 
 
