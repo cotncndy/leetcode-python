@@ -110,8 +110,8 @@ class Excel(object):
             else:
                 row1, col1 , row2, col2 = int(arr[0][1]), arr[0][0],int(arr[1][1]), arr[1][0]
                 for i in xrange(row1, row2+1):
-                    for j in xrange(col1, col2 +1):
-                        res += self.get(i, j)
+                    for j in xrange(ord(col1)-ord('A'), ord(col2) - ord('A') +1):
+                        res += self.get(i, chr(ord('A') + j))
 
         self.__map[(r,c)] = strs
         return res
