@@ -105,13 +105,13 @@ class Excel(object):
         for s in strs:
             arr = s.split(':')
             if len(arr) == 1:
-                row, col = int(arr[0][1]) , arr[0][0]
+                row, col = int(arr[0][1:]) , arr[0][0]
                 res += self.get(row, col)
             else:
-                row1, col1 , row2, col2 = int(arr[0][1]), arr[0][0],int(arr[1][1]), arr[1][0]
+                row1, col1 , row2, col2 = int(arr[0][1:]), arr[0][0],int(arr[1][1:]), arr[1][0]
                 for i in xrange(row1, row2+1):
                     for j in xrange(ord(col1)-ord('A'), ord(col2) - ord('A') +1):
-                        res += self.get(i, chr(ord('A') + j))
+                        res += self.get(i, chr(ord('A') + j))  # knowledge how to convert int to char
 
         self.__map[(r,c)] = strs
         return res
