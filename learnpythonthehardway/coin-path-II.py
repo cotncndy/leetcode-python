@@ -62,6 +62,8 @@ class Solution(object):
         self.res = []
         self.backtrack(dp, m-1, li)
         print self.res
+        self.res.sort()
+        print self.res
         # return l[::-1]
 
     def backtrack(self, dp, pos, li):
@@ -78,11 +80,47 @@ class Solution(object):
 
 
 
+    def cheapestJump2(self, A, B):
+        """
+        :type A: List[int]
+        :type B: int
+        :rtype: List[int]
+        """
+
+        if A[0] == -1:
+            return []
+        m = len(A)
+        dp = [(float('inf'), -1)]  * m
+        dp[m-1] = (A[m-1], m)
+
+        for i in xrange(m-2,-1,-1):
+            if A[i] == -1:
+                continue
+            j = i+1
+            while j <= min(i+B,m-1):
+                if dp[j][0] == float('inf'):
+                    continue
+                cost = dp[j][0] + A[i]
+                if cost < dp[i][0]:
+                    dp[i] = (cost, j)
+                j += 1
+
+
+        if dp[-1][0] == float('inf'):
+            return []
+        # print dp
+        i, res =1, []
+        while i < m+1:
+            res.append(i)
+            if i == m:
+                break
+            i = dp[i][1]
+        return res
 
 
 if __name__ == '__main__':
 
-    # print Solution().cheapestJump([1,2,4,-1,2],2)
-    # print Solution().cheapestJump([1,2,4,-1,2],1)
-    print Solution().cheapestJump([0,0,0,0,0,0],3)
+    print Solution().cheapestJump2([1,2,4,-1,2],2)
+    # print Solution().cheapestJump2([1,2,4,-1,2],1)
+    # print Solution().cheapestJump2([0,0,0,0,0,0],3)
 
