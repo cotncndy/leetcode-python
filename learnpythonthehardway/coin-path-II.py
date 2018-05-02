@@ -61,14 +61,13 @@ class Solution(object):
         li = [m]
         self.res = []
         self.backtrack(dp, m - 1, li)
-        print self.res
-        self.res.sort()
-        print self.res
+        return self.res
         # return l[::-1]
 
     def backtrack(self, dp, pos, li):
         if pos == 0:
-            self.res.append(li[::-1])
+            if len(li) > len(self.res):
+                self.res = li[::-1]
             return
 
         # [[0]]  [[0,2],[0,3]]
@@ -145,7 +144,7 @@ class Solution(object):
 
         if dp[-1][0] == float('inf'):
             return []
-        print dp
+        # print dp
         i, res = m - 1, [m]
         while i >= 0:
             i = dp[i][1]
@@ -157,11 +156,16 @@ class Solution(object):
 
 if __name__ == '__main__':
     # print Solution().cheapestJump3([1, 2, 4, -1, 2], 2)
+    # print Solution().cheapestJump([1, 2, 4, -1, 2], 2)
     # print Solution().cheapestJump3([1, 2, 4, -1, 2], 1)
+    # print Solution().cheapestJump([1, 2, 4, -1, 2], 1)
     # print Solution().cheapestJump3([0, 0, 0, 0, 0, 0], 3)
+    print Solution().cheapestJump([0, 0, 0, 0, 0, 0], 3)
     # print Solution().cheapestJump3([0, -1, -1, -1, -1, -1], 6)
-    print Solution().cheapestJump3(
-        [33, 90, 57, 39, 42, 45, 29, 90, 81, 87, 88, 37, 58, 97, 80, 2, 77, 64, 82, 41, 2, 33, 34, 95, 85, 77, 92, 3, 8,
-         15, 71, 84, 58, 65, 46, 48, 3, 74, 4, 83, 23, 12, 15, 77, 33, 65, 17, 86, 21, 62, 71, 55, 80, 63, 75, 55, 11,
-         34, -1, 64, 81, 18, 77, 82, 8, 12, 14, 6, 46, 39, 71, 14, 6, 46, 89, 37, 88, 70, 88, 33, 89, 92, 60, 0, 78, 10,
-         88, 99, 20], 74)
+    print Solution().cheapestJump([0, -1, -1, -1, -1, -1], 6)
+    # print Solution().cheapestJump3(
+    #     [33, 90, 57, 39, 42, 45, 29, 90, 81, 87, 88, 37, 58, 97, 80, 2, 77, 64, 82, 41, 2, 33, 34, 95, 85, 77, 92, 3, 8,
+    #      15, 71, 84, 58, 65, 46, 48, 3, 74, 4, 83, 23, 12, 15, 77, 33, 65, 17, 86, 21, 62, 71, 55, 80, 63, 75, 55, 11,
+    #      34, -1, 64, 81, 18, 77, 82, 8, 12, 14, 6, 46, 39, 71, 14, 6, 46, 89, 37, 88, 70, 88, 33, 89, 92, 60, 0, 78, 10,
+    #      88, 99, 20], 74)
+#
