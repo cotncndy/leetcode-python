@@ -99,6 +99,7 @@ class Solution(object):
             j = i+1
             while j <= min(i+B,m-1):
                 if dp[j][0] == float('inf'):
+                    j += 1 # bugfixed
                     continue
                 cost = dp[j][0] + A[i]
                 if cost < dp[i][0]:
