@@ -87,9 +87,9 @@ class Solution(object):
         :rtype: List[int]
         """
 
-        if A[0] == -1:
-            return []
         m = len(A)
+        if A[0] or A[m-1]  == -1:
+            return []
         dp = [(float('inf'), -1)]  * m
         dp[m-1] = (A[m-1], -1)
 
@@ -124,4 +124,5 @@ if __name__ == '__main__':
     print Solution().cheapestJump2([1,2,4,-1,2],2)
     print Solution().cheapestJump2([1,2,4,-1,2],1)
     print Solution().cheapestJump2([0,0,0,0,0,0],3)
+    print Solution().cheapestJump2([0,-1,-1,-1,-1,-1],6)
 
