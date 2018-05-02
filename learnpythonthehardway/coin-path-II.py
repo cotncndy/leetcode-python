@@ -118,11 +118,48 @@ class Solution(object):
             res.append(i+1)
         return res
 
+    def cheapestJump3(self, A, B):
+        """
+        :type A: List[int]
+        :type B: int
+        :rtype: List[int]
+        """
+
+        m = len(A)
+        if A[0] == -1 or A[m-1]  == -1:
+            return []
+        dp = [(float('inf'), -1)]  * m
+        dp[0] = (A[0], -1)
+
+        for i in xrange(m):
+            if A[i] == -1:
+                continue
+            j = i-1
+            while j >= max(i-B,0):
+                if dp[j][0] == float('inf'):
+                    j -= 1 # bugfixed
+                    continue
+                cost = dp[j][0] + A[i]
+                if cost <= dp[i][0]:
+                    dp[i] = (cost, j)
+                j -= 1
+
+
+        if dp[0][0] == float('inf'):
+            return []
+        print dp
+        # i, res =0, [1]
+        # while i < m:
+        #     i = dp[i][1]
+        #     if i == -1:
+        #         break
+        #     res.append(i+1)
+        # return res
 
 if __name__ == '__main__':
 
-    print Solution().cheapestJump2([1,2,4,-1,2],2)
-    print Solution().cheapestJump2([1,2,4,-1,2],1)
-    print Solution().cheapestJump2([0,0,0,0,0,0],3)
-    print Solution().cheapestJump2([0,-1,-1,-1,-1,-1],6)
+    # print Solution().cheapestJump3([1,2,4,-1,2],2)
+    # print Solution().cheapestJump3([1,2,4,-1,2],1)
+    print Solution().cheapestJump3([0,0,0,0,0,0],3)
+    # print Solution().cheapestJump3([0,-1,-1,-1,-1,-1],6)
 
