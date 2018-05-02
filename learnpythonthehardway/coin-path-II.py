@@ -88,7 +88,7 @@ class Solution(object):
         """
 
         m = len(A)
-        if A[0] or A[m-1]  == -1:
+        if A[0] == -1 or A[m-1]  == -1:
             return []
         dp = [(float('inf'), -1)]  * m
         dp[m-1] = (A[m-1], -1)
