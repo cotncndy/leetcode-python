@@ -91,7 +91,7 @@ class Solution(object):
             return []
         m = len(A)
         dp = [(float('inf'), -1)]  * m
-        dp[m-1] = (A[m-1], m)
+        dp[m-1] = (A[m-1], -1)
 
         for i in xrange(m-2,-1,-1):
             if A[i] == -1:
@@ -107,21 +107,21 @@ class Solution(object):
                 j += 1
 
 
-        if dp[-1][0] == float('inf'):
+        if dp[0][0] == float('inf'):
             return []
         # print dp
-        i, res =1, []
-        while i < m+1:
-            res.append(i)
-            if i == m:
-                break
+        i, res =0, [1]
+        while i < m:
             i = dp[i][1]
+            if i == -1:
+                break
+            res.append(i+1)
         return res
 
 
 if __name__ == '__main__':
 
     print Solution().cheapestJump2([1,2,4,-1,2],2)
-    # print Solution().cheapestJump2([1,2,4,-1,2],1)
-    # print Solution().cheapestJump2([0,0,0,0,0,0],3)
+    print Solution().cheapestJump2([1,2,4,-1,2],1)
+    print Solution().cheapestJump2([0,0,0,0,0,0],3)
 
