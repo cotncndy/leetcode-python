@@ -33,11 +33,12 @@ class Solution(object):
         :type B: int
         :rtype: List[int]
         """
+
         if A[0] == -1:
             return []
         m = len(A)
-        dp = [(float('inf'), -1)] * m
-        dp[0] = (A[0], -1)
+        dp = [[(float('inf'), -1)] for _ in xrange(m)]
+        dp[0] = [(A[0], -1)]
 
         for i in xrange(m):
             if A[i] == -1:
@@ -46,33 +47,42 @@ class Solution(object):
                 if i + j >= m:
                     break
                 if A[i+j] != -1:
-                    cost = dp[i][0]
-                    if cost + A[i+j] < dp[i+j][0]:
-                        dp[i+j] = (cost + A[i+j], i)
-                    elif cost + A[i+j] == dp[i+j][0]:
-                        if dp[i+j][1] > 0 and dp[i+j][1] > i:
-                            dp[i+j].append((cost + A[i+j], i))
+                    cost = dp[i][0][0]
+                    if cost + A[i+j] < dp[i+j][0][0]:
+                        del dp[i+j][:] # clear the list
+                        dp[i+j].append((cost + A[i+j], i))
+                    elif cost + A[i+j] == dp[i+j][0][0]:
+                        dp[i+j].append((cost + A[i+j], i))
 
-        if dp[-1][0] == float('inf'):
+        if dp[-1][0][0] == float('inf'):
             return []
 
+        # print dp
         li = [m]
-        l = self.backtrack(dp, m-1, li)
-        return l[::-1]
+        self.res = []
+        self.backtrack(dp, m-1, li)
+        print self.res
+        # return l[::-1]
 
     def backtrack(self, dp, pos, li):
         if pos == 0:
-            return li
+            self.res.append(li[::-1])
+            return
 
         #[[0]]  [[0,2],[0,3]]
-        li.append(dp[pos][1] + 1)
-        return self.backtrack(dp, dp[pos][1], li)
+        for p in dp[pos]:
+            tmp = []
+            tmp.extend(li)
+            tmp.append(p[1]+1)
+            self.backtrack(dp,p[1], tmp )
+
 
 
 
 
 if __name__ == '__main__':
 
-    print Solution().cheapestJump([1,2,4,-1,2],2)
-    print Solution().cheapestJump([1,2,4,-1,2],1)
+    # print Solution().cheapestJump([1,2,4,-1,2],2)
+    # print Solution().cheapestJump([1,2,4,-1,2],1)
+    print Solution().cheapestJump([0,0,0,0,0,0],3)
 
