@@ -134,32 +134,32 @@ class Solution(object):
         for i in xrange(m):
             if A[i] == -1:
                 continue
-            j = i-1
-            while j >= max(i-B,0):
+            j = max(i-B,0)
+            while j < i:
                 if dp[j][0] == float('inf'):
-                    j -= 1 # bugfixed
+                    j += 1 # bugfixed
                     continue
                 cost = dp[j][0] + A[i]
                 if cost <= dp[i][0]:
                     dp[i] = (cost, j)
-                j -= 1
+                j += 1
 
 
-        if dp[0][0] == float('inf'):
+        if dp[-1][0] == float('inf'):
             return []
-        print dp
-        # i, res =0, [1]
-        # while i < m:
-        #     i = dp[i][1]
-        #     if i == -1:
-        #         break
-        #     res.append(i+1)
-        # return res
+        # print dp
+        i, res =m-1, [m]
+        while i >= 0:
+            i = dp[i][1]
+            if i == -1:
+                break
+            res.append(i+1)
+        return res[::-1]
 
 if __name__ == '__main__':
 
-    # print Solution().cheapestJump3([1,2,4,-1,2],2)
-    # print Solution().cheapestJump3([1,2,4,-1,2],1)
+    print Solution().cheapestJump3([1,2,4,-1,2],2)
+    print Solution().cheapestJump3([1,2,4,-1,2],1)
     print Solution().cheapestJump3([0,0,0,0,0,0],3)
-    # print Solution().cheapestJump3([0,-1,-1,-1,-1,-1],6)
+    print Solution().cheapestJump3([0,-1,-1,-1,-1,-1],6)
 
