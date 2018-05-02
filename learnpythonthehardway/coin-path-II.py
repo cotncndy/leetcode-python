@@ -58,7 +58,7 @@ class Solution(object):
 
         li = [m]
         l = self.backtrack(dp, m-1, li)
-        return l
+        return l[::-1]
 
     def backtrack(self, dp, pos, li):
         if pos == 0:
