@@ -68,7 +68,7 @@ class Solution:
                                         dp[k][i][j + n - k] and dp[n - k][i + k][j]:
                             dp[n][i][j] = True
 
-        return dp[n][0][0]
+        return dp[len(s1)][0][0]
 
     def isScramble2(self, s1, s2, r=0):
         if not s1 or s1 == s2: return True
