@@ -72,12 +72,6 @@ class Solution:
         pass
         # FIXME implement the morris traversal with 2 pointers
 
-
-
-
-
-
-
 if __name__ == '__main__':
     root = TreeNode(10)
     root.left = TreeNode(15)

@@ -36,7 +36,7 @@ class Solution:
 
         return match[-1]
 
-    def isInterleave(self, s1, s2, s3):  # 2-d dp
+    def isInterleave2(self, s1, s2, s3):  # 2-d dp
         if len(s1) + len(s2) != len(s3):
             return False
         match = [[False for i in xrange(len(s2) + 1)] for j in xrange(len(s1) + 1)]
