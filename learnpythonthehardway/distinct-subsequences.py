@@ -34,6 +34,7 @@ class Solution:
 
     def numDistinct2(self, S, T):
         dp = [[0 for i in xrange(len(S) + 1)] for j in xrange(len(T) + 1)]
+        # dp = [[0] * (len(S)+1)] * (len(T)+1)
 
         for i in xrange(len(S) + 1):
             dp[0][i] = 1
@@ -83,4 +84,4 @@ class Solution:
         return ways[len(S)]
 
 if __name__ == '__main__':
-    print Solution().numDistinct5("rabbbit", "rabbit")
+    print Solution().numDistinct2("rabbbit", "rabbit")
