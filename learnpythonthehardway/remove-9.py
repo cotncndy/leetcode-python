@@ -17,9 +17,9 @@ class Solution(object):
         """
         cnt = 0
         while n :
+            cnt += 1
             if str(cnt).find('9') == -1:
                 n -= 1
-            cnt += 1
 
         return cnt
 
