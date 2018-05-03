@@ -15,7 +15,7 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        cnt = 1
+        cnt = 0
         while n :
             if str(cnt).find('9') == -1:
                 n -= 1
