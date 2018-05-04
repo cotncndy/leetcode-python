@@ -40,7 +40,7 @@ class Solution(object):
         res = ""
         while n :
             res = str(n%9) + res
-            n /= 10
+            n /= 9
         return int(res)
 
 if __name__ == '__main__':
