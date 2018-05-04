@@ -43,6 +43,9 @@ class Solution(object):
             n /= 9
         return int(res)
 
+
+    ## todo 9 is a special case, how about other common case : 1 - 8 ? try to solve it .
+
 if __name__ == '__main__':
     print Solution().newInteger2()
 
