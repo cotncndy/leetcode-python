@@ -47,6 +47,31 @@ class Solution:
         return global_max[-1]
 
 
+    def maxProfit3(self,prices):
+        l = len(prices)
+        left, right = [0] * l, [0]  * l
+        localMin, leftMax = float('inf'), 0
+
+        for i in xrange(l):
+            localMin = min(localMin, prices[i])
+            leftMax = max(leftMax, prices[i] - localMin)
+            left[i] = leftMax
+
+        localMax, rightMax = float('-inf'), 0
+        for i in reversed(xrange(l)):
+            localMax = max(localMax, prices[i])
+            rightMax = max(rightMax, localMax - prices[i])
+            right[i] = rightMax
+
+        maxProfit = 0
+        for i in xrange(l):
+            maxProfit = max(maxProfit, left[i] + right[i])
+
+        return maxProfit
+
+
+
+
 
 if __name__ == '__main__':
     print Solution().maxProfit([1, 3, 2, 9])
