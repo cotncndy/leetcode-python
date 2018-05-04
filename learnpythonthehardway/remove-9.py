@@ -29,9 +29,9 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        res = 0
+        res, base = 0, 1
         while n :
-            res = res * 10 + n % 9
+            res += n % 9 * base
             n /= 9
 
         return res
