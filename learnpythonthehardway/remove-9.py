@@ -36,6 +36,13 @@ class Solution(object):
 
         return res
 
+    def newInteger3(self, n):
+        res = ""
+        while n :
+            res = str(n%9) + res
+            n /= 10
+        return int(res)
+
 if __name__ == '__main__':
     print Solution().newInteger2()
 
