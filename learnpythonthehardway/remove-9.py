@@ -24,4 +24,21 @@ class Solution(object):
         return cnt
 
 
+    def newInteger2(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        res = 0
+        while n :
+            res = res * 10 + n % 9
+            n /= 9
+
+        return res
+
+if __name__ == '__main__':
+    print Solution().newInteger2()
+
+
+
 
