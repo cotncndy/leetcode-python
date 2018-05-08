@@ -62,6 +62,7 @@ class Solution(object):
         """
 
         n, m = len(flowers),{flowers[key] : key for key in xrange(len(flowers))}
+        res = n+1
 
         for i in xrange(1, n-k):
             minP, maxP = min(m[i], m[i+k+1]), max(m[i], m[i+k+1])
@@ -71,16 +72,18 @@ class Solution(object):
                 if m[t] < maxP:
                     break
             else:
-                return maxP + 1
+                res = min(res,maxP + 1)
 
-        return -1
+        return res if res < n + 1 else -1
 
 if __name__ == '__main__':
     # print Solution().kEmptySlots([1,5,6,2,3,4], 3)
     # print Solution().kEmptySlots([1,4,6,2,3,5], 3)
-    # print Solution().kEmptySlots([1,3,2], 1)
+    print Solution().kEmptySlots([1,3,2], 1)
     # print Solution().kEmptySlots([1,5,2,3,4,6], 3)
     # print Solution().kEmptySlots([9,1,4,2,8,7,5,3,6,10],3)
-    print Solution().kEmptySlots([1,5,2,3,4],3)
+    # print Solution().kEmptySlots([1,5,2,3,4],3)
+    print Solution().kEmptySlots([3,9,2,8,1,6,10,5,4,7],1)
+    print Solution().kEmptySlots([6,5,8,9,7,1,10,2,3,4],2)
 
 
