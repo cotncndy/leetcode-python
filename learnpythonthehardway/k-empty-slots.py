@@ -78,7 +78,7 @@ class Solution(object):
 
 if __name__ == '__main__':
     # print Solution().kEmptySlots([1,5,6,2,3,4], 3)
-    # print Solution().kEmptySlots([1,4,6,2,3,5], 3)
+    print Solution().kEmptySlots([1,4,6,2,3,5], 3)
     print Solution().kEmptySlots([1,3,2], 1)
     # print Solution().kEmptySlots([1,5,2,3,4,6], 3)
     # print Solution().kEmptySlots([9,1,4,2,8,7,5,3,6,10],3)
