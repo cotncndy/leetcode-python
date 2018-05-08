@@ -39,7 +39,7 @@ class Solution(object):
 
         start = n - k
 
-        while start > 2:
+        while start > 1:
             lMin, lMax = min(flowers[start:start+k:]), max(flowers[start: start+k])
             if lMin-1 not in m or lMax + 1 not in m:
                 start -= 1
@@ -48,6 +48,8 @@ class Solution(object):
             if minL < start + 2 and maxL < start + 2 and abs(lMax - lMin + 2)==k+1:
                 return max(minL, maxL)
             while lMin < flowers[start + k] < lMax:
+                start -= 1
+            else:
                 start -= 1
 
         return -1

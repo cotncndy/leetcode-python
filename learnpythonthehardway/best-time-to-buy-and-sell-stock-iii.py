@@ -74,4 +74,4 @@ class Solution:
 
 
 if __name__ == '__main__':
-    print Solution().maxProfit([1, 3, 2, 9])
+    print Solution().maxProfit3([1, 6, 3, 7,4,9,2,10,12,4])
