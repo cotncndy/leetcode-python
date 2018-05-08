@@ -27,7 +27,7 @@
 # The given array will be in the range [1, 20000].
 
 class Solution(object):
-    def kEmptySlots(self, flowers, k):
+    def kEmptySlots_wrong(self, flowers, k):
         """
         :type flowers: List[int]
         :type k: int
@@ -53,10 +53,34 @@ class Solution(object):
                 start -= 1
 
         return -1
+
+    def kEmptySlots(self, flowers, k):
+        """
+        :type flowers: List[int]
+        :type k: int
+        :rtype: int
+        """
+
+        n, m = len(flowers),{flowers[key] : key for key in xrange(len(flowers))}
+
+        for i in xrange(1, n-k):
+            minP, maxP = min(m[i], m[i+k+1]), max(m[i], m[i+k+1])
+            if maxP >= n-k:  # on the right, there is less than k flowers
+                continue
+            for t in xrange(i+1, i+k+1):
+                if m[t] < maxP:
+                    break
+            else:
+                return maxP + 1
+
+        return -1
+
 if __name__ == '__main__':
     # print Solution().kEmptySlots([1,5,6,2,3,4], 3)
-    print Solution().kEmptySlots([1,4,6,2,3,5], 3)
-    print Solution().kEmptySlots([1,3,2], 1)
-    print Solution().kEmptySlots([1,5,2,3,4,6], 3)
+    # print Solution().kEmptySlots([1,4,6,2,3,5], 3)
+    # print Solution().kEmptySlots([1,3,2], 1)
+    # print Solution().kEmptySlots([1,5,2,3,4,6], 3)
+    # print Solution().kEmptySlots([9,1,4,2,8,7,5,3,6,10],3)
+    print Solution().kEmptySlots([1,5,2,3,4],3)
 
 
