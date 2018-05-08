@@ -47,7 +47,7 @@ class Solution(object):
             minL, maxL = m[lMin-1],m[lMax+1]
             if minL < start + 2 and maxL < start + 2 and abs(lMax - lMin + 2)==k+1:
                 return max(minL, maxL)
-            while lMin < flowers[start + k] < lMax:
+            while lMin < flowers[start + k-1] < lMax:  #bugfixed
                 start -= 1
             else:
                 start -= 1
@@ -55,8 +55,8 @@ class Solution(object):
         return -1
 if __name__ == '__main__':
     # print Solution().kEmptySlots([1,5,6,2,3,4], 3)
-    # print Solution().kEmptySlots([1,4,6,2,3,5], 3)
-    # print Solution().kEmptySlots([1,3,2], 1)
+    print Solution().kEmptySlots([1,4,6,2,3,5], 3)
+    print Solution().kEmptySlots([1,3,2], 1)
     print Solution().kEmptySlots([1,5,2,3,4,6], 3)
 
 
