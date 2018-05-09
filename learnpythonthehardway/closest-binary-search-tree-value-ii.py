@@ -45,7 +45,7 @@ class Solution(object):
     def inorder(self, root, target, k, res):
         if not root:
             return
-        self.inorder(root, target, k, res)
+        self.inorder(root.left, target, k, res)
         if len(res) < k:
             res.append(root.val)
         else:
@@ -54,7 +54,7 @@ class Solution(object):
                 res.append(root.val)
             else:
                 return
-        self.inorder(root, target, k, res)
+        self.inorder(root.right, target, k, res)
 
     def closestKvalues2(self, root, target, k):
         stack, res = [], []
