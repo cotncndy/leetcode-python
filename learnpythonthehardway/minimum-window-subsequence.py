@@ -27,22 +27,33 @@ class Solution(object):
         dp = [[-1] * n for _ in xrange(m)]
         for j in xrange(n):
             if S[j] == T[0]:
-                dp[0][j] = j
+                dp[0][j] = j  # the meaning of dp[i][j] means for T' str (0,i) which is subsequence of S(0,j), the start
+                # position in S
+            # else:
+            #     dp[0][j] = dp[0][j-1]
+
         for i in xrange(1, m):
             k = -1
-            for j in xrange(n):
+            for j in xrange(i,n):
                 if k != -1 and S[j] == T[i]:
                     dp[i][j] = k
+                # else:
+                #     dp[i][j] = dp[i-1][j]
+                # dp[i][j] = dp[i-1][j-1] if S[j] == T[i] else dp[i-1][j]
                 if dp[i - 1][j] != -1:
                     k = dp[i - 1][j]
 
+
         start, length = -1, float('inf')
         for j in xrange(n):
-            if dp[m - 1][j] > 0 and length > j - dp[m - 1][j] + 1:
+            if dp[m - 1][j] >= 0 and length > j - dp[m - 1][j] + 1:
                 start, length = dp[m - 1][j], j - dp[m - 1][j] + 1
+
+        print dp
 
         return "" if start == -1 else S[start:start + length]
 
 
 if __name__ == '__main__':
-    print Solution().minWindow('abcdebdde', 'bde')
+    # print Solution().minWindow('abcdebdde', 'bde')
+    print Solution().minWindow('fgrqsqsnodwmxzkzxwqegkndaa', 'fnok') # expected fgrqsqsnodwmxzk
